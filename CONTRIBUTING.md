@@ -7,6 +7,8 @@ This document is not final and is subject to change.
 - All pull requests should be related to an issue. If the task you are working on does not have an issue, please create one first.
 
 - [ESLint](https://eslint.org/) is configured and extending [Google's styleguide](https://github.com/google/eslint-config-google). All pull requests must pass the linter to be accepted.
+  -- You can and I recommend install a plugin for VSCode for ESLint. Its simply called ESLint. It will highlight issues with red squigglies as you code.
+  -- Second, you can run a script with `npm run lint-watch` or `yarn lint-watch` that will watch the files and spit out errors. I will run the script to test pull-requests.
 
 - A testing framework is not set up at this time, but will be in the future. Code will also have to pass tests to be submitted.
 
