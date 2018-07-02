@@ -1,16 +1,16 @@
 //The contents of this file should go on client side main pages
 
 import React, { Component } from 'react';
-import { Input, TextArea, FormBtn } from "../../components/Form";
-import API from "../../utils/API";
+import { Input, TextArea, FormBtn } from '../../components/Form';
+import API from '../../utils/API';
 
 class Transaction extends Component {
 
     state = {
-        ticker: "",
+        ticker: '',
         price: 0,
         shares: 0,
-        response: ""
+        response: ''
     };
 
 
@@ -37,10 +37,10 @@ class Transaction extends Component {
                     .then(res => {
                         //Send transaction data to data base here
                         this.setState({
-                        ticker: "",
+                        ticker: '',
                         price: 0,
                         shares: 0,
-                        response: "Transaction successfully completed"
+                        response: 'Transaction successfully completed'
                     })})
                     .catch(err => console.log(err));
 
@@ -63,10 +63,10 @@ class Transaction extends Component {
                     .then(res => {
                         //Send transaction data to data base here
                         this.setState({
-                        ticker: "",
+                        ticker: '',
                         price: 0,
                         shares: 0,
-                        response: "Transaction successfully completed"
+                        response: 'Transaction successfully completed'
                     })})
                     .catch(err => console.log(err));
 

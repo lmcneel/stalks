@@ -1,7 +1,7 @@
-const router = require("express").Router();
-const tradingRoutes = require("./trading");
+const router = require('express').Router();
+const tradingRoutes = require('./trading');
 
 // Trading routes
-router.use("/trading", tradingRoutes);
+router.use('/trading', tradingRoutes);
 
 module.exports = router;
