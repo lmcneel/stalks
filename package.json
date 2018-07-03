@@ -13,7 +13,10 @@
     "client": "cd client && npm run start",
     "install": "cd client; yarn install;",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "build-css": "node-sass-chokidar ./client/src/assets/scss --include-path ./client/node_modules ./client/src/assets/scss -o client/public/css --source-map client/public/css",
+    "prod-css": "node-sass-chokidar ./client/src/assets/scss --include-path ./client/node_modules ./client/src/assets/scss -o client/public/css --source-map client/public/css --output-style compressed",
+    "watch-css": "npm run build-css && node-sass-chokidar ./client/src/assets/scss --include-path ./client/node_modules ./client/src/assets/scss -o client/public/css --watch --recursive"
   },
   "repository": {
     "type": "git",
@@ -38,6 +41,7 @@
     "mongoose": "^5.1.7",
     "morgan": "^1.9.0",
     "mysql2": "^1.5.3",
+    "node-sass-chokidar": "^1.3.0",
     "sequelize": "^4.38.0"
   },
   "devDependencies": {
