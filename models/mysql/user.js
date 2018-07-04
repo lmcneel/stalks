@@ -1,6 +1,6 @@
 module.exports = function (sequelize, Sequelize) {
     //do we want to define this as user of users
-    var User = sequelize.define('user', {
+    const User = sequelize.define('user', {
 
         id: {
             autoIncrement: true,
