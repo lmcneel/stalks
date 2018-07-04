@@ -16,8 +16,8 @@ const portfolioSchema = new Schema({
 
   // `trades` is an array each time a new transaction is completed it will be pushed to this array
   trades: [{
-    transaction_id: {type: Number},
-    date: {type: Date},
+    transaction_id: {type: String},
+    date: {type: Date, default: Date.now},
     type: {type: String},
     ticker: {type: String},
     sharePrice: {type: Number},
