@@ -20,4 +20,10 @@ router.route('/quote')
     );
 });
 
+router.route('/buy/:id')
+.post(tradingController.buy);
+
+router.route('/sell/:id')
+.post(tradingController.sell);
+
 module.exports = router;
