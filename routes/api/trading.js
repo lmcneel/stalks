@@ -2,6 +2,7 @@
 
 const router = require('express').Router();
 const request = require('request');
+const tradingController = require('../../controllers/tradingController');
 
 router.route('/quote')
 .get(function(req, res) {
