@@ -66,16 +66,16 @@ module.exports = function (sequelize, Sequelize) {
 
 //names of other models have not been established so the associations are subject to change
 
-    // User.associate = function (models) {
+    User.associate = function (models) {
     //at this point we are assuming users only have one pet
     // User.hasOne(models.users_pets, {
     //     onDelete: "cascade"
     // }),
     //haven't seen title incorporated in the current scope but if necessary
     // User.belongsTo(models.titles),
-    // User.hasMany(models.usersWatchList, {
-    //     onDelete: "cascade"
-    // }),
+    User.hasMany(models.user_watchlist, {
+        onDelete: "cascade"
+    })
     // User.hasMany(models.users_friends, {
     //     onDelete: "cascade"
     // }),
@@ -85,7 +85,7 @@ module.exports = function (sequelize, Sequelize) {
     // User.hasMany(models.users_gifts, {
     //     onDelete: "cascade"
     // });
-    // };
+    };
 
     return User;
 
