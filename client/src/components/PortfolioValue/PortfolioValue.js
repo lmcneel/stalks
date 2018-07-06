@@ -1,13 +1,10 @@
-import React from "react";
+import React from 'react';
 
-//this is the small component on the petfolio page that shows the portfolio value
-
-const PortfolioValue = (props) => {
-  return (
+export const PortfolioValue = (props) => (
     <div>
-      <div className="">Portfolio Value{props.portfolioValue}</div>
+      <div className="">Portfolio Value</div>
+      <div>{props.portfolioValue}</div>
     </div>
-  );
-};
+);
 
 export default PortfolioValue;
