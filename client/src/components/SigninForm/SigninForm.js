@@ -6,7 +6,6 @@ import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
 class SigninForm extends Component {
     state={
         username='',
-        email='',
         password=''
     };
 
@@ -22,6 +21,7 @@ class SigninForm extends Component {
         //if search was clicked
         console.log("login clicked");
         //TODO: add code to handle api route for login
+        API.login(this.state.props);
 
     };
 
