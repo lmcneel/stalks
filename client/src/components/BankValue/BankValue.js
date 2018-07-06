@@ -1,6 +1,9 @@
-import React from "react";
+import React from 'react';
 
-//this is the small component on the petfolio page that shows the bank value
+/** this is the small component on the petfolio page
+ *  that shows the bank value
+ */
+
 
 const BankValue = (props) => {
   return (
