@@ -3,6 +3,9 @@
 const router = require('express').Router();
 const request = require('request');
 
+// Portfolio Model
+const Portfolio = require('../../models/mongo/portfolio');
+
 router.route('/quote')
 .get(function(req, res) {
     request(
@@ -20,10 +23,12 @@ router.route('/quote')
     );
 });
 
+
 router.route('/buy/:id')
 .post(tradingController.buy);
 
 router.route('/sell/:id')
 .post(tradingController.sell);
+
 
 module.exports = router;
