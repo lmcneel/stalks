@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser= require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
-const seedDB = require("./seeds");
+const seedDB = require('./seeds');
 
 app.use(logger('dev'));
 
@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === 'production') {
 // Define API routes here
 app.use(routes);
 
-//DB Config
+// DB Config
 const db = require('./config/keys').mongoURI;
 
 seedDB();
@@ -33,8 +33,8 @@ seedDB();
 // Connect to the Mongo DB
 mongoose
 .connect(db)
-.then(() => console.log ('MongoDB Connected'))
-.catch(err => console.log(err));
+.then(() => console.log('MongoDB Connected'))
+.catch((err) => console.log(err));
 
 // Send every other request to the React app
 // Define any API routes before this runs
