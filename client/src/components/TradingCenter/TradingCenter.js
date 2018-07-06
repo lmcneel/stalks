@@ -27,6 +27,8 @@ class Transaction extends Component {
 
     buyShares = event => {
         event.preventDefault();
+        const today = new Date();
+       
         API.findQuotes(
             { ticker: this.state.ticker }
         ).then(res => {
@@ -34,8 +36,8 @@ class Transaction extends Component {
             if (this.state.ticker && this.state.price && this.state.shares) {
                 API.buyShares({
                     transaction_id: Date.now(),
-                    date: Date.now(),
-                    type: "buy",
+                    date: `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`,
+                    type: 'buy',
                     ticker: this.state.ticker,
                     sharePrice: this.state.price,
                     shares: this.state.shares
@@ -64,8 +66,8 @@ class Transaction extends Component {
                 API.sellShares({
                     // Need to update transaction_id and date fields
                     transaction_id: Date.now(),
-                    date: Date.now(),
-                    type: "sell",
+                    date: `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`,
+                    type: 'sell',
                     ticker: this.state.ticker,
                     sharePrice: this.state.price,
                     shares: this.state.shares
