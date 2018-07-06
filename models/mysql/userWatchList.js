@@ -1,18 +1,21 @@
 //needs id, users_id, unique_stock_id, created_at
 
-module.exports = function(sequelize, DataTypes) {
-  const usersWatchList = sequelize.define
-  ('usersWatchList', {
+module.exports = function (sequelize, Sequelize) {
+  const User_watchlist = sequelize.define('user_watchlist', {
     unique_stock_id: {
-      type: DataTypes.Integer,
+      //not sure what data type this will be stored as
+      type: Sequelize.INTEGER,
       allowNull: false
-    }});
-    
-  usersWatchList.associate = function(models) {
+    }
+  });
+
+  User_watchlist.associate = function (models) {
     //users_id
-    usersWatchList.belongsToMany(models.users,{
-      foreignKey: "userId"
+    User_watchlist.belongsTo(models.user, {
+      foreignKey: {
+        allowNull: false
+      }
     });
   };
-  return usersWatchList;
+  return User_watchlist;
 };
