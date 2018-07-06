@@ -5,7 +5,8 @@ import React from "react";
 const BankValue = (props) => {
   return (
     <div>
-      <div className="">Bank Value{props.bankValue}</div>
+      <div className="">Bank Value</div>
+      <div>{props.bankValue}</div>
     </div>
   );
 };

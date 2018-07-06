@@ -8,7 +8,7 @@ export const PetWrapper = (props) => {
           <Row>
             <Col>
             {props.children}
-            </Col>;
+            </Col>
           </Row>
         </Container>
       </div>
