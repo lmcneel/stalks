@@ -6,13 +6,16 @@ import API from '../../utils/API';
 
 class Transaction extends Component {
 
-    state = {
-        ticker: '',
-        price: 0,
-        shares: 0,
-        response: ''
-    };
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            ticker: '',
+            price: 0,
+            shares: 0,
+            response: '',
+            user_id: 'XXXX'
+        }
+    }
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -30,18 +33,21 @@ class Transaction extends Component {
             this.setState({ price: res.body.quote.latestPrice });
             if (this.state.ticker && this.state.price && this.state.shares) {
                 API.buyShares({
+                    transaction_id: Date.now(),
+                    date: Date.now(),
+                    type: "buy",
                     ticker: this.state.ticker,
-                    price: this.state.price,
+                    sharePrice: this.state.price,
                     shares: this.state.shares
-                })
+                }, this.state.user_id)
                     .then(res => {
-                        //Send transaction data to data base here
                         this.setState({
-                        ticker: '',
-                        price: 0,
-                        shares: 0,
-                        response: 'Transaction successfully completed'
-                    })})
+                            ticker: '',
+                            price: 0,
+                            shares: 0,
+                            response: 'Transaction successfully completed'
+                        })
+                    })
                     .catch(err => console.log(err));
 
             }
@@ -56,23 +62,35 @@ class Transaction extends Component {
             this.setState({ price: res.body.quote.latestPrice });
             if (this.state.ticker && this.state.price && this.state.shares) {
                 API.sellShares({
+                    // Need to update transaction_id and date fields
+                    transaction_id: Date.now(),
+                    date: Date.now(),
+                    type: "sell",
                     ticker: this.state.ticker,
-                    price: this.state.price,
+                    sharePrice: this.state.price,
                     shares: this.state.shares
-                })
+                }, this.state.user_id)
                     .then(res => {
-                        //Send transaction data to data base here
                         this.setState({
-                        ticker: '',
-                        price: 0,
-                        shares: 0,
-                        response: 'Transaction successfully completed'
-                    })})
+                            ticker: '',
+                            price: 0,
+                            shares: 0,
+                            response: 'Transaction successfully completed'
+                        })
+                    })
                     .catch(err => console.log(err));
 
             }
         }).catch(err => console.log(err));
     };
+
+    render() {
+        return (
+            <div>
+
+            </div>
+        )
+    }
 }
 
 export default Transaction;

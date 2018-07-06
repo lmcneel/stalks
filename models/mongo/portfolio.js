@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+
+const mongoose = require('mongoose');
 
 // Save a reference to the Schema constructor
 const Schema = mongoose.Schema;
@@ -7,6 +8,7 @@ const Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new UserSchema object
 const portfolioSchema = new Schema({
+
   
   // `cash` is required and of type Number, will be updated after each buy/sell transaction
   cash: {
@@ -24,10 +26,14 @@ const portfolioSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Trade'
   }]
+
+// db.portfolio.update({user_id: "XXXXXX"}, {$push: trades:
+// [ {transaction_id: XXXXXX, date: timestamp, type: buy, ticker: AAPL, sharePrice: 1865300, shares: 20]
+
 });
 
 // This creates our model from the above schema, using mongoose's model method
-const Portfolio = mongoose.model("Portfolio", portfolioSchema);
+const Portfolio = mongoose.model('Portfolio', portfolioSchema);
 
 // Export the Portfolio model
 module.exports = Portfolio;
