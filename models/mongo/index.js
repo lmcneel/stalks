@@ -5,7 +5,7 @@ module.exports = {
 
     User: require('./user'),
     Portfolio: require('./portfolio'),
-    Trades: require("./trade")
+    Trades: require('./trade')
     // MessageBoard: require('./messageBoard'),
     // Publicpages: require('./publicPages'),
     // LeaderBoard: require('./leaderBoard'),

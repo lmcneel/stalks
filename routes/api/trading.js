@@ -1,6 +1,7 @@
 // This file files goes in the server side routes folder
 
 const router = require('express').Router();
+const tradingController = require('../../controllers/tradingController');
 const request = require('request');
 
 // Portfolio Model
