@@ -3,5 +3,6 @@
  */
 module.exports = {
     User: require("./user"),
-    Portfolio: require("./portfolio")
+    Portfolio: require("./portfolio"),
+    Trades: require("./trade")
   };
