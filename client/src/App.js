@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import './App.css';
+
+import CollapseRow from './components/CollapseRow/index';
+
 
 /**
  * Class App
@@ -24,6 +26,7 @@ class App extends Component {
             <Route exact path="/signup" component={SignupForm} />
             <Route component={NoMatch} />
           </Switch>
+        <CollapseRow />
       </div>
       </Router>
     );
