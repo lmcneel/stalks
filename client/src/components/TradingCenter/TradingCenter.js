@@ -1,7 +1,7 @@
 //The contents of this file should go on client side main pages
 
-import React, {Component} from 'react';
-import {Button, FormGroup, Label, Input,} from 'reactstrap';
+import React, { Component } from 'react';
+import { Button, FormGroup, Label, Input, } from 'reactstrap';
 import API from '../../utils/API';
 
 class Transaction extends Component {
@@ -13,7 +13,8 @@ class Transaction extends Component {
             price: 0,
             shares: 0,
             response: '',
-            user_id: 'XXXX'
+            user_id: 'XXXX',
+            transaction: 'buy',
         }
     }
 
@@ -35,13 +36,12 @@ class Transaction extends Component {
             this.setState({ price: res.body.quote.latestPrice });
             if (this.state.ticker && this.state.price && this.state.shares) {
                 API.buyShares({
-                    transaction_id: Date.now(),
-                    date: `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`,
+                    user_id: this.state.user_id,
                     type: 'buy',
                     ticker: this.state.ticker,
                     sharePrice: this.state.price,
                     shares: this.state.shares
-                }, this.state.user_id)
+                })
                     .then(res => {
                         this.setState({
                             ticker: '',
@@ -65,13 +65,12 @@ class Transaction extends Component {
             this.setState({ price: res.body.quote.latestPrice });
             if (this.state.ticker && this.state.price && this.state.shares) {
                 API.sellShares({
-                    transaction_id: Date.now(),
-                    date: `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`,
+                    user_id: this.state.user_id,
                     type: 'sell',
                     ticker: this.state.ticker,
                     sharePrice: this.state.price,
                     shares: this.state.shares
-                }, this.state.user_id)
+                })
                     .then(res => {
                         this.setState({
                             ticker: '',
@@ -98,27 +97,35 @@ class Transaction extends Component {
                             <FormGroup>
                                 <Label><h2>Select One Option</h2>
                                     <div class="form-check form-check-inline">
-                                        <Input 
-                                        class="form-check-input" 
-                                        type="radio" 
-                                        name="buy" 
-                                        id="inlineRadio1" />{' '}
-                                        <Label 
-                                        class="form-check-label" 
-                                        for="inlineRadio1">
-                                        <h3>BUY</h3>
+                                        <Input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="transaction"
+                                            value='buy'
+                                            checked={this.state.transaction === 'buy'}
+                                            onChange={this.handleInputChange}
+                                            id="inlineRadio1"
+                                        />{' '}
+                                        <Label
+                                            class="form-check-label"
+                                            for="inlineRadio1">
+                                            <h3>BUY</h3>
                                         </Label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <Input 
-                                        class="form-check-input" 
-                                        type="radio" 
-                                        name="sell" 
-                                        id="inlineRadio2" />{' '}
-                                        <Label 
-                                        class="form-check-label" 
-                                        for="inlineRadio1">
-                                        <h3>SELL</h3>
+                                        <Input
+                                            class="form-check-input"
+                                            type="radio"
+                                            name="transaction"
+                                            value='sell'
+                                            checked={this.state.transaction === 'sell'}
+                                            onChange={this.handleInputChange}
+                                            id="inlineRadio2"
+                                        />{' '}
+                                        <Label
+                                            class="form-check-label"
+                                            for="inlineRadio1">
+                                            <h3>SELL</h3>
                                         </Label>
                                     </div>
                                 </Label>
@@ -126,14 +133,17 @@ class Transaction extends Component {
                         </div>
                         <div class="col-sm-6">
                             <FormGroup>
-                                <Label 
-                                for="numberOfShares"> 
-                                <h2>Number of Shares</h2>
+                                <Label
+                                    for="numberOfShares">
+                                    <h2>Number of Shares</h2>
                                 </Label>
-                                <Input 
-                                type="text" 
-                                name="shares" 
-                                id="numberOfShares" />
+                                <Input
+                                    type="text"
+                                    name="shares"
+                                    value={this.state.shares}
+                                    onChange={this.handleInputChange}
+                                    id="numberOfShares" 
+                                    />
                             </FormGroup>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import TradingCenter from '../components/TradingCenter';
 
 /**
@@ -11,7 +11,6 @@ class Trading extends Component {
         return (
             <div>
                 <TradingCenter />
-                Trading
             </div>
         );
     }
