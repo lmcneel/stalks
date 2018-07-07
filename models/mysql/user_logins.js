@@ -1,26 +1,22 @@
 module.exports = function (sequelize, Sequelize) {
     //do we want to define this as user of users
-    const User_logins = sequelize.define('user_logins', {
-
+    const User_Logins = sequelize.define('User_Logins', {
+ 
         id: {
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER
-        },
-        login_date: {
-            type: Sequelize.DATE,
-            notEmpty: true
-        },
+        }
     });
 
-    User_logins.associate = function (models) {
+    User_Logins.associate = function (models) {
         //users_id
-        User_logins.belongsTo(models.user, {
+        User_Logins.belongsTo(models.user, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
-    return User_logins;
+    return User_Logins;
 
 };
