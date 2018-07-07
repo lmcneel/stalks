@@ -1,8 +1,12 @@
 // This file files goes in the server side routes folder
 
 const router = require('express').Router();
+const tradingController = require('../../controllers/tradingController');
 const request = require('request');
 const tradingController = require('../../controllers/tradingController');
+
+// Portfolio Model
+const Portfolio = require('../../models/mongo/portfolio');
 
 router.route('/quote')
 .get(function(req, res) {
@@ -21,10 +25,12 @@ router.route('/quote')
     );
 });
 
+
 router.route('/buy/:id')
 .post(tradingController.buy);
 
 router.route('/sell/:id')
 .post(tradingController.sell);
+
 
 module.exports = router;
