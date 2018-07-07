@@ -1,4 +1,3 @@
-
 // import React from 'react';
 // import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 // import './App.css';
@@ -13,6 +12,12 @@
 //     </div>
 //   </Router>
 // );
+
+import React from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import './App.css';
+import Trading from './pages/Trading';
+
 
 // export default App;
 
