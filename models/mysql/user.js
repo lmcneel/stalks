@@ -1,5 +1,5 @@
-module.exports = function (sequelize, Sequelize) {
-    //do we want to define this as user of users
+module.exports = function(sequelize, Sequelize) {
+    // do we want to define this as user of users
     const User = sequelize.define('User', {
 
         id: {
@@ -73,11 +73,11 @@ module.exports = function (sequelize, Sequelize) {
         // haven't seen title incorporated in the current scope but if necessary
         // User.belongsTo(models.titles),
         User.hasMany(models.User_Watchlist, {
-            onDelete: "cascade"
+            onDelete: 'cascade',
         }),
         User.hasMany(models.User_Logins, {
-            onDelete: "cascade"
-        })
+            onDelete: 'cascade',
+        });
         // User.hasMany(models.users_friends, {
         //     onDelete: "cascade"
         // }),
