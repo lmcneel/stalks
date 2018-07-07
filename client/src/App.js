@@ -1,16 +1,9 @@
-<<<<<<< HEAD
 
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 import Trading from './pages/Trading';
 import Transaction from './pages/Transaction';
-=======
-// import React from 'react';
-// import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-// import './App.css';
-// import Trading from './pages/Trading';
->>>>>>> a21340ea1f848b58ce27e0f2d18a979afb39de1e
 
 const App = () => (
   <Router>
@@ -23,17 +16,6 @@ const App = () => (
   </Router>
 );
 
-<<<<<<< HEAD
-export default App;
-=======
-import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import './App.css';
-import Trading from './pages/Trading';
-
-
-// export default App;
->>>>>>> a21340ea1f848b58ce27e0f2d18a979afb39de1e
 
 // import React, {Component} from 'react';
 // import logo from './logo.svg';
