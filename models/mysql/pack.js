@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    var Packs = sequelize.define("Packs", {
+    var Packs = sequelize.define("Pack", {
         clan_name: {
             type: DataTypes.STRING,
             allownull: false,
@@ -8,10 +8,18 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allownull: false,
         },
-        average_valuation: {
+        user_id: {
+            type: DataTypes.STRING,
+            allownull: false,
+        },
+        pack_id: {
+            type: DataTypes.STRING,
+            allownull: false,
+        },
+        valuation: {
             type: DataTypes.INTEGER,
             allownull: false,
         }
     });
-    return Packs;
+    return Pack;
 };
