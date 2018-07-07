@@ -25,6 +25,7 @@ class App extends Component {
             <Route exact path='/signup' component={SignupForm} />
             
           </Switch>
+
         <CollapseRow />
       </div>
       </Router>

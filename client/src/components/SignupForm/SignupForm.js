@@ -10,6 +10,7 @@ import { InputGroup,
         Button } from 'reactstrap';
 
 
+
 class SignupForm extends Component {
     state={
         username:'',
@@ -66,6 +67,7 @@ class SignupForm extends Component {
                     </InputGroupButtonDropdown>
                     <Input placeholder="and..." />
                     </InputGroup>
+
                 <Button className='login-button'>Signup</Button>
             </div>
         );
@@ -73,3 +75,4 @@ class SignupForm extends Component {
 }
 
 export default SignupForm;
+
