@@ -6,7 +6,7 @@ import PetfolioValue from '../../components/PetfolioValue';
 import PieChart from '../../components/PieChart';
 import wolfy from './defaultPetPic.png';
 //import other 3 pet pics here
-import StockTicker from '../../components/StockTicker.js';
+//import StockTicker from '../../components/StockTicker.js';
 import './Petfolio.css';
  
 
@@ -17,7 +17,7 @@ class Petfolio extends Component {
       petStats: [85, 90, 50, 70],
       petfolioValue: '$1000',
       bankValue: '$2000',
-      watchStocks: ['Ace 2.35  Betaa 4.15  Candi 1.28']
+      //watchStocks: ['Ace 2.35  Betaa 4.15  Candi 1.28']
     };
    
     render() {
@@ -74,14 +74,14 @@ class Petfolio extends Component {
             <Col size="md-6">
               <Row>
                 <Col>
-                  <PortfolioValue portfolioValue={this.state.petfolioValue}/>
+                  <PetfolioValue petfolioValue={this.state.petfolioValue}/>
                 </Col>
                 <Col>
                   <BankValue bankValue = {this.state.bankValue}/>
                 </Col>
               </Row>
-              <Row>]
-                <Marquee>{this.state.watchStocks}</Marquee>;
+              <Row>
+              
               </Row>
               <Row>
                 <PieChart />
