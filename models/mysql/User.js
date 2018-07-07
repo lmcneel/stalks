@@ -1,8 +1,5 @@
 const bcrypt = require('bcryptjs');
-module.exports = function (sequelize, DataTypes) {
-
-
-
+module.exports = function(sequelize, DataTypes) {
 // User Schema
     const User = sequelize.define('User', {
         username: {
@@ -16,10 +13,10 @@ module.exports = function (sequelize, DataTypes) {
         },
         name: {
             type: DataTypes.STRING,
-        }
+        },
 
     });
-    // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
+    // A custom method for our User model. It will compare user pawword wit stored password.
     User.prototype.validPassword = function(password) {
         return bcrypt.compareSync(password, this.password);
     };
