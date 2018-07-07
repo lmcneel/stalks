@@ -75,6 +75,9 @@ module.exports = function (sequelize, Sequelize) {
         // User.belongsTo(models.titles),
         User.hasMany(models.user_watchlist, {
             onDelete: "cascade"
+        }),
+        User.hasMany(models.user_logins, {
+            onDelete: "cascade"
         })
         // User.hasMany(models.users_friends, {
         //     onDelete: "cascade"
