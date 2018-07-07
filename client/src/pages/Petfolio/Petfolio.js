@@ -6,7 +6,7 @@ import PetfolioValue from '../../components/PetfolioValue';
 import PieChart from '../../components/PieChart';
 import wolfy from './defaultPetPic.png';
 // import other 3 pet pics here
-import './Portfolio.css';
+import './Petfolio.css';
 import API from './../../utils/API';
 // import StockTicker from '../../components/StockTicker.js';
 
