@@ -3,6 +3,7 @@
 const router = require('express').Router();
 const tradingController = require('../../controllers/tradingController');
 const request = require('request');
+const tradingController = require('../../controllers/tradingController');
 
 // Portfolio Model
 const Portfolio = require('../../models/mongo/portfolio');
