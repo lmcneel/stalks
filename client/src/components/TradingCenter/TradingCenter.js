@@ -1,18 +1,21 @@
 //The contents of this file should go on client side main pages
 
 import React, { Component } from 'react';
-import { Input, TextArea, FormBtn } from '../../components/Form';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import API from '../../utils/API';
 
 class Transaction extends Component {
 
-    state = {
-        ticker: '',
-        price: 0,
-        shares: 0,
-        response: ''
-    };
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            ticker: '',
+            price: 0,
+            shares: 0,
+            response: '',
+            user_id: 'XXXX'
+        }
+    }
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -24,24 +27,29 @@ class Transaction extends Component {
 
     buyShares = event => {
         event.preventDefault();
+        const today = new Date();
+
         API.findQuotes(
             { ticker: this.state.ticker }
         ).then(res => {
             this.setState({ price: res.body.quote.latestPrice });
             if (this.state.ticker && this.state.price && this.state.shares) {
                 API.buyShares({
+                    transaction_id: Date.now(),
+                    date: `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`,
+                    type: 'buy',
                     ticker: this.state.ticker,
-                    price: this.state.price,
+                    sharePrice: this.state.price,
                     shares: this.state.shares
-                })
+                }, this.state.user_id)
                     .then(res => {
-                        //Send transaction data to data base here
                         this.setState({
-                        ticker: '',
-                        price: 0,
-                        shares: 0,
-                        response: 'Transaction successfully completed'
-                    })})
+                            ticker: '',
+                            price: 0,
+                            shares: 0,
+                            response: 'Transaction successfully completed'
+                        })
+                    })
                     .catch(err => console.log(err));
 
             }
@@ -50,29 +58,58 @@ class Transaction extends Component {
 
     sellShares = event => {
         event.preventDefault();
+        const today = new Date();
         API.findQuotes(
             { ticker: this.state.ticker }
         ).then(res => {
             this.setState({ price: res.body.quote.latestPrice });
             if (this.state.ticker && this.state.price && this.state.shares) {
                 API.sellShares({
+                    transaction_id: Date.now(),
+                    date: `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`,
+                    type: 'sell',
                     ticker: this.state.ticker,
-                    price: this.state.price,
+                    sharePrice: this.state.price,
                     shares: this.state.shares
-                })
+                }, this.state.user_id)
                     .then(res => {
-                        //Send transaction data to data base here
                         this.setState({
-                        ticker: '',
-                        price: 0,
-                        shares: 0,
-                        response: 'Transaction successfully completed'
-                    })})
+                            ticker: '',
+                            price: 0,
+                            shares: 0,
+                            response: 'Transaction successfully completed'
+                        })
+                    })
                     .catch(err => console.log(err));
 
             }
         }).catch(err => console.log(err));
     };
+
+    render() {
+        return (
+            <form className='buySell'>
+                <legend>I WANT TO:</legend>
+                <FormGroup check>
+                    <Label check>
+                        <Input type="radio" name="radio1" />{' '}
+                        BUY
+                    </Label>
+                </FormGroup>
+                <FormGroup check>
+                    <Label check>
+                        <Input type="radio" name="radio1" />{' '}
+                        SELL
+                    </Label>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="numberOfShares">Number of Shares</Label>
+                    <Input type="text" name="shares" id="numberOfShares" />
+                </FormGroup>
+                <Button>Submit Order</Button>
+            </form>
+        )
+    }
 }
 
 export default Transaction;
