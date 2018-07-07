@@ -1,12 +1,19 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
+import { InputGroup, 
+        InputGroupAddon, 
+        Input,
+        InputGroupButtonDropdown,
+        DropdownToggle,
+        DropdownMenu,
+        DropdownItem,
+        Button } from 'reactstrap';
 
 
 class SignupForm extends Component {
     state={
-        username='',
-        password=''
+        username:'',
+        password:''
     };
 
     handleInputChange = (event) => {
@@ -45,10 +52,24 @@ class SignupForm extends Component {
                         name='password'
                         placeholder='Create a password' />
                 </InputGroup>
+                <InputGroup>
+                    <InputGroupButtonDropdown addonType="prepend" isOpen={this.state.splitButtonOpen} toggle={this.toggleSplit}>
+                        <Button outline>Select a Pet</Button>
+                        <DropdownToggle split outline />
+                        <DropdownMenu>
+                            <DropdownItem header>Pets</DropdownItem>
+                            <DropdownItem>Pet 1</DropdownItem>
+                            <DropdownItem>Pet 2</DropdownItem>
+                            <DropdownItem>Pet 3</DropdownItem>
+                            <DropdownItem>Pet 4</DropdownItem>
+                        </DropdownMenu>
+                    </InputGroupButtonDropdown>
+                    <Input placeholder="and..." />
+                    </InputGroup>
                 <Button className='login-button'>Signup</Button>
             </div>
         );
     };
 }
 
-export default;
+export default SignupForm;

@@ -5,8 +5,8 @@ import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
 
 class SigninForm extends Component {
     state={
-        username='',
-        password=''
+        username:'',
+        password:''
     };
 
     handleInputChange = (event) => {
@@ -52,11 +52,11 @@ class SigninForm extends Component {
                 </p>               
                 <Button
                     onClick={this.handleFormSubmit} >
-                    <i class="fab fa-google"></i>
+                    <i class="fab fa-google">Google</i>
                 </Button>
                 <Button
                     onClick={this.handleFormSubmit} >
-                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-facebook-f">Facebook</i>
                 </Button>
             </div>
         );
