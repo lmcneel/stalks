@@ -3,7 +3,7 @@ import API from "../../utils/API";
 import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
 
 
-class SigninForm extends Component {
+class SignupForm extends Component {
     state={
         username='',
         password=''
@@ -20,8 +20,8 @@ class SigninForm extends Component {
         event.preventDefault();
         //if search was clicked
         console.log("login clicked");
-        //TODO: add code to handle api route for login
-        API.login(this.state.props);
+        //TODO: add code to handle api route for signup
+        API.signup(this.state.props);
 
     };
 
@@ -34,7 +34,7 @@ class SigninForm extends Component {
                         value={this.state.username}
                         onChange={this.handleInputChange}
                         name='username'
-                        placeholder='username' />
+                        placeholder='Create a username' />
                 </InputGroup>
                 <br />
                 <InputGroup>
@@ -43,24 +43,12 @@ class SigninForm extends Component {
                         value={this.state.username}
                         onChange={this.handleInputChange}
                         name='password'
-                        placeholder='password' />
+                        placeholder='Create a password' />
                 </InputGroup>
-                <Button className='login-button'>Login</Button>
-                
-                <p className='login-text'>
-                    or login with
-                </p>               
-                <Button
-                    onClick={this.handleFormSubmit} >
-                    <i class="fab fa-google"></i>
-                </Button>
-                <Button
-                    onClick={this.handleFormSubmit} >
-                    <i class="fab fa-facebook-f"></i>
-                </Button>
+                <Button className='login-button'>Signup</Button>
             </div>
         );
     };
 }
 
-export default SigninForm;
+export default;
