@@ -13,4 +13,5 @@ function hungerFill() {
 // Feeding your pet is how you will increase the hunger bar (meaning it will not need food for a while)
 // You can buy the food using in game currency in the shop, you can only own so much food at a time.
 
+
 }
