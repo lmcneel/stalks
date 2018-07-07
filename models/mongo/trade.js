@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new UserSchema object
 const tradeSchema = new Schema({
+    user_id: String,
     date: Date,
     type: String,
     ticker: String,
