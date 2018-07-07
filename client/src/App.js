@@ -4,11 +4,13 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 import Trading from './pages/Trading';
 import Transaction from './pages/Transaction';
+import Test from './pages/Test';
 
 const App = () => (
   <Router>
     <div>
       <Switch>
+        <Route exact path='/' component={Test} />
         <Route exact path='/trading' component={Trading} />
         <Route exact path='/trade' component={Transaction} />
       </Switch>
@@ -16,6 +18,7 @@ const App = () => (
   </Router>
 );
 
+export default App;
 
 // import React, {Component} from 'react';
 // import logo from './logo.svg';
