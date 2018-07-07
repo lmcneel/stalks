@@ -3,12 +3,14 @@
 // import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 // import './App.css';
 // import Trading from './pages/Trading';
+// import Transaction from './pages/Transaction';
 
 // const App = () => (
 //   <Router>
 //     <div>
 //       <Switch>
 //         <Route exact path='/trading' component={Trading} />
+//         <Route exact path='/transaction' component={Transaction} />
 //       </Switch>
 //     </div>
 //   </Router>
