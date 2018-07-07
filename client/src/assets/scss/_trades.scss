@@ -1,0 +1,51 @@
+ .buySell {
+    background-color: $gray-300;
+    border: none;
+    color: $gray-700;
+    @extend .float-left;
+    margin: 3% 3% 3% 3%;
+    padding: 5% 5% 5% 5%;
+  }
+  .buySell h1 {
+    font-size: 22px;
+ }
+  .buySell h2 {
+      // font-family: 'Source Sans Pro';
+    font-size: 18px;
+    text-align: left;
+    // line-height: 1px;
+    padding: 5px;
+    margin-bottom: 0px;
+  }
+  .buySell h3 {
+    // font-family: 'Source Sans Pro';
+    font-size: 16px;
+    text-align: left;
+    line-height: 1px;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+ }
+ .buySell h4 {
+    // font-family: 'Source Sans Pro';
+    font-size: 14px;
+    text-align: left;
+    // line-height: 1px;
+    padding: 5px;
+ }
+  #numberOfShares {
+    color: $gray-600;
+    float: right;
+  }
+  .submitBtn {
+    background-color: $success;
+    border: none;
+    color: #FFFFFF;
+    float: right;
+  }
+  .form-row {
+      margin-bottom: 15px;
+  }
+ 
+
+

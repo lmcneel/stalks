@@ -6,3 +6,5 @@ client/src/registerServiceWorker.js
 **/*.md
 **/*.json
 models/mysql/index.js
+client/build/**
+**/yarn.lock
