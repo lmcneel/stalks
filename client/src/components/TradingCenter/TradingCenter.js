@@ -98,20 +98,42 @@ class Transaction extends Component {
                             <FormGroup>
                                 <Label><h2>Select One Option</h2>
                                     <div class="form-check form-check-inline">
-                                        <Input class="form-check-input" type="radio" name="buy" id="inlineRadio1" />{' '}
-                                        <Label class="form-check-label" for="inlineRadio1"><h3>BUY</h3></Label>
+                                        <Input 
+                                        class="form-check-input" 
+                                        type="radio" 
+                                        name="buy" 
+                                        id="inlineRadio1" />{' '}
+                                        <Label 
+                                        class="form-check-label" 
+                                        for="inlineRadio1">
+                                        <h3>BUY</h3>
+                                        </Label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <Input class="form-check-input" type="radio" name="sell" id="inlineRadio2" />{' '}
-                                        <Label class="form-check-label" for="inlineRadio1"><h3>SELL</h3></Label>
+                                        <Input 
+                                        class="form-check-input" 
+                                        type="radio" 
+                                        name="sell" 
+                                        id="inlineRadio2" />{' '}
+                                        <Label 
+                                        class="form-check-label" 
+                                        for="inlineRadio1">
+                                        <h3>SELL</h3>
+                                        </Label>
                                     </div>
                                 </Label>
                             </FormGroup>
                         </div>
                         <div class="col-sm-6">
                             <FormGroup>
-                                <Label for="numberOfShares"> <h2>Number of Shares</h2></Label>
-                                <Input type="text" name="shares" id="numberOfShares" />
+                                <Label 
+                                for="numberOfShares"> 
+                                <h2>Number of Shares</h2>
+                                </Label>
+                                <Input 
+                                type="text" 
+                                name="shares" 
+                                id="numberOfShares" />
                             </FormGroup>
                         </div>
                     </div>
