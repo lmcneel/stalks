@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import Inventory from './components/userFoodAndToys';
+import Inventory from './components/userTabs';
 
 /**
  * Class App
