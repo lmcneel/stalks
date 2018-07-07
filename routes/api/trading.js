@@ -85,8 +85,10 @@ router.get('/portfolio', (req,res) => {
     })
     
 });
+router.route('/buy/')
+.post(tradingController.buy);
 
-router.route('/sell/:id')
+router.route('/sell/')
 .post(tradingController.sell);
 
 
