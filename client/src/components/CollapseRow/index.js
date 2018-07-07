@@ -1,1 +1,1 @@
-export {default} from "./CollapseRow";
+export {default} from './CollapseRow';
