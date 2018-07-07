@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    var Packs = sequelize.define("Pack", {
+    var Pack = sequelize.define("Pack", {
         clan_name: {
             type: DataTypes.STRING,
             allownull: false,
