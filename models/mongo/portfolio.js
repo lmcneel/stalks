@@ -7,6 +7,11 @@ const Schema = mongoose.Schema;
 // Using the Schema constructor, create a new UserSchema object
 const portfolioSchema = new Schema({
 
+
+  // user_id: {
+  //   type: mongoose.SchemaTypes.ObjectId,
+  //   ref: 'User'
+  // },
   // `cash` is required and of type Number, will be updated after each buy/sell transaction
   cash: {
     type: Number,
