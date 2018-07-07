@@ -10,10 +10,12 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.0",
     "@fortawesome/react-fontawesome": "^0.1.0",
     "ajv": "^6.5.2",
+    "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
     "popper.js": "^1.14.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "reactstrap": "^6.2.0"
   },
@@ -27,4 +29,3 @@
     "jquery": "^3.3.1"
   }
 }
-
