@@ -77,15 +77,15 @@ module.exports = function(sequelize, Sequelize) {
         }),
         User.hasMany(models.UserLogins, {
             onDelete: 'cascade',
+        }),
+        User.hasMany(models.Friends, {
+            onDelete: 'cascade',
         });
-        // User.hasMany(models.users_friends, {
-        //     onDelete: "cascade"
-        // }),
         // User.hasMany(models.users_accomplishments, {
-        //     onDelete: "cascade"
+        //     onDelete: 'cascade'
         // }),
         // User.hasMany(models.users_gifts, {
-        //     onDelete: "cascade"
+        //     onDelete: 'cascade'
         // });
     };
 
