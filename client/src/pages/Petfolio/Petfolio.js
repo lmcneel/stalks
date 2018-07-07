@@ -2,20 +2,22 @@ import React, { Component } from 'react';
 import { Container, Row, Col} from 'reactstrap';
 import { PetName, PetPic, PetStats, PetWrapper } from '../../components/PetStats';
 import BankValue from '../../components/BankValue';
-import PortfolioValue from '../../components/PortfolioValue';
+import PetfolioValue from '../../components/PetfolioValue';
 import PieChart from '../../components/PieChart';
 import wolfy from './defaultPetPic.png';
 //import other 3 pet pics here
-import './Portfolio.css';
+import StockTicker from '../../components/StockTicker.js';
+import './Petfolio.css';
  
 
-class Portfolio extends Component {
+class Petfolio extends Component {
     state = {
       petName : 'Wolf',
       petPic : wolfy,  
       petStats: [85, 90, 50, 70],
-      portfolioValue: '$1000',
-      bankValue: '$2000'
+      petfolioValue: '$1000',
+      bankValue: '$2000',
+      watchStocks: ['Ace 2.35  Betaa 4.15  Candi 1.28']
     };
    
     render() {
@@ -28,7 +30,7 @@ class Portfolio extends Component {
             </Col>
             <Col size="md-3">
               <div className="main">
-              <h2>Portfolio Page</h2>
+              <h2>Petfolio Page</h2>
 
               <PetWrapper>
 
@@ -72,11 +74,14 @@ class Portfolio extends Component {
             <Col size="md-6">
               <Row>
                 <Col>
-                  <PortfolioValue portfolioValue={this.state.portfolioValue}/>
+                  <PortfolioValue portfolioValue={this.state.petfolioValue}/>
                 </Col>
                 <Col>
                   <BankValue bankValue = {this.state.bankValue}/>
                 </Col>
+              </Row>
+              <Row>]
+                <Marquee>{this.state.watchStocks}</Marquee>;
               </Row>
               <Row>
                 <PieChart />
@@ -90,4 +95,4 @@ class Portfolio extends Component {
   }
 };
 
-  export default Portfolio;
+  export default Petfolio;
