@@ -2,14 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {VictoryPie} from 'victory';
 
-export const PieChart = (props) => {
+/**  colorScale is an array of established colors for th slices of pie */
+
+const PieChart = (props) => {
     return (
       <div>
       <VictoryPie
+         colorScale={["tomato", "orange", "gold", "cyan", "navy" ]}
+         height={250}
          data={[
-        { x: "Cats", y: 35 },
-        { x: "Dogs", y: 40 },
-        { x: "Birds", y: 55 }
+        { x: "Company A", y: 35 },
+        { x: "Company B", y: 40 },
+        { x: "Company C", y: 55 },
+        { x: "Company D", y: 75 },
         ]}
       />
       </div>
