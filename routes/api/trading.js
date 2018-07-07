@@ -7,7 +7,7 @@ const request = require('request');
 // Importing Models
 const User = require('../../models/mongo/user');
 const Portfolio = require('../../models/mongo/portfolio');
-const Trade = require('../../models/mongo/trade');
+const Trades = require('../../models/mongo/trade');
 
 
 
@@ -28,9 +28,6 @@ router.route('/quote')
     );
 });
 
-
-router.route('/buy/:id')
-.post(tradingController.buy);
 // @route GET api/trading
 // @desc  Get all Portfolio
 // @access Public
