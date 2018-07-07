@@ -13,4 +13,10 @@ export default {
     findQuotes: function(symbol) {
         return axios.get('/api/trading/quote', symbol);
     },
+    getPortfolioValue: function() {
+        return axios.get('api/petfolio/portfolio');
+    },
+    getBankValue: function() {
+        return axios.get('api/petfolio/bank');
+    },
 };
