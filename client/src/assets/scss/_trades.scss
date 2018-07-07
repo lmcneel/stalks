@@ -2,7 +2,7 @@
     background-color: $gray-300;
     border: none;
     color: $gray-700;
-    @extend .float-left;
+    float: left;
     margin: 3% 3% 3% 3%;
     padding: 5% 5% 5% 5%;
   }
