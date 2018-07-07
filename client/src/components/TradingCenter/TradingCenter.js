@@ -1,7 +1,7 @@
 //The contents of this file should go on client side main pages
 
 import React, { Component } from 'react';
-import { Input, TextArea, FormBtn } from '../../components/Form';
+// import { Input, TextArea, FormBtn } from '../../components/Form';
 import API from '../../utils/API';
 
 class Transaction extends Component {
