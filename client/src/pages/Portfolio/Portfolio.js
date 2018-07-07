@@ -3,13 +3,16 @@ import { Container, Row, Col} from 'reactstrap';
 import { PetName, PetPic, PetStats, PetWrapper } from '../../components/PetStats';
 import BankValue from '../../components/BankValue';
 import PortfolioValue from '../../components/PortfolioValue';
+import PieChart from '../../components/PieChart';
+import wolfy from './defaultPetPic.png';
+//import other 3 pet pics here
 import './Portfolio.css';
  
 
 class Portfolio extends Component {
     state = {
       petName : 'Wolf',
-      petPic : './defaultPetPic.png',  
+      petPic : wolfy,  
       petStats: [85, 90, 50, 70],
       portfolioValue: '$1000',
       bankValue: '$2000'
@@ -76,6 +79,7 @@ class Portfolio extends Component {
                 </Col>
               </Row>
               <Row>
+                <PieChart />
               </Row>
             </Col>
           </Row>
