@@ -1,5 +1,4 @@
 import React from "react";
-import React from 'react';
 import {
   Collapse,
   Navbar,
@@ -40,6 +39,23 @@ export default class Inventory extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLink href="/">Store</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+        <Navbar color="dark" dark expand="md">
+          <NavbarBrand href="/"></NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/">Food & Toys</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/">Accessories</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/">Environment</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
