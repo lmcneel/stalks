@@ -1,0 +1,157 @@
+[
+    {
+      "id": 1,
+      "name": "Abdolbaghi Teygh Khorshid",
+      "title": "DBA, DevOps",
+      "image": "/assets/images/beth.png",
+      "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+      "id": 2,
+      "name": "Alexandria Szoeke",
+      "title": "Feature Manager, Full-Stack Developer",
+      "image": "/assets/images/birdperson.png",
+      "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+      "id": 3,
+      "name": "Allisa Liberto",
+      "title": "Feature Manager, Full-Stack Developer",
+      "image": "/assets/images/evilmorty.png",
+      "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+      "id": 4,
+      "name":"Andreina Keller",
+      "title": "Project Manager",
+      "image": "/assets/images/gianthead.png",
+      "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+      "id": 5,
+      "name":"Anthony Laroche",
+      "title": "Full-Stack Developer",
+      "image": "/assets/images/goldenford.png",
+      "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+      "id": 6,
+      "name":"Brock Belmonte",
+      "title": "Feature Manager",
+      "image": "/assets/images/jerry.png",
+      "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+      "id": 7,
+      "name":"Carolyn Vasisko",
+      "title": "Full-Stack Developer",
+      "image": "/assets/images/jessica.png",
+      "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+      "id": 8,
+      "name":"Christopher Demeke",
+      "title": "Feature Manager, DBA",
+      "image": "/assets/images/meeseeks.png",
+      "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+      "id": 9,
+      "name":"Cody Sherrod",
+      "title": "Project Manager",
+      "image": "/assets/images/morty.png",
+      "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+      "id": 10,
+      "name":"David Fletcher",
+      "title": "DBA, QA",
+      "image": "/assets/images/mr.png",
+      "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+      "id": 11,
+      "name":"Grant Posell",
+      "title": "Back-End Developer",
+      "image": "/assets/images/rick.png",
+      "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+      "id": 12,
+      "name":"Katherine Kennedy",
+      "title": "Full-Stack Developer, Scrum Master",
+      "image": "/assets/images/summer.png",
+      "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+        "id": 13,
+        "name":"Kris Bierma",
+        "title": "DBA, Back-End Developer",
+        "image": "/assets/images/rick.png",
+        "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+        "id": 14,
+        "name":"Michael Tran",
+        "title": "Full-Stack Developer",
+        "image": "/assets/images/meeseeks.png",
+        "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+        "id": 15,
+        "name":"Oluwatoyin Oshinkoya",
+        "title": "Back-End Developer, DevOps",
+        "image": "/assets/images/mr.png",
+        "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+        "id": 16,
+        "name":"Ozair Khan",
+        "title": "Back-End Developer",
+        "image": "/assets/images/morty.png",
+        "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+        "id": 17,
+        "name":"Rebecca Gemeinhardt",
+        "title": "Feature Manager, Full-Stack Developer",
+        "image": "/assets/images/jessica.png",
+        "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+        "id": 18,
+        "name":"Ross Messer",
+        "title": "Feature Manager, DBA",
+        "image": "/assets/images/jerry.png",
+        "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+        "id": 19,
+        "name":"Scott Bedner",
+        "title": "Front-End Developer, Brand Manager",
+        "image": "/assets/images/goldenford.png",
+        "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+        "id": 20,
+        "name":"Shelby Smith",
+        "title": "Full-Stack Developer, Scrum Master",
+        "image": "/assets/images/birdperson.png",
+        "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+        "id": 21,
+        "name":"Taylor Pelsue",
+        "title": "Designer, Front-End",
+        "image": "/assets/images/beth.png",
+        "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    },
+    {
+        "id": 22,
+        "name":"William Cotton",
+        "title": "Feature Manager, DBA",
+        "image": "/assets/images/evilmorty.png",
+        "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/#"
+    }
+  ]
+  
