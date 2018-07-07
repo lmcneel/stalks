@@ -4,11 +4,11 @@ import axios from 'axios';
 
 export default {
 
-    buyShares: function(buyData, userId) {
-        return axios.post(`/api/trading/buy/${userId}`, buyData);
+    buyShares: function(buyData) {
+        return axios.post(`/api/trading/buy/`, buyData);
     },
     sellShares: function(sellData, userId) {
-        return axios.post(`/api/trading/sell/${userId}`, sellData);
+        return axios.post(`/api/trading/sell/`, sellData);
     },
     findQuotes: function(symbol) {
         return axios.get('/api/trading/quote', symbol);

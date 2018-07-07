@@ -13,7 +13,8 @@ class Transaction extends Component {
             price: 0,
             shares: 0,
             response: '',
-            user_id: 'XXXX'
+            user_id: 'XXXX',
+            transaction: 'buy',
         }
     }
 
@@ -35,13 +36,12 @@ class Transaction extends Component {
             this.setState({ price: res.body.quote.latestPrice });
             if (this.state.ticker && this.state.price && this.state.shares) {
                 API.buyShares({
-                    transaction_id: Date.now(),
-                    date: `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`,
+                    user_id: this.state.user_id,
                     type: 'buy',
                     ticker: this.state.ticker,
                     sharePrice: this.state.price,
                     shares: this.state.shares
-                }, this.state.user_id)
+                })
                     .then(res => {
                         this.setState({
                             ticker: '',
@@ -65,13 +65,12 @@ class Transaction extends Component {
             this.setState({ price: res.body.quote.latestPrice });
             if (this.state.ticker && this.state.price && this.state.shares) {
                 API.sellShares({
-                    transaction_id: Date.now(),
-                    date: `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`,
+                    user_id: this.state.user_id,
                     type: 'sell',
                     ticker: this.state.ticker,
                     sharePrice: this.state.price,
                     shares: this.state.shares
-                }, this.state.user_id)
+                })
                     .then(res => {
                         this.setState({
                             ticker: '',
@@ -92,19 +91,35 @@ class Transaction extends Component {
                 <legend>I WANT TO:</legend>
                 <FormGroup check>
                     <Label check>
-                        <Input type="radio" name="radio1" />{' '}
+                        <Input
+                            type='radio'
+                            name='transaction'
+                            value='buy'
+                            checked={this.state.transaction === 'buy'}
+                            onChange={this.handleInputChange}
+                        />{' '}
                         BUY
                     </Label>
                 </FormGroup>
                 <FormGroup check>
                     <Label check>
-                        <Input type="radio" name="radio1" />{' '}
+                        <Input
+                            type="radio"
+                            name='transaction'
+                            value='sell'
+                            checked={this.state.transaction === 'sell'}
+                            onChange={this.handleInputChange}
+                        />{' '}
                         SELL
                     </Label>
                 </FormGroup>
                 <FormGroup>
                     <Label for="numberOfShares">Number of Shares</Label>
-                    <Input type="text" name="shares" id="numberOfShares" />
+                    <Input
+                        type="text"
+                        name="shares"
+                        value={this.state.shares}
+                        onChange={this.handleInputChange} />
                 </FormGroup>
                 <Button>Submit Order</Button>
             </form>
