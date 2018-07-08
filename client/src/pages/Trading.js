@@ -10,6 +10,7 @@ class Trading extends Component {
         /** Return */
         return (
             <div>
+                <div id="container"></div>
                 <TradingCenter />
             </div>
         );
