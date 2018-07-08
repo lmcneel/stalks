@@ -6,7 +6,7 @@ import PetfolioValue from '../../components/PetfolioValue';
 import PieChart from '../../components/PieChart';
 import wolfy from './defaultPetPic.png';
 // import other 3 pet pics here
-import './Petfolio.css';
+import '../../assets/scss/_petfolio.scss';
 import API from './../../utils/API';
 // import StockTicker from '../../components/StockTicker.js';
 
@@ -24,7 +24,7 @@ class Petfolio extends Component {
       petName: 'Wolf',
       petPic: wolfy,
       petStats: [85, 90, 50, 70],
-      portfolioValue: '$1000',
+      petfolioValue: '$1000',
       bankValue: '$2000',
       // watchStocks: ['Ace 2.35  Betaa 4.15  Candi 1.28'],
     };
@@ -34,15 +34,15 @@ class Petfolio extends Component {
      * Setting state of port value when rendered
      */
     componentDidMount() {
-      API.getPortfolioValue().then(((r) => {
-        this.setState({portfolioValue: r});
+      API.getPetfolioValue().then(((r) => {
+        this.setState({petfolioValue: r});
       }));
     };
 
     /**
      * Setting state of bank value
      */
-    componentWillMount() {
+    componentDidMount() {
       API.getBankValue().then(((r) => {
         this.setState({bankValue: r});
       }));

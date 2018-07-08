@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import CollapseRow from './components/CollapseRow/index';
+// import CollapseRow from './components/CollapseRow/index';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
 import Test from './pages/Test';
@@ -26,3 +26,4 @@ class App extends Component {
   }
 }
 export default App;
+
