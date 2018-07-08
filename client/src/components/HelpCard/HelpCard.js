@@ -11,7 +11,7 @@ const HelpCard = (props) => {
                     <div className="text-right d-none d-sm-block">
                         <Button href="{props.buttonLink}">{props.buttonText}</Button>
                     </div>
-                    <Button className="d-block d-sm-none">Go somewhere</Button>
+                    <Button className="d-block d-sm-none">{props.buttonText}</Button>
                 </Card>
             </Row>
         </Container>
