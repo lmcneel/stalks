@@ -1,21 +1,46 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import { InputGroup, 
-        InputGroupAddon, 
-        Input,
-        InputGroupButtonDropdown,
-        DropdownToggle,
-        DropdownMenu,
-        DropdownItem,
-        Button } from 'reactstrap';
+import { 
+    InputGroup, 
+    InputGroupAddon, 
+    Input,
+    InputGroupButtonDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+    Button 
+    } from 'reactstrap';
 
 
 
 class SignupForm extends Component {
-    state={
-        username:'',
-        password:''
-    };
+    constructor(props) {
+        super(props);
+
+        this.toggleDropDown = this.toggleDropDown.bind(this);
+        this.toggleSplit = this.toggleSplit.bind(this);
+        this.state = {
+            dropdownOpen: false,
+            splitButtonOpen: false,
+            username:'',
+            password:'',
+            pet:''
+        };
+    }
+
+    toggleDropDown() {
+        this.setState({
+            dropdownOpen: !this.state.dropdownOpen
+        });
+    }
+
+    toggleSplit() {
+        this.setState({
+            splitButtonOpen: !this.state.splitButtonOpen
+        });
+    }
+
+    
 
     handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -37,7 +62,7 @@ class SignupForm extends Component {
         return (
             <div>
                 <InputGroup>
-                    <InputGroupAddon addonType="prepend"><i class="fas fa-at"></i></InputGroupAddon>
+                    <InputGroupAddon addonType="prepend"><i className="fas fa-at"></i></InputGroupAddon>
                     <Input 
                         value={this.state.username}
                         onChange={this.handleInputChange}
@@ -46,28 +71,39 @@ class SignupForm extends Component {
                 </InputGroup>
                 <br />
                 <InputGroup>
-                    <InputGroupAddon addonType="prepend"><i class="fas fa-key"></i></InputGroupAddon>
+                    <InputGroupAddon addonType="prepend"><i className="fas fa-key"></i></InputGroupAddon>
                     <Input 
                         value={this.state.username}
                         onChange={this.handleInputChange}
                         name='password'
                         placeholder='Create a password' />
                 </InputGroup>
+                <br />
                 <InputGroup>
                     <InputGroupButtonDropdown addonType="prepend" isOpen={this.state.splitButtonOpen} toggle={this.toggleSplit}>
-                        <Button outline>Select a Pet</Button>
+                        <Button outline>Trading Pet</Button>
                         <DropdownToggle split outline />
-                        <DropdownMenu>
-                            <DropdownItem header>Pets</DropdownItem>
-                            <DropdownItem>Pet 1</DropdownItem>
-                            <DropdownItem>Pet 2</DropdownItem>
-                            <DropdownItem>Pet 3</DropdownItem>
-                            <DropdownItem>Pet 4</DropdownItem>
+                        <DropdownMenu 
+                            onChange={this.handleInputChange}
+                            name='pet'
+                            >
+                            <DropdownItem value='wolf'>Wolf</DropdownItem>
+                            <DropdownItem value='bear'>Bear</DropdownItem>
+                            <DropdownItem value='ostrich'>Ostrich</DropdownItem>
+                            <DropdownItem value='bull'>Bull</DropdownItem>
                         </DropdownMenu>
                     </InputGroupButtonDropdown>
+<<<<<<< Updated upstream
                     <Input placeholder="and..." />
                     </InputGroup>
 
+=======
+                    <Input 
+                        placeholder="Select a Pet" 
+                        value={this.state.pet} />
+                </InputGroup>
+                <br />
+>>>>>>> Stashed changes
                 <Button className='login-button'>Signup</Button>
             </div>
         );
