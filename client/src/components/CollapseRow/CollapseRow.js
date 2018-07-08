@@ -24,6 +24,7 @@ class CollapseRow extends Component {
    */
  toggle() {
    this.setState({collapse: !this.state.collapse});
+
  }
 
 /**
