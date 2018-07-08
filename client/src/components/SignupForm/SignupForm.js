@@ -43,7 +43,8 @@ class SignupForm extends Component {
     
 
     handleInputChange = (event) => {
-        const { name, value } = event.target;
+        const {name, value} = event.target;
+        console.log(`Name ${name}, Value ${value}`);
         this.setState({
             [name]: value
         });
@@ -82,28 +83,22 @@ class SignupForm extends Component {
                 <InputGroup>
                     <InputGroupButtonDropdown addonType="prepend" isOpen={this.state.splitButtonOpen} toggle={this.toggleSplit}>
                         <Button outline>Trading Pet</Button>
-                        <DropdownToggle split outline />
+                        <DropdownToggle split outline >
+                        </DropdownToggle>
                         <DropdownMenu 
-                            onChange={this.handleInputChange}
                             name='pet'
                             >
-                            <DropdownItem value='wolf'>Wolf</DropdownItem>
-                            <DropdownItem value='bear'>Bear</DropdownItem>
-                            <DropdownItem value='ostrich'>Ostrich</DropdownItem>
-                            <DropdownItem value='bull'>Bull</DropdownItem>
+                            <DropdownItem name='pet' value='wolf' onClick={this.handleInputChange}>Wolf</DropdownItem>
+                            <DropdownItem name='pet' value='bear' onClick={this.handleInputChange}>Bear</DropdownItem>
+                            <DropdownItem name='pet' value='ostrich' onClick={this.handleInputChange}>Ostrich</DropdownItem>
+                            <DropdownItem name='pet' value='bull' onClick={this.handleInputChange}>Bull</DropdownItem>
                         </DropdownMenu>
                     </InputGroupButtonDropdown>
-<<<<<<< Updated upstream
-                    <Input placeholder="and..." />
-                    </InputGroup>
-
-=======
                     <Input 
                         placeholder="Select a Pet" 
                         value={this.state.pet} />
                 </InputGroup>
                 <br />
->>>>>>> Stashed changes
                 <Button className='login-button'>Signup</Button>
             </div>
         );
