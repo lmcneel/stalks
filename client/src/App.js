@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CollapseRow from './components/CollapseRow/index';
-import RadioYesNo from './components/RadioYesNo/index';
+import HelpCard from './components/HelpCard/index';
 
 /**
  * Class App
@@ -14,6 +14,7 @@ class App extends Component {
     return (
       <div className="App">
         <CollapseRow />
+        <HelpCard/>
       </div>
     );
   }
