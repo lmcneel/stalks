@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Button, FormGroup, Label, Input, } from 'reactstrap';
+import Highcharts from 'highcharts';
 import API from '../../utils/API';
 
 class Transaction extends Component {
@@ -18,12 +19,68 @@ class Transaction extends Component {
         }
     }
 
+    componentDidMount() {
+        this.charting({ ticker: this.state.ticker });
+    };
+
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
             [name]: value
         });
     };
+
+
+    transactionExec = () => {
+        if (this.state.transaction === 'buy') {
+            this.buyShares();
+        } else {
+            this.sellShares();
+        };
+    };
+
+    charting = (ticker) => {
+        API.findQuotes(ticker)
+            .then(res => {
+
+                const chartData = res.data.chart.map(day => {
+                    let dayArray = [];
+                    dayArray.push(day.date);
+                    dayArray.push(day.close);
+                    return dayArray;
+                });
+
+                const chartCategories = res.data.chart.map(day => {
+                    let dateArray = [];
+                    dateArray.push(day.date);
+                    return dateArray;
+                });
+
+                Highcharts.chart('container', {
+
+                    title: {
+                        text: `${this.state.ticker} Stock Price`
+                    },
+
+                    xAxis: {
+                        categories: chartCategories
+                    },
+
+                    legend: {
+                        enabled: false
+                    },
+
+                    series: [{
+                        type: 'line',
+                        name: this.state.ticker,
+                        data: chartData,
+                        marker: {enabled: false},
+                        tooltip: {valueDecimals: 2},
+                    }]
+                });
+            })
+            .catch(err => console.log(err));
+    }
 
 
     buyShares = () => {
@@ -56,13 +113,6 @@ class Transaction extends Component {
         }).catch(err => console.log(err));
     };
 
-    transactionExec = () => {
-        if (this.state.transaction === 'buy') {
-            this.buyShares();
-        } else {
-            this.sellShares();
-        };
-    };
 
     sellShares = () => {
         // event.preventDefault();

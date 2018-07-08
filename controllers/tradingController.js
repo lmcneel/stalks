@@ -9,7 +9,7 @@ module.exports = {
             .then((dbTradeModel) => {
                 console.log(dbTradeModel);
                 db.Portfolio
-                    .update({_id: dbTradeModel.portfolio_id}, { $push:{trades: dbTradeModel._id}})
+                    .update({_id: dbTradeModel.portfolio_id}, {$push:{trades: dbTradeModel._id}})
                     .then((dbPortfolioModel) => res.json(dbPortfolioModel))
                     .catch((err) => res.status(422).json(err));
             })
@@ -20,7 +20,7 @@ module.exports = {
             .create(req.body)
             .then((dbTradeModel) => {
                 db.Portfolio
-                    .update({_id: dbTradeModel.portfolio_id}, { $push:{trades: dbTradeModel._id}})
+                    .update({_id: dbTradeModel.portfolio_id}, {$push:{trades: dbTradeModel._id}})
                     .then((dbPortfolioModel) => res.json(dbPortfolioModel))
                     .catch((err) => res.status(422).json(err));
             })
