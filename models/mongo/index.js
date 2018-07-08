@@ -1,3 +1,3 @@
-/**
- * Empty file to set up repo with folders
- */
+module.exports = {
+    Doc: require("./doc")
+  };

@@ -13,4 +13,8 @@ export default {
     findQuotes: function(symbol) {
         return axios.get('/api/trading/quote', symbol);
     },
+    getDocs: function() {
+        return axios.get('/api/docs')
+
+    }
 };
