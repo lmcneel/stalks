@@ -1,25 +1,56 @@
-import React, { Component } from 'react';
-import { Container, Row, Col} from 'reactstrap';
-import { PetName, PetPic, PetStats, PetWrapper } from '../../components/PetStats';
+import React, {Component} from 'react';
+import {Container, Row, Col} from 'reactstrap';
+import {PetName, PetPic, PetStats, PetWrapper} from '../../components/PetStats';
 import BankValue from '../../components/BankValue';
 import PetfolioValue from '../../components/PetfolioValue';
 import PieChart from '../../components/PieChart';
 import wolfy from './defaultPetPic.png';
-//import other 3 pet pics here
+// import other 3 pet pics here
 import StockTicker from '../../components/StockTicker/StockTicker';
 import './Petfolio.css';
- 
+import API from './../../utils/API';
 
+/**
+ * @class Portfolio
+ */
 class Petfolio extends Component {
-    state = {
-      petName : 'Wolf',
-      petPic : wolfy,  
+  /**
+   * Constructor function for setting state
+   * @param {*} props
+   */
+    constructor(props) {
+      super(props);
+      this.state = {
+      petName: 'Wolf',
+      petPic: wolfy,
       petStats: [85, 90, 50, 70],
       petfolioValue: '$1000',
       bankValue: '$2000',
-      watchStocks: 'Watchlist:...StockA 2.35...StockB 4.15...StockC 1.28'
+      watchStocks: 'Watchlist:...StockA 2.35...StockB 4.15...StockC 1.28',
     };
-   
+    }
+
+    /**
+     * Setting state of port value when rendered
+     */
+    componentDidMount() {
+      API.getPortfolioValue().then(((r) => {
+        this.setState({portfolioValue: r});
+      }));
+    };
+
+    /**
+     * Setting state of bank value
+     */
+    componentWillMount() {
+      API.getBankValue().then(((r) => {
+        this.setState({bankValue: r});
+      }));
+    }
+
+    /**
+     * @return {*} Container
+     */
     render() {
       return (
 
@@ -36,7 +67,7 @@ class Petfolio extends Component {
 
                 <PetPic>
                   {this.state.petPic}
-                </PetPic>   
+                </PetPic>
 
                 <div className="petname">
                   <PetName>
@@ -45,28 +76,27 @@ class Petfolio extends Component {
                 </div>
 
                 <div className="statusbars">
-                <PetStats 
+                <PetStats
                     petStat="Overall Health"
                     petStatColor="success"
                     petStatValue={this.state.petStats[0]}
                 />
-                <PetStats 
+                <PetStats
                     petStat="Hunger"
                     petStatColor="danger"
                     petStatValue={this.state.petStats[3]}
                 />
-                <PetStats 
+                <PetStats
                     petStat="Happiness"
                     petStatColor="info"
                     petStatValue={this.state.petStats[1]}
                 />
-                <PetStats 
+                <PetStats
                     petStat="Fondness"
                     petStatColor="warning"
                     petStatValue={this.state.petStats[2]}
-                /> 
+                />
                 </div>
-            
                 </PetWrapper>
                 </div>
             </Col>
@@ -83,15 +113,13 @@ class Petfolio extends Component {
                   <BankValue bankValue={this.state.bankValue} />
                 </Col>
               </Row>
-             
               <Row>
                 <PieChart />
               </Row>
             </Col>
           </Row>
 
-    </Container>   
-    
+    </Container>
     );
   }
 };

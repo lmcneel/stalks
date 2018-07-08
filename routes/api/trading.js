@@ -2,7 +2,7 @@
 
 const router = require('express').Router();
 const request = require('request');
-
+ 
 router.route('/quote')
 .get(function(req, res) {
     request(

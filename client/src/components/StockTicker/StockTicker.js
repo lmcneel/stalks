@@ -1,11 +1,10 @@
 import React from 'react';
-import Marquee from 'react-text-marquee';
-// import './StockTicker.css';
+import './StockTicker.css';
 
 const StockTicker = (props) => {
     return (
-        <div className='ticker'>
-            <Marquee text={props.stockticker} loop={true} hoverToStop={true} />
+        <div className='scroll-left'>
+            <p>{props.stockticker}</p>
         </div>
     );
 };

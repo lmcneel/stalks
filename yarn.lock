@@ -1320,6 +1320,10 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
+fontawesome@^4.7.2:
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/fontawesome/-/fontawesome-4.7.2.tgz#7f0c72ac7a6b029d3375bacb23522d9acfc50a52"
+
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -3091,12 +3095,6 @@ react-router@^4.3.1:
     path-to-regexp "^1.7.0"
     prop-types "^15.6.1"
     warning "^4.0.1"
-
-react-text-marquee@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-text-marquee/-/react-text-marquee-1.0.1.tgz#6fac16a68ceeebb8b29403088e4541cdd6ed7e13"
-  dependencies:
-    prop-types "^15.5.8"
 
 react-transition-group@^2.3.1:
   version "2.4.0"

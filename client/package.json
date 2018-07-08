@@ -4,12 +4,20 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-brands": "^5.0.13",
+    "@fortawesome/fontawesome-free-solid": "^5.0.13",
+    "@fortawesome/fontawesome-svg-core": "^1.2.0",
+    "@fortawesome/react-fontawesome": "^0.1.0",
+    "ajv": "^6.5.2",
+    "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
+    "fontawesome": "^4.7.2",
+    "popper.js": "^1.14.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "react-text-marquee": "^1.0.1",
     "reactstrap": "^6.2.0",
     "victory": "^0.27.2"
   },
@@ -18,5 +26,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "jquery": "^3.3.1"
   }
 }
