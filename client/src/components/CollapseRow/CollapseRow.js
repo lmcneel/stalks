@@ -1,8 +1,8 @@
 
-import React, {Component} from 'react';
-import {Collapse, Button, CardBody, Card, Container, Row, Col, CardFooter} from 'reactstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPlus} from '@fortawesome/fontawesome-free-solid';
+import React, { Component } from 'react';
+import { Collapse, Button, CardBody, Card, Container, Row, Col, CardFooter } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/fontawesome-free-solid';
 import RadioYesNo from '../RadioYesNo/index.js'
 
 /**
@@ -13,60 +13,56 @@ class CollapseRow extends Component {
    * Constructor method for collapse row
    * @param {*} props
    */
- constructor(props) {
-   super(props);
-   this.toggle = this.toggle.bind(this);
-   this.state = {collapse: false};
- }
+  constructor(props) {
+    super(props);
+    this.toggle = this.toggle.bind(this);
+    this.state = { collapse: false };
+  }
 
   /**
    * Toggle function
    */
- toggle() {
-   this.setState({collapse: !this.state.collapse});
+  toggle() {
+    this.setState({ collapse: !this.state.collapse });
 
- }
+  }
 
-/**
- * Render function
- * @return {JSX}
- */
- render() {
-   return (
-       <Container>
+  /**
+   * Render function
+   * @return {JSX}
+   */
+  render() {
+    return (
+      <Container>
         <Row>
           <Col>
-            <h1>Pets Help Center</h1>
+            <h1>{props.sectionTitle}</h1>
           </Col>
           <Col>
             <Button
-                color="primary"
-                className="buttonCol mb-3"
-                onClick={this.toggle}>
-                  <FontAwesomeIcon
-                    icon={faPlus} />
-              </Button>
+              color="primary"
+              className="buttonCol mb-3"
+              onClick={this.toggle}>
+              <FontAwesomeIcon
+                icon={faPlus} />
+            </Button>
           </Col>
           <Collapse isOpen={this.state.collapse}>
-              <Card>
+            <Card>
               <CardBody>
-                <p>Anim pariatur cliche reprehenderit,
-                enim eiusmod high life accusamus terry richardson ad squid. Nihil
-                anim keffiyeh helvetica, craft beer labore wes anderson cred
-                nesciunt sapiente ea proident.</p>
-                <h2>first sub section</h2>
-
+                <h2>{props.subsectionTitle}</h2>
+                <p>{props.subsectionText}</p>
               </CardBody>
               <CardFooter className="text-center">
-              <RadioYesNo />
-                </CardFooter>
+                <RadioYesNo />
+              </CardFooter>
             </Card>
           </Collapse>
         </Row>
-      
-       </Container>
-   );
- }
+
+      </Container>
+    );
+  }
 }
 
 export default CollapseRow;
