@@ -4,8 +4,6 @@ import {Collapse, Button, CardBody, Card, Container, Row, Col, CardFooter} from 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/fontawesome-free-solid';
 import RadioYesNo from '../RadioYesNo/index.js';
-import API from '../../utils/API';
-
 
 /**
  * Collapse row class
@@ -27,7 +25,7 @@ class CollapseRow extends Component {
   toggle() {
     this.setState({ collapse: !this.state.collapse });
 
-
+  }
 /**
  * Render function
  * @return {JSX}

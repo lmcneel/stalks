@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import DocsList from './components/DocsList/DocsList';
-import RadioYesNo from './components/RadioYesNo/index';
-import CollapseRow from './components/CollapseRow/index';
-import HelpCard from './components/HelpCard/index';
+import HelpLanding from './components/HelpLanding/HelpLanding';
 
 /**
  * Class App
@@ -16,8 +14,7 @@ class App extends Component {
     return (
       <div className="App">
         <DocsList />
-        <CollapseRow />
-        <HelpCard/>
+        <HelpLanding />
       </div>
     );
   }
