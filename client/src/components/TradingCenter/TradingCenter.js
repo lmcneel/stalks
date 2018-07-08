@@ -9,11 +9,11 @@ class Transaction extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ticker: '',
+            ticker: 'XOM',
             price: 0,
             shares: 0,
             response: '',
-            user_id: 'XXXX',
+            portfolio_id: '5b419b38c5cede35beeec8ee',
             transaction: 'buy',
         }
     }
@@ -26,17 +26,16 @@ class Transaction extends Component {
     };
 
 
-    buyShares = event => {
-        event.preventDefault();
-        const today = new Date();
-
+    buyShares = () => {
+        // event.preventDefault();
         API.findQuotes(
             { ticker: this.state.ticker }
         ).then(res => {
-            this.setState({ price: res.body.quote.latestPrice });
+            console.log(res.data);
+            this.setState({ price: res.data.quote.latestPrice });
             if (this.state.ticker && this.state.price && this.state.shares) {
                 API.buyShares({
-                    user_id: this.state.user_id,
+                    portfolio_id: this.state.portfolio_id,
                     type: 'buy',
                     ticker: this.state.ticker,
                     sharePrice: this.state.price,
@@ -44,11 +43,12 @@ class Transaction extends Component {
                 })
                     .then(res => {
                         this.setState({
-                            ticker: '',
+                            ticker: 'XOM',
                             price: 0,
                             shares: 0,
                             response: 'Transaction successfully completed'
-                        })
+                        });
+                        console.log(this.state.response);
                     })
                     .catch(err => console.log(err));
 
@@ -56,16 +56,23 @@ class Transaction extends Component {
         }).catch(err => console.log(err));
     };
 
-    sellShares = event => {
-        event.preventDefault();
-        const today = new Date();
+    transactionExec = () => {
+        if (this.state.transaction === 'buy') {
+            this.buyShares();
+        } else {
+            this.sellShares();
+        };
+    };
+
+    sellShares = () => {
+        // event.preventDefault();
         API.findQuotes(
             { ticker: this.state.ticker }
         ).then(res => {
-            this.setState({ price: res.body.quote.latestPrice });
+            this.setState({ price: res.data.quote.latestPrice });
             if (this.state.ticker && this.state.price && this.state.shares) {
                 API.sellShares({
-                    user_id: this.state.user_id,
+                    portfolio_id: this.state.portfolio_id,
                     type: 'sell',
                     ticker: this.state.ticker,
                     sharePrice: this.state.price,
@@ -78,6 +85,7 @@ class Transaction extends Component {
                             shares: 0,
                             response: 'Transaction successfully completed'
                         })
+                        console.log(this.state.response);
                     })
                     .catch(err => console.log(err));
 
@@ -92,13 +100,13 @@ class Transaction extends Component {
                     <legend>
                         <h1>Transaction Form</h1>
                     </legend>
-                    <div class='form-row'>
-                        <div class="col-sm-6 tradeInputs">
+                    <div className='form-row'>
+                        <div className="col-sm-6 tradeInputs">
                             <FormGroup>
                                 <Label><h2>Select One Option</h2>
-                                    <div class="form-check form-check-inline">
+                                    <div className="form-check form-check-inline">
                                         <Input
-                                            class="form-check-input"
+                                            className="form-check-input"
                                             type="radio"
                                             name="transaction"
                                             value='buy'
@@ -107,14 +115,14 @@ class Transaction extends Component {
                                             id="inlineRadio1"
                                         />{' '}
                                         <Label
-                                            class="form-check-label"
+                                            className="form-check-label"
                                             for="inlineRadio1">
                                             <h3>BUY</h3>
                                         </Label>
                                     </div>
-                                    <div class="form-check form-check-inline">
+                                    <div className="form-check form-check-inline">
                                         <Input
-                                            class="form-check-input"
+                                            className="form-check-input"
                                             type="radio"
                                             name="transaction"
                                             value='sell'
@@ -123,7 +131,7 @@ class Transaction extends Component {
                                             id="inlineRadio2"
                                         />{' '}
                                         <Label
-                                            class="form-check-label"
+                                            className="form-check-label"
                                             for="inlineRadio1">
                                             <h3>SELL</h3>
                                         </Label>
@@ -131,7 +139,7 @@ class Transaction extends Component {
                                 </Label>
                             </FormGroup>
                         </div>
-                        <div class="col-sm-6">
+                        <div className="col-sm-6">
                             <FormGroup>
                                 <Label
                                     for="numberOfShares">
@@ -142,30 +150,35 @@ class Transaction extends Component {
                                     name="shares"
                                     value={this.state.shares}
                                     onChange={this.handleInputChange}
-                                    id="numberOfShares" 
-                                    />
+                                    id="numberOfShares"
+                                />
                             </FormGroup>
                         </div>
                     </div>
-                    <div class='form-row'>
-                        <div class="col-sm-6 totalCalcLabel">
+                    <div className='form-row'>
+                        <div className="col-sm-6 totalCalcLabel">
                             <h4>SUBTOTAL:</h4>
                         </div>
-                        <div class="col-sm-6 totalCalc">
+                        <div className="col-sm-6 totalCalc">
                             <h4>$-2,500.00</h4>
                             {/* Placeholder */}
                         </div>
                     </div>
-                    <div class='form-row totalCalc'>
-                        <div class="col-sm-6 totalCalcLabel">
+                    <div className='form-row totalCalc'>
+                        <div className="col-sm-6 totalCalcLabel">
                             <h4>New Bank Vale:</h4>
                         </div>
-                        <div class="col-sm-6 totalCalc">
+                        <div className="col-sm-6 totalCalc">
                             <h4>$10,000.00</h4>
                             {/* Placeholder */}
                         </div>
                     </div>
-                    <Button className='submitBtn'>SUBMIT ORDER</Button>
+                    <Button
+                        className='submitBtn'
+                        onClick={this.transactionExec}
+                    >
+                        SUBMIT ORDER
+                    </Button>
                 </form>
             </div>
         )

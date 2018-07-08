@@ -2,23 +2,25 @@ const db = require('../models/mongo');
 
 module.exports = {
 
-    buy: function (req, res) {
+    buy: function(req, res) {
+        console.log(req.body);
         db.Trade
-            .create({ trades: req.body })
+            .create(req.body)
             .then((dbTradeModel) => {
+                console.log(dbTradeModel);
                 db.Portfolio
-                    .update({ user_id: dbTradeModel.user_id }, { $push: { trades: dbTradeModel._id } })
+                    .update({_id: dbTradeModel.portfolio_id}, { $push:{trades: dbTradeModel._id}})
                     .then((dbPortfolioModel) => res.json(dbPortfolioModel))
                     .catch((err) => res.status(422).json(err));
             })
             .catch((err) => res.status(422).json(err));
     },
-    sell: function (req, res) {
+    sell: function(req, res) {
         db.Trade
-            .create({ trades: req.body })
+            .create(req.body)
             .then((dbTradeModel) => {
                 db.Portfolio
-                    .update({ user_id: dbTradeModel.user_id }, { $push: { trades: dbTradeModel._id } })
+                    .update({_id: dbTradeModel.portfolio_id}, { $push:{trades: dbTradeModel._id}})
                     .then((dbPortfolioModel) => res.json(dbPortfolioModel))
                     .catch((err) => res.status(422).json(err));
             })
