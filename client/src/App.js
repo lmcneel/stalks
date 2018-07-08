@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import CollapseRow from './components/CollapseRow/index';
+import DocsList from './components/DocsList/DocsList';
 import RadioYesNo from './components/RadioYesNo/index';
 
 /**
@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <CollapseRow />
+        <DocsList />
       </div>
     );
   }

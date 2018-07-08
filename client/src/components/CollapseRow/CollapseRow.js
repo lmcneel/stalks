@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import {Collapse, Button, CardBody, Card, Container, Row, Col, CardFooter} from 'reactstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/fontawesome-free-solid';
-import RadioYesNo from '../RadioYesNo/index.js'
+import RadioYesNo from '../RadioYesNo/index.js';
+import API from '../../utils/API';
 
 /**
  * Collapse row class
@@ -31,11 +32,12 @@ class CollapseRow extends Component {
  * @return {JSX}
  */
  render() {
+
    return (
        <Container>
         <Row>
           <Col>
-            <h1>Pets Help Center</h1>
+            <h1>{this.props.title}</h1>
           </Col>
           <Col>
             <Button
@@ -53,7 +55,7 @@ class CollapseRow extends Component {
                 enim eiusmod high life accusamus terry richardson ad squid. Nihil
                 anim keffiyeh helvetica, craft beer labore wes anderson cred
                 nesciunt sapiente ea proident.</p>
-                <h2>first sub section</h2>
+                <h2>{this.props.article}</h2>
 
               </CardBody>
               <CardFooter className="text-center">

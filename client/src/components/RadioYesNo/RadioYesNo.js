@@ -1,44 +1,70 @@
-import React, { Component } from 'react';
-import { Row, Container, Button, Col, Form, FormGroup, Label, Modal, Input, FormText } from 'reactstrap';
-import GoToForumModal from '../GoToForumModal/index';
 
-export default class RadioYesNo extends React.Component {
+/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
+
+import React from 'react';
+import { Row, Container, Button, Modal, ModalHeader, ModalFooter, Col, Form, FormGroup, Label, Input, ModalBody } from 'reactstrap';
+
+class RadioYesNo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { isOpen: false };
+    this.state = {
+      modal: false,
+      title: "Was this helpful?",
+      showRadio: true
+    };
+
+    this.toggle = this.toggle.bind(this);
   }
 
-  toggleModal = () => {
+  toggle() {
     this.setState({
-      isOpen: !this.state.isOpen
+      modal: !this.state.modal
     });
   }
 
+  changeTitle = () => {
+    this.setState({ title: "Thank You for your Feedback!" });
+    this.setState({ showRadio: false });
+ };
+
+
   render() {
     return (
-      <Container>
-        <Row className="d-flex justify-content-center">
-          <Form inline>
-              <h3>Was this helpful?</h3>
+      <div>
+        <Container>
+          <Row className="d-flex justify-content-center">
+            <Form inline>
+              <h3>{this.state.title}</h3>
+              {this.state.showRadio ? 
               <FormGroup check>
                 <Label check>
-                  <Input type="radio" name="radio1" onClick={this.toggleModal} />{' '}
+                  <Input type="radio" name="radio1" onClick={this.changeTitle} />
                   Yes
               </Label>
-              </FormGroup>
+              </FormGroup> : null }
+              {this.state.showRadio ? 
               <FormGroup check>
                 <Label check>
-                  <Input onClick={this.toggleModal} type="radio" name="radio1" />{' '}
+                  <Input onClick={this.toggle} type="radio" name="radio1" />
                   No
               </Label>
-              </FormGroup>
-          </Form>
-          <GoToForumModal show={this.state.isOpen}
-          onClose={this.toggleModal}>
-          Here's some content for the modal
-        </GoToForumModal>
-        </Row>
-      </Container>
+              </FormGroup> : null }
+            </Form>
+          </Row>
+        </Container>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+          <ModalBody>
+
+Please visit our forum to get more customized assitance with your problems. 
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.toggle}>Visit the Forum</Button>{' '}
+            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+          </ModalFooter>
+        </Modal>
+      </div>
     );
   }
 }
+
+export default RadioYesNo;
