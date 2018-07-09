@@ -3,8 +3,8 @@ import './StockTicker.css';
 
 const StockTicker = (props) => {
     return (
-        <div className='scroll-left'>
-            <p>{props.stockticker}</p>
+        <div className='stockticker'>
+            <p>{props.text}</p>
         </div>
     );
 };

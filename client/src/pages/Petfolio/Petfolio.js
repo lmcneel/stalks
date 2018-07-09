@@ -18,110 +18,126 @@ class Petfolio extends Component {
    * Constructor function for setting state
    * @param {*} props
    */
-    constructor(props) {
-      super(props);
-      this.state = {
+  constructor(props) {
+    super(props);
+    this.state = {
       petName: 'Wolf',
       petPic: wolfy,
       petStats: [85, 90, 50, 70],
       petfolioValue: '$1000',
       bankValue: '$2000',
-      watchStocks: 'Watchlist:...StockA 2.35...StockB 4.15...StockC 1.28',
+      tickerText: 'Watchlist...StockA 2.35...StockB 4.15...StockC 1.28',
     };
-    }
+  }
 
-    /**
-     * Setting state of port value when rendered
-     */
-    componentDidMount() {
-      API.getPortfolioValue().then(((r) => {
-        this.setState({portfolioValue: r});
-      }));
-    };
+  /**
+   * Setting state of petfolio value when rendered
+   */
+  componentDidMount() {
+    API.getPortfolioValue().then(((r) => {
+      this.setState({petfolioValue: r });
+    }));
+  };
 
-    /**
-     * Setting state of bank value
-     */
-    componentWillMount() {
-      API.getBankValue().then(((r) => {
-        this.setState({bankValue: r});
-      }));
-    }
+  /**
+   * Setting state of bank value
+   */
+  componentDidMount() {
+    API.getBankValue().then(((r) => {
+      this.setState({bankValue: r });
+    }));
+  }
 
-    /**
-     * @return {*} Container
-     */
-    render() {
-      return (
+  /**
+   * @return {*} Container
+   */
+  render() {
+    return (
 
-        <Container fluid>
-          <Row>
-            <Col size="md-3">
+      <Container fluid>
+        {/** global header with app name and right nav icons goes here above next row*/}
+
+        <Row>
+          {/* Col 1:Global side bar*/}
+          <Col md="3">
             Side Bar
             </Col>
-            <Col size="md-3">
-              <div className="main">
-              <h2>Petfolio Page</h2>
 
-              <PetWrapper>
+          {/** Col 2: Feature Content*/}
+          <Col md="9">
 
-                <PetPic>
-                  {this.state.petPic}
-                </PetPic>
-
-                <div className="petname">
-                  <PetName>
-                    {this.state.petName}
-                  </PetName>
-                </div>
-
-                <div className="statusbars">
-                <PetStats
-                    petStat="Overall Health"
-                    petStatColor="success"
-                    petStatValue={this.state.petStats[0]}
-                />
-                <PetStats
-                    petStat="Hunger"
-                    petStatColor="danger"
-                    petStatValue={this.state.petStats[3]}
-                />
-                <PetStats
-                    petStat="Happiness"
-                    petStatColor="info"
-                    petStatValue={this.state.petStats[1]}
-                />
-                <PetStats
-                    petStat="Fondness"
-                    petStatColor="warning"
-                    petStatValue={this.state.petStats[2]}
-                />
-                </div>
-                </PetWrapper>
-                </div>
-            </Col>
-
-            <Col size="md-6">
+            {/** Row 1: feature name and petfolio and bank values*/}
             <Row>
-                <StockTicker stockticker={this.state.watchStocks} />
-              </Row>
-              <Row>
-                <Col>
-                  <PetfolioValue petfolioValue={this.state.petfolioValue} />
-                </Col>
-                <Col>
-                  <BankValue bankValue={this.state.bankValue} />
-                </Col>
-              </Row>
-              <Row>
-                <PieChart />
-              </Row>
-            </Col>
-          </Row>
+              <Col>
+                <h2>Petfolio</h2>
+              </Col>
+              <Col>
+                <PetfolioValue petfolioValue={this.state.petfolioValue} />
+              </Col>
+              <Col>
+                <BankValue bankValue={this.state.bankValue} />
+              </Col>
+            </Row>
 
-    </Container>
+            {/* Row 2: StockTicker*/}
+            <Row>
+              <Col>
+                <StockTicker text={this.state.tickerText}
+                />
+              </Col>
+            </Row>
+
+            {/** Row 3: PetStats and PieChart*/}
+            <Row>
+              <Col>
+              <div className="main">
+                <PetWrapper>
+
+                  <PetPic>
+                    {this.state.petPic}
+                  </PetPic>
+
+                  <div className="petname">
+                    <PetName>
+                      {this.state.petName}
+                    </PetName>
+                  </div>
+
+                  <div className="statusbars">
+                    <PetStats
+                      petStat="Overall Health"
+                      petStatColor="success"
+                      petStatValue={this.state.petStats[0]}
+                    />
+                    <PetStats
+                      petStat="Hunger"
+                      petStatColor="danger"
+                      petStatValue={this.state.petStats[3]}
+                    />
+                    <PetStats
+                      petStat="Happiness"
+                      petStatColor="info"
+                      petStatValue={this.state.petStats[1]}
+                    />
+                    <PetStats
+                      petStat="Fondness"
+                      petStatColor="warning"
+                      petStatValue={this.state.petStats[2]}
+                    />
+                  </div>
+                </PetWrapper>
+              </div>
+            </Col>
+
+            <Col>
+              <PieChart />
+          </Col>
+        </Row>
+        </Col>
+        </Row>
+      </Container>
     );
   }
 };
 
-  export default Petfolio;
+export default Petfolio;
