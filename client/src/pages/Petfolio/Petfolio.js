@@ -31,20 +31,20 @@ class Petfolio extends Component {
     }
 
     /**
-     * Setting state of port value when rendered
+     * Setting state of portfolio and bank values and all pet info(name, pic, stats) once component is mounted
      */
     componentDidMount() {
-      // API.getPortfolioValue().then(((r) => {
-      //   this.setState({petfolioValue: r});
-      // }));
-      // API.getBankValue().then(((r) => {
-      //   this.setState({bankValue: r});
+      API.getPortfolioValue().then(((r) => {
+        this.setState({petfolioValue: r});
+      }));
+      API.getBankValue().then(((r) => {
+        this.setState({bankValue: r});
+      }));
+      // API.getPetInfo().then(((r) => {
+      //   this.setState({petName: r???})
       // }));
     };
 
-    /**
-     * Setting state of bank value
-     */
     /**
      * @return {*} Container
      */
