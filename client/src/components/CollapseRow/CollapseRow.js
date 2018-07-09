@@ -31,7 +31,7 @@ class CollapseRow extends Component {
  */
  render() {
    return (
-       <Container>
+       <Container className ='collapse-component'>
         <Row>
           <Col>
             <h1>Pets Help Center</h1>
