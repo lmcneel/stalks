@@ -1,11 +1,10 @@
 //The contents of this file should go on client side main pages
-
-import React, { Component } from 'react';
-import { Button, FormGroup, Label, Input, } from 'reactstrap';
+import React, {Component} from 'react';
+import {Button, FormGroup, Label, Input} from 'reactstrap';
 import Highcharts from 'highcharts';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/fontawesome-free-solid';
-import { faEye } from '@fortawesome/fontawesome-free-solid';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faHeart} from '@fortawesome/fontawesome-free-solid';
+import {faEye} from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
 
 class Transaction extends Component {
@@ -61,11 +60,8 @@ class Transaction extends Component {
 
                 Highcharts.chart('stockChart', {
                     chart: {
-                        // Edit chart spacing
                         spacingBottom: 20,
-                        // backgroundColor: '#e9ecef',
                         backgroundColor: '#DDDFE1',
-                        // plotbackgroundColor: '#e9ecef',
                         height: null
                     },
                     title: {

@@ -3,13 +3,11 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 import Trading from './pages/Trading';
-import Test from './pages/Test';
 
 const App = () => (
   <Router>
     <div>
       <Switch>
-        <Route exact path='/' component={Test} />
         <Route exact path='/trading' component={Trading} />
       </Switch>
     </div>
