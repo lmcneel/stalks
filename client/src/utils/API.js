@@ -1,4 +1,5 @@
 // This file goes in the client/src/utils folder
+// axios is like jquery; make requests from within app
 
 import axios from 'axios';
 
@@ -19,5 +20,8 @@ export default {
     },
     getBankValue: function() {
         return axios.get('api/petfolio/bank');
+    },
+    getPetInfo: function() {
+        return axios.get('api/petfolio/pets');
     },
 };

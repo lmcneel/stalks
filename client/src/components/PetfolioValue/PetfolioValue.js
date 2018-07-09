@@ -1,7 +1,7 @@
 import React from 'react';
 
-const PetfolioValue = (props) => (
-    <div>
+export const PetfolioValue = (props) => (
+    <div className='stockStats'>
       <div className="">Petfolio Value</div>
       <div>{props.petfolioValue}</div>
     </div>
