@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { InputGroup, InputGroupAddon, Input, Button } from 'reactstrap';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class SigninForm extends Component {
     state={
@@ -29,7 +29,7 @@ class SigninForm extends Component {
         return (
             <div>
                 <InputGroup>
-                    <InputGroupAddon addonType="prepend"><i class="fas fa-at"></i></InputGroupAddon>
+                    <InputGroupAddon addonType="prepend"><FontAwesomeIcon icon='faAt'/></InputGroupAddon>
                     <Input 
                         value={this.state.username}
                         onChange={this.handleInputChange}
@@ -38,7 +38,7 @@ class SigninForm extends Component {
                 </InputGroup>
                 <br />
                 <InputGroup>
-                    <InputGroupAddon addonType="prepend"><i class="fas fa-key"></i></InputGroupAddon>
+                    <InputGroupAddon addonType="prepend"><FontAwesomeIcon icon='faKey' /></InputGroupAddon>
                     <Input 
                         value={this.state.username}
                         onChange={this.handleInputChange}
@@ -52,12 +52,11 @@ class SigninForm extends Component {
                 </p>               
                 <Button
                     onClick={this.handleFormSubmit} >
-                    <i class="fab fa-google">Google</i>
+                    <FontAwesomeIcon icon='faGoogle' />Google
                 </Button>
                 <Button
                     onClick={this.handleFormSubmit} >
-                    <i class="fab fa-facebook-f">Facebook</i>
-
+                    <FontAwesomeIcon icon='faFacebookF' />Facebook
                 </Button>
             </div>
         );

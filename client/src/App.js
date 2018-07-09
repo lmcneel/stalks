@@ -3,7 +3,11 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import CollapseRow from './components/CollapseRow/index';
 import SigninForm from './components/SigninForm';
 import SignupForm from './components/SignupForm';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faFacebookF, faGoogle} from '@fortawesome/fontawesome-free-brands';
+import {faAt, faKey} from '@fortawesome/fontawesome-free-solid';
 
+library.add(faFacebookF|faGoogle|faAt|faKey);
 
 /**
  * Class App
@@ -25,7 +29,6 @@ class App extends Component {
             <Route exact path='/signup' component={SignupForm} />
             
           </Switch>
-
         <CollapseRow />
       </div>
       </Router>
