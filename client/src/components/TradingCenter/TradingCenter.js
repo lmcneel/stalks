@@ -7,7 +7,31 @@ import { faHeart } from '@fortawesome/fontawesome-free-solid';
 import { faEye } from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
 
-const change = -1.24;
+const change = 0; // This is the CHANGE value, Only a placeholder for testing
+let watched = false; // This watchlist flag
+let favorite = false; // This is the favorite flag
+let eyeWatched = 'faEye'; // class variable for watchlist condition
+let heartFav = 'faHeart'; // class variable for favorite condidtion
+
+const checkWatchList = () => {
+    // If in watchlist set [watched] to true
+    return watched = true;
+};
+
+const checkFavoriteList = () => {
+    // If in favorite list set {favorite} to true
+    return favorite = true;
+};
+
+const addToWatchlist = () => {
+    // Need to add to MySQL Watchlist, then check watch list
+    checkWatchList();
+}
+
+const addToFav = () => {
+    // Need to add to MySQL Favorites List, then check favorite list
+    checkFavoriteList();
+};
 
 
 class Transaction extends Component {
@@ -23,6 +47,16 @@ class Transaction extends Component {
             transaction: 'buy',
         }
     }
+
+    // stockStats() {
+    //     // event.preventDefault();
+    //     API.findQuotes(
+    //         { ticker: this.state.ticker }
+    //     ).then(res => {
+    //         console.log(res.data);
+    //         this.setState({ price: res.data.quote.latestPrice });
+    //     }).catch(err => console.log(err));
+    // };
 
     componentDidMount() {
         this.charting({ ticker: this.state.ticker });
@@ -47,7 +81,7 @@ class Transaction extends Component {
     charting = (ticker) => {
         API.findQuotes(ticker)
             .then(res => {
-
+                console.log(res.data);
                 const chartData = res.data.chart.map(day => {
                     let dayArray = [];
                     dayArray.push(day.date);
@@ -171,9 +205,9 @@ class Transaction extends Component {
                     <h1>Stock Stats</h1>
 
                     <div className='row stockTickerBar'>
-                        <div className='col-sm-6'>
+                        <div className='col-sm-6 col-md-6'>
                             <div className='row'>
-                                <div className='col-sm-6'>
+                                <div className='col-sm-6 col-md-6'>
                                     <h1>{this.state.ticker}</h1>
                                     {/* Placeholder */}
                                 </div>
@@ -181,18 +215,18 @@ class Transaction extends Component {
                                     <h2>PRICE</h2>
                                 </div>
                                 <div className='col-sm-3'>
-                                    <h2>${75.51}</h2>
+                                    <h2>${this.state.price}</h2>
                                     {/* Placeholder */}
                                 </div>
                             </div>
                         </div>
-                        <div className='col-sm-6'>
+                        <div className='col-sm-6 col-md-6'>
                             <div className='row'>
-                                <div className='col-sm-3'>
+                                <div className='col-sm-3 changeValue'>
                                     <h2>CHANGE</h2>
                                 </div>
                                 {/* Change is a Placeholder */}
-                                <div className='col-sm-3' id='changeValue'>
+                                <div className='col-sm-3'>
                                     {change >= 0 ? (
                                         <div id='changeValuePositive'>
                                             <h2>+{change}%</h2>
@@ -204,13 +238,24 @@ class Transaction extends Component {
                                         )
                                     }
                                 </div>
-                                <div className='col-sm-3'>
+                                <div className='col-sm-2'>
                                     <FontAwesomeIcon
+                                        {...watched ? (eyeWatched = 'faEyeWatched') : (eyeWatched = 'faEye')}
+                                        className={eyeWatched}
+                                        onclick={addToWatchlist}
+                                        size='1x'
                                         icon={faEye} />
                                     {/* OnClick Function Required */}
+                                    {/* If not on user watchlist, will need have onclic function to add it to watchlist, and updated state */}
+
                                 </div>
-                                <div className='col-sm-3'>
+                                <div className='col-sm-2'>
                                     <FontAwesomeIcon
+                                        {...favorite ? (heartFav = 'faHeartFav') :
+                                        (heartFav = 'faHeart')}
+                                        className={heartFav}
+                                        onclick={addToFav}
+                                        size='1x'
                                         icon={faHeart} />
                                     {/* OnClick Function Required */}
                                 </div>
@@ -219,44 +264,44 @@ class Transaction extends Component {
                     </div>
 
                     <div className='row'>
-                        <div className='col-sm-6 chartSection'>
+                        <div className='col-sm-6 col-md-6 chartSection'>
                             <div id='stockChart'>
 
                             </div>
                         </div>
-                        <div className='col-sm-6 dataSection'>
+                        <div className='col-sm-6 col-md-6 dataSection'>
                             <div className='row'>
-                                <div className='col-sm-6 stockData'>
+                                <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>SHARES OWNED</h4>
                                 </div>
-                                <div className='col-sm-6 stockData'>
+                                <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>{30000}</h4>
                                     {/* Placeholder */}
                                 </div>
                             </div>
                             <div className='row'>
-                                <div className='col-sm-6 stockData'>
+                                <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>ROI</h4>
                                 </div>
-                                <div className='col-sm-6 stockData'>
+                                <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>${100}</h4>
                                     {/* Placeholder */}
                                 </div>
                             </div>
                             <div className='row'>
-                                <div className='col-sm-6 stockData'>
+                                <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>PRICE PURCHASED</h4>
                                 </div>
-                                <div className='col-sm-6 stockData'>
+                                <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>${100}</h4>
                                     {/* Placeholder */}
                                 </div>
                             </div>
                             <div className='row'>
-                                <div className='col-sm-6 stockData'>
+                                <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>DATE PURCHASED</h4>
                                 </div>
-                                <div className='col-sm-6 stockData'>
+                                <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>{'7-8-2018'}</h4>
                                     {/* Placeholder */}
                                 </div>
@@ -272,7 +317,7 @@ class Transaction extends Component {
                             <h1>Transaction Form</h1>
                         </legend>
                         <div className='form-row'>
-                            <div className='col-sm-6 tradeInputs'>
+                            <div className='col-sm-6 col-md-6 tradeInputs'>
                                 <FormGroup>
                                     <Label><h2>Select One Option</h2>
                                         <div className='form-check form-check-inline'>
@@ -310,7 +355,7 @@ class Transaction extends Component {
                                     </Label>
                                 </FormGroup>
                             </div>
-                            <div className='col-sm-6'>
+                            <div className='col-sm-6 col-md-6'>
                                 <FormGroup>
                                     <Label
                                         for='numberOfShares'>
@@ -329,19 +374,19 @@ class Transaction extends Component {
                             </div>
                         </div>
                         <div className='form-row'>
-                            <div className='col-sm-6 totalCalcLabel'>
+                            <div className='col-sm-6 col-md-6 totalCalcLabel'>
                                 <h4>SUBTOTAL:</h4>
                             </div>
-                            <div className='col-sm-6 totalCalc'>
+                            <div className='col-sm-6 col-md-6 totalCalc'>
                                 <h4>${-2500.00}</h4>
                                 {/* Placeholder */}
                             </div>
                         </div>
                         <div className='form-row totalCalc'>
-                            <div className='col-sm-6 totalCalcLabel'>
+                            <div className='col-sm-6 col-md-6 totalCalcLabel'>
                                 <h4>New Bank Vale:</h4>
                             </div>
-                            <div className='col-sm-6 totalCalc'>
+                            <div className='col-sm-6 col-md-6 totalCalc'>
                                 <h4>${10000.00}</h4>
                                 {/* Placeholder */}
                             </div>

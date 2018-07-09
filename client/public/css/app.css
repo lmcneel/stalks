@@ -6303,7 +6303,7 @@ body {
   color: #404850;
   float: left;
   margin: 3% 3% 3% 3%;
-  padding: 5% 5% 5% 5%; }
+  padding: 2% 2% 2% 2%; }
 
 .stockStats h1 {
   font-size: 22px;
@@ -6330,10 +6330,27 @@ body {
   text-align: left;
   padding: 5px; }
 
+.changeValue {
+  text-align: right; }
+
 #changeValuePositive {
   color: #5EBF92; }
 
 #changeValueNegative {
+  color: #EE4A37; }
+
+.faEye {
+  color: #404850;
+  color: #FBB424; }
+
+.faEyeWatched {
+  color: #FBB424; }
+
+.faHeart {
+  color: #404850;
+  color: #EE4A37; }
+
+.faHeartFav {
   color: #EE4A37; }
 
 #stockChart {

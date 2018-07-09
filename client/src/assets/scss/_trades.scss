@@ -9,7 +9,7 @@ body {
   color: $gray-700;
   float: left;
   margin: 3% 3% 3% 3%;
-  padding: 5% 5% 5% 5%;
+  padding: 2% 2% 2% 2%;
   // width: 100%;
 }
 .stockStats h1 {
@@ -44,10 +44,27 @@ body {
   // line-height: 1px;
   padding: 5px; 
 }
+.changeValue{
+  text-align: right;
+}
 #changeValuePositive{
   color: $green;
 }
 #changeValueNegative{
+  color: $red;
+}
+.faEye {
+color: $gray-700;
+color: $yellow;
+}
+.faEyeWatched {
+  color: $yellow;
+  }
+.faHeart {
+  color: $gray-700;
+  color: $red;
+}
+.faHeartFav {
   color: $red;
 }
 #stockChart {
