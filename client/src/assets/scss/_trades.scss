@@ -1,17 +1,27 @@
+body {
+  background-color: $gray-300;
+}
 //  ====================
 .stockStats {
-  background-color: $gray-300;
+  background-color: $white;
+  border-radius: 25px;
   border: none;
   color: $gray-700;
   float: left;
   margin: 3% 3% 3% 3%;
   padding: 5% 5% 5% 5%;
+  // width: 100%;
 }
 .stockStats h1 {
+  // font-family: 'Rubik Gold';
   font-size: 22px;
+  text-align: left;
+  // line-height: 1px;
+  padding: 5px;
+  margin-bottom: 0px;
 }
 .stockStats h2 {
-  // font-family: 'Source Sans Pro';
+  // font-family: 'Roboto Mono Medium';
   font-size: 18px;
   text-align: left;
   // line-height: 1px;
@@ -28,7 +38,7 @@
   margin-bottom: 0px; 
 }
 .stockStats h4 {
-  // font-family: 'Source Sans Pro';
+  // font-family: 'Roboto Mono Medium';
   font-size: 14px;
   text-align: left;
   // line-height: 1px;
@@ -50,18 +60,25 @@
 
 //  ====================
 .buySell {
-  background-color: $gray-300;
+  background-color: $white;
+  border-radius: 25px;
   border: none;
   color: $gray-700;
   float: left;
   margin: 3% 3% 3% 3%;
   padding: 5% 5% 5% 5%;
+  // width: 100%;
 }
 .buySell h1 {
+  // font-family: 'Rubik Gold';
   font-size: 22px;
+  text-align: left;
+  // line-height: 1px;
+  padding: 5px;
+  margin-bottom: 0px;
 }
 .buySell h2 {
-  // font-family: 'Source Sans Pro';
+// font-family: 'Roboto Mono Medium';
   font-size: 18px;
   text-align: left;
   // line-height: 1px;
@@ -69,7 +86,7 @@
   margin-bottom: 0px;
 }
 .buySell h3 {
-  // font-family: 'Source Sans Pro';
+  // font-family: 'Roboto Mono Medium';
   font-size: 16px;
   text-align: left;
   line-height: 1px;
@@ -78,8 +95,8 @@
   margin-bottom: 0px;
 }
 .buySell h4 {
-  // font-family: 'Source Sans Pro';
-  font-size: 14px;
+ // font-family: 'Roboto Mono Medium';
+  font-size: 24px;
   text-align: left;
   // line-height: 1px;
   padding: 5px;
@@ -93,6 +110,9 @@
   border: none;
   color: #FFFFFF;
   float: right;
+  // font-family: 'Rubik Gold';
+  font-size: 14px;
+
 }
 .form-row {
   margin-bottom: 15px;
