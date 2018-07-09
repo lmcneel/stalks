@@ -1,7 +1,7 @@
 
 // User Gains / Loss  =
 
-let stocks = [];
+const stocks = [];
 
 
 // 1- Make a call to database and get all the stocks and their quantities for the user [Call the database]
