@@ -37,17 +37,14 @@ class Petfolio extends Component {
       API.getPetfolioValue().then(((r) => {
         this.setState({petfolioValue: r});
       }));
+      API.getBankValue().then(((r) => {
+        this.setState({bankValue: r});
+      }));
     };
 
     /**
      * Setting state of bank value
      */
-    componentDidMount() {
-      API.getBankValue().then(((r) => {
-        this.setState({bankValue: r});
-      }));
-    }
-
     /**
      * @return {*} Container
      */
