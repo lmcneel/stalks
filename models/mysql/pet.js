@@ -23,6 +23,10 @@ module.exports = function(sequelize, DataTypes) {
       }
 
     });
+
+    // Pet.associate = function(models) {
+    //     models.Pet.belongsTo(models.user);
+    // };
     
     Pet.associate = function(models) {
       models.Pet.hasMany(models.Accessories);
