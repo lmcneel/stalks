@@ -7,7 +7,7 @@ import PieChart from '../../components/PieChart';
 import wolfy from './defaultPetPic.png';
 // import other 3 pet pics here
 import StockTicker from '../../components/StockTicker/StockTicker';
-import './Petfolio.css';
+import '../../assets/scss/_petfolio.scss';
 import API from './../../utils/API';
 
 /**
@@ -30,29 +30,26 @@ class Petfolio extends Component {
     };
   }
 
-  /**
-   * Setting state of petfolio value when rendered
-   */
-  componentDidMount() {
-    API.getPortfolioValue().then(((r) => {
-      this.setState({petfolioValue: r });
-    }));
-  };
+    /**
+     * Setting state of petfolio value when rendered
+     */
+    componentDidMount() {
+      // API.getPetfolioValue().then(((r) => {
+      //   this.setState({petfolioValue: r});
+      // }));
+      // API.getBankValue().then(((r) => {
+      //   this.setState({bankValue: r});
+      // }));
+    };
 
-  /**
-   * Setting state of bank value
-   */
-  componentDidMount() {
-    API.getBankValue().then(((r) => {
-      this.setState({bankValue: r });
-    }));
-  }
-
-  /**
-   * @return {*} Container
-   */
-  render() {
-    return (
+    /**
+     * Setting state of bank value
+     */
+    /**
+     * @return {*} Container
+     */
+    render() {
+      return (
 
       <Container fluid>
         {/** global header with app name and right nav icons goes here above next row*/}

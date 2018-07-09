@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 // import CollapseRow from './components/CollapseRow/index';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
-import Test from './pages/Test';
+import Trading from './pages/Trading';
+
 /**
  * Class App
  */
@@ -18,7 +19,7 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path="/petfolio" component={Petfolio} />
-            <Route exact path="/test" component={Test} />
+            <Route exact path='/trading' component={Trading} />
           </Switch>
         </div>
       </Router>
@@ -26,3 +27,4 @@ class App extends Component {
   }
 }
 export default App;
+
