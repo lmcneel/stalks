@@ -6287,6 +6287,12 @@ a.text-dark:hover, a.text-dark:focus {
   border: none;
   color: #000; }
 
+.main {
+  margin: 25px; }
+
+.statusbars {
+  width: 300px; }
+
 .stockStats {
   background-color: #DDDFE1;
   border: none;
@@ -6372,3 +6378,5 @@ a.text-dark:hover, a.text-dark:focus {
 
 .form-row {
   margin-bottom: 15px; }
+
+/*# sourceMappingURL=app.css.map */
