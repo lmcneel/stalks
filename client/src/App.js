@@ -39,26 +39,26 @@ class App extends Component {
    */
   render() {
     return (
-      <div className="App">
-        <TopNav navToggleHandler={this.navToggleHandler}/>
-        <Wrapper>
-          <SideNav isActive={this.state.sideNav}/>
-          <MainContentWrapper>
-            <PortfolioStatus />
-            <WatchlistTicker />
-            <Content>
-              <Router>
-                <Switch>
-                  <Route exact path="/petfolio" component={Petfolio} />
-                  <Route exact path='/trading' component={Trading} />
-                </Switch>
-              </Router>
-            </Content>
-            </MainContentWrapper>
-          </Wrapper>
-      </div>
+      <Router>
+        <div className="App">
+            <TopNav navToggleHandler={this.navToggleHandler}/>
+            <Wrapper>
+              <SideNav isActive={this.state.sideNav}/>
+              <MainContentWrapper>
+                <PortfolioStatus />
+                <WatchlistTicker />
+                <Content>
+                    <Switch>
+                      <Route exact path="/petfolio" component={Petfolio} />
+                      <Route exact path='/trading' component={Trading} />
+                    </Switch>
+                </Content>
+                </MainContentWrapper>
+              </Wrapper>
+        </div>
+      </Router>
     );
   }
 }
-export default App;
 
+export default App;

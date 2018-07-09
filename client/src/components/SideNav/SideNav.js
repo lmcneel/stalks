@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartPie, faPaw, faMoneyBillWave, faUsers, faComments } from '@fortawesome/fontawesome-free-solid';
 import "./SideNav.css";
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 const propTypes = {
     isActive: PropTypes.bool,
@@ -13,9 +14,7 @@ const SideNav = (props) => (
     <Nav id="sidebar" className={(props.isActive) ? `active` : ``}>
         <ul className="list-unstyled components">
             <li className="active">
-                <a href="">
-                    <FontAwesomeIcon icon={faChartPie} />  Petfolio
-                </a>
+                <Link to={`/petfolio`}><FontAwesomeIcon icon={faChartPie} />  Petfolio</Link>
             </li>
             <li className="">
                 <a href="">
