@@ -6293,8 +6293,12 @@ a.text-dark:hover, a.text-dark:focus {
 .statusbars {
   width: 300px; }
 
+body {
+  background-color: #DDDFE1; }
+
 .stockStats {
-  background-color: #DDDFE1;
+  background-color: #fff;
+  border-radius: 25px;
   border: none;
   color: #404850;
   float: left;
@@ -6302,7 +6306,10 @@ a.text-dark:hover, a.text-dark:focus {
   padding: 5% 5% 5% 5%; }
 
 .stockStats h1 {
-  font-size: 22px; }
+  font-size: 22px;
+  text-align: left;
+  padding: 5px;
+  margin-bottom: 0px; }
 
 .stockStats h2 {
   font-size: 18px;
@@ -6337,7 +6344,8 @@ a.text-dark:hover, a.text-dark:focus {
   margin-bottom: 20px; }
 
 .buySell {
-  background-color: #DDDFE1;
+  background-color: #fff;
+  border-radius: 25px;
   border: none;
   color: #404850;
   float: left;
@@ -6345,7 +6353,10 @@ a.text-dark:hover, a.text-dark:focus {
   padding: 5% 5% 5% 5%; }
 
 .buySell h1 {
-  font-size: 22px; }
+  font-size: 22px;
+  text-align: left;
+  padding: 5px;
+  margin-bottom: 0px; }
 
 .buySell h2 {
   font-size: 18px;
@@ -6362,7 +6373,7 @@ a.text-dark:hover, a.text-dark:focus {
   margin-bottom: 0px; }
 
 .buySell h4 {
-  font-size: 14px;
+  font-size: 24px;
   text-align: left;
   padding: 5px; }
 
@@ -6374,9 +6385,8 @@ a.text-dark:hover, a.text-dark:focus {
   background-color: #5EBF92;
   border: none;
   color: #FFFFFF;
-  float: right; }
+  float: right;
+  font-size: 14px; }
 
 .form-row {
   margin-bottom: 15px; }
-
-/*# sourceMappingURL=app.css.map */
