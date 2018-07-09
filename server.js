@@ -27,7 +27,7 @@ app.use(routes);
 // DB Config
 // const db = require('./config/keys').mongoURI;
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/stalks");
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks');
 
 seedDB();
 
