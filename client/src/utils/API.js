@@ -5,12 +5,13 @@ import axios from 'axios';
 export default {
 
     buyShares: function(buyData) {
-        return axios.post('/api/trading/buy', buyData);
+        return axios.post(`/api/trading/buy/`, buyData);
     },
     sellShares: function(sellData) {
-        return axios.post('/api/trading/sell', sellData);
+        return axios.post(`/api/trading/sell/`, sellData);
     },
-    findQuotes: function(symbol) {
-        return axios.get('/api/trading/quote', symbol);
+    findQuotes: function(data) {
+        console.log(data);
+        return axios.get(`/api/trading/quote/${data.ticker}`);
     },
 };
