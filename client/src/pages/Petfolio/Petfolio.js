@@ -37,9 +37,9 @@ class Petfolio extends Component {
       // API.getPortfolioValue().then(((r) => {
       //   this.setState({petfolioValue: r});
       // }));
-      API.getBankValue().then(((r) => {
-        this.setState({bankValue: r});
-      }));
+      // API.getBankValue().then(((r) => {
+      //   this.setState({bankValue: r});
+      // }));
     };
 
     /**
