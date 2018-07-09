@@ -14,7 +14,6 @@ export default {
         return axios.get('/api/trading/quote', symbol);
     },
     getDocs: function() {
-        return axios.get('/api/docs')
-
-    }
+        return axios.get('/api/docs');
+    },
 };

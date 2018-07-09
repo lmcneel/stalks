@@ -4,7 +4,13 @@ import {Collapse, Button, CardBody, Card, Container, Row, Col, CardFooter} from 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/fontawesome-free-solid';
 import RadioYesNo from '../RadioYesNo/index.js';
+import PropTypes from 'prop-types';
 
+const propTypes = {
+  title: PropTypes.string,
+  collapse: PropTypes.bool,
+  article: PropTypes.string,
+};
 /**
  * Collapse row class
  */
@@ -16,24 +22,21 @@ class CollapseRow extends Component {
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false };
+    this.state = {collapse: false};
   }
-
   /**
    * Toggle function
    */
   toggle() {
-    this.setState({ collapse: !this.state.collapse });
-
+    this.setState({collapse: !this.state.collapse});
   }
-/**
- * Render function
- * @return {JSX}
- */
- render() {
-
-   return (
-       <Container>
+  /**
+   * Render function
+   * @return {JSX}
+   */
+  render() {
+    return (
+      <Container>
         <Row>
           <Col>
             <h1>{this.props.title}</h1>
@@ -66,5 +69,5 @@ class CollapseRow extends Component {
     );
   }
 }
-
+CollapseRow.propTypes = propTypes;
 export default CollapseRow;
