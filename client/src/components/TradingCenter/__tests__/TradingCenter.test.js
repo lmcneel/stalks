@@ -1,4 +1,4 @@
-import Component from '../TradingCenter/TradingCenter.js';
+import Component from '../TradingCenter.js';
 import React from 'react';
 import {  mount , shallow  } from 'enzyme';
 

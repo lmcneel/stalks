@@ -1,4 +1,4 @@
-import Component from '../collapseRow/CollapseRow.js';
+import Component from '../CollapseRow.js';
 import React from 'react';
 import {  mount , shallow  } from 'enzyme';
 //
