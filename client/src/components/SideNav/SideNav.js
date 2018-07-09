@@ -3,9 +3,14 @@ import {Nav } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartPie, faPaw, faMoneyBillWave, faUsers, faComments } from '@fortawesome/fontawesome-free-solid';
 import "./SideNav.css";
+import PropTypes from 'prop-types';
 
-const SideNav = props => (
-    <Nav id="sidebar">
+const propTypes = {
+    isActive: PropTypes.bool,
+};
+
+const SideNav = (props) => (
+    <Nav id="sidebar" className={(props.isActive) ? `active` : ``}>
         <ul className="list-unstyled components">
             <li className="active">
                 <a href="">
@@ -37,5 +42,6 @@ const SideNav = props => (
     </Nav>
 );
 
+SideNav.propTypes = propTypes;
 
 export default SideNav;
