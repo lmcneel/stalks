@@ -5,9 +5,10 @@ import TradingCenter from '../components/TradingCenter';
  * Trading Page
  */
 class Trading extends Component {
-    /** Render  */
+    /** Returns the Trading Center Component
+     * @return {TradingCenter}
+     */
     render() {
-        /** Return */
         return (
             <div>
                 <div id="container"></div>
