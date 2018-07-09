@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import PropTypes from 'prop-types';
 import API from '../../utils/API';
 import CollapseRow from '../CollapseRow'
+
+const propTypes = {
+    title: PropTypes.string,
+    article: PropTypes.string,
+    image: PropTypes.string,
+    keywords: PropTypes.array,
+    language: PropTypes.string,
+    helpful: PropTypes.number
+
+};
 
 class DocsList extends React.Component {
 
@@ -21,16 +33,13 @@ class DocsList extends React.Component {
                 this.setState({
                     docs: res.data
                 }),
-
         )
             .catch(err => console.log(err));
-
     };
 
     render() {
         return (
             <div>
-
                 {this.state.docs.map(docs => (
                     <CollapseRow
                         key={docs._id}
@@ -43,4 +52,5 @@ class DocsList extends React.Component {
         );
     }
 }
+DocsList.propTypes = propTypes;
 export default DocsList;
