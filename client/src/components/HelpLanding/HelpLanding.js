@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import HelpCard from '../HelpCard/index';
-import { Container} from 'reactstrap';
+import {Container} from 'reactstrap';
 /**
  * Class App
  */
@@ -15,7 +15,10 @@ class HelpLanding extends Component {
             <div className="HelpLanding">
                 <HelpCard
                     title="Documentation"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                     minim veniam, quis nostrud exercitation ullamco laboris 
+                     nisi ut aliquip ex ea commodo consequat. "
                     buttonLink="www.google.com"
                     buttonText="Read the Docs"
                 />
@@ -23,7 +26,10 @@ class HelpLanding extends Component {
             <div className="HelpLanding">
                 <HelpCard
                     title="Forum"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                    incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+                    ut aliquip ex ea commodo consequat. "
                     buttonLink="www.google.com"
                     buttonText="Ask a Question"
                 />
@@ -31,7 +37,10 @@ class HelpLanding extends Component {
             <div className="HelpLanding">
                 <HelpCard
                     title="Tutorial"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                     do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                     nisi ut aliquip ex ea commodo consequat. "
                     buttonLink="www.google.com"
                     buttonText="Start the Tutorial"
                 />
