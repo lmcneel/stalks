@@ -23,5 +23,15 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
+    },
+    // Saves an article to the database
+    signup: function (signupData) {
+        return axios.post('/api/signup', signupData)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 };
