@@ -34,9 +34,9 @@ class Petfolio extends Component {
      * Setting state of port value when rendered
      */
     componentDidMount() {
-      API.getPortfolioValue().then(((r) => {
-        this.setState({petfolioValue: r});
-      }));
+      // API.getPortfolioValue().then(((r) => {
+      //   this.setState({petfolioValue: r});
+      // }));
       API.getBankValue().then(((r) => {
         this.setState({bankValue: r});
       }));
