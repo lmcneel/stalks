@@ -6358,7 +6358,8 @@ body {
   height: 230px; }
 
 .stockData {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  text-align: center; }
 
 .buySell {
   background-color: #fff;
@@ -6394,6 +6395,9 @@ body {
   text-align: left;
   padding: 5px; }
 
+.transactionModal {
+  height: 100px; }
+
 #numberOfShares {
   color: #6c757d;
   float: right; }
@@ -6407,3 +6411,26 @@ body {
 
 .form-row {
   margin-bottom: 15px; }
+
+.searchStockStats {
+  margin: 3% 3% 10% 3%;
+  padding: 2% 2% 2% 2%; }
+
+.searchBar {
+  margin-bottom: 20px; }
+
+.stockTickerBarCollapse {
+  border-bottom: solid 2px #DDDFE1;
+  padding-bottom: 20px; }
+
+.collapseTop {
+  padding-top: 20px; }
+
+@media (max-width: 768px) {
+  .submitBtn {
+    background-color: #5EBF92;
+    border: none;
+    color: #FFFFFF;
+    float: none;
+    font-size: 14px;
+    width: 100%; } }

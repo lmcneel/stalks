@@ -1,38 +1,24 @@
 //The contents of this file should go on client side main pages
 import React, { Component } from 'react';
-import { Button, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Highcharts from 'highcharts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/fontawesome-free-solid';
 import { faEye } from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
 
-const change = 0; // This is the CHANGE value, Only a placeholder for testing
+
 let watched = false; // This watchlist flag
-let favorite = false; // This is the favorite flag
 let eyeWatched = 'faEye'; // class variable for watchlist condition
-let heartFav = 'faHeart'; // class variable for favorite condidtion
 
 const checkWatchList = () => {
     // If in watchlist set [watched] to true
-    return watched = true;
-};
-
-const checkFavoriteList = () => {
-    // If in favorite list set {favorite} to true
-    return favorite = true;
+    return watched = false;
 };
 
 const addToWatchlist = () => {
     // Need to add to MySQL Watchlist, then check watch list
     checkWatchList();
 }
-
-const addToFav = () => {
-    // Need to add to MySQL Favorites List, then check favorite list
-    checkFavoriteList();
-};
-
 
 class Transaction extends Component {
 
@@ -50,20 +36,18 @@ class Transaction extends Component {
             cost: 0,
             datePurchased: '',
             value: 0,
+            totalShares: 0,
             cashBalance: 0,
+            modal: false,
         }
+        this.toggle = this.toggle.bind(this);
     }
 
-    // stockStats() {
-    //     // event.preventDefault();
-    //     API.findQuotes(
-    //         { ticker: this.state.ticker }
-    //     ).then(res => {
-    //         console.log(res.data);
-    //         this.setState({ price: res.data.quote.latestPrice });
-    //     }).catch(err => console.log(err));
-    // };
-
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
+    };
     componentDidMount() {
         this.charting({ ticker: this.state.ticker });
     };
@@ -219,31 +203,28 @@ class Transaction extends Component {
                             <div className='row'>
                                 <div className='col-sm-6 col-md-6'>
                                     <h1>{this.state.ticker}</h1>
-                                    {/* Placeholder */}
                                 </div>
                                 <div className='col-sm-3'>
                                     <h2>PRICE</h2>
                                 </div>
                                 <div className='col-sm-3'>
                                     <h2>${this.state.price}</h2>
-                                    {/* Placeholder */}
                                 </div>
                             </div>
                         </div>
                         <div className='col-sm-6 col-md-6'>
                             <div className='row'>
-                                <div className='col-sm-3 changeValue'>
+                                <div className='col-sm-4 changeValue'>
                                     <h2>CHANGE</h2>
                                 </div>
-                                {/* Change is a Placeholder */}
-                                <div className='col-sm-3'>
-                                    {change >= 0 ? (
+                                <div className='col-sm-4'>
+                                    {this.state.change >= 0 ? (
                                         <div id='changeValuePositive'>
-                                            <h2>{this.state.change*100}%</h2>
+                                            <h2>{this.state.change * 100}%</h2>
                                         </div>
                                     ) : (
                                             <div id='changeValueNegative'>
-                                                <h2>{change}%</h2>
+                                                <h2>{this.state.change}%</h2>
                                             </div>
                                         )
                                     }
@@ -259,33 +240,22 @@ class Transaction extends Component {
                                     {/* If not on user watchlist, will need have onclic function to add it to watchlist, and updated state */}
 
                                 </div>
-                                <div className='col-sm-2'>
-                                    <FontAwesomeIcon
-                                        {...favorite ? (heartFav = 'faHeartFav') :
-                                            (heartFav = 'faHeart')}
-                                        className={heartFav}
-                                        onclick={addToFav}
-                                        size='1x'
-                                        icon={faHeart} />
-                                    {/* OnClick Function Required */}
-                                </div>
                             </div>
                         </div>
                     </div>
-
                     <div className='row'>
-                        <div className='col-sm-6 col-md-6 chartSection'>
+                        <div className='col-sm-12 col-md-8 chartSection'>
                             <div id='stockChart'>
 
                             </div>
                         </div>
-                        <div className='col-sm-6 col-md-6 dataSection'>
+                        <div className='col-sm-12 col-md-4 dataSection'>
                             <div className='row'>
                                 <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>SHARES OWNED</h4>
                                 </div>
                                 <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>{30000}</h4>
+                                    <h4>{this.state.totalShares}</h4>
                                     {/* Placeholder */}
                                 </div>
                             </div>
@@ -294,7 +264,7 @@ class Transaction extends Component {
                                     <h4>ROI</h4>
                                 </div>
                                 <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>${100}</h4>
+                                    <h4>${this.state.ROI}</h4>
                                     {/* Placeholder */}
                                 </div>
                             </div>
@@ -303,8 +273,7 @@ class Transaction extends Component {
                                     <h4>PRICE PURCHASED</h4>
                                 </div>
                                 <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>${100}</h4>
-                                    {/* Placeholder */}
+                                    <h4>${this.state.cost}</h4>
                                 </div>
                             </div>
                             <div className='row'>
@@ -312,103 +281,122 @@ class Transaction extends Component {
                                     <h4>DATE PURCHASED</h4>
                                 </div>
                                 <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>{'7-8-2018'}</h4>
-                                    {/* Placeholder */}
+                                    <h4>{this.state.datePurchased}</h4>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
 
                 <div className='transactionForm container'>
                     <form className='buySell'>
-                        <legend>
-                            <h1>Transaction Form</h1>
-                        </legend>
-                        <div className='form-row'>
+                        <div className='row'>
+                            <legend>
+                                <h1>Transaction Form</h1>
+                            </legend>
+                        </div>
+                        <div className='row'>
                             <div className='col-sm-6 col-md-6 tradeInputs'>
-                                <FormGroup>
-                                    <Label><h2>Select One Option</h2>
-                                        <div className='form-check form-check-inline'>
-                                            <Input
-                                                className='form-check-input'
-                                                type='radio'
-                                                name='transaction'
-                                                value='buy'
-                                                checked={this.state.transaction === 'buy'}
-                                                onChange={this.handleInputChange}
-                                                id='inlineRadio1'
-                                            />{' '}
-                                            <Label
-                                                className='form-check-label'
-                                                for='inlineRadio1'>
-                                                <h3>BUY</h3>
-                                            </Label>
-                                        </div>
-                                        <div className='form-check form-check-inline'>
-                                            <Input
-                                                className='form-check-input'
-                                                type='radio'
-                                                name='transaction'
-                                                value='sell'
-                                                checked={this.state.transaction === 'sell'}
-                                                onChange={this.handleInputChange}
-                                                id='inlineRadio2'
-                                            />{' '}
-                                            <Label
-                                                className='form-check-label'
-                                                for='inlineRadio1'>
-                                                <h3>SELL</h3>
-                                            </Label>
-                                        </div>
-                                    </Label>
-                                </FormGroup>
+                                <Label><h2>Select One Option</h2>
+                                    <div className='form-check form-check-inline'>
+                                        <Input
+                                            className='form-check-input'
+                                            type='radio'
+                                            name='transaction'
+                                            value='buy'
+                                            checked={this.state.transaction === 'buy'}
+                                            onChange={this.handleInputChange}
+                                            id='inlineRadio1'
+                                        />{' '}
+                                        <Label
+                                            className='form-check-label'
+                                            for='inlineRadio1'>
+                                            <h3>BUY</h3>
+                                        </Label>
+                                    </div>
+                                    <div className='form-check form-check-inline'>
+                                        <Input
+                                            className='form-check-input'
+                                            type='radio'
+                                            name='transaction'
+                                            value='sell'
+                                            checked={this.state.transaction === 'sell'}
+                                            onChange={this.handleInputChange}
+                                            id='inlineRadio2'
+                                        />{' '}
+                                        <Label
+                                            className='form-check-label'
+                                            for='inlineRadio1'>
+                                            <h3>SELL</h3>
+                                        </Label>
+                                    </div>
+                                </Label>
                             </div>
-                            <div className='col-sm-6 col-md-6'>
-                                <FormGroup>
-                                    <Label
-                                        for='numberOfShares'>
-                                        <h2>Number of Shares</h2>
-                                    </Label>
-                                    <Input
-                                        type='number'
-                                        min='1'
-                                        name='shares'
-                                        value={this.state.shares}
-                                        onChange={this.handleInputChange}
-                                        id='numberOfShares'
+                            <div className='col-sm-12 col-md-6'>
+                                <Label
+                                    for='numberOfShares'>
+                                    <h2>Number of Shares</h2>
+                                </Label>
+                                <Input
+                                    type='number'
+                                    min='1'
+                                    name='shares'
+                                    value={this.state.shares}
+                                    onChange={this.handleInputChange}
+                                    id='numberOfShares'
 
-                                    />
-                                </FormGroup>
+                                />
                             </div>
                         </div>
-                        <div className='form-row'>
+                        <div className='row'>
                             <div className='col-sm-6 col-md-6 totalCalcLabel'>
                                 <h4>SUBTOTAL:</h4>
                             </div>
                             <div className='col-sm-6 col-md-6 totalCalc'>
                                 <h4>${-2500.00}</h4>
-                                {/* Placeholder */}
                             </div>
                         </div>
-                        <div className='form-row totalCalc'>
+                        <div className='row totalCalc'>
                             <div className='col-sm-6 col-md-6 totalCalcLabel'>
                                 <h4>New Bank Vale:</h4>
                             </div>
                             <div className='col-sm-6 col-md-6 totalCalc'>
                                 <h4>${10000.00}</h4>
-                                {/* Placeholder */}
                             </div>
                         </div>
-                        <Button
-                            className='submitBtn'
-                            onClick={this.transactionExec}
-                        >
-                            SUBMIT ORDER
-                    </Button>
+                        <div>
+                            <div>
+                                <Button
+                                    className='submitBtn'
+                                    onClick={this.transactionExec}
+                                    onClick={this.toggle}>{this.props.buttonLabel}
+                                    SUBMIT ORDER
+                            </Button>
+                            </div>
+                            <Modal
+                                isOpen={this.state.modal}
+                                toggle={this.toggle}
+                                className={this.props.className}>
+                                <ModalHeader
+                                    toggle={this.toggle}
+                                    className='buySell'>
+                                    <h2>TRANSACTION COMPLETE</h2>
+                                </ModalHeader>
+                                <ModalBody
+                                    className='buySell transactionModal'>
+                                    <h3>Your order was submitted and processed!</h3>
+                                </ModalBody>
+                                <ModalFooter>
+                                    <Button
+                                        color="secondary"
+                                        onClick={this.toggle}>
+                                        Cancel
+                                    </Button>
+                                </ModalFooter>
+                            </Modal>
+                        </div>
                     </form>
-                </div>
+                </div >
             </div >
         )
     }
