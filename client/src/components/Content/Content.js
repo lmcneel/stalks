@@ -1,8 +1,7 @@
-import React from "react";
-import { Container, Row, Col, Button } from 'reactstrap';
+import React from 'react';
+import {Container} from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import "./Content.css";
 
 const propTypes = {
     children: PropTypes.oneOfType([
@@ -10,7 +9,7 @@ const propTypes = {
         PropTypes.element,
         PropTypes.object,
         PropTypes.string]),
-}
+};
 
 
 const Content = (props) => (

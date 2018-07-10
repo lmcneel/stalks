@@ -1,8 +1,7 @@
-import React from "react";
-import {Nav } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartPie, faPaw, faMoneyBillWave, faUsers, faComments } from '@fortawesome/fontawesome-free-solid';
-import "./SideNav.css";
+import React from 'react';
+import {Nav} from 'reactstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faChartPie, faPaw, faMoneyBillWave, faUsers, faComments} from '@fortawesome/fontawesome-free-solid';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 

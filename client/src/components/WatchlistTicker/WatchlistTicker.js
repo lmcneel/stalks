@@ -1,11 +1,6 @@
-import React from "react";
-import "./WatchlistTicker.css";
+import React from 'react';
 
 
-const WatchlistTicker = props => (
-    <div id="ticker" className="bg-dark py-2">
-        text
-    </div>
-        );
-        
+const WatchlistTicker = (props) => <div id="ticker" className="bg-dark py-2">text</div>;
+
 export default WatchlistTicker;

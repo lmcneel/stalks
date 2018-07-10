@@ -1,14 +1,13 @@
-import React from "react";
-import { Container, Row, Col, Button } from 'reactstrap';
+import React from 'react';
+import {Container, Row, Col, Button} from 'reactstrap';
 import mainLogo from './../../assets/images/smp-logo.svg';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBars, faQuestionCircle, faCog, faInfo, faSignOutAlt} from '@fortawesome/fontawesome-free-solid';
-import "./TopNav.css";
 import PropTypes from 'prop-types';
 
 const propTypes = {
     navToggleHandler: PropTypes.func,
-}
+};
 
 
 const TopNav = (props) => {

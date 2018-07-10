@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import TopNav from "./components/TopNav";
-import Wrapper from "./components/Wrapper";
+import TopNav from './components/TopNav';
+import Wrapper from './components/Wrapper';
 import SideNav from './components/SideNav';
 import MainContentWrapper from './components/MainContentWrapper';
 import PortfolioStatus from './components/PortfolioStatus';
@@ -15,8 +15,7 @@ import Trading from './pages/Trading';
  */
 class App extends Component {
   /**
-   * 
-   * @param {*} props 
+   * @param {*} props
    */
   constructor(props) {
     super(props);
