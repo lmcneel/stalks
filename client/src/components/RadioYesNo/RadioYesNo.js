@@ -30,7 +30,7 @@ class RadioYesNo extends React.Component {
     });
   }
   /**
-  * chnage title function
+  * change title function
   */
   changeTitle() {
     this.setState({title: 'Thank You for your Feedback!'});
