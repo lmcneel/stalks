@@ -16,21 +16,16 @@ class App extends Component {
    */
   render() {
     return (
-      <div>
-      <div className="App">
-        <DocsList />
-        <HelpLanding />
-      </div>
-
       <Router>
         <div>
           <Switch>
             <Route exact path="/petfolio" component={Petfolio} />
             <Route exact path='/trading' component={Trading} />
+            <Route exact path='/help' component={HelpLanding} />
+            <Route exact path='/docs' component={DocsList} />
           </Switch>
         </div>
       </Router>
-      </div>
     );
   }
 }
