@@ -2,6 +2,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React from 'react';
 import {Row, Container, Button, Modal, ModalFooter, Form, FormGroup, Label, Input, ModalBody} from 'reactstrap';
+import {Link} from 'react-router-dom';
 /**
  * DocsList class
  */
@@ -66,11 +67,10 @@ class RadioYesNo extends React.Component {
         </Container>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalBody>
-
             Please visit our forum to get more customized assitance with your problems.
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Visit the Forum</Button>{' '}
+            <Link to={'/petfolio'}><Button color="primary" onClick={this.toggle}>Visit the Forum</Button></Link>
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>

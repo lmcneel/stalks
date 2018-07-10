@@ -53,7 +53,7 @@ class CollapseRow extends Component {
           <Collapse isOpen={this.state.collapse}>
             <Card>
               <CardBody>
-              {this.props.article.map((article, i) => 
+              {this.props.article.map((article, i) =>
                   <div key={`article${i}`}>
                     <h3>{article.sub}</h3>
                     <p>{article.par}</p>
