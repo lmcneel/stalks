@@ -24,4 +24,7 @@ export default {
     getPetInfo: function() {
         return axios.get('api/petfolio/pets');
     },
+    getTickerText: function() {
+        return axios.get('api/petfolio/ticker');
+    },
 };

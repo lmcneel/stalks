@@ -43,6 +43,9 @@ class Petfolio extends Component {
       // API.getPetInfo().then(((r) => {
       //   this.setState({petName: r???})
       // }));
+      API.getTickerText().then(((r) => {
+        this.setState({tickerText: r});
+      }));
     };
 
     /**
