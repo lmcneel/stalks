@@ -3,10 +3,21 @@ const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require('mongoose');
-const bodyParser= require('body-parser');
+const bodyParser = require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
 const seedDB = require('./seeds');
+
+const session = require('express-session');
+
+// sessions
+app.use(
+  session({
+    secret: 'fraggle-rock', // pick a random string to make the hash that is generated secure
+    resave: false, // required
+    saveUninitialized: false, // required
+  })
+);
 
 app.use(logger('dev'));
 

@@ -4,7 +4,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const db = require('../models/mysql/User.js');
 
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
-passport.use(new LocalStrategy(
+passport.use('local-signup', new LocalStrategy(
   // Our user will sign in using an email, rather than a "username"
   {username: 'email'},
   function(email, password, done) {
