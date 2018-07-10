@@ -1,27 +1,63 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
+import TopNav from './components/TopNav';
+import Wrapper from './components/Wrapper';
+import SideNav from './components/SideNav';
+import MainContentWrapper from './components/MainContentWrapper';
+import PortfolioStatus from './components/PortfolioStatus';
+import WatchlistTicker from './components/WatchlistTicker';
+import Content from './components/Content';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Petfolio from './pages/Petfolio';
+import Trading from './pages/Trading';
 
 /**
  * Class App
  */
 class App extends Component {
   /**
+   * @param {*} props
+   */
+  constructor(props) {
+    super(props);
+    this.state = {
+      sideNav: false,
+    };
+    this.navToggleHandler = this.navToggleHandler.bind(this);
+  }
+
+  /**
+   * Function that handles the click for the nav button
+   * @param {*} e
+   */
+  navToggleHandler(e) {
+    this.setState({sideNav: !this.state.sideNav});
+  }
+  /**
    * Render function for App Component
    * @return {JSX}
    */
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div className="App">
+            <TopNav navToggleHandler={this.navToggleHandler}/>
+            <Wrapper>
+              <SideNav isActive={this.state.sideNav}/>
+              <MainContentWrapper>
+                <PortfolioStatus />
+                <WatchlistTicker />
+                <Content>
+                    <Switch>
+                      <Route exact path="/petfolio" component={Petfolio} />
+                      <Route exact path='/trading' component={Trading} />
+                    </Switch>
+                </Content>
+                </MainContentWrapper>
+              </Wrapper>
+        </div>
+      </Router>
     );
   }
 }
+
 export default App;
