@@ -53,11 +53,13 @@ class CollapseRow extends Component {
           <Collapse isOpen={this.state.collapse}>
             <Card>
               <CardBody>
-                <p>Anim pariatur cliche reprehenderit,
-                enim eiusmod high life accusamus terry richardson ad squid. Nihil
-                anim keffiyeh helvetica, craft beer labore wes anderson cred
-                nesciunt sapiente ea proident.</p>
-                <h2>{this.props.article}</h2>
+              {this.props.article.map((article, i) => 
+                  <div key={`article${i}`}>
+                    <h3>{article.sub}</h3>
+                    <p>{article.par}</p>
+                  </div>
+                )
+                }
               </CardBody>
               <CardFooter className="text-center">
                 <RadioYesNo />
