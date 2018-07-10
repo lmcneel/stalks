@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+<<<<<<< HEAD
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import CollapseRow from './components/CollapseRow/index';
 import SigninForm from './components/SigninForm';
@@ -8,6 +9,12 @@ import {faFacebookF, faGoogle} from '@fortawesome/fontawesome-free-brands';
 import {faAt, faKey} from '@fortawesome/fontawesome-free-solid';
 
 library.add(faFacebookF|faGoogle|faAt|faKey);
+=======
+// import CollapseRow from './components/CollapseRow/index';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Petfolio from './pages/Petfolio';
+import Trading from './pages/Trading';
+>>>>>>> dev
 
 /**
  * Class App
@@ -19,6 +26,7 @@ class App extends Component {
    */
   render() {
     return (
+<<<<<<< HEAD
       <Router>
       <div className='App'>
         <header className='App-header'>
@@ -31,8 +39,19 @@ class App extends Component {
           </Switch>
         <CollapseRow />
       </div>
+=======
+
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/petfolio" component={Petfolio} />
+            <Route exact path='/trading' component={Trading} />
+          </Switch>
+        </div>
+>>>>>>> dev
       </Router>
     );
   };
 }
 export default App;
+
