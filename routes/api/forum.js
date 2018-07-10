@@ -28,3 +28,6 @@ router.put('route/api/update/forum/', (req, res) => {
 router.delete('route/api/delete/forum/', (req, res) => {
 
 });
+
+
+module.exports = router;

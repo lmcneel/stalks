@@ -7,6 +7,8 @@ const petfolioRoutes = require('./petfolio');
 
 // Trading routes
 router.use('/trading', tradingRoutes);
+
+//Social routes
 router.use('/friends', friendRoutes);
 router.use('/forum', forumRoutes);
 
