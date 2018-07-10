@@ -47,7 +47,6 @@ app.get('*', (req, res) => {
 });
 
 
-
 db.sequelize.sync({force: true}).then(function() {
   app.listen(PORT, () => {
     console.log(`🌎 ==> Server now on port ${PORT}!`);

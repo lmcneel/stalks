@@ -9,6 +9,7 @@ import wolfy from './defaultPetPic.png';
 import StockTicker from '../../components/StockTicker/StockTicker';
 import '../../assets/scss/_petfolio.scss';
 import API from './../../utils/API';
+// const calc = require('./../../utils/Calc');
 
 /**
  * @class Portfolio
@@ -24,6 +25,7 @@ class Petfolio extends Component {
       petName: 'Wolf',
       petPic: wolfy,
       petStats: [85, 90, 50, 70],
+      // tickerText,
       petfolioValue: '$1000',
       bankValue: '$2000',
       tickerText: 'Watchlist...StockA 2.35...StockB 4.15...StockC 1.28',
@@ -34,18 +36,19 @@ class Petfolio extends Component {
      * Setting state of portfolio and bank values and all pet info(name, pic, stats) once component is mounted
      */
     componentDidMount() {
-      API.getPortfolioValue().then(((r) => {
-        this.setState({petfolioValue: r});
-      }));
-      API.getBankValue().then(((r) => {
-        this.setState({bankValue: r});
-      }));
-      // API.getPetInfo().then(((r) => {
-      //   this.setState({petName: r???})
+      // console.log('here');
+      // API.getTickerText().then(((r) => {
+      //   console.log('---------------------------'+r);
+      //   if (r !== []) {
+      //     this.setState({tickerText: r});
+      //   };
       // }));
-      API.getTickerText().then(((r) => {
-        this.setState({tickerText: r});
-      }));
+      // calc.portfolioValue().then(((r) => {
+      //   this.setState({petfolioValue: r});
+      // }));
+      // calc.bankValue().then(((r) => {
+      //   this.setState({bankValue: r});
+      // }));
     };
 
     /**

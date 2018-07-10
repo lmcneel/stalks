@@ -15,16 +15,17 @@ export default {
         console.log(data);
         return axios.get(`/api/trading/quote/${data.ticker}`);
     },
-    getPortfolioValue: function() {
-        return axios.get('api/petfolio/portfolio');
-    },
-    getBankValue: function() {
-        return axios.get('api/petfolio/bank');
-    },
+    // getPortfolioValue: function() {
+    //     return axios.get('api/petfolio/portfolio');
+    // },
+    // getBankValue: function() {
+    //     return axios.get('api/petfolio/bank');
+    // },
     getPetInfo: function() {
-        return axios.get('api/petfolio/pets');
+        return axios.get('/api/petfolio/pets');
     },
     getTickerText: function() {
-        return axios.get('api/petfolio/ticker');
+        console.log('here in api.js');
+        return axios.get('/api/petfolio/ticker');
     },
 };

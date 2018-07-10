@@ -12,7 +12,8 @@ const petfolioController = require('../../controllers/petfolioController');
 // router.route('petfolio/pets')
 //   .get(petfolioController.getPetInfo);
 
-router.route('petfolio/ticker')
+// is it /api/petfolio/ticker or just /ticker?
+router.route('/ticker')
 .get(petfolioController.getTickerText);
 // router.route('petfolio/ticker')
 //   .get(function(req, res) {
