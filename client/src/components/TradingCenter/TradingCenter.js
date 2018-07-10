@@ -42,9 +42,15 @@ class Transaction extends Component {
             ticker: 'XOM',
             price: 0,
             shares: 0,
+            change: 0,
             response: '',
-            portfolio_id: '5b419b38c5cede35beeec8ee',
+            portfolio_id: '5b43f3c97511f2daace36b11',
             transaction: 'buy',
+            ROI: 0,
+            cost: 0,
+            datePurchased: '',
+            value: 0,
+            cashBalance: 0,
         }
     }
 
@@ -82,6 +88,10 @@ class Transaction extends Component {
         API.findQuotes(ticker)
             .then(res => {
                 console.log(res.data);
+                this.setState({
+                    price: res.data.quote.latestPrice,
+                    change: res.data.quote.changePercent,
+                });
                 const chartData = res.data.chart.map(day => {
                     let dayArray = [];
                     dayArray.push(day.date);
@@ -181,7 +191,7 @@ class Transaction extends Component {
                     type: 'sell',
                     ticker: this.state.ticker,
                     sharePrice: this.state.price,
-                    shares: this.state.shares
+                    shares: -(this.state.shares)
                 })
                     .then(res => {
                         this.setState({
@@ -229,7 +239,7 @@ class Transaction extends Component {
                                 <div className='col-sm-3'>
                                     {change >= 0 ? (
                                         <div id='changeValuePositive'>
-                                            <h2>+{change}%</h2>
+                                            <h2>{this.state.change*100}%</h2>
                                         </div>
                                     ) : (
                                             <div id='changeValueNegative'>
@@ -252,7 +262,7 @@ class Transaction extends Component {
                                 <div className='col-sm-2'>
                                     <FontAwesomeIcon
                                         {...favorite ? (heartFav = 'faHeartFav') :
-                                        (heartFav = 'faHeart')}
+                                            (heartFav = 'faHeart')}
                                         className={heartFav}
                                         onclick={addToFav}
                                         size='1x'
