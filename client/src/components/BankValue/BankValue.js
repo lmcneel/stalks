@@ -1,9 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /** this is the small component on the petfolio page
  *  that shows the bank value
  */
 
+const propTypes = {
+    bankValue: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.element),
+        PropTypes.element,
+        PropTypes.string,
+    ]),
+};
 
 const BankValue = (props) => {
   return (
@@ -14,4 +22,5 @@ const BankValue = (props) => {
   );
 };
 
+BankValue.propTypes = propTypes;
 export default BankValue;
