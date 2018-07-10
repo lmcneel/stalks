@@ -73,6 +73,7 @@ color: $yellow;
 }
 .stockData {
   margin-bottom: 20px;
+  text-align: center;
 }
 
 //  ====================
@@ -118,6 +119,9 @@ color: $yellow;
   // line-height: 1px;
   padding: 5px;
 }
+.transactionModal {
+  height: 100px;
+}
 #numberOfShares {
   color: $gray-600;
   float: right;
@@ -129,11 +133,46 @@ color: $yellow;
   float: right;
   // font-family: 'Rubik Gold';
   font-size: 14px;
-
+  // width: 100%;
 }
 .form-row {
   margin-bottom: 15px;
 }
- 
+//  ====================
+.searchStockStats {
+  margin: 3% 3% 10% 3%;
+  padding: 2% 2% 2% 2%;
+  // width: 100%;
+}
+.searchBar {
+  margin-bottom: 20px;
+}
+.stockTickerBarCollapse {
+  border-bottom: solid 2px $gray-300;
+  padding-bottom: 20px;
+}
+.collapseTop {
+  padding-top: 20px;
+  
+}
+//  ====================
+
+
+//  ====================
+
+@media (max-width: 768px) {
+
+  .submitBtn {
+    background-color: $success;
+    border: none;
+    color: #FFFFFF;
+    float: none;
+    // font-family: 'Rubik Gold';
+    font-size: 14px;
+    width: 100%;
+  }
+
+
+}
 
 
