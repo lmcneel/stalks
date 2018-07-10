@@ -6,7 +6,9 @@ const UserCard = (props) => {
   return (
     <div style={{'width' : '25%'}} className='text-center'>
       <Card>
-        <CardImg style={{'height' : '140px', 'width' : '140px', 'margin-left' : '33%', 'margin-right' : '33%'}} src='http://via.placeholder.com/140x140' alt='Card image cap' />
+        <div style={{'display' : 'flex', 'justifyContent' : 'center', 'alignItems' : 'center'}}>
+            <CardImg style={{'height' : '140px', 'width' : '140px'}} src='http://via.placeholder.com/140x140' alt='Card image cap' />
+        </div>
         <CardBody>
           <CardTitle>Item x 0</CardTitle>
           <Button>Button</Button>
