@@ -220,11 +220,11 @@ class Transaction extends Component {
                                 <div className='col-sm-4'>
                                     {this.state.change >= 0 ? (
                                         <div id='changeValuePositive'>
-                                            <h2>{this.state.change * 100}%</h2>
+                                            <h2>+{this.state.change.toFixed(2)}%</h2>
                                         </div>
                                     ) : (
                                             <div id='changeValueNegative'>
-                                                <h2>{this.state.change}%</h2>
+                                                <h2>{this.state.change.toFixed(2)}%</h2>
                                             </div>
                                         )
                                     }
