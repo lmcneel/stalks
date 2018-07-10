@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 const propTypes = {
   title: PropTypes.string,
   collapse: PropTypes.bool,
-  article: PropTypes.string,
+  article: PropTypes.array,
 };
 /**
  * Collapse row class
