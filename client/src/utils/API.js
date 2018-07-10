@@ -22,9 +22,10 @@ export default {
     //     return axios.get('api/petfolio/bank');
     // },
     getPetInfo: function() {
-        return axios.get('api/petfolio/pets');
+        return axios.get('/api/petfolio/pets');
     },
     getTickerText: function() {
-        return axios.get('api/petfolio/ticker');
+        console.log('here in api.js');
+        return axios.get('/api/petfolio/ticker');
     },
 };

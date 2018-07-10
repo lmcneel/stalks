@@ -61,7 +61,7 @@ module.exports = function(sequelize, Sequelize) {
             defaultValue: 'active',
         },
     }, {
-        underscored: true,
+        underscored: false,
     });
 
     // names of other models have not been established so the associations are subject to change
