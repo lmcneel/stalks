@@ -1,8 +1,12 @@
+//Require express router
 const router = require('express').Router();
+//Connect with forumController file
 const forumController = require('../../controllers/forumController');
 const request = require("request");
 
-
+// Importing Models
+const User = require('../../models/mongo/user');
+const Forum = require('../../models/mongo/forum');
 
 router.post('route/api/create/forum/', (req, res) => {
     User.find()
