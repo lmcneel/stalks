@@ -3,10 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 import Container from "./components/Container";
 import Images from "./components/Images";
-import Footer from "./components/Footer";
-import Title from "./components/Title";
+
+
 // import LinkButton from "./components/LinkButton";
 import data from "./data.json";
+import React, {Component} from 'react';
+// import CollapseRow from './components/CollapseRow/index';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Petfolio from './pages/Petfolio';
+import Trading from './pages/Trading';
 
 class App extends Component {
   state = {
@@ -41,10 +46,20 @@ class App extends Component {
       
       </div>
       </Container>
-      <Footer />
+      
+
+      <Router>
+        <div>
+          <Switch>
+            <Route exact path="/petfolio" component={Petfolio} />
+            <Route exact path='/trading' component={Trading} />
+          </Switch>
+        </div>
+      </Router>
       </div>
     );
   }
 }
 
 export default App;
+

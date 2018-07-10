@@ -28,12 +28,14 @@ const Images = (props) => {
   return (
     <div className = "card">
       <div className = "img-container">
-      <Card>
-        <CardImg top width="200px" top height="200px" src={props.img}alt={props.name} />
+      <Card >
+        <CardImg onClick={(event)=>{console.log("Working")}} top width="200px" top height="200px" src={props.img}alt={props.name} />
         <CardBody>
           <CardTitle>{props.name}</CardTitle>
           <CardSubtitle>{props.title}</CardSubtitle>
-          <Button to={props.portfolio}>Portfolio Link</Button>
+          <Button>
+          <a href={props.portfolio} target="_blank">Portfolio Link</a>
+          </Button>
         </CardBody>
       </Card>
     </div>
