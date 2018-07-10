@@ -15,12 +15,12 @@ export default {
         console.log(data);
         return axios.get(`/api/trading/quote/${data.ticker}`);
     },
-    getPortfolioValue: function() {
-        return axios.get('api/petfolio/portfolio');
-    },
-    getBankValue: function() {
-        return axios.get('api/petfolio/bank');
-    },
+    // getPortfolioValue: function() {
+    //     return axios.get('api/petfolio/portfolio');
+    // },
+    // getBankValue: function() {
+    //     return axios.get('api/petfolio/bank');
+    // },
     getPetInfo: function() {
         return axios.get('api/petfolio/pets');
     },

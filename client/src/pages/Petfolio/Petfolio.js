@@ -9,6 +9,7 @@ import wolfy from './defaultPetPic.png';
 import StockTicker from '../../components/StockTicker/StockTicker';
 import '../../assets/scss/_petfolio.scss';
 import API from './../../utils/API';
+// const calc = require('./../../utils/Calc');
 
 /**
  * @class Portfolio
@@ -34,18 +35,15 @@ class Petfolio extends Component {
      * Setting state of portfolio and bank values and all pet info(name, pic, stats) once component is mounted
      */
     componentDidMount() {
-      API.getPortfolioValue().then(((r) => {
-        this.setState({petfolioValue: r});
-      }));
-      API.getBankValue().then(((r) => {
-        this.setState({bankValue: r});
-      }));
-      // API.getPetInfo().then(((r) => {
-      //   this.setState({petName: r???})
-      // }));
       API.getTickerText().then(((r) => {
         this.setState({tickerText: r});
       }));
+      // calc.portfolioValue().then(((r) => {
+      //   this.setState({petfolioValue: r});
+      // }));
+      // calc.bankValue().then(((r) => {
+      //   this.setState({bankValue: r});
+      // }));
     };
 
     /**
