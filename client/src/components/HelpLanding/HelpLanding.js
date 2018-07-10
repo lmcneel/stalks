@@ -15,9 +15,9 @@ class HelpLanding extends Component {
             <div className="HelpLanding">
                 <HelpCard
                     title="Documentation"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                     minim veniam, quis nostrud exercitation ullamco laboris 
+                     minim veniam, quis nostrud exercitation ullamco laboris
                      nisi ut aliquip ex ea commodo consequat. "
                     buttonLink="www.google.com"
                     buttonText="Read the Docs"
@@ -26,9 +26,9 @@ class HelpLanding extends Component {
             <div className="HelpLanding">
                 <HelpCard
                     title="Forum"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                    incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
                     ut aliquip ex ea commodo consequat. "
                     buttonLink="www.google.com"
                     buttonText="Ask a Question"
@@ -38,9 +38,9 @@ class HelpLanding extends Component {
                 <HelpCard
                     title="Tutorial"
                     text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                     do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                     do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                     nisi ut aliquip ex ea commodo consequat. "
+                     nisi ut aliquip ex ea commodo consequat."
                     buttonLink="www.google.com"
                     buttonText="Start the Tutorial"
                 />
