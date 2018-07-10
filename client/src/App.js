@@ -9,6 +9,7 @@ import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
 import Trading from './pages/Trading';
+import { settings } from 'cluster';
 
 /**
  * Class App
@@ -51,6 +52,12 @@ class App extends Component {
                     <Switch>
                       <Route exact path="/petfolio" component={Petfolio} />
                       <Route exact path='/trading' component={Trading} />
+                      <Route exact path='/petcetner' component={PetCenter} />
+                      <Route exact path='/friends' component={Friends} />
+                      <Route exact path='/forum' component={Forum} />
+                      <Route exact path='/' component={Home} />
+                      <Route exact path='/about' component={About} />
+                      <Route exact path='/settings' component={settings} />
                     </Switch>
                 </Content>
                 </MainContentWrapper>
