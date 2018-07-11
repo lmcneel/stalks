@@ -48,29 +48,21 @@ class StockSearch extends Component {
     };
 
     handleInputChange = event => {
-        event.preventDefault();
         const { name, value } = event.target;
         this.setState({ [name]: value });
     };
 
-    handleTypeheadChange = event => {
-        // event.preventDefault();
-        const { name, value } = event.target;
-        this.setState({ [name]: value });
-    };
-
-    // searchExec = () => {
+    // handleTypeheadChange = event => {
     //     // event.preventDefault();
-    //     API.findQuotes(
-    //         { ticker: this.state.ticker }
-    //     ).then(res => {
-    //         console.log(res.data);
-    //         this.setState({
-    //             price: res.data.quote.latestPrice,
-    //             change: res.data.quote.changePercent,
-    //         });
-    //     }).catch(err => console.log(err));
+    //     const { name, value } = event.target;
+    //     this.setState({ [name]: value });
     // };
+
+    handleFormSubmit = event => {
+        // Preventing the default behavior of the form submit (which is to refresh the page)
+        event.preventDefault();
+        this.charting(this.state.ticker)
+    };
 
 
     charting = (ticker) => {
@@ -83,11 +75,11 @@ class StockSearch extends Component {
                     change: res.data.quote.changePercent,
                 });
                 const chartData = res.data.chart.map(day => {
-                        let dayArray = [];
-                        dayArray.push(day.date);
-                        dayArray.push(day.close);
-                        return dayArray;
-                    });
+                    let dayArray = [];
+                    dayArray.push(day.date);
+                    dayArray.push(day.close);
+                    return dayArray;
+                });
 
                 const chartCategories = res.data.chart.map(day => {
                     let dateArray = [];
@@ -150,8 +142,8 @@ class StockSearch extends Component {
                         <form>
                             <div className='col-sm-8'>
                                 <div className='row'>
-                                <div className='col-sm-10'>
-                                    {/* <Typeahead
+                                    <div className='col-sm-10'>
+                                        {/* <Typeahead
                                         // labelKey="name"
                                         placeholder="Enter a ticker symbol..."
                                         type='string'
@@ -162,24 +154,23 @@ class StockSearch extends Component {
                                         value={this.state.ticker}
                                     /> */}
 
-                                    <Input
-                                        type='string'
-                                        name='ticker'
-                                        value={this.state.ticker}
-                                        onChange={this.handleInputChange}
-                                        id='tickerSymbol'
-                                    />
-                                      </div>
-                                       <div className='col-sm-2'>
-                                    <Button
-                                        className='searchBtn'
-                                        // onClick={this.searchExec}
-                                        onClick={this.charting({ ticker: this.state.ticker })}
-                                    // onClick={this.componentDidMount}
-                                    >
-                                        SEARCH
+                                        <Input
+                                            type='string'
+                                            name='ticker'
+                                            value={this.state.ticker}
+                                            onChange={this.handleInputChange}
+                                            id='tickerSymbol'
+                                        />
+                                    </div>
+                                    <div className='col-sm-2'>
+                                        <Button
+                                            className='searchBtn'
+                                            onClick={this.handleFormSubmit}
+                                        // onClick={this.charting({ ticker: this.state.ticker })}
+                                        >
+                                            SEARCH
                             </Button>
-                            </div>
+                                    </div>
                                 </div>
                             </div>
                         </form>
