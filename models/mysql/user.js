@@ -21,9 +21,9 @@ module.exports = function(sequelize, DataTypes) {
     // names of other models have not been established so the associations are subject to change
     User.associate = function(models) {
         // at this point we are assuming users only have one pet
-        // User.hasOne(models.Pet, {
-        //     onDelete: 'cascade',
-        // }),
+        User.hasOne(models.Pet, {
+            onDelete: 'cascade',
+        }),
         // haven't seen title incorporated in the current scope but if necessary
         // User.belongsTo(models.titles),
         User.hasMany(models.UserWatchlist, {
