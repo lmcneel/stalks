@@ -61,7 +61,8 @@ class StockSearch extends Component {
     handleFormSubmit = event => {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         event.preventDefault();
-        this.charting(this.state.ticker)
+        this.setState({ ticker: this.state.ticker });
+        // this.charting({ticker: this.state.ticker});
     };
 
 
@@ -161,15 +162,21 @@ class StockSearch extends Component {
                                             onChange={this.handleInputChange}
                                             id='tickerSymbol'
                                         />
+
+
                                     </div>
                                     <div className='col-sm-2'>
+
+
                                         <Button
                                             className='searchBtn'
                                             onClick={this.handleFormSubmit}
                                         // onClick={this.charting({ ticker: this.state.ticker })}
                                         >
                                             SEARCH
-                            </Button>
+                                        </Button>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -234,19 +241,18 @@ class StockSearch extends Component {
                     <div className='collapseTop'>
                         <Collapse isOpen={this.state.collapse}>
                             <div className='row'>
-                                <div className='col-sm-12 col-md-8 chartSection'>
+                                <div className='col-sm-12 col-md-12 chartSection'>
                                     <div id='stockChart'>
 
                                     </div>
                                 </div>
-                                <div className='col-sm-12 col-md-4 dataSection'>
+                                {/* <div className='col-sm-12 col-md-4 dataSection'>
                                     <div className='row'>
                                         <div className='col-sm-6 col-md-6 stockData'>
                                             <h4>SHARES OWNED</h4>
                                         </div>
                                         <div className='col-sm-6 col-md-6 stockData'>
                                             <h4>{this.state.totalShares}</h4>
-                                            {/* Placeholder */}
                                         </div>
                                     </div>
                                     <div className='row'>
@@ -255,7 +261,6 @@ class StockSearch extends Component {
                                         </div>
                                         <div className='col-sm-6 col-md-6 stockData'>
                                             <h4>${this.state.ROI}</h4>
-                                            {/* Placeholder */}
                                         </div>
                                     </div>
                                     <div className='row'>
@@ -274,7 +279,7 @@ class StockSearch extends Component {
                                             <h4>{this.state.datePurchased}</h4>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </Collapse>
                     </div>
