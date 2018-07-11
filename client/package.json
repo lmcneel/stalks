@@ -14,7 +14,6 @@
     "bootstrap": "^4.1.1",
     "fontawesome": "^4.7.2",
     "highcharts": "^6.1.1",
-    "jest-cli": "^23.3.0",
     "popper.js": "^1.14.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
