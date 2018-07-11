@@ -4,7 +4,7 @@ module.exports = function(sequelize, Sequelize) {
       quantity: Sequelize.DOUBLE,
     });
     Accessory.associate = function(models) {
-      models.Accessory.belongsTo(models.Pet);
+      Accessory.belongsTo(models.Pet);
     };
 
     return Accessory;
