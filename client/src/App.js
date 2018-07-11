@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
 import Trading from './pages/Trading';
-// import Social from './pages/Social';
+import Social from './pages/Social/Social.js';
 
 /**
  * Class App
@@ -21,6 +21,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/petfolio" component={Petfolio} />
             <Route exact path='/trading' component={Trading} />
+            <Route exact path= "/social" component={Social} />
            </Switch>
         </div>
       </Router>

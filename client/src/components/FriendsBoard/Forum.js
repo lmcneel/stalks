@@ -3,24 +3,24 @@ import { Card, CardText, CardBody,
     CardTitle, CardSubtitle, InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Table } from 'reactstrap';
 
 
+    export const Forum = (props) => {
+        // isOpen={this.state.dropdownOpen} toggle={this.toggle}
+    //   constructor(props) {
+    //     super(props);
     
-    export default class Forum extends React.Component {
-      constructor(props) {
-        super(props);
+    //     this.toggle = this.toggle.bind(this);
+    //     this.state = {
+    //       dropdownOpen: false
+    //     };
+    //   }
     
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-          dropdownOpen: false
-        };
-      }
-    
-      toggle() {
-        this.setState(prevState => ({
-          dropdownOpen: !prevState.dropdownOpen
-        }));
-      }
+    //   toggle() {
+    //     this.setState(prevState => ({
+    //       dropdownOpen: !prevState.dropdownOpen
+    //     }));
+    //   }
 
-      render() {
+     
         return (
 
 <Container fluid>
@@ -31,7 +31,7 @@ import { Card, CardText, CardBody,
                     FORUM
                 </CardTitle>
                     <div>
-                        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                        <Dropdown >
                             <DropdownToggle caret>
                                 Choose a Topic . . .
                             </DropdownToggle>
@@ -80,6 +80,5 @@ import { Card, CardText, CardBody,
     </Row>
 </Container>
 )
-}
 };
 

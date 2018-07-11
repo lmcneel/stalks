@@ -1,10 +1,11 @@
 import React from "react";
-import {Card, CardText, CardBody, CardTitle, Button, Navbar, Nav, NavItem, NavLink, Co, Row} from reactstrap;
+import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row} from "reactstrap";
 
-const FriendSearch = (props) => (
+export const FriendRequest = (props) => {
+    return(
 <div>
     <Row>
-        <Col sm="5">
+        <Col sm="12">
             <Card color="light">
                 <CardBody>
                     <CardTitle>Friend List</CardTitle>
@@ -20,16 +21,12 @@ const FriendSearch = (props) => (
                                     <NavLink href="">Friend List</NavLink>
                                 </NavItem>
                             </Nav>
-                        </Navbar> 
-                        <CardText>
-                            <input placeholder="Friend User Name"></input>
-                            <Button>Search</Button>
-                        </CardText>   
+                        </Navbar>    
                 </CardBody>
             </Card>
         </Col>
     </Row>
 </div>
-);
+)
+};
 
-export default FreindSearch;
