@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import TopNav from './components/TopNav';
 import Wrapper from './components/Wrapper';
 import SideNav from './components/SideNav';
@@ -12,6 +11,7 @@ import Petfolio from './pages/Petfolio';
 import Trading from './pages/Trading';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
+import Inventory from './components/userTabs';
 
 /**
  * Class App
@@ -49,6 +49,7 @@ class App extends Component {
               <MainContentWrapper>
                 <PortfolioStatus />
                 <WatchlistTicker />
+                <Inventory />
                 <Content>
                     <Switch>
                       <Route exact path="/petfolio" component={Petfolio} />
