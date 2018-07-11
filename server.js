@@ -30,6 +30,7 @@ app.use(bodyParser.json());
 
 // Define middleware here
 app.use(express.json());
+app.use(acheivements);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
