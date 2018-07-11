@@ -4,7 +4,6 @@
  * Copyright 2011-2018 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 :root {
   --blue: #0C425C;
   --indigo: #6610f2;
@@ -6312,15 +6311,7 @@ a.text-dark:hover, a.text-dark:focus {
   border-color: #105B7E; }
 
 body {
-  font-family: 'Poppins', sans-serif;
   background: #fafafa; }
-
-p {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.1em;
-  font-weight: 300;
-  line-height: 1.7em;
-  color: #999; }
 
 a,
 a:hover,
@@ -6596,5 +6587,3 @@ a[data-toggle="collapse"] {
 
 .form-row {
   margin-bottom: 15px; }
-
-/*# sourceMappingURL=app.css.map */
