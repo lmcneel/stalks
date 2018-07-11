@@ -4,6 +4,7 @@ import {Collapse, Button, CardBody, Card, Container, Row, Col} from 'reactstrap'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/fontawesome-free-solid';
 
+
 /**
  * Collapse row class
  */
