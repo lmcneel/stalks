@@ -26,5 +26,11 @@ module.exports = {
             })
             .catch((err) => res.status(422).json(err));
     },
+    myStocks: function(req, res) {
+        db.Trade
+            .find({portfolio_id: req.params.portfolio_id}).select('-_id ticker shares')
+            .then((dbTradeModel) => res.json(dbTradeModel))
+            .catch((err) => res.status(422).json(err));
+    },
 };
 

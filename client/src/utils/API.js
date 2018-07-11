@@ -20,4 +20,7 @@ export default {
     getBankValue: function() {
         return axios.get('api/petfolio/bank');
     },
+    getMyStocks: function(portfolio){
+        return axios.get(`api/trading/mystocks/${portfolio}`);
+    }
 };
