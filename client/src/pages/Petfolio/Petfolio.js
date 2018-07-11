@@ -40,11 +40,17 @@ class Petfolio extends Component {
         if (r.data.length !== 0) {
           let ticker = 'Watchlist...';
           for (let i=0; i<r.data.length; i++){
-            ticker += r.data[i].unique_stock_id + '...';
+
+            // API.findQuotes(r.data[i]).then(((r2) => {
+            //   console.log(r2);
+            // }));
+
+            ticker += r.data[i].symbol + '...';
           }
           this.setState({tickerText: ticker});
           console.log(r.data);
         };
+
       }));
       // calc.portfolioValue().then(((r) => {
       //   this.setState({petfolioValue: r});
@@ -78,7 +84,25 @@ class Petfolio extends Component {
                 <h2>Petfolio</h2>
               </Col>
               <Col>
-                <PetfolioValue petfolioValue={this.state.petfolioValue} />
+
+              {/* {change >= 0 ? (
+                <div id='changeValuePositive'>
+                    <h2>+{change}%</h2>
+                </div>
+              ) : (
+                    <div id='changeValueNegative'>
+                        <h2>{change}%</h2>
+                    </div>
+                )
+              } */}
+
+                <PetfolioValue petfolioValue={this.state.petfolioValue} 
+                {this.state.petfolioValue > 1000 ? (
+                  className = 'changeValuePositive'
+                ) : (
+                  className = 'changeValueNegative'
+                )}
+                />
               </Col>
               <Col>
                 <BankValue bankValue={this.state.bankValue} />
