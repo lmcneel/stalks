@@ -13,7 +13,6 @@ export default {
     findQuotes: function(symbol) {
         return axios.get('/api/trading/quote', symbol);
     },
-
     // login axios call
     login: function(loginData) {
         return axios.post('/api/login', loginData)

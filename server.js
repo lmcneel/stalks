@@ -3,10 +3,25 @@ const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require('mongoose');
-const bodyParser= require('body-parser');
+const bodyParser = require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
 const seedDB = require('./seeds');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const connectSession = require('connect-session-sequelize')(session.Store);
+const bcrypt = require('bcrypt');
+
+app.use(cookieParser());
+// sessions
+app.use(session({
+  secret: 'seceiha',
+  store: new SequelizeStore({
+    db: sequelize,
+    }),
+    resave: false,
+    proxy: true,
+    }));
 
 app.use(logger('dev'));
 
@@ -15,6 +30,7 @@ app.use(bodyParser.json());
 
 // Define middleware here
 app.use(express.json());
+app.use(acheivements);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {

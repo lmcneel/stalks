@@ -11,7 +11,6 @@ import Trading from './pages/Trading';
 library.add(faFacebookF|faGoogle|faAt|faKey);
 
 
-
 /**
  * Class App
  */
