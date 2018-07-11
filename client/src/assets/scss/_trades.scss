@@ -1,0 +1,178 @@
+body {
+  background-color: $gray-300;
+}
+//  ====================
+.stockStats {
+  background-color: $white;
+  border-radius: 25px;
+  border: none;
+  color: $gray-700;
+  float: left;
+  margin: 3% 3% 3% 3%;
+  padding: 2% 2% 2% 2%;
+  // width: 100%;
+}
+.stockStats h1 {
+  // font-family: 'Rubik Gold';
+  font-size: 22px;
+  text-align: left;
+  // line-height: 1px;
+  padding: 5px;
+  margin-bottom: 0px;
+}
+.stockStats h2 {
+  // font-family: 'Roboto Mono Medium';
+  font-size: 18px;
+  text-align: left;
+  // line-height: 1px;
+  padding: 5px;
+  margin-bottom: 0px;
+}
+.stockStats h3 {
+  // font-family: 'Source Sans Pro';
+  font-size: 16px;
+  text-align: left;
+  line-height: 1px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 0px; 
+}
+.stockStats h4 {
+  // font-family: 'Roboto Mono Medium';
+  font-size: 14px;
+  text-align: left;
+  // line-height: 1px;
+  padding: 5px; 
+}
+.changeValue{
+  text-align: right;
+}
+#changeValuePositive{
+  color: $green;
+}
+#changeValueNegative{
+  color: $red;
+}
+.faEye {
+color: $gray-700;
+color: $yellow;
+}
+.faEyeWatched {
+  color: $yellow;
+  }
+.faHeart {
+  color: $gray-700;
+  color: $red;
+}
+.faHeartFav {
+  color: $red;
+}
+#stockChart {
+  width: 100%;
+  height: 230px;
+}
+.stockData {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+//  ====================
+.buySell {
+  background-color: $white;
+  border-radius: 25px;
+  border: none;
+  color: $gray-700;
+  float: left;
+  margin: 3% 3% 3% 3%;
+  padding: 5% 5% 5% 5%;
+  // width: 100%;
+}
+.buySell h1 {
+  // font-family: 'Rubik Gold';
+  font-size: 22px;
+  text-align: left;
+  // line-height: 1px;
+  padding: 5px;
+  margin-bottom: 0px;
+}
+.buySell h2 {
+// font-family: 'Roboto Mono Medium';
+  font-size: 18px;
+  text-align: left;
+  // line-height: 1px;
+  padding: 5px;
+  margin-bottom: 0px;
+}
+.buySell h3 {
+  // font-family: 'Roboto Mono Medium';
+  font-size: 16px;
+  text-align: left;
+  line-height: 1px;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+.buySell h4 {
+ // font-family: 'Roboto Mono Medium';
+  font-size: 24px;
+  text-align: left;
+  // line-height: 1px;
+  padding: 5px;
+}
+.transactionModal {
+  height: 100px;
+}
+#numberOfShares {
+  color: $gray-600;
+  float: right;
+}
+.submitBtn {
+  background-color: $success;
+  border: none;
+  color: #FFFFFF;
+  float: right;
+  // font-family: 'Rubik Gold';
+  font-size: 14px;
+  // width: 100%;
+}
+.form-row {
+  margin-bottom: 15px;
+}
+//  ====================
+.searchStockStats {
+  margin: 3% 3% 10% 3%;
+  padding: 2% 2% 2% 2%;
+  // width: 100%;
+}
+.searchBar {
+  margin-bottom: 20px;
+}
+.stockTickerBarCollapse {
+  border-bottom: solid 2px $gray-300;
+  padding-bottom: 20px;
+}
+.collapseTop {
+  padding-top: 20px;
+  
+}
+//  ====================
+
+
+//  ====================
+
+@media (max-width: 768px) {
+
+  .submitBtn {
+    background-color: $success;
+    border: none;
+    color: #FFFFFF;
+    float: none;
+    // font-family: 'Rubik Gold';
+    font-size: 14px;
+    width: 100%;
+  }
+
+
+}
+
+
