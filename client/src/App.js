@@ -9,6 +9,10 @@ import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
 import Trading from './pages/Trading';
+import ViewStocks from './pages/ViewStocks';
+import DocsList from './components/DocsList/DocsList';
+import HelpLanding from './components/HelpLanding/HelpLanding';
+import Inventory from './components/userTabs';
 
 /**
  * Class App
@@ -39,6 +43,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+
         <div className="App">
             <TopNav navToggleHandler={this.navToggleHandler}/>
             <Wrapper>
@@ -46,10 +51,14 @@ class App extends Component {
               <MainContentWrapper>
                 <PortfolioStatus />
                 <WatchlistTicker />
+                <Inventory />
                 <Content>
                     <Switch>
                       <Route exact path="/petfolio" component={Petfolio} />
                       <Route exact path='/trading' component={Trading} />
+                      <Route exact path='/viewstocks' component={ViewStocks} />
+                      <Route exact path='/help' component={HelpLanding} />
+                      <Route exact path='/docs' component={DocsList} />
                     </Switch>
                 </Content>
                 </MainContentWrapper>
