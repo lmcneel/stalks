@@ -1,10 +1,9 @@
-import React from "react";
-import { Container, Row, Col } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase, faPiggyBank } from '@fortawesome/fontawesome-free-solid';
-import "./PortfolioStatus.css";
+import React from 'react';
+import {Row, Col} from 'reactstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faBriefcase, faPiggyBank} from '@fortawesome/fontawesome-free-solid';
 
-const PortfolioStatus = props => (
+const PortfolioStatus = (props) => (
     <div id="portfolio-stats" className="bg-light pt-3 px-4">
         <Row>
             <Col xs="12" md="4" className="d-flex justify-content-sm-center justify-content-md-start">
