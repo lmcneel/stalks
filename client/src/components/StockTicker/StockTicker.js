@@ -1,14 +1,12 @@
-// import React, {Component} from 'react';
-// import Marquee from 'react-text-marquee';
-// //import './StockTicker.css';
+import React from 'react';
+import './StockTicker.css';
 
+const StockTicker = (props) => {
+    return (
+        <div className='stockticker'>
+            <p>{props.text}</p>
+        </div>
+    );
+};
 
-// const StockTicker = (props) => {
-//     return (
-//         <div className='ticker'>
-//             <Marquee text={props.children} />;
-//         </div>
-//     );
-// };
-
-// export default StockTicker;
+export default StockTicker;
