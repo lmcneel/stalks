@@ -7,8 +7,7 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
     bankValue: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.element),
-        PropTypes.element,
+        PropTypes.number,
         PropTypes.string,
     ]),
 };

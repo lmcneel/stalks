@@ -58,12 +58,11 @@ class Petfolio extends Component {
           {/* Col 1:Global side bar*/}
           <Col md="3">
             Side Bar
-            </Col>
+          </Col>
 
-          {/** Col 2: Feature Content*/}
           <Col md="9">
 
-            {/** Row 1: feature name and petfolio and bank values*/}
+            {/** Row 1: Global --Page(feature) name and petfolio and bank values*/}
             <Row>
               <Col>
                 <h2>Petfolio</h2>
@@ -76,7 +75,7 @@ class Petfolio extends Component {
               </Col>
             </Row>
 
-            {/* Row 2: StockTicker*/}
+            {/* Row 2: Global -- StockTicker*/}
             <Row>
               <Col>
                 <StockTicker text={this.state.tickerText}
@@ -87,18 +86,17 @@ class Petfolio extends Component {
             {/** Row 3: PetStats and PieChart*/}
             <Row>
               <Col>
-              <div className="main">
+              <div className="petStats">
                 <PetWrapper>
 
+                  <Col>
                   <PetPic>
                     {this.state.petPic}
                   </PetPic>
 
-                  <div className="petname">
-                    <PetName>
+                  <PetName>
                       {this.state.petName}
                     </PetName>
-                  </div>
 
                   <div className="statusbars">
                     <PetStats
@@ -122,16 +120,32 @@ class Petfolio extends Component {
                       petStatValue={this.state.petStats[2]}
                     />
                   </div>
+                  </Col>
                 </PetWrapper>
               </div>
             </Col>
 
             <Col>
-              <PieChart />
-          </Col>
-        </Row>
-        </Col>
-        </Row>
+              <Row>
+                <Col>
+                <PetfolioValue petfolioValue={this.state.petfolioValue} />
+              </Col>
+              <Col>
+                <BankValue bankValue={this.state.bankValue} />
+              </Col>
+              </Row>
+
+              <Row>
+                <Col>
+                 <PieChart />
+                </Col>
+              </Row>
+            </Col>
+
+          </Row>
+
+      </Col>
+      </Row>
       </Container>
     );
   }

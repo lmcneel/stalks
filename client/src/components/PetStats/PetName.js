@@ -10,7 +10,7 @@ const propTypes = {
 };
 const PetName = (props) => {
     return (
-        <div className="petpic">
+        <div className="petName">
             <h3>{props.children}</h3>
         </div>
     );

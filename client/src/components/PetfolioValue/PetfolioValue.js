@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
     petfolioValue: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.element),
-        PropTypes.element,
+        PropTypes.number,
         PropTypes.string,
     ]),
 };
 const PetfolioValue = (props) => (
-    <div className='stockStats'>
+    <div className="stockStats">
       <div className="">Petfolio Value</div>
       <div>{props.petfolioValue}</div>
     </div>
