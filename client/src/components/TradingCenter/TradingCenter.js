@@ -30,7 +30,7 @@ class Transaction extends Component {
             shares: 0,
             change: 0,
             response: '',
-            portfolio_id: '5b43f3c97511f2daace36b11',
+            portfolio_id: '5b4565293d6a1edcfea8aec3',
             transaction: 'buy',
             ROI: 0,
             cost: 0,
@@ -50,6 +50,8 @@ class Transaction extends Component {
     };
     componentDidMount() {
         this.charting({ ticker: this.state.ticker });
+        this.myStocks(this.state.portfolio_id);
+        this.myStocksValue();
     };
 
     handleInputChange = event => {
@@ -67,6 +69,29 @@ class Transaction extends Component {
             this.sellShares();
         };
     };
+
+    myStocks = (portfolio) => {
+        API.getMyStocks(portfolio)
+            .then(res => {
+                console.log(res.data);
+                const userStocks = {};
+                for (var i = 0; i < res.data.length; i++) {
+                    if (!userStocks[res.data[i].ticker]) {
+                        userStocks[res.data[i].ticker] = res.data[i].shares;
+                    } else {
+                        userStocks[res.data[i].ticker] += res.data[i].shares;                        
+                    }    
+                }
+                console.log(userStocks); 
+                return userStocks;
+            })
+            .catch(err => console.log(err));
+    };
+
+    myStocksValue = () => {
+        const stocks = this.myStocks(this.state.portfolio_id);
+        console.log(stocks);
+    }
 
     charting = (ticker) => {
         API.findQuotes(ticker)
@@ -155,6 +180,7 @@ class Transaction extends Component {
                             response: 'Transaction successfully completed'
                         });
                         console.log(this.state.response);
+                        this.toggle();
                     })
                     .catch(err => console.log(err));
 
@@ -179,12 +205,13 @@ class Transaction extends Component {
                 })
                     .then(res => {
                         this.setState({
-                            ticker: '',
+                            ticker: 'XOM',
                             price: 0,
                             shares: 0,
                             response: 'Transaction successfully completed'
                         })
                         console.log(this.state.response);
+                        this.toggle();
                     })
                     .catch(err => console.log(err));
 
@@ -368,8 +395,8 @@ class Transaction extends Component {
                             <div>
                                 <Button
                                     className='submitBtn'
-                                    onClick={this.transactionExec}
-                                    onClick={this.toggle}>{this.props.buttonLabel}
+                                    onClick={this.transactionExec}>
+                                    {/* // onClick={this.toggle}>{this.props.buttonLabel} */}
                                     SUBMIT ORDER
                             </Button>
                             </div>
