@@ -9,7 +9,7 @@ const tradeSchema = new Schema({
     type: String,
     ticker: String,
     sharePrice: Number,
-    shares: Number,
+    quantity: Number,
 });
 
 // This creates our model from the above schema, using mongoose's model method

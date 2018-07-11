@@ -4,10 +4,11 @@ const router = require('express').Router();
 const tradingController = require('../../controllers/tradingController');
 const request = require('request');
 
+
 // Importing Models
 const User = require('../../models/mongo/user');
 const Portfolio = require('../../models/mongo/portfolio');
-// const Trades = require('../../models/mongo/trade');
+const Trade = require('../../models/mongo/trade');
 
 
 router.route('/quote/:ticker')

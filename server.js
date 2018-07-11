@@ -3,10 +3,14 @@ const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require('mongoose');
-const bodyParser= require('body-parser');
+const bodyParser = require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
 const seedDB = require('./seeds');
+const calc = require('./calc');
+const db = require('./models/mongo');
+const request = require('request');
+
 
 app.use(logger('dev'));
 
@@ -27,16 +31,32 @@ app.use(routes);
 // DB Config
 // const db = require('./config/keys').mongoURI;
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks');
+mongoose
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks')
+  .then(() => console.log('MongoDB Connected'))
+  .catch((err) => console.log(err));
 
-seedDB();
+// seedDB();
 
 
-// Connect to the Mongo DB
-// mongoose
-// .connect(db)
-// .then(() => console.log('MongoDB Connected'))
-// .catch((err) => console.log(err));
+
+
+//-------------------------------------
+// calc.callToDb();
+let u = {
+  "AAPL": 30,
+  "ABC":20,
+  "XPP": 10
+  
+};
+
+// calc.callToExcahange(u);
+//---------------------------------------
+
+
+
+calc.callToDb("5b40fb129adc85a410f488bd");
+
 
 // Send every other request to the React app
 // Define any API routes before this runs
