@@ -28,13 +28,14 @@ class StockSearch extends Component {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = {
-            ticker: 'XOM',
+            ticker: '',
             price: 0,
             change: 0,
             value: '',
+            selected: '',
             response: '',
             collapse: false,
-            selectHintOnEnter: true,
+            // selectHintOnEnter: true,
         }
 
     }
@@ -52,16 +53,12 @@ class StockSearch extends Component {
         this.setState({ [name]: value });
     };
 
-    // handleTypeheadChange = event => {
-    //     // event.preventDefault();
-    //     const { name, value } = event.target;
-    //     this.setState({ [name]: value });
-    // };
+    handleTypeheadChange = event => {
+        const { name, selected } = event.target;
+        this.setState({ [name]: selected });
+    };
 
     handleFormSubmit = event => {
-        // Preventing the default behavior of the form submit (which is to refresh the page)
-        // event.preventDefault();
-        // this.setState({ ticker: this.state.ticker });
         this.charting({ticker: this.state.ticker});
     };
 
@@ -132,7 +129,7 @@ class StockSearch extends Component {
 
 
     render() {
-        const { selectHintOnEnter } = this.state;
+        // const { selectHintOnEnter } = this.state;
         return (
             <div>
                 <div className='stockStats searchStockStats container'>
@@ -141,27 +138,27 @@ class StockSearch extends Component {
                             <h1>SEARCH STOCKS</h1>
                         </div>
                         <form>
-                            <div className='col-sm-8'>
+                            <div className='col-sm-10'>
                                 <div className='row'>
                                     <div className='col-sm-10'>
-                                        {/* <Typeahead
-                                        // labelKey="name"
+
+                                        <Typeahead
                                         placeholder="Enter a ticker symbol..."
-                                        type='string'
                                         name='ticker'
-
-                                        onChange={this.handleTypeheadChange}
+                                        // onChange={this.handleTypeheadChange}
+                                        onChange={(selected) => { this.handleTypeheadChange }}
+                                        // onChange={(selected) => { this.setState({selected}); }}
                                         options={options}
-                                        value={this.state.ticker}
-                                    /> */}
+                                        selected={this.state.selected}
+                                    />
 
-                                        <Input
+                                        {/* <Input
                                             type='string'
                                             name='ticker'
                                             value={this.state.ticker}
                                             onChange={this.handleInputChange}
                                             id='tickerSymbol'
-                                        />
+                                        /> */}
 
 
                                     </div>
@@ -171,7 +168,6 @@ class StockSearch extends Component {
                                         <Button
                                             className='searchBtn'
                                             onClick={this.handleFormSubmit}
-                                        // onClick={this.charting({ ticker: this.state.ticker })}
                                         >
                                             SEARCH
                                         </Button>
