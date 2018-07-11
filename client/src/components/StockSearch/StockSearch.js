@@ -28,7 +28,7 @@ class StockSearch extends Component {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = {
-            ticker: 'XOM',
+            ticker: '',
             price: 0,
             change: 0,
             value: '',
