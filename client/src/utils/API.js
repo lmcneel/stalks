@@ -31,4 +31,7 @@ export default {
     getDocs: function() {
         return axios.get('/api/docs');
     },
+    getMyStocks: function(portfolio){
+        return axios.get(`api/trading/mystocks/${portfolio}`);
+    }
 };
