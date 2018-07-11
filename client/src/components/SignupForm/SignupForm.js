@@ -9,16 +9,19 @@ import { AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validatio
 
 
 class SignupForm extends Component {
-    state = {
-            username:'',
-            usernameError:'',
-            password:'',
-            passwordError:'',
-            pet:'',
-            petError:''
+    constructor(props) {
+        super(props);
+        this.state = {
+                username:'',
+                usernameError:'',
+                password:'',
+                passwordError:'',
+                pet:'',
+                petError:''
+        }
     };
 
-    handleInputChange = (event) => {
+    handleInputChange = event => {
         const {name, value} = event.target;
         this.setState({
             [name]: value

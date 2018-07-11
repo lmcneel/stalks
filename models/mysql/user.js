@@ -1,64 +1,18 @@
-module.exports = function(sequelize, Sequelize) {
-    // do we want to define this as user of users
+const bcrypt = require('bcryptjs');
+module.exports = function(sequelize, DataTypes) {
+// User Schema
     const User = sequelize.define('User', {
-
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER,
-        },
-        // we can combined the to just name if user auth wants this
-        firstname: {
-            type: Sequelize.STRING,
-            notEmpty: true,
-        },
-        lastname: {
-            type: Sequelize.STRING,
-            notEmpty: true,
-        },
-        // fullname: {
-        //     type: Sequelize.STRING,
-        //     notEmpty: true
-        // },
         username: {
-            type: Sequelize.STRING,
-            notEmpty: true,
-        },
-        email: {
-            type: Sequelize.STRING,
-            validate: {
-                isEmail: true,
-            },
+            type: DataTypes.STRING,
         },
         password: {
-            type: Sequelize.STRING,
-            allowNull: false,
+            type: DataTypes.STRING,
         },
-        // haven't seen levels incorporated in the current scope but if necessary
-        // level: {
-        //     type: Sequelize.INTEGER
-        // },
-        // should be created by association
-        // title_id: {
-        //     type: Sequelize.INTEGER,
-        //     allowNull: false
-        // },
-        balance: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
+        email: {
+            type: DataTypes.STRING,
         },
-        mongo_id: {
-            type: Sequelize.STRING,
-            allowNull: false,
-        },
-        last_login: {
-            type: Sequelize.DATE,
-            allowNull: true,
-        },
-        //  this would give us the ability to make accounts inactive is this is decided upon
-        status: {
-            type: Sequelize.ENUM('active', 'inactive'),
-            defaultValue: 'active',
+        name: {
+            type: DataTypes.STRING,
         },
     }, {
         underscored: false,
@@ -91,6 +45,5 @@ module.exports = function(sequelize, Sequelize) {
             onDelete: 'cascade',
         });
     };
-
     return User;
 };

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import CollapseRow from './components/CollapseRow/index';
 import SigninForm from './components/SigninForm';
 import SignupForm from './components/SignupForm';
@@ -31,7 +31,6 @@ import Inventory from './components/userTabs';
 /**
  * Class App
  */
-class App extends Component {
   /**
    * @param {*} props
    */
@@ -63,6 +62,7 @@ class App extends Component {
           </header>
           <Switch>
             <Route exact path='/login' component={SigninForm} />
+            <Route exact path='/logout' component={SignoutForm} />
             <Route exact path='/signup' component={SignupForm} />
 
           </Switch>
