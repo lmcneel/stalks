@@ -7,8 +7,8 @@ import React from 'react';
 
 const BankValue = (props) => {
   return (
-    <div>
-      <div className="">Bank Value</div>
+    <div className="stockStats">
+      <div>Bank Value</div>
       <div>{props.bankValue}</div>
     </div>
   );

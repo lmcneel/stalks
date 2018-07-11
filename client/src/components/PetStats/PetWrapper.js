@@ -3,7 +3,7 @@ import {Container, Row, Col} from 'reactstrap';
 
 export const PetWrapper = (props) => {
     return (
-      <div className="wrapper">
+      <div className="wrapper stockStats">
         <Container>
           <Row>
             <Col>
