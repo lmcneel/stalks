@@ -38,6 +38,7 @@
     "availity-reactstrap-validation": "^2.0.2",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "connect-session-sequelize": "^5.2.2",
     "cookie-parser": "^1.4.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
@@ -51,6 +52,7 @@
     "passport-local": "^1.0.0",
     "react-router-dom": "^4.3.1",
     "sequelize": "^4.38.0",
+    "sequelize-session-store": "^0.1.0",
     "victory": "^0.27.2"
   },
   "devDependencies": {

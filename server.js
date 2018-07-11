@@ -7,17 +7,21 @@ const bodyParser = require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
 const seedDB = require('./seeds');
-
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const connectSession = require('connect-session-sequelize')(session.Store);
+const bcrypt = require('bcrypt');
 
+app.use(cookieParser());
 // sessions
-app.use(
-  session({
-    secret: 'fraggle-rock', // pick a random string to make the hash that is generated secure
-    resave: false, // required
-    saveUninitialized: false, // required
-  })
-);
+app.use(session({
+  secret: 'seceiha',
+  store: new SequelizeStore({
+    db: sequelize,
+    }),
+    resave: false,
+    proxy: true,
+    }));
 
 app.use(logger('dev'));
 

@@ -317,7 +317,7 @@ bluebird@3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
 
-bluebird@^3.4.6, bluebird@^3.5.0, bluebird@^3.5.1:
+bluebird@^3.4.4, bluebird@^3.4.6, bluebird@^3.5.0, bluebird@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
@@ -670,6 +670,13 @@ configstore@^3.0.0:
     write-file-atomic "^2.0.0"
     xdg-basedir "^3.0.0"
 
+connect-session-sequelize@^5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/connect-session-sequelize/-/connect-session-sequelize-5.2.2.tgz#e249d5ac4fbe45a1f56e4a489fe8ecb31ac37349"
+  dependencies:
+    debug "^3.1.0"
+    deep-equal "^1.0.1"
+
 console-control-strings@^1.0.0, console-control-strings@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
@@ -845,6 +852,10 @@ decamelize@^1.1.1, decamelize@^1.1.2:
 decode-uri-component@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
+
+deep-equal@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
 
 deep-extend@^0.6.0:
   version "0.6.0"
@@ -3443,6 +3454,12 @@ send@0.16.2:
 seq-queue@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/seq-queue/-/seq-queue-0.0.5.tgz#d56812e1c017a6e4e7c3e3a37a1da6d78dd3c93e"
+
+sequelize-session-store@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/sequelize-session-store/-/sequelize-session-store-0.1.0.tgz#04102c72db542bb42d28c73d54dfb73ffef4fd68"
+  dependencies:
+    bluebird "^3.4.4"
 
 sequelize@^4.38.0:
   version "4.38.0"
