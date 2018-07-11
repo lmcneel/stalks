@@ -36,13 +36,16 @@ class Petfolio extends Component {
      * Setting state of portfolio and bank values and all pet info(name, pic, stats) once component is mounted
      */
     componentDidMount() {
-      // console.log('here');
-      // API.getTickerText().then(((r) => {
-      //   console.log('---------------------------'+r);
-      //   if (r !== []) {
-      //     this.setState({tickerText: r});
-      //   };
-      // }));
+      API.getTickerText().then(((r) => {
+        if (r.data.length !== 0) {
+          let ticker = 'Watchlist...';
+          for (let i=0; i<r.data.length; i++){
+            ticker += r.data[i].unique_stock_id + '...';
+          }
+          this.setState({tickerText: ticker});
+          console.log(r.data);
+        };
+      }));
       // calc.portfolioValue().then(((r) => {
       //   this.setState({petfolioValue: r});
       // }));
