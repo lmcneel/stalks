@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
-import {PetName, PetPic, PetStats, PetWrapper} from '../../components/PetStats';
-import BankValue from '../../components/BankValue';
-import PetfolioValue from '../../components/PetfolioValue';
-import PieChart from '../../components/PieChart';
+import {PetName, PetPic, PetStats, PetWrapper} from '../PetStats';
+import BankValue from '../BankValue/BankValue';
+import PetfolioValue from '../PetfolioValue/PetfolioValue';
+import PieChart from '../PieChart/PieChart';
 import wolfy from './defaultPetPic.png';
 // import other 3 pet pics here
-import StockTicker from '../../components/StockTicker/StockTicker';
+import StockTicker from '../StockTicker/StockTicker';
 import '../../assets/scss/_petfolio.scss';
-import API from './../../utils/API';
+// import API from './../../utils/API';
 // const calc = require('./../../utils/Calc');
 
 /**
@@ -64,12 +64,11 @@ class Petfolio extends Component {
           {/* Col 1:Global side bar*/}
           <Col md="3">
             Side Bar
-            </Col>
+          </Col>
 
-          {/** Col 2: Feature Content*/}
           <Col md="9">
 
-            {/** Row 1: feature name and petfolio and bank values*/}
+            {/** Row 1: Global --Page(feature) name and petfolio and bank values*/}
             <Row>
               <Col>
                 <h2>Petfolio</h2>
@@ -82,7 +81,7 @@ class Petfolio extends Component {
               </Col>
             </Row>
 
-            {/* Row 2: StockTicker*/}
+            {/* Row 2: Global -- StockTicker*/}
             <Row>
               <Col>
                 <StockTicker text={this.state.tickerText}
@@ -93,18 +92,17 @@ class Petfolio extends Component {
             {/** Row 3: PetStats and PieChart*/}
             <Row>
               <Col>
-              <div className="main">
+              <div className="petStats">
                 <PetWrapper>
 
+                  <Col>
                   <PetPic>
                     {this.state.petPic}
                   </PetPic>
 
-                  <div className="petname">
-                    <PetName>
+                  <PetName>
                       {this.state.petName}
                     </PetName>
-                  </div>
 
                   <div className="statusbars">
                     <PetStats
@@ -128,16 +126,32 @@ class Petfolio extends Component {
                       petStatValue={this.state.petStats[2]}
                     />
                   </div>
+                  </Col>
                 </PetWrapper>
               </div>
             </Col>
 
             <Col>
-              <PieChart />
-          </Col>
-        </Row>
-        </Col>
-        </Row>
+              <Row>
+                <Col>
+                <PetfolioValue petfolioValue={this.state.petfolioValue} />
+              </Col>
+              <Col>
+                <BankValue bankValue={this.state.bankValue} />
+              </Col>
+              </Row>
+
+              <Row>
+                <Col>
+                 <PieChart />
+                </Col>
+              </Row>
+            </Col>
+
+          </Row>
+
+      </Col>
+      </Row>
       </Container>
     );
   }

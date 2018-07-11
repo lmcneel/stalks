@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 // import CollapseRow from './components/CollapseRow/index';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Petfolio from './pages/Petfolio';
-import Trading from './pages/Trading';
+import Petfolio from './components/pages/Petfolio';
+import Trading from './components/pages/Trading';
 
 /**
  * Class App

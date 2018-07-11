@@ -1,5 +1,5 @@
-
 import React, { Component } from 'react';
+import '../../assets/scss/_petfolio.scss';
 
 class Test extends Component {
     state = {
@@ -13,7 +13,9 @@ class Test extends Component {
        <h2>Test Page</h2>
 
        </div>   
-    
+    <div className="stockticker">
+      <p>dsofiosadfuposdifuosapdifuaospdiufpoasdiufpo</p>
+    </div>
 );
 }
 };

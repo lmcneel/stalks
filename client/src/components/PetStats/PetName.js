@@ -1,10 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const PetName = (props) => {
+const propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.element),
+        PropTypes.element,
+        PropTypes.string,
+    ]),
+};
+const PetName = (props) => {
     return (
-        <div className="petpic">
+        <div className="petName">
             <h3>{props.children}</h3>
         </div>
     );
 };
-
+PetName.propTypes = propTypes;
+export {PetName};

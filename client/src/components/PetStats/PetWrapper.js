@@ -1,7 +1,15 @@
 import React from 'react';
 import {Container, Row, Col} from 'reactstrap';
+import PropTypes from 'prop-types';
 
-export const PetWrapper = (props) => {
+const propTypes = {
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.element),
+        PropTypes.element,
+        PropTypes.string,
+    ]),
+};
+const PetWrapper = (props) => {
     return (
       <div className="wrapper stockStats">
         <Container>
@@ -14,3 +22,6 @@ export const PetWrapper = (props) => {
       </div>
     );
 };
+PetWrapper.propTypes = propTypes;
+export {PetWrapper};
+
