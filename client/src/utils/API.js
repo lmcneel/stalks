@@ -33,5 +33,54 @@ export default {
     },
     getMyStocks: function(portfolio){
         return axios.get(`api/trading/mystocks/${portfolio}`);
+    },
+
+    /*
+    **
+    **For User Settings / Profile
+    **
+    */
+    
+    getUserProfile: function(){
+        return axios.get('/api/user/getInfo');
+    },
+       
+    updateEmail: function(data){
+        console.log("Settings API");
+        return axios.put('/api/user/update/email', data);
+    },
+    updatePassword: function(data){
+        return axios.put('/api/user/update/password', data);
+    },
+    updateUsername: function(data){
+        return axios.put('/api/user/update/username', data);
+    },
+    requestUpdateVerification: function(data){
+        return axios.post('/api/user/post/update/verification', data);
+    },
+    confirmUpdateVerification: function(data){
+        return axios.put('/api/user/confirm/update/verification', data);
+    },
+    requestEmailVerification: function(){
+        return axios.post('/api/user/post/email/verification')
+    },
+    confirmEmailVerification: function(){
+        return axios.get('/api/user/get/update/email/verification/:key');
+    },
+    updatePetName: function(data){
+        return axios.put('/api/user/pet/update/name', data);
+    },
+    updatePet: function(email){
+        return axios.post('/api/user/pet/update/pet', email);
+    },
+    newUserMessage: function(data){        
+        return axios.put('/api/user/account/put/message', data);
+    },
+    toggleTips: function(data){
+
+        return axios.post('/api/user/account/post/tips', data);
+    },
+    deleteAccount: function(data){
+        return axios.delete('/api/user/account/delete', data);
     }
 };

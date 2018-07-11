@@ -13,7 +13,7 @@ import ViewStocks from './pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
-
+import UserSettings from './pages/Settings';
 /**
  * Class App
  */
@@ -59,6 +59,7 @@ class App extends Component {
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />
+                      <Route exact path='/settings' component={UserSettings} />
                     </Switch>
                 </Content>
                 </MainContentWrapper>
