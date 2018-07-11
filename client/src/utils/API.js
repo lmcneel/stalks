@@ -33,6 +33,10 @@ export default {
                 console.log(error);
             });
     },
+
+    // Saves an article to the database
+    login: function(loginData) {
+        return axios.post('/api/login', loginData)
     // Saves an article to the database
     logout: function (logoutData) {
         return axios.post('/api/logout', logoutData)
@@ -42,5 +46,15 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
-    }
+    },
+    // Saves an article to the database
+    signup: function(signupData) {
+        return axios.post('/api/signup', signupData)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    },
 };

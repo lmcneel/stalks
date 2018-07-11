@@ -7,10 +7,11 @@ const bodyParser = require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
 const seedDB = require('./seeds');
+const db = require('./models/mysql');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const connectSession = require('connect-session-sequelize')(session.Store);
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 
 app.use(cookieParser());
 // sessions
@@ -61,6 +62,9 @@ app.get('*', (req, res) => {
   // res.sendFile(path.join(__dirname, './client/public/index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`🌎 ==> Server now on port ${PORT}!`);
+
+db.sequelize.sync({force: true}).then(function() {
+  app.listen(PORT, () => {
+    console.log(`🌎 ==> Server now on port ${PORT}!`);
+  });
 });

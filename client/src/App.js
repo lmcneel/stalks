@@ -6,15 +6,10 @@ import SignupForm from './components/SignupForm';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faFacebookF, faGoogle} from '@fortawesome/fontawesome-free-brands';
 import {faAt, faKey} from '@fortawesome/fontawesome-free-solid';
-import Petfolio from './pages/Petfolio';
-import Trading from './pages/Trading';
-library.add(faFacebookF|faGoogle|faAt|faKey);
-
 
 /**
  * Class App
  */
-class App extends Component {
   /**
    * Render function for App Component
    * @return {JSX}
