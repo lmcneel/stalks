@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Splash from './components/Splash';
 import TopNav from './components/TopNav';
 import Wrapper from './components/Wrapper';
 import SideNav from './components/SideNav';
@@ -50,6 +51,7 @@ class App extends Component {
                     <Switch>
                       <Route exact path="/petfolio" component={Petfolio} />
                       <Route exact path='/trading' component={Trading} />
+                      <Route exact path='/splash' component={Splash} />
                     </Switch>
                 </Content>
                 </MainContentWrapper>
