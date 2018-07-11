@@ -80,10 +80,14 @@ router.get('/portfolio', (req, res) => {
         }
     });
 });
+
 router.route('/buy')
 .post(tradingController.buy);
+
 router.route('/sell')
 .post(tradingController.sell);
 
+router.route('/mystocks/:portfolio_id')
+.get(tradingController.myStocks);
 
 module.exports = router;
