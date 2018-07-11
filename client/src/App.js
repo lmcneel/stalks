@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import TopNav from './components/TopNav';
 import Wrapper from './components/Wrapper';
 import SideNav from './components/SideNav';
@@ -9,6 +10,8 @@ import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
 import Trading from './pages/Trading';
+import DocsList from './components/DocsList/DocsList';
+import HelpLanding from './components/HelpLanding/HelpLanding';
 
 /**
  * Class App
@@ -50,6 +53,8 @@ class App extends Component {
                     <Switch>
                       <Route exact path="/petfolio" component={Petfolio} />
                       <Route exact path='/trading' component={Trading} />
+                      <Route exact path='/help' component={HelpLanding} />
+                      <Route exact path='/docs' component={DocsList} />
                     </Switch>
                 </Content>
                 </MainContentWrapper>
