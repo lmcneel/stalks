@@ -42,8 +42,9 @@ function seedDB() {
                             console.log('removed Trades!');
 
                             // add a few users
-                            userData.forEach(function(seed) {
-                                    User.create(seed, function(err, user) {
+                            userData.forEach(function (seed) {
+                                    // User.findById('_id')
+                                    User.create(seed, function (err, user) {
                                             if (err) {
                                                 console.log(err);
                                             } else {
@@ -61,17 +62,19 @@ function seedDB() {
                                                             console.log('Added new Portfolio!');
                                                             // add Trades
                                                             Trade.create({
+                                                                portfolio_id: '5b40fb129adc85a410f488bd',
                                                                     date: Date.now(),
                                                                     type: 'Buy',
                                                                     ticker: 'AALP',
                                                                     sharePrice: 184.94,
-                                                                    shares: 10,
+                                                                    quantity: 10,
                                                                 }, {
+                                                                    portfolio_id: '5b40fb129adc85a410f488bd',
                                                                     date: Date.now(),
                                                                     type: 'Sell',
                                                                     ticker: 'XPP',
                                                                     sharePrice: 190.45,
-                                                                    shares: 20,
+                                                                    quantity: 20,
                                                                 },
                                                                     function(err, trade) {
                                                                         if (err) {
