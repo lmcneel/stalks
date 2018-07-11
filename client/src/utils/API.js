@@ -22,7 +22,7 @@ export default {
     },
 
     // Saves an article to the database
-    login: function (loginData) {
+    login: function(loginData) {
         return axios.post('/api/login', loginData)
             .then((response) => {
                 console.log(response);
@@ -32,7 +32,7 @@ export default {
             });
     },
     // Saves an article to the database
-    signup: function (signupData) {
+    signup: function(signupData) {
         return axios.post('/api/signup', signupData)
             .then((response) => {
                 console.log(response);
@@ -40,5 +40,5 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
-    }
+    },
 };
