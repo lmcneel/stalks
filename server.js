@@ -7,12 +7,11 @@ const bodyParser = require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
 const seedDB = require('./seeds');
-<<<<<<< HEAD
-=======
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const connectSession = require('connect-session-sequelize')(session.Store);
 const bcrypt = require('bcrypt');
+const achievements = require('./config/middleware/achievements/achievements');
 
 app.use(cookieParser());
 // sessions
@@ -24,7 +23,6 @@ app.use(session({
     resave: false,
     proxy: true,
     }));
->>>>>>> auth-issue#189
 const db = require('./models/mysql');
 
 app.use(logger('dev'));
@@ -34,7 +32,7 @@ app.use(bodyParser.json());
 
 // Define middleware here
 app.use(express.json());
-app.use(acheivements);
+app.use(achievements());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
