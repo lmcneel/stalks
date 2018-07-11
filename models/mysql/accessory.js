@@ -1,11 +1,11 @@
-module.exports = function(sequelize, DataTypes) {
-    var Accessory = sequelize.define("Accessory", {
-      name: DataTypes.STRING,
-      quantity: DataTypes.DOUBLE
+module.exports = function(sequelize, Sequelize) {
+    const Accessory = sequelize.define('Accessory', {
+      name: Sequelize.STRING,
+      quantity: Sequelize.DOUBLE,
     });
     Accessory.associate = function(models) {
       models.Accessory.belongsTo(models.Pet);
     };
-    
+
     return Accessory;
   };
