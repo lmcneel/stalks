@@ -7,12 +7,9 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import {faFacebookF, faGoogle} from '@fortawesome/fontawesome-free-brands';
 import {faAt, faKey} from '@fortawesome/fontawesome-free-solid';
 
-library.add(faFacebookF|faGoogle|faAt|faKey);
-
 /**
  * Class App
  */
-class App extends Component {
   /**
    * Render function for App Component
    * @return {JSX}
@@ -26,7 +23,10 @@ class App extends Component {
         </header>
           <Switch>
             <Route exact path='/login' component={SigninForm} />
+            <Route exact path='/logout' component={SignoutForm} />
             <Route exact path='/signup' component={SignupForm} />
+            <Route exact path="/petfolio" component={Petfolio} />
+            <Route exact path='/trading' component={Trading} />
           </Switch>
         <CollapseRow />
       </div>
