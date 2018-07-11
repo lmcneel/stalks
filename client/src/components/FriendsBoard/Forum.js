@@ -1,47 +1,45 @@
-import React from "react";
+import React, {Component} from 'react';
 import { Card, CardText, CardBody,
     CardTitle, CardSubtitle, InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Table } from 'reactstrap';
 
 
-    export const Forum = (props) => {
-        // isOpen={this.state.dropdownOpen} toggle={this.toggle}
-    //   constructor(props) {
-    //     super(props);
-    
-    //     this.toggle = this.toggle.bind(this);
-    //     this.state = {
-    //       dropdownOpen: false
-    //     };
-    //   }
-    
-    //   toggle() {
-    //     this.setState(prevState => ({
-    //       dropdownOpen: !prevState.dropdownOpen
-    //     }));
-    //   }
-
-     
+    export class Forum extends Component {
+        constructor(props) {
+            super(props);
+        
+            this.toggle = this.toggle.bind(this);
+            this.state = {
+              dropdownOpen: false
+            };
+          }
+        
+          toggle() {
+            this.setState(prevState => ({
+              dropdownOpen: !prevState.dropdownOpen
+            }));
+          }
+     render(){
         return (
 
-<Container fluid>
+<Container fluid id="Forum">
     <Row>
-        <Col sm="8">
+        <Col sm="8" md={{ size: 8, offset: 3 }}>
             <Card>
                 <CardTitle>
                     FORUM
                 </CardTitle>
                     <div>
-                        <Dropdown >
+                        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                             <DropdownToggle caret>
                                 Choose a Topic . . .
                             </DropdownToggle>
-                                <DropdownMenu>               
+                                <DropdownMenu>
                                     <DropdownItem>
                                         General
                                     </DropdownItem>
                                         <DropdownItem divider />
                                     <DropdownItem>
-                                        Stocks
+                                    Stocks
                                     </DropdownItem>
                                         <DropdownItem divider />
                                     <DropdownItem>
@@ -80,5 +78,6 @@ import { Card, CardText, CardBody,
     </Row>
 </Container>
 )
-};
+}
+    };
 
