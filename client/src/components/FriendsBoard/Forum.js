@@ -1,31 +1,29 @@
-import React from "react";
+import React, {Component} from 'react';
 import { Card, CardText, CardBody,
     CardTitle, CardSubtitle, InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Table } from 'reactstrap';
 
 
-    
-    export default class Forum extends React.Component {
-      constructor(props) {
-        super(props);
-    
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-          dropdownOpen: false
-        };
-      }
-    
-      toggle() {
-        this.setState(prevState => ({
-          dropdownOpen: !prevState.dropdownOpen
-        }));
-      }
-
-      render() {
+    export class Forum extends Component {
+        constructor(props) {
+            super(props);
+        
+            this.toggle = this.toggle.bind(this);
+            this.state = {
+              dropdownOpen: false
+            };
+          }
+        
+          toggle() {
+            this.setState(prevState => ({
+              dropdownOpen: !prevState.dropdownOpen
+            }));
+          }
+     render(){
         return (
 
-<Container fluid>
+<Container fluid id="Forum">
     <Row>
-        <Col sm="8">
+        <Col sm="8" md={{ size: 8, offset: 3 }}>
             <Card>
                 <CardTitle>
                     FORUM
@@ -35,13 +33,13 @@ import { Card, CardText, CardBody,
                             <DropdownToggle caret>
                                 Choose a Topic . . .
                             </DropdownToggle>
-                                <DropdownMenu>               
+                                <DropdownMenu>
                                     <DropdownItem>
                                         General
                                     </DropdownItem>
                                         <DropdownItem divider />
                                     <DropdownItem>
-                                        Stocks
+                                    Stocks
                                     </DropdownItem>
                                         <DropdownItem divider />
                                     <DropdownItem>
@@ -81,5 +79,5 @@ import { Card, CardText, CardBody,
 </Container>
 )
 }
-};
+    };
 

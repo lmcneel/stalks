@@ -4,16 +4,17 @@ const request = require('request');
 
 //Models
 const User = require('../../models/mysql/user');
-const Friends = require('../../models/mysql/friends');
+const Friendship = require('../../models/mysql/friends');
 
 
 router.get('/api/view/friends', (req, res) => {
-    Friends.findAll({
-        where: {
-            user_id: //Users ID
-            user_id
-        }
-    })
+    Friendship.findAll({
+        where: { user: id },
+        include: [{
+            model: User,
+            as: 'info'
+        }]
+    });
 });
 
 router.post('/api/create/friend', (req, res) => {

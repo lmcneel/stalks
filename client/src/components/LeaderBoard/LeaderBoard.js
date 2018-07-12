@@ -3,7 +3,7 @@ import "./LeaderBoard.css";
 import { Card, CardText, CardBody,
     CardTitle, CardSubtitle, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row } from 'reactstrap';
 
-const LeaderBoard = (props) => (
+export const LeaderBoard = (props) => (
 
 
 <div>
@@ -15,7 +15,7 @@ const LeaderBoard = (props) => (
             Leaderboard
           </CardTitle>
             <CardSubtitle>
-              See your Friends:
+              
             </CardSubtitle> 
         </CardBody>
       </Card> 
@@ -24,4 +24,3 @@ const LeaderBoard = (props) => (
 </div>
 );
 
-export default LeaderBoard;
