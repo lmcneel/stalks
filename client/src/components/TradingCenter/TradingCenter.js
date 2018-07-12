@@ -30,7 +30,7 @@ class Transaction extends Component {
             shares: 0,
             change: 0,
             response: '',
-            portfolio_id: '5b4565293d6a1edcfea8aec3',
+            portfolio_id: '5b469e9d1819e80bd4ddeb78',
             transaction: 'buy',
             ROI: 0,
             cost: 0,
@@ -221,7 +221,7 @@ class Transaction extends Component {
 
     render() {
         return (
-            <div>
+            <div className='container trading'>
                 <div className='stockStats container'>
                     <h1>Stock Stats</h1>
 

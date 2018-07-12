@@ -30,7 +30,7 @@ app.use(routes);
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks');
 
-seedDB();
+// seedDB();
 
 
 // Connect to the Mongo DB
