@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
-import {PetName, PetPic, PetStats, PetWrapper} from '../PetStats';
-import BankValue from '../BankValue/BankValue';
-import PetfolioValue from '../PetfolioValue/PetfolioValue';
-import PieChart from '../PieChart/PieChart';
+import {PetName, PetPic, PetStats, PetWrapper} from '../../components/PetStats';
+import BankValue from '../../components/BankValue';
+import PetfolioValue from '../../components/PetfolioValue';
+import PieChart from '../../components/PieChart';
 import wolfy from './defaultPetPic.png';
 // import other 3 pet pics here
-import StockTicker from '../StockTicker/StockTicker';
-import '../../assets/scss/_petfolio.scss';
-// import API from './../../utils/API';
+import StockTicker from '../../components/StockTicker/StockTicker';
+// import '../../assets/scss/_petfolio.scss';
+import API from './../../utils/API';
 // const calc = require('./../../utils/Calc');
 
 /**
@@ -26,9 +26,11 @@ class Petfolio extends Component {
       petPic: wolfy,
       petStats: [85, 90, 50, 70],
       // tickerText,
-      petfolioValue: '$1000',
-      bankValue: '$2000',
+      petfolioValue: 2001,
+      bankValue: 2000,
       tickerText: 'Watchlist...StockA 2.35...StockB 4.15...StockC 1.28',
+      portfolioValueColor: 'colorPositive',
+      bankValueColor: 'colorPositive',
     };
   }
 
@@ -36,18 +38,48 @@ class Petfolio extends Component {
      * Setting state of portfolio and bank values and all pet info(name, pic, stats) once component is mounted
      */
     componentDidMount() {
-      // console.log('here');
-      // API.getTickerText().then(((r) => {
-      //   console.log('---------------------------'+r);
-      //   if (r !== []) {
-      //     this.setState({tickerText: r});
-      //   };
-      // }));
+      API.getTickerText().then(((r) => {
+        if (r.data.length !== 0) {
+          let ticker = 'Watchlist...';
+          for (let i=0; i<r.data.length; i++){
+
+            // API.findQuotes(r.data[i]).then(((r2) => {
+            //   console.log(r2);
+            // }));
+
+            ticker += r.data[i].symbol + '...';
+          }
+          this.setState({tickerText: ticker});
+          console.log(r.data);
+        };
+
+      }));
+
       // calc.portfolioValue().then(((r) => {
       //   this.setState({petfolioValue: r});
+
+            if (this.state.petfolioValue >= 1000){
+              this.setState({portfolioValueColor: 'colorPositive'});
+            }
+            else if (this.state.petfolioValue >=500){
+              this.setState({portfolioValueColor: 'colorNeutral'});
+            }
+            else {
+              this.setState({petfolioValueColor: 'colorNegative'});
+            };
+
       // }));
       // calc.bankValue().then(((r) => {
       //   this.setState({bankValue: r});
+      if (this.state.bankValue > 1000){
+        this.setState({bankValueColor: 'colorPositive'});
+      }
+      else if (this.state.bankValue >1){
+        this.setState({bankValueColor: 'colorNeutral'});
+      }
+      else {
+        this.setState({bankValueColor: 'colorNegative'});
+      };
       // }));
     };
 
@@ -75,10 +107,12 @@ class Petfolio extends Component {
                 <h2>Petfolio</h2>
               </Col>
               <Col>
-                <PetfolioValue petfolioValue={this.state.petfolioValue} />
+                <PetfolioValue petfolioValue={this.state.petfolioValue}
+                petfolioColor={this.state.portfolioValueColor}
+                />
               </Col>
               <Col>
-                <BankValue bankValue={this.state.bankValue} />
+                <BankValue bankValue={this.state.bankValue} petfolioColor={this.state.bankValueColor}/>
               </Col>
             </Row>
 
