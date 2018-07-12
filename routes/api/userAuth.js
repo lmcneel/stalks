@@ -14,7 +14,7 @@ router.route('/api/login')
      failureRedirect: '/login'});
  });
  // Signup route
-  router.rpute('/api/signup')
+  router.route('/api/signup')
   .post(function(req, res) {
     console.log(req.body);
     db.User.create({
