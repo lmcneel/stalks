@@ -10,13 +10,20 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
 import Trading from './pages/Trading';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Social from './pages/Social/Social.js';
 =======
+=======
+>>>>>>> d94b7091b6d76985f0aba4322696018283e0d444
 import ViewStocks from './pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
+<<<<<<< HEAD
 >>>>>>> 8bed74f11cb863fe1ff3966a951ae281e29ccfc7
+=======
+import Social from './pages/Social/Social.js';
+>>>>>>> d94b7091b6d76985f0aba4322696018283e0d444
 
 /**
  * Class App
@@ -48,6 +55,7 @@ class App extends Component {
     return (
       <Router>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <div>
           <Switch>
             <Route exact path="/petfolio" component={Petfolio} />
@@ -55,6 +63,8 @@ class App extends Component {
             <Route exact path= "/social" component={Social} />
            </Switch>
 =======
+=======
+>>>>>>> d94b7091b6d76985f0aba4322696018283e0d444
 
         <div className="App">
             <TopNav navToggleHandler={this.navToggleHandler}/>
@@ -68,6 +78,7 @@ class App extends Component {
                     <Switch>
                       <Route exact path="/petfolio" component={Petfolio} />
                       <Route exact path='/trading' component={Trading} />
+                      <Route exact path= "/social" component={Social} />
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />
@@ -75,7 +86,10 @@ class App extends Component {
                 </Content>
                 </MainContentWrapper>
               </Wrapper>
+<<<<<<< HEAD
 >>>>>>> 8bed74f11cb863fe1ff3966a951ae281e29ccfc7
+=======
+>>>>>>> d94b7091b6d76985f0aba4322696018283e0d444
         </div>
       </Router>
     );
