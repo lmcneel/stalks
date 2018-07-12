@@ -61,7 +61,7 @@ module.exports = function(sequelize, Sequelize) {
             defaultValue: 'active',
         },
     }, {
-        underscored: true,
+        underscored: false,
     });
 
     // names of other models have not been established so the associations are subject to change
@@ -74,19 +74,22 @@ module.exports = function(sequelize, Sequelize) {
         // User.belongsTo(models.titles),
         User.hasMany(models.UserWatchlist, {
             onDelete: 'cascade',
-        }),
+        });
         User.hasMany(models.UserLogins, {
             onDelete: 'cascade',
-        }),
-        User.hasMany(models.Friends, {
-            onDelete: 'cascade',
         });
+        // User.hasMany(models.Friends, {
+        //     onDelete: 'cascade',
+        // });
         // User.hasMany(models.users_accomplishments, {
         //     onDelete: 'cascade'
         // }),
         // User.hasMany(models.users_gifts, {
         //     onDelete: 'cascade'
         // });
+        User.hasOne(models.UserValidation, {
+            onDelete: 'cascade',
+        });
     };
 
     return User;
