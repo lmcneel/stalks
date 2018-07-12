@@ -23,7 +23,7 @@ render (){
                 <CardBody>
                     <CardTitle>Friends Board</CardTitle>
                         <Navbar color="light" light expand="md">
-                            <Nav navbar>
+                            <Nav tabs>
                                 <NavItem>
                                     <NavLink onClick={this.toggle} style={{ marginBottom: '1rem' }}>Friend List</NavLink>
                                 </NavItem>
