@@ -7,4 +7,4 @@ describe('HelpLanding', ()=>{
         ReactDOM.render(<Component/>, div);
         ReactDOM.unmountComponentAtNode(div);
     });
-})
+});
