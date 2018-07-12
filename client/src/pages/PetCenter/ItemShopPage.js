@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ItemShop from '../components/PetCenter/ItemShop'
+import ItemShop from '../../components/PetCenter/ItemShop'
 
 
 

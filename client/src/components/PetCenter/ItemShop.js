@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Nav from './Nav'
 import {Button, Container, Row, Col } from 'reactstrap';
 import Card from './Card'
-import API from '../utils/API'
+import API from '../../utils/API'
 
 
 // Saved Component used when saved tab is clicked. shows the saved components

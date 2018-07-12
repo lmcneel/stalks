@@ -1,9 +1,4 @@
 import React, {Component} from 'react';
-import './App.css';
-import Inventory from './components/userFoodAndToys';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Petfolio from './pages/Petfolio';
-import Trading from './pages/Trading';
 import TopNav from './components/TopNav';
 import Wrapper from './components/Wrapper';
 import SideNav from './components/SideNav';
