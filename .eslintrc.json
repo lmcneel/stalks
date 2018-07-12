@@ -1,0 +1,26 @@
+{
+    "extends": [
+        "google",
+        "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "modules": true
+        }
+    },
+    "plugins": [
+        "react"
+    ],
+    "settings": {
+        "react":{
+            "createClass": "createReactClass",
+            "pragma": "React"
+        }
+    },
+    "rules":{
+        "max-len": [2, 120, 4, {"ignoreUrls": true}]
+    }
+}
