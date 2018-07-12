@@ -9,24 +9,10 @@ const config = require(__dirname + '/../../config/config.json')[env];
 const db = {};
 let seq;
 
-let sequelize; 
-
 if (config.use_env_variable) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-=======
   seq = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   seq  = new Sequelize(config.database, config.username, config.password, config);
->>>>>>> 8bed74f11cb863fe1ff3966a951ae281e29ccfc7
-=======
-  seq = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  seq  = new Sequelize(config.database, config.username, config.password, config);
->>>>>>> d94b7091b6d76985f0aba4322696018283e0d444
 }
 
 const sequelize = seq;
@@ -49,6 +35,6 @@ Object.keys(db).forEach((modelName) => {
 });
 
 db.sequelize = sequelize;
-
+db.Sequelize = Sequelize;
 
 module.exports = db;
