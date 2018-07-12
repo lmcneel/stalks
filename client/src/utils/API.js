@@ -32,8 +32,7 @@ export default {
         return axios.get('/api/docs');
     },
     updateDoc: function(data) {
-        console.log(data);
-        // return axios.put('/api/docs/' + id);
+        return axios.put('/api/docs/' + data.id, data);
     },
     getMyStocks: function(portfolio) {
         return axios.get(`api/trading/mystocks/${portfolio}`);

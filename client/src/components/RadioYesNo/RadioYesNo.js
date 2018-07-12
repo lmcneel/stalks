@@ -31,7 +31,7 @@ class RadioYesNo extends React.Component {
 
     this.changeTitle = this.changeTitle.bind(this);
     this.toggle = this.toggle.bind(this);
-    // this.updateDoc = this.updateDoc.bind(this);
+    this.updateDoc = this.updateDoc.bind(this);
   }
   /**
   * updateDoc function
@@ -39,18 +39,12 @@ class RadioYesNo extends React.Component {
   */
   updateDoc(YesNo) {
     let yes = this.props.helpfulYes;
-    let no = this.props.helpfulNo; 
-     console.log(typeof this.props.helpfulYes);
+    let no = this.props.helpfulNo;
     if (YesNo) {
       yes+=1;
-      console.log('YES!');
-    
-    }
-    else {
+    } else {
       no+=1;
-      console.log('NO!');
     };
-
     API.updateDoc({id: this.props.id, helpfulYes: yes, helpfulNo: no});
   }
   /**
@@ -82,14 +76,18 @@ class RadioYesNo extends React.Component {
               {this.state.showRadio ?
                 <FormGroup check>
                   <Label check>
-                  <Input onClick={(event) => {this.changeTitle(); this.updateDoc(true)}} type="radio" name="radio1" />
+                  <Input onClick={(event) => {
+                    this.changeTitle(); this.updateDoc(true);
+                    }} type="radio" name="radio1" />
                     Yes
               </Label>
                 </FormGroup> : null}
               {this.state.showRadio ?
                 <FormGroup check>
                   <Label check>
-                    <Input onClick={(event) => {this.toggle(); this.updateDoc(false)}} type="radio" name="radio1" />
+                    <Input onClick={(event) => {
+                      this.toggle(); this.updateDoc(false);
+                      }} type="radio" name="radio1" />
                     No
               </Label>
                 </FormGroup> : null}
