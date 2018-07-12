@@ -10,19 +10,34 @@ const seedDB = require('./seeds');
 const db = require('./models/mysql');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const connectSession = require('connect-session-sequelize')(session.Store);
-const bcrypt = require('bcrypt-nodejs');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const Sequelize = require('sequelize');
+const passport = require('./config/passport.js');
+const achievements = require('./config/middleware/achievements/achievements');
+const mysql = require('mysql');
 
+const sequelize = new Sequelize(
+  'database',
+  'username',
+  'password', {
+    'dialect': 'mysql',
+    'storage': './session.mysql',
+  });
+// initialize passport
+app.use(passport.initialize());
+// store data for authenticated users
+app.use(passport.session());
+// test this code
+// configure express
 app.use(cookieParser());
-// sessions
 app.use(session({
-  secret: 'seceiha',
+  secret: 'keyboard cat',
   store: new SequelizeStore({
     db: sequelize,
-    }),
-    resave: false,
-    proxy: true,
-    }));
+  }),
+  resave: false, // we support the touch method so per the express-session docs this should be set to false
+  saveUninitialized: false, // required
+}));
 
 app.use(logger('dev'));
 
@@ -31,7 +46,7 @@ app.use(bodyParser.json());
 
 // Define middleware here
 app.use(express.json());
-app.use(acheivements);
+app.use(achievements);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {

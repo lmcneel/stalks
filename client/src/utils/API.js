@@ -24,22 +24,8 @@ export default {
                 console.log(error);
             });
     },
-    // signup axios call
-    signup: function(signupData) {
-        return axios.post('/api/signup', signupData)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    },
-
     // Saves an article to the database
-    login: function(loginData) {
-        return axios.post('/api/login', loginData)
-    // Saves an article to the database
-    logout: function (logoutData) {
+    logout: function(logoutData) {
         return axios.post('/api/logout', logoutData)
             .then((response) => {
                 console.log(response);
@@ -57,10 +43,11 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
+        },
         getDocs: function() {
             return axios.get('/api/docs');
-        }
+        },
         getMyStocks: function(portfolio) {
             return axios.get(`api/trading/mystocks/${portfolio}`);
-        }
+        },
     };

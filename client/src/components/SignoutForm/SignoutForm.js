@@ -5,11 +5,9 @@ import {
     CardImg, 
     CardText, 
     CardBody,
-    CardTitle, 
-    CardSubtitle, 
+    CardTitle,
     Button
 } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class SignoutForm extends Component {
     state={
