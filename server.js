@@ -12,6 +12,7 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const connectSession = require('connect-session-sequelize')(session.Store);
 const bcrypt = require('bcrypt-nodejs');
+const passport = require('passport');
 
 app.use(cookieParser());
 // sessions
@@ -37,6 +38,11 @@ app.use(acheivements);
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
+
+// initialize passport
+app.use(passport.initialize());
+// store data for authenticated users
+app.use(passport.session());
 
 // Define API routes here
 app.use(routes);
