@@ -43,6 +43,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use(passport.initialize());
 // store data for authenticated users
 app.use(passport.session());
+// test this code
 
 // Define API routes here
 app.use(routes);
