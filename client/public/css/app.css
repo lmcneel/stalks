@@ -6293,6 +6293,15 @@ a.text-dark:hover, a.text-dark:focus {
 .statusbars {
   width: 300px; }
 
+.colorPositive {
+  background-color: green; }
+
+.colorNeutral {
+  background-color: yellow; }
+
+.colorNegative {
+  background-color: red; }
+
 .stockStats {
   background-color: #DDDFE1;
   border: none;

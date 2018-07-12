@@ -1,7 +1,17 @@
 .main {
     margin: 25px;
 }
-
 .statusbars {
     width: 300px;
 }
+.colorPositive {
+    background-color: green;
+}
+.colorNeutral {
+    background-color: yellow;
+}
+.colorNegative {
+    background-color: red;
+}
+
+// yarn build-css

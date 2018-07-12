@@ -7,7 +7,7 @@ import PieChart from '../../components/PieChart';
 import wolfy from './defaultPetPic.png';
 // import other 3 pet pics here
 import StockTicker from '../../components/StockTicker/StockTicker';
-import '../../assets/scss/_petfolio.scss';
+// import '../../assets/scss/_petfolio.scss';
 import API from './../../utils/API';
 // const calc = require('./../../utils/Calc');
 
@@ -26,9 +26,11 @@ class Petfolio extends Component {
       petPic: wolfy,
       petStats: [85, 90, 50, 70],
       // tickerText,
-      petfolioValue: '$1000',
-      bankValue: '$2000',
+      petfolioValue: 2001,
+      bankValue: 2000,
       tickerText: 'Watchlist...StockA 2.35...StockB 4.15...StockC 1.28',
+      portfolioValueColor: 'colorPositive',
+      bankValueColor: 'colorPositive',
     };
   }
 
@@ -52,11 +54,32 @@ class Petfolio extends Component {
         };
 
       }));
+
       // calc.portfolioValue().then(((r) => {
       //   this.setState({petfolioValue: r});
+
+            if (this.state.petfolioValue >= 1000){
+              this.setState({portfolioValueColor: 'colorPositive'});
+            }
+            else if (this.state.petfolioValue >=500){
+              this.setState({portfolioValueColor: 'colorNeutral'});
+            }
+            else {
+              this.setState({petfolioValueColor: 'colorNegative'});
+            };
+
       // }));
       // calc.bankValue().then(((r) => {
       //   this.setState({bankValue: r});
+      if (this.state.bankValue > 1000){
+        this.setState({bankValueColor: 'colorPositive'});
+      }
+      else if (this.state.bankValue >1){
+        this.setState({bankValueColor: 'colorNeutral'});
+      }
+      else {
+        this.setState({bankValueColor: 'colorNegative'});
+      };
       // }));
     };
 
@@ -84,28 +107,12 @@ class Petfolio extends Component {
                 <h2>Petfolio</h2>
               </Col>
               <Col>
-
-              {/* {change >= 0 ? (
-                <div id='changeValuePositive'>
-                    <h2>+{change}%</h2>
-                </div>
-              ) : (
-                    <div id='changeValueNegative'>
-                        <h2>{change}%</h2>
-                    </div>
-                )
-              } */}
-
-                <PetfolioValue petfolioValue={this.state.petfolioValue} 
-                {this.state.petfolioValue > 1000 ? (
-                  className = 'changeValuePositive'
-                ) : (
-                  className = 'changeValueNegative'
-                )}
+                <PetfolioValue petfolioValue={this.state.petfolioValue}
+                petfolioColor={this.state.portfolioValueColor}
                 />
               </Col>
               <Col>
-                <BankValue bankValue={this.state.bankValue} />
+                <BankValue bankValue={this.state.bankValue} petfolioColor={this.state.bankValueColor}/>
               </Col>
             </Row>
 

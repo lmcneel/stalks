@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const PetfolioValue = (props) => (
-    <div>
+    <div className = {props.petfolioColor}>
       <div>Petfolio Value</div>
       <div>{props.petfolioValue}</div>
     </div>
