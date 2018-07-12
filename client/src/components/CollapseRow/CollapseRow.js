@@ -10,6 +10,10 @@ const propTypes = {
   title: PropTypes.string,
   collapse: PropTypes.bool,
   article: PropTypes.array,
+  helpfulYes: PropTypes.number,
+  helpfulNo: PropTypes.number,
+  key: PropTypes.string,
+  id: PropTypes.string,
 };
 /**
  * Collapse row class
@@ -62,7 +66,10 @@ class CollapseRow extends Component {
                 }
               </CardBody>
               <CardFooter className="text-center">
-                <RadioYesNo />
+                <RadioYesNo 
+                id={this.props.id}
+                helpfulYes={this.props.helpfulYes}
+                helpfulNo={this.props.helpfulNo}/>
               </CardFooter>
             </Card>
           </Collapse>
