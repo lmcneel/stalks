@@ -1,17 +1,25 @@
-import Component from '../CollapseRow.js';
+import {configure} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+configure({adapter: new Adapter()});
 import React from 'react';
-import {  mount , shallow  } from 'enzyme';
-
+import ReactDOM from 'react-dom';
+import {mount, shallow} from 'enzyme';
+import Component from '../CollapseRow.js';
 //
-describe('CollapseRow' , () => {
+describe('CollapseRow', () => {
+    it('renders without error', ()=>{
+        const div = document.createElement('div');
+        ReactDOM.render(<Component/>, div);
+        ReactDOM.unmountComponentAtNode(div);
+    });
     //
-     it('exists' , () =>{
-        const mountWrapper = mount(<div className = "collapse-component"/>);
+     it('exists', () =>{
+        const mountWrapper = mount(<Component/>);
 
-        expect(mountWrapper.find('.collapse-component').exists()).toBe(false);
+        expect(mountWrapper.find('.collapse-component').exists()).toBe(true);
      });
 
-    it('collapses correctly' , () =>{
+    it('collapses correctly', () =>{
         const shallowWrapper = shallow(<Component/>);
 
        expect(shallowWrapper.state().collapse).toBe(false);
