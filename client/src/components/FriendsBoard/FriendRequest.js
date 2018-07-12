@@ -5,7 +5,7 @@ export const FriendRequest = (props) => {
     return(
 <div>
     <Row>
-        <Col sm="12">
+        <Col sm="8" md={{ size: 10, offset: 1 }}>
             <Card color="light">
                 <CardBody>
                     <CardTitle>Friend List</CardTitle>

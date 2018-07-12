@@ -23,7 +23,7 @@ import { Card, CardText, CardBody,
 
 <Container fluid id="Forum">
     <Row>
-        <Col sm="8" md={{ size: 8, offset: 3 }}>
+        <Col sm="8" md={{ size: 11, offset: 0 }}>
             <Card>
                 <CardTitle>
                     FORUM

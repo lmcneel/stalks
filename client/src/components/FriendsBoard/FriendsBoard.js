@@ -6,7 +6,7 @@ export const FriendsBoard = (props) => {
 return(
 <Container fluid>
     <Row>
-    <Col sm="8" md={{ size: 8, offset: 3 }}>
+    <Col sm="8" md={{ size: 11, offset: 0 }}>
             <Card color="light">
                 <CardBody>
                     <CardTitle>Friends Board</CardTitle>
