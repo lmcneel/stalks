@@ -65,8 +65,6 @@ module.exports = function(sequelize, Sequelize) {
     });
 
     // names of other models have not been established so the associations are subject to change
-<<<<<<< HEAD
-<<<<<<< HEAD
     // User.associate = function(models) {
     //     // at this point we are assuming users only have one pet
     //     User.hasOne(models.Pet, {
@@ -116,10 +114,6 @@ module.exports = function(sequelize, Sequelize) {
             onDelete: 'cascade',
         });
     };
-<<<<<<< HEAD
->>>>>>> 8bed74f11cb863fe1ff3966a951ae281e29ccfc7
-=======
->>>>>>> d94b7091b6d76985f0aba4322696018283e0d444
 
     return User;
 };
