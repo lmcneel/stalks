@@ -6,20 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
 
-
-let watched = false; // This watchlist flag
-let eyeWatched = 'faEye'; // class variable for watchlist condition
-
-const checkWatchList = () => {
-    // If in watchlist set [watched] to true
-    return watched = false;
-};
-
-const addToWatchlist = () => {
-    // Need to add to MySQL Watchlist, then check watch list
-    checkWatchList();
-}
-
 class Transaction extends Component {
 
     constructor(props) {
@@ -39,6 +25,8 @@ class Transaction extends Component {
             totalShares: 0,
             cashBalance: 0,
             modal: false,
+            watched: true,
+            eyeWatched : 'faEye'
         }
         this.toggle = this.toggle.bind(this);
     }
@@ -48,6 +36,17 @@ class Transaction extends Component {
             modal: !this.state.modal
         });
     };
+
+    checkWatchList = () => {
+        // If in watchlist set [watched] to true
+        return this.state.watched = false;
+    };
+    
+    addToWatchlist = () => {
+        // Need to add to MySQL Watchlist, then check watch list
+        this.state.checkWatchList();
+    }
+
     componentDidMount() {
         this.charting({ ticker: this.state.ticker });
         this.myStocks(this.state.portfolio_id);
@@ -258,11 +257,11 @@ class Transaction extends Component {
                                 </div>
                                 <div className='col-sm-2'>
                                     <FontAwesomeIcon
-                                        {...watched ? (eyeWatched = 'faEyeWatched') : (eyeWatched = 'faEye')}
-                                        className={eyeWatched}
-                                        onclick={addToWatchlist}
-                                        size='1x'
-                                        icon={faEye} />
+                                         {...this.state.watched ? (this.state.eyeWatched = 'faEyeWatched') : (this.state.eyeWatched = 'faEye')}
+                                         className={this.state.eyeWatched}
+                                         onclick={this.state.addToWatchlist}
+                                         size='1x'
+                                         icon={faEye} />
                                     {/* OnClick Function Required */}
                                     {/* If not on user watchlist, will need have onclic function to add it to watchlist, and updated state */}
 

@@ -6552,8 +6552,7 @@ body {
   color: #EE4A37; }
 
 .faEye {
-  color: #404850;
-  color: #FBB424; }
+  color: #404850; }
 
 .faEyeWatched {
   color: #FBB424; }
@@ -6640,6 +6639,13 @@ body {
 
 .searchBar {
   margin-bottom: 20px; }
+
+.listBar {
+  margin-bottom: 20px; }
+
+.listBarNav {
+  margin-bottom: 10px;
+  margin-left: 20px; }
 
 .stockTickerBarCollapse {
   border-bottom: solid 2px #DDDFE1;
