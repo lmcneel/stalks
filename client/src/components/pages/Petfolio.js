@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
-import {PetName, PetPic, PetStats, PetWrapper} from '../PetStats';
+import {PetName, PetStats, PetWrapper} from '../PetStats';
+import PetPic from '../PetStats/PetPic';
 import BankValue from '../BankValue/BankValue';
 import PetfolioValue from '../PetfolioValue/PetfolioValue';
 import PieChart from '../PieChart/PieChart';
-import wolfy from './defaultPetPic.png';
+
 // import other 3 pet pics here
 import StockTicker from '../StockTicker/StockTicker';
-import '../../assets/scss/_petfolio.scss';
+// import '../../assets/scss/_petfolio.scss';
 // import API from './../../utils/API';
 // const calc = require('./../../utils/Calc');
 
@@ -23,7 +24,7 @@ class Petfolio extends Component {
     super(props);
     this.state = {
       petName: 'Wolf',
-      petPic: wolfy,
+      // petPic: wolfy,
       petStats: [85, 90, 50, 70],
       // tickerText,
       petfolioValue: '$1000',
@@ -94,12 +95,10 @@ class Petfolio extends Component {
               <Col>
               <div className="petStats">
                 <PetWrapper>
+                  <div>
+                     <PetPic />
 
-                  <Col>
-                  <PetPic>
-                    {this.state.petPic}
-                  </PetPic>
-
+                  </div>
                   <PetName>
                       {this.state.petName}
                     </PetName>
@@ -126,7 +125,6 @@ class Petfolio extends Component {
                       petStatValue={this.state.petStats[2]}
                     />
                   </div>
-                  </Col>
                 </PetWrapper>
               </div>
             </Col>
@@ -150,6 +148,13 @@ class Petfolio extends Component {
 
           </Row>
 
+          {/* This row contains the owned stock details -- trading component*/}
+          {/* <i class="fas fa-chevron-circle-down"></i>  or     f13a*/}
+
+          <Row>
+            <Col>
+            </Col>
+          </Row>
       </Col>
       </Row>
       </Container>
