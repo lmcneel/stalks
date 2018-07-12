@@ -1,7 +1,7 @@
 // Requiring our models and passport as we've configured it
 const express = require('express');
 const router = express.Router();
-const User = require('../models/mysql/user.js');
+const db = require('../models/mysql/user.js');
 const passport = require('../config/passport');
 
 module.exports = function(app) {
