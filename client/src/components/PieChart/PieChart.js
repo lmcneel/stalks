@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {VictoryPie} from 'victory';
 
 /**  colorScale is an array of established colors for th slices of pie */

@@ -1,98 +1,146 @@
-import React, { Component } from 'react';
-import { Container, Row, Col} from 'reactstrap';
-import { PetName, PetPic, PetStats, PetWrapper } from '../../components/PetStats';
+import React, {Component} from 'react';
+import {Container, Row, Col} from 'reactstrap';
+import {PetName, PetPic, PetStats, PetWrapper} from '../../components/PetStats';
 import BankValue from '../../components/BankValue';
 import PetfolioValue from '../../components/PetfolioValue';
 import PieChart from '../../components/PieChart';
 import wolfy from './defaultPetPic.png';
-//import other 3 pet pics here
-//import StockTicker from '../../components/StockTicker.js';
-import './Petfolio.css';
- 
+// import other 3 pet pics here
+import StockTicker from '../../components/StockTicker/StockTicker';
+import '../../assets/scss/_petfolio.scss';
+import API from './../../utils/API';
+// const calc = require('./../../utils/Calc');
 
+/**
+ * @class Portfolio
+ */
 class Petfolio extends Component {
-    state = {
-      petName : 'Wolf',
-      petPic : wolfy,  
+  /**
+   * Constructor function for setting state
+   * @param {*} props
+   */
+  constructor(props) {
+    super(props);
+    this.state = {
+      petName: 'Wolf',
+      petPic: wolfy,
       petStats: [85, 90, 50, 70],
+      // tickerText,
       petfolioValue: '$1000',
       bankValue: '$2000',
-      //watchStocks: ['Ace 2.35  Betaa 4.15  Candi 1.28']
+      tickerText: 'Watchlist...StockA 2.35...StockB 4.15...StockC 1.28',
     };
-   
+  }
+
+    /**
+     * Setting state of portfolio and bank values and all pet info(name, pic, stats) once component is mounted
+     */
+    componentDidMount() {
+      // console.log('here');
+      // API.getTickerText().then(((r) => {
+      //   console.log('---------------------------'+r);
+      //   if (r !== []) {
+      //     this.setState({tickerText: r});
+      //   };
+      // }));
+      // calc.portfolioValue().then(((r) => {
+      //   this.setState({petfolioValue: r});
+      // }));
+      // calc.bankValue().then(((r) => {
+      //   this.setState({bankValue: r});
+      // }));
+    };
+
+    /**
+     * @return {*} Container
+     */
     render() {
       return (
 
-        <Container fluid>
-          <Row>
-            <Col size="md-3">
+      <Container fluid>
+        {/** global header with app name and right nav icons goes here above next row*/}
+
+        <Row>
+          {/* Col 1:Global side bar*/}
+          <Col md="3">
             Side Bar
             </Col>
-            <Col size="md-3">
+
+          {/** Col 2: Feature Content*/}
+          <Col md="9">
+
+            {/** Row 1: feature name and petfolio and bank values*/}
+            <Row>
+              <Col>
+                <h2>Petfolio</h2>
+              </Col>
+              <Col>
+                <PetfolioValue petfolioValue={this.state.petfolioValue} />
+              </Col>
+              <Col>
+                <BankValue bankValue={this.state.bankValue} />
+              </Col>
+            </Row>
+
+            {/* Row 2: StockTicker*/}
+            <Row>
+              <Col>
+                <StockTicker text={this.state.tickerText}
+                />
+              </Col>
+            </Row>
+
+            {/** Row 3: PetStats and PieChart*/}
+            <Row>
+              <Col>
               <div className="main">
-              <h2>Petfolio Page</h2>
+                <PetWrapper>
 
-              <PetWrapper>
+                  <PetPic>
+                    {this.state.petPic}
+                  </PetPic>
 
-                <PetPic>
-                  {this.state.petPic}
-                </PetPic>   
+                  <div className="petname">
+                    <PetName>
+                      {this.state.petName}
+                    </PetName>
+                  </div>
 
-                <div className="petname">
-                  <PetName>
-                    {this.state.petName}
-                  </PetName>
-                </div>
-
-                <div className="statusbars">
-                <PetStats 
-                    petStat="Overall Health"
-                    petStatColor="success"
-                    petStatValue={this.state.petStats[0]}
-                />
-                <PetStats 
-                    petStat="Hunger"
-                    petStatColor="danger"
-                    petStatValue={this.state.petStats[3]}
-                />
-                <PetStats 
-                    petStat="Happiness"
-                    petStatColor="info"
-                    petStatValue={this.state.petStats[1]}
-                />
-                <PetStats 
-                    petStat="Fondness"
-                    petStatColor="warning"
-                    petStatValue={this.state.petStats[2]}
-                /> 
-                </div>
-            
+                  <div className="statusbars">
+                    <PetStats
+                      petStat="Overall Health"
+                      petStatColor="success"
+                      petStatValue={this.state.petStats[0]}
+                    />
+                    <PetStats
+                      petStat="Hunger"
+                      petStatColor="danger"
+                      petStatValue={this.state.petStats[3]}
+                    />
+                    <PetStats
+                      petStat="Happiness"
+                      petStatColor="info"
+                      petStatValue={this.state.petStats[1]}
+                    />
+                    <PetStats
+                      petStat="Fondness"
+                      petStatColor="warning"
+                      petStatValue={this.state.petStats[2]}
+                    />
+                  </div>
                 </PetWrapper>
-                </div>
+              </div>
             </Col>
 
-            <Col size="md-6">
-              <Row>
-                <Col>
-                  <PetfolioValue petfolioValue={this.state.petfolioValue}/>
-                </Col>
-                <Col>
-                  <BankValue bankValue = {this.state.bankValue}/>
-                </Col>
-              </Row>
-              <Row>
-              
-              </Row>
-              <Row>
-                <PieChart />
-              </Row>
-            </Col>
-          </Row>
-
-    </Container>   
-    
+            <Col>
+              <PieChart />
+          </Col>
+        </Row>
+        </Col>
+        </Row>
+      </Container>
     );
   }
 };
 
-  export default Petfolio;
+export default Petfolio;
