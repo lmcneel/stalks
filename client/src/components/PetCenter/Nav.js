@@ -35,10 +35,10 @@ export default class Example extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav  navbar>
               <NavItem>
-                <NavLink href="/">Your Items</NavLink>
+                <NavLink href="/petcenter">Your Items</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/itemshop">Items Shop</NavLink>
+                <NavLink href="/petshop">Items Shop</NavLink>
               </NavItem>
 
             </Nav>
