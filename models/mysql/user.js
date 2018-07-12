@@ -14,7 +14,6 @@ module.exports = function(sequelize, DataTypes) {
         name: {
             type: DataTypes.STRING,
         },
-<<<<<<< HEAD
     }, {
         underscored: false,
     });
@@ -45,13 +44,6 @@ module.exports = function(sequelize, DataTypes) {
         User.hasOne(models.UserValidation, {
             onDelete: 'cascade',
         });
-=======
-
-    });
-    // A custom method for our User model. It will compare user pawword wit stored password.
-    User.prototype.validPassword = function(password) {
-        return bcrypt.compareSync(password, this.password);
->>>>>>> auth-issue#189
     };
     return User;
 };
