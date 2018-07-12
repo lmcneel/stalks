@@ -27,16 +27,17 @@ class CollapseRow extends Component {
   /**
    * Toggle function
    */
-  toggle() {
-    this.setState({collapse: !this.state.collapse});
-  }
-  /**
-   * Render function
-   * @return {JSX}
-   */
-  render() {
-    return (
-      <Container>
+ toggle() {
+   this.setState({collapse: !this.state.collapse});
+ }
+
+/**
+ * Render function
+ * @return {JSX}
+ */
+ render() {
+   return (
+       <Container className ='collapse-component'>
         <Row>
           <Col>
             <h1>{this.props.title}</h1>
