@@ -5,7 +5,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import {mount, shallow} from 'enzyme';
 import Component from './../StockSearch';
-
 describe('StockSearch', ()=>{
     it('renders without error', ()=>{
         const div = document.createElement('div');

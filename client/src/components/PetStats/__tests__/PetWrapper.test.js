@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Component from './../PetWrapper';
-
 describe('PetWrapper', ()=>{
     it('renders without error', ()=>{
         const div = document.createElement('div');

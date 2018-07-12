@@ -1,7 +1,5 @@
-import Component from '../tradingController.js';
-
+// import Component from './../tradingController.js';
 describe('tradingController' , () => {
     it('renders without error' , ()=>{
-
     });
 });

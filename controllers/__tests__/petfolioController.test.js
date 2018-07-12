@@ -1,7 +1,7 @@
-// import Component from './../trading.js';
+// import Component from './../petfolioController.js';
 // import React from 'react';
 // import {  mount , shallow  } from 'enzyme';
-describe('trading', ()=>{
+describe('petfolioController', ()=>{
     it('exists', ()=>{
     });
 });

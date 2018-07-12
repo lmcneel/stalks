@@ -4,7 +4,6 @@ configure({adapter: new Adapter()});
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Component from './../SideNav';
-
 describe('SideNav', ()=>{
     it('renders without error', ()=>{
         const div = document.createElement('div');

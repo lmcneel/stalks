@@ -3,10 +3,8 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({adapter: new Adapter()});
 import Component from './../BankValue';
 import React from 'react';
-import {mount, shallow} from 'enzyme';
+import {mount/* , shallow*/} from 'enzyme';
 import ReactDOM from 'react-dom';
-
-
 describe('Bank Value', ()=>{
     it('renders without error', ()=>{
         const div = document.createElement('div');

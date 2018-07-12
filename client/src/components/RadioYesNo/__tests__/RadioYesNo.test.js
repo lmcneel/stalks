@@ -4,9 +4,7 @@ configure({ adapter: new Adapter() });
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import {mount, shallow} from 'enzyme';
-
 import Component from './../RadioYesNo';
-
 describe('RadioYesNo', ()=>{
     it('renders without error', ()=>{
         const div = document.createElement('div');
