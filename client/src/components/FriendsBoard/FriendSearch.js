@@ -1,10 +1,12 @@
 import React from "react";
-import {Card, CardText, CardBody, CardTitle, Button, Navbar, Nav, NavItem, NavLink, Co, Row} from reactstrap;
+import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row, Button, Container} from "reactstrap";
 
-const FriendSearch = (props) => (
-<div>
+export const FriendSearch = (props) => {
+
+return(
+<Container fluid>
     <Row>
-        <Col sm="5">
+    <Col sm="8" md={{ size: 8, offset: 3 }}>
             <Card color="light">
                 <CardBody>
                     <CardTitle>Friend List</CardTitle>
@@ -29,7 +31,7 @@ const FriendSearch = (props) => (
             </Card>
         </Col>
     </Row>
-</div>
-);
+</Container>
+)
+};
 
-export default FreindSearch;

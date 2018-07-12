@@ -1,10 +1,12 @@
 import React from "react";
-import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Co, Row} from reactstrap;
+import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row} from 'reactstrap';
 
-const FriendList = (props) => (
+export const FriendList = (props) => {
+
+    return(
 <div>
     <Row>
-        <Col sm="5">
+        <Col sm="12">
             <Card color="light">
                 <CardBody>
                     <CardTitle>Friend List</CardTitle>
@@ -26,6 +28,6 @@ const FriendList = (props) => (
         </Col>
     </Row>
 </div>
-);
+    )
+};
 
-export default FreindList;
