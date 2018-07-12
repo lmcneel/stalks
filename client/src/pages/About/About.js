@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import Container from "./components/Container";
+import Images from "./components/Images";
+import data from "./data.json";
 
 /**
  * Trading Page
@@ -6,13 +9,33 @@ import React, {Component} from 'react';
 class About extends Component {
     /** Returns the Trading Center Component
      * @return {About}
+     * 
      */
+    state = {
+        data : data,
+      };
     render() {
         return (
             <div>
                 <div id="container">
-                <h1>Hello World!</h1>
+                <h1>Meet the Team!</h1>
                 </div>
+                <Container >
+            <div className="wrapper">
+            {this.state.data.map(data=>(
+              <Images
+              id={data.id}
+              key={data.id}
+              img={data.image}
+              name={data.name}
+              title={data.title}
+              portfolio={data.portfolio}
+            />
+        
+            ))}
+      
+            </div>
+              </Container>
             </div>
         );
     }
