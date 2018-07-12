@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
 import Container from "./components/Container";
 import Images from "./components/Images";
 
 
 // import LinkButton from "./components/LinkButton";
 import data from "./data.json";
-import React, {Component} from 'react';
 import Splash from './components/Splash';
 import TopNav from './components/TopNav';
 import Wrapper from './components/Wrapper';

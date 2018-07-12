@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Container from "./components/Container";
-import Images from "./components/Images";
-import data from "./data.json";
+import Container from "../../components/Container";
+import Images from "../../components/Images";
+import data from "../../data.json";
 
 /**
  * Trading Page
