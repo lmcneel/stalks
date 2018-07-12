@@ -10,12 +10,12 @@ const PortfolioStatus = (props) => (
                 <h2>Page Title</h2>
             </Col>
             <Col xs="12" md="8">
-                <ul className="d-flex justify-content-sm-center justify-content-md-end portfolioValue">
-                    <li>
+                <ul className="d-flex justify-content-sm-center justify-content-md-end">
+                    <li className="portfolioValue">
                         <FontAwesomeIcon icon={faBriefcase} />
                         $100,000,000
                 </li>
-                    <li className="pl-5 bankValue">
+                    <li className="ml-5 bankValue">
                         <FontAwesomeIcon icon={faPiggyBank} />
                         $100,000,000
                 </li>

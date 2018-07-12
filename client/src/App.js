@@ -6,7 +6,7 @@ import MainContentWrapper from './components/MainContentWrapper';
 import PortfolioStatus from './components/PortfolioStatus';
 import WatchlistTicker from './components/WatchlistTicker';
 import Content from './components/Content';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
 import Trading from './pages/Trading';
 import ViewStocks from './pages/ViewStocks';
@@ -42,66 +42,81 @@ class App extends Component {
     this.handleJoyrideCallback = this.handleJoyrideCallback.bind(this);
     this.navToggleHandler = this.navToggleHandler.bind(this);
   }
-  
+    /**
+   * openModal function
+   */
   openModal() {
     this.setState({modalIsOpen: true});
   }
-
+  /**
+   * closeModal function
+   */
   closeModal() {
     this.setState({modalIsOpen: false});
   }
-
+  /**
+  * handleSelect function
+  * @param {number} index
+  * @param {number} last
+  */
   handleSelect(index, last) {
     if (this.joyride.getProgress().index === 2) {
       setTimeout(() => {
         this.joyride.next();
-        }, 1); 
+        }, 1);
     }
   }
-
+  /**
+  * handleSelect function
+  * @param {number} result
+  */
   handleJoyrideCallback(result) {
-    const{joyride} = this.props;
+    const {joyride} = this.props;
 
     if (result.action == 'close') {
       this.setState({run: false});
     }
-
   }
-
+  /**
+   * resetTour function
+   */
   resetTour() {
     console.dir(this);
     this.joyride.reset(true);
     this.setState({run: true});
   }
-    /* Modal funcs */
-  // Yes! start tour
+  /**
+   * yes function
+   */
   yes() {
     this.closeModal();
     this.setState({run: true});
   }
-
+  /**
+   * never function
+   */
   never() {
     this.closeModal();
     this.close();
   }
-
-  close(){
-    this.setState({ showModal: false });
+  /**
+   * close function
+   */
+  close() {
+    this.setState({showModal: false});
   }
   /**
    * Function that handles the click for the nav button
    * @param {*} e
    */
   navToggleHandler(e) {
-    this.setState({ sideNav: !this.state.sideNav });
+    this.setState({sideNav: !this.state.sideNav});
   }
   /**
    * Render function for App Component
    * @return {JSX}
    */
   render() {
-    const { steps, run } = this.state;
-
     return (
 
       <Router>
@@ -115,15 +130,16 @@ class App extends Component {
             <MainContentWrapper>
 
         <Joyride
-          ref={c => (this.joyride = c)}
+          ref={(c) => (this.joyride = c)}
           steps={[
             {
-              title: 'Start',
-              text: 'Prototype!',
+              title: 'Bank Value',
+              text: 'This is the amount of liquid assets, money, that you can use to invest in stocks or spend on your pet for fun items in the shop.',
               selector: '.bankValue',
             },
             {
-              title: 'Item One',
+              title: 'Petfolio Value',
+              text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
               selector: '.portfolioValue',
             },
             {
@@ -142,7 +158,7 @@ class App extends Component {
             }
             ]}
           run={this.state.run} // or some other boolean for when you want to start it
-          type={"continuous"}
+          type={'continuous'}
           showOverlay={true}
           allowClicksThruHole={true}
           autoStart={this.state.run}
