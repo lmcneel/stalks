@@ -6505,13 +6505,16 @@ a[data-toggle="collapse"] {
 body {
   background-color: #DDDFE1; }
 
+.trading {
+  width: 80%; }
+
 .stockStats {
   background-color: #fff;
   border-radius: 25px;
   border: none;
   color: #404850;
   float: left;
-  margin: 3% 3% 3% 3%;
+  margin: 0% 0% 3% 0%;
   padding: 2% 2% 2% 2%; }
 
 .stockStats h1 {
@@ -6570,13 +6573,16 @@ body {
   margin-bottom: 20px;
   text-align: center; }
 
+.transactionForm {
+  margin: 0px; }
+
 .buySell {
   background-color: #fff;
   border-radius: 25px;
   border: none;
   color: #404850;
   float: left;
-  margin: 3% 3% 3% 3%;
+  margin: 0% 3% 3% 0%;
   padding: 5% 5% 5% 5%; }
 
 .buySell h1 {
@@ -6603,6 +6609,13 @@ body {
   font-size: 24px;
   text-align: left;
   padding: 5px; }
+
+.buyBtn {
+  background-color: #5EBF92;
+  border: none;
+  color: #FFFFFF;
+  float: right;
+  font-size: 14px; }
 
 .transactionModal {
   height: 100px; }
@@ -6643,5 +6656,3 @@ body {
     float: none;
     font-size: 14px;
     width: 100%; } }
-
-/*# sourceMappingURL=app.css.map */
