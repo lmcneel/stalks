@@ -7,15 +7,23 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../../config/config.json')[env];
 const db = {};
+let seq;
 
 let sequelize; 
 
 if (config.use_env_variable) {
+<<<<<<< HEAD
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
+=======
+  seq = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  seq  = new Sequelize(config.database, config.username, config.password, config);
+>>>>>>> 8bed74f11cb863fe1ff3966a951ae281e29ccfc7
 }
 
+const sequelize = seq;
 
 
 fs

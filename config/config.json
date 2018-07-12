@@ -1,8 +1,13 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "alexs1130",
     "database": "database_development",
+=======
+    "password": "Root",
+    "database": "stalks_db",
+>>>>>>> 8bed74f11cb863fe1ff3966a951ae281e29ccfc7
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
