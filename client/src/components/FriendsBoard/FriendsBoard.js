@@ -1,13 +1,16 @@
-import React from "react";
+import React, {Component} from 'react';
 import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row, Button, Container} from "reactstrap";
 
-export const FriendsBoard = (props) => {
+export class FriendsBoard extends React.component {
 
-return(
+
+
+
+render (){
 <Container>
     <Row>
     <Col sm="8" md={{ size: 11, offset: 0 }}>
-            <Card height= '300px' color="light">
+            <Card color="light">
                 <CardBody>
                     <CardTitle>Friends Board</CardTitle>
                         <Navbar color="light" light expand="md">
@@ -31,5 +34,4 @@ return(
         </Col>
     </Row>
 </Container>
-)
 };
