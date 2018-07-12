@@ -19,6 +19,10 @@ import About from './pages/About';
 // import Logout from './components/pages/Logout';
 // import SignUp from './components/pages/SignUp';
 // import Achievements from './components/pages/Achievements';
+import ViewStocks from './pages/ViewStocks';
+import DocsList from './components/DocsList/DocsList';
+import HelpLanding from './components/HelpLanding/HelpLanding';
+import Inventory from './components/userTabs';
 
 /**
  * Class App
@@ -49,6 +53,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+
         <div className="App">
             <TopNav navToggleHandler={this.navToggleHandler}/>
             <Wrapper>
@@ -56,6 +61,7 @@ class App extends Component {
               <MainContentWrapper>
                 <PortfolioStatus />
                 <WatchlistTicker />
+                <Inventory />
                 <Content>
                 <Switch>
                       <Route exact path="/petfolio" component={Petfolio} />
@@ -70,7 +76,10 @@ class App extends Component {
                       <Route exact path='/logout' component={Logout} />
                       <Route exact path='/signup' component={SignUp} />
                       <Route exact path='/achievements' component={Achievements} /> */}
-                     </Switch>
+                      <Route exact path='/viewstocks' component={ViewStocks} />
+                      <Route exact path='/help' component={HelpLanding} />
+                      <Route exact path='/docs' component={DocsList} />
+                    </Switch>
                 </Content>
                 </MainContentWrapper>
               </Wrapper>

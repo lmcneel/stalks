@@ -6502,16 +6502,23 @@ a[data-toggle="collapse"] {
 .statusbars {
   width: 300px; }
 
+body {
+  background-color: #DDDFE1; }
+
 .stockStats {
-  background-color: #DDDFE1;
+  background-color: #fff;
+  border-radius: 25px;
   border: none;
   color: #404850;
   float: left;
   margin: 3% 3% 3% 3%;
-  padding: 5% 5% 5% 5%; }
+  padding: 2% 2% 2% 2%; }
 
 .stockStats h1 {
-  font-size: 22px; }
+  font-size: 22px;
+  text-align: left;
+  padding: 5px;
+  margin-bottom: 0px; }
 
 .stockStats h2 {
   font-size: 18px;
@@ -6532,10 +6539,27 @@ a[data-toggle="collapse"] {
   text-align: left;
   padding: 5px; }
 
+.changeValue {
+  text-align: right; }
+
 #changeValuePositive {
   color: #5EBF92; }
 
 #changeValueNegative {
+  color: #EE4A37; }
+
+.faEye {
+  color: #404850;
+  color: #FBB424; }
+
+.faEyeWatched {
+  color: #FBB424; }
+
+.faHeart {
+  color: #404850;
+  color: #EE4A37; }
+
+.faHeartFav {
   color: #EE4A37; }
 
 #stockChart {
@@ -6543,10 +6567,12 @@ a[data-toggle="collapse"] {
   height: 230px; }
 
 .stockData {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  text-align: center; }
 
 .buySell {
-  background-color: #DDDFE1;
+  background-color: #fff;
+  border-radius: 25px;
   border: none;
   color: #404850;
   float: left;
@@ -6554,7 +6580,10 @@ a[data-toggle="collapse"] {
   padding: 5% 5% 5% 5%; }
 
 .buySell h1 {
-  font-size: 22px; }
+  font-size: 22px;
+  text-align: left;
+  padding: 5px;
+  margin-bottom: 0px; }
 
 .buySell h2 {
   font-size: 18px;
@@ -6571,9 +6600,12 @@ a[data-toggle="collapse"] {
   margin-bottom: 0px; }
 
 .buySell h4 {
-  font-size: 14px;
+  font-size: 24px;
   text-align: left;
   padding: 5px; }
+
+.transactionModal {
+  height: 100px; }
 
 #numberOfShares {
   color: #6c757d;
@@ -6583,7 +6615,33 @@ a[data-toggle="collapse"] {
   background-color: #5EBF92;
   border: none;
   color: #FFFFFF;
-  float: right; }
+  float: right;
+  font-size: 14px; }
 
 .form-row {
   margin-bottom: 15px; }
+
+.searchStockStats {
+  margin: 3% 3% 10% 3%;
+  padding: 2% 2% 2% 2%; }
+
+.searchBar {
+  margin-bottom: 20px; }
+
+.stockTickerBarCollapse {
+  border-bottom: solid 2px #DDDFE1;
+  padding-bottom: 20px; }
+
+.collapseTop {
+  padding-top: 20px; }
+
+@media (max-width: 768px) {
+  .submitBtn {
+    background-color: #5EBF92;
+    border: none;
+    color: #FFFFFF;
+    float: none;
+    font-size: 14px;
+    width: 100%; } }
+
+/*# sourceMappingURL=app.css.map */
