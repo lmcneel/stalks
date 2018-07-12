@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
-import {PetName, PetPic, PetStats, PetWrapper} from '../../components/PetStats';
-import BankValue from '../../components/BankValue';
-import PetfolioValue from '../../components/PetfolioValue';
-import PieChart from '../../components/PieChart';
-import wolfy from './defaultPetPic.png';
+import {PetName, PetPic, PetStats, PetWrapper} from '/PetStats';
+import BankValue from '/BankValue';
+import PetfolioValue from '/PetfolioValue';
+import PieChart from '/PieChart';
+import wolfy from '/defaultPetPic.png';
 // import other 3 pet pics here
-import '../../assets/scss/_petfolio.scss';
 // import API from './../../utils/API';
 // import StockTicker from '../../components/StockTicker.js';
 
