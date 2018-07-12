@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {FriendRequest, FriendList, FriendSearch} from '../../components/FriendsBoard';
 import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row, Button, Container, Collapse} from "reactstrap";
 
 export class FriendsBoard extends Component {
@@ -28,27 +29,45 @@ render (){
                                     <NavLink onClick={this.toggle} style={{ marginBottom: '1rem' }}>Friend List</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="">|   Friend Request   |</NavLink>
+                                    <NavLink onClick={this.toggle} style={{ marginBottom: '1rem' }}>|   Friend Request   |</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="">Friend Search</NavLink>
+                                    <NavLink onClick={this.toggle} style={{ marginBottom: '1rem' }}>Friend Search</NavLink>
                                 </NavItem>
                             </Nav>
                         </Navbar>
-                        <div>
-               <Collapse isOpen={this.state.collapse}>
-          <Card>
-            <CardBody>
-           LIST OF FRIENDS WILL GO HERE
-            </CardBody>
-          </Card>
-        </Collapse>
-      </div>
+                            <div>
+                                <Collapse isOpen={this.state.collapse}>
+                                    <Card>
+                                        <CardBody>
+                                            <FriendList/>
+                                        </CardBody>
+                                    </Card>
+                                </Collapse>
+                            </div>
+                            <div>
+                                <Collapse isOpen={this.state.collapse}>
+                                    <Card>
+                                        <CardBody>
+                                            <FriendRequest/>
+                                        </CardBody>
+                                    </Card>
+                                </Collapse>
+                            </div>         
+                            <div>
+                                <Collapse isOpen={this.state.collapse}>
+                                    <Card>
+                                        <CardBody>
+                                            <FriendSearch/>
+                                        </CardBody>
+                                    </Card>
+                                </Collapse>
+                            </div>
                 </CardBody>
             </Card>
         </Col>
     </Row>
 </Container>
-    )
+)
 }
 };

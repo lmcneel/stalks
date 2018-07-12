@@ -5,23 +5,10 @@ export const FriendRequest = (props) => {
     return(
 <div>
     <Row>
-        <Col sm="8" md={{ size: 10, offset: 1 }}>
+        <Col sm="12">
             <Card color="light">
                 <CardBody>
-                    <CardTitle>Friend List</CardTitle>
-                        <Navbar color="light" light expand="md">
-                            <Nav navbar>
-                                <NavItem>
-                                    <NavLink href="">Friend List</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="">|   FriendRequest   |</NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink href="">Friend List</NavLink>
-                                </NavItem>
-                            </Nav>
-                        </Navbar>    
+                    <CardTitle>Friend Request</CardTitle>    
                 </CardBody>
             </Card>
         </Col>
