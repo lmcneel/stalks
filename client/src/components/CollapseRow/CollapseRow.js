@@ -27,7 +27,6 @@ class CollapseRow extends Component {
   /**
    * Toggle function
    */
-<<<<<<< HEAD
  toggle() {
    this.setState({collapse: !this.state.collapse});
  }
@@ -39,18 +38,6 @@ class CollapseRow extends Component {
  render() {
    return (
        <Container className ='collapse-component'>
-=======
-  toggle() {
-    this.setState({collapse: !this.state.collapse});
-  }
-  /**
-   * Render function
-   * @return {JSX}
-   */
-  render() {
-    return (
-      <Container>
->>>>>>> 715ce0de0f9b8cddf93fbdb894f45f6d6e08e50c
         <Row>
           <Col>
             <h1>{this.props.title}</h1>
