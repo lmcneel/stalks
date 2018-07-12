@@ -1,4 +1,4 @@
-module.exports = function(sequelize, Sequelize) {
+module.exports = function (sequelize, Sequelize) {
     // do we want to define this as user of users
     const User = sequelize.define('User', {
 
