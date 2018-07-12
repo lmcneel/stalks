@@ -1,26 +1,30 @@
 import React from "react";
-import "./LeaderBoard.css";
-import { Card, CardText, CardBody,
-    CardTitle, CardSubtitle, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row } from 'reactstrap';
+import { Card, CardText, CardBody, Container,
+    CardTitle, CardSubtitle, Col, Row } from 'reactstrap';
 
 export const LeaderBoard = (props) => (
 
 
-<div>
+
+<Container>
   <Row>
-    <Col sm="5">
+    <Col sm="8" md={{ size: 11, offset: 0 }}>
       <Card color="light">
         <CardBody>
           <CardTitle>
             Leaderboard
           </CardTitle>
             <CardSubtitle>
-              
+             Leaderboard 
             </CardSubtitle> 
+            <CardText>
+              Leaderboard
+            </CardText> 
         </CardBody>
       </Card> 
     </Col>
   </Row>
-</div>
+</Container>
+
 );
 

@@ -4,10 +4,10 @@ import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col,
 export const FriendsBoard = (props) => {
 
 return(
-<Container fluid>
+<Container>
     <Row>
     <Col sm="8" md={{ size: 11, offset: 0 }}>
-            <Card color="light">
+            <Card height= '300px' color="light">
                 <CardBody>
                     <CardTitle>Friends Board</CardTitle>
                         <Navbar color="light" light expand="md">
