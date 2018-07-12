@@ -3,6 +3,16 @@
 import React from 'react';
 import {Row, Container, Button, Modal, ModalFooter, Form, FormGroup, Label, Input, ModalBody} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import API from '../../utils/API';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  id: PropTypes.string,
+  title: PropTypes.string,
+  article: PropTypes.array,
+  helpfulYes: PropTypes.number,
+  helpfulNo: PropTypes.number,
+};
 /**
  * DocsList class
  */
@@ -21,6 +31,27 @@ class RadioYesNo extends React.Component {
 
     this.changeTitle = this.changeTitle.bind(this);
     this.toggle = this.toggle.bind(this);
+    // this.updateDoc = this.updateDoc.bind(this);
+  }
+  /**
+  * updateDoc function
+  * @param {bool} YesNo
+  */
+  updateDoc(YesNo) {
+    let yes = this.props.helpfulYes;
+    let no = this.props.helpfulNo; 
+     console.log(typeof this.props.helpfulYes);
+    if (YesNo) {
+      yes+=1;
+      console.log('YES!');
+    
+    }
+    else {
+      no+=1;
+      console.log('NO!');
+    };
+
+    API.updateDoc({id: this.props.id, helpfulYes: yes, helpfulNo: no});
   }
   /**
   * toggle modal function
@@ -51,14 +82,14 @@ class RadioYesNo extends React.Component {
               {this.state.showRadio ?
                 <FormGroup check>
                   <Label check>
-                    <Input type="radio" name="radio1" onClick={this.changeTitle} />
+                  <Input onClick={(event) => {this.changeTitle(); this.updateDoc(true)}} type="radio" name="radio1" />
                     Yes
               </Label>
                 </FormGroup> : null}
               {this.state.showRadio ?
                 <FormGroup check>
                   <Label check>
-                    <Input onClick={this.toggle} type="radio" name="radio1" />
+                    <Input onClick={(event) => {this.toggle(); this.updateDoc(false)}} type="radio" name="radio1" />
                     No
               </Label>
                 </FormGroup> : null}
@@ -79,4 +110,5 @@ class RadioYesNo extends React.Component {
   }
 }
 
+RadioYesNo.propTypes = propTypes;
 export default RadioYesNo;
