@@ -1,8 +1,25 @@
 const router = require('express').Router();
-const request = require('request');
+const petfolioController = require('../../controllers/petfolioController');
+// const db = require('../models/mysql');
 
-router.route('/petfolio')
-.get(function(req, res) {
-  // code here
-});
+// these might be tradingController.getBankValue?????????
+// router.route('/petfolio/portfolio')
+//   .get(petfolioController.findPortValue);
+// router.route('petfolio/bank')
+//   .get(petfolioController.findBankValue);
+
+// this might be petsController????????????
+// router.route('petfolio/pets')
+//   .get(petfolioController.getPetInfo);
+
+// is it /api/petfolio/ticker or just /ticker?
+router.route('/ticker')
+.get(petfolioController.getTickerText);
+// router.route('petfolio/ticker')
+//   .get(function(req, res) {
+//     db.UserWatchList.findAll({}).then(function(dbWL){
+//       console.log(dbWL);
+//     });
+//   });
+
 module.exports = router;

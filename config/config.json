@@ -1,8 +1,13 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "password",
     "database": "testing_db",
+=======
+    "password": "Root",
+    "database": "stalks_db",
+>>>>>>> profile-issue
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

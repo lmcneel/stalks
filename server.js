@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
 const seedDB = require('./seeds');
+<<<<<<< HEAD
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const connectSession = require('connect-session-sequelize')(session.Store);
@@ -22,6 +23,9 @@ app.use(session({
     resave: false,
     proxy: true,
     }));
+=======
+const db = require('./models/mysql');
+>>>>>>> profile-issue
 
 app.use(logger('dev'));
 
@@ -60,6 +64,9 @@ app.get('*', (req, res) => {
   // res.sendFile(path.join(__dirname, './client/public/index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`🌎 ==> Server now on port ${PORT}!`);
+
+db.sequelize.sync({force: true}).then(function() {
+  app.listen(PORT, () => {
+    console.log(`🌎 ==> Server now on port ${PORT}!`);
+  });
 });
