@@ -90,9 +90,6 @@ module.exports = function(sequelize, Sequelize) {
     //     //     onDelete: 'cascade'
     //     // });
     // };
-=======
-=======
->>>>>>> d94b7091b6d76985f0aba4322696018283e0d444
     User.associate = function(models) {
         // at this point we are assuming users only have one pet
         User.hasOne(models.Pet, {
