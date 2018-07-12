@@ -9,10 +9,13 @@ import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
 import Trading from './pages/Trading';
+
 import ViewStocks from './pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
+import Social from './pages/Social/Social.js';
+
 
 /**
  * Class App
@@ -43,6 +46,12 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <div>
+          <Switch>
+            <Route exact path="/petfolio" component={Petfolio} />
+            <Route exact path='/trading' component={Trading} />
+            <Route exact path= "/social" component={Social} />
+           </Switch>
 
         <div className="App">
             <TopNav navToggleHandler={this.navToggleHandler}/>
@@ -56,6 +65,7 @@ class App extends Component {
                     <Switch>
                       <Route exact path="/petfolio" component={Petfolio} />
                       <Route exact path='/trading' component={Trading} />
+                      <Route exact path= "/social" component={Social} />
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />

@@ -1,10 +1,11 @@
 import React from "react";
-import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Co, Row} from reactstrap;
+import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row} from "reactstrap";
 
-const FriendRequest = (props) => (
+export const FriendRequest = (props) => {
+    return(
 <div>
     <Row>
-        <Col sm="5">
+        <Col sm="12">
             <Card color="light">
                 <CardBody>
                     <CardTitle>Friend List</CardTitle>
@@ -26,6 +27,6 @@ const FriendRequest = (props) => (
         </Col>
     </Row>
 </div>
-);
+)
+};
 
-export default FreindRequest;
