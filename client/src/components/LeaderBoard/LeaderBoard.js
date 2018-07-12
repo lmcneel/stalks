@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import { Card, CardText, CardBody, Container,
     CardTitle, CardSubtitle, Col, Row } from 'reactstrap';
 
@@ -16,10 +16,14 @@ export const LeaderBoard = (props) => (
           </CardTitle>
             <CardSubtitle>
              Leaderboard 
-            </CardSubtitle> 
+            </CardSubtitle>
+            <Card>
+            <CardBody> 
             <CardText>
-              Leaderboard
-            </CardText> 
+              Leaderboard ITEMS WILL GO HERE!
+            </CardText>
+            </CardBody>
+            </Card> 
         </CardBody>
       </Card> 
     </Col>
