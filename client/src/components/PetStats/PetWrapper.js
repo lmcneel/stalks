@@ -24,4 +24,3 @@ const PetWrapper = (props) => {
 };
 PetWrapper.propTypes = propTypes;
 export {PetWrapper};
-

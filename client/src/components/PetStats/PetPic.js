@@ -1,16 +1,9 @@
 import React, {Component} from 'react';
 import wolfy from '../pages/defaultPetPic.png';
-// import PropTypes from 'prop-types';
+// import other images here
 
-// const propTypes = {
-//     children: PropTypes.oneOfType([
-//         PropTypes.arrayOf(PropTypes.element),
-//         PropTypes.element,
-//         PropTypes.string,
-//     ]),
-// };
 /**
- * @class Portfolio
+ * @class PetPic
  */
 class PetPic extends Component {
     /**
@@ -23,7 +16,6 @@ class PetPic extends Component {
             petPic: wolfy,
          };
     }
-
     /**
      * @return {*} Container
      */
@@ -35,13 +27,5 @@ class PetPic extends Component {
         );
     }
 };
-// const PetPic = (props) => {
-//     return (
-//       <div>
-//         <img src={props.children} width="250px" alt="user's pet" />
-//       </div>
-//     );
-// };
-// PetPic.propTypes = propTypes;
 
 export default PetPic;

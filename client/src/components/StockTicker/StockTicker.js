@@ -1,13 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import './StockTicker.css';
 
-const propTypes = {
-    text: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.element),
-        PropTypes.element,
-        PropTypes.string,
-    ]),
-};
 const StockTicker = (props) => {
     return (
         <div className='stockticker'>
@@ -15,5 +8,5 @@ const StockTicker = (props) => {
         </div>
     );
 };
-StockTicker.propTypes = propTypes;
+
 export default StockTicker;

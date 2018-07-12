@@ -19,7 +19,7 @@ router.route('/quote/:ticker')
         if (!error && response.statusCode === 200) {
             const found = JSON.parse(body);
             res.json(found);
-            // console.log(found);
+            console.log(found);
         } else {
             console.log(error);
             found = {};
@@ -80,10 +80,14 @@ router.get('/portfolio', (req, res) => {
         }
     });
 });
+
 router.route('/buy')
 .post(tradingController.buy);
+
 router.route('/sell')
 .post(tradingController.sell);
 
+router.route('/mystocks/:portfolio_id')
+.get(tradingController.myStocks);
 
 module.exports = router;
