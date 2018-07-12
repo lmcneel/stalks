@@ -7,6 +7,11 @@ module.exports = function(sequelize, Sequelize) {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
+    symbol: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true,      
+    }
   });
   UserWatchlist.associate = function(models) {
     // users_id
