@@ -27,7 +27,7 @@ class StockSearch extends Component {
             response: '',
             collapse: false,
             watched: true,
-            eyeWatched : 'faEye',
+            eyeWatched: 'faEye',
             DOW: ['AAPL', 'AXP', 'BA', 'CAT', 'CSCO', 'CVX', 'DIS', 'DWDP', 'GE', 'GS', 'HD', 'IBM', 'INTC', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM', 'MRK', 'MSFT', 'NKE', 'PFE', 'PG', 'TRV', 'UNH', 'UTX', 'V', 'VZ', 'WMT', 'XOM'],
             Watchlist: 'AAPL',
             // List: [],
@@ -41,12 +41,29 @@ class StockSearch extends Component {
     };
 
     checkWatchList = () => {
-        // If in watchlist set [watched] to true
-        return this.state.watched = false;
+        API.getwatchlist()
+            .then(res => {
+                console.log(res.data);
+                const userWatchList = {};
+                for (var i = 0; i < res.data.length; i++) {
+                    if (userWatchList[res.data[i].ticker] = this.state.ticker) {
+                        return this.state.watched = false;
+                    } else {
+                        return this.state.watched = false;
+                    }
+                }
+            })
+            .catch(err => console.log(err));
+
     };
-    
+
     addToWatchlist = () => {
         // Need to add to MySQL Watchlist, then check watch list
+        this.state.checkWatchList();
+    }
+
+    removeFromWatchlist = () => {
+        // Need to remove from MySQL Watchlist, then check watch list
         this.state.checkWatchList();
     }
 
@@ -234,7 +251,7 @@ class StockSearch extends Component {
                                             className='buyBtn'
                                         >
                                             <Link
-                                                to={'/trading'}
+                                                to={'/trading/' + this.state.ticker}
                                             >
                                                 BUY / SELL
                                         </Link>

@@ -41,6 +41,11 @@ class ListStock extends Component {
         this.state.checkWatchList();
     }
 
+    removeFromWatchlist = () => {
+        // Need to remove from MySQL Watchlist, then check watch list
+        this.state.checkWatchList();
+    }
+
     componentDidMount() {
         this.charting({ ticker: this.state.ticker });
     };
