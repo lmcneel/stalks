@@ -6,16 +6,6 @@ import {ProgressBars} from '../PetStats/ProgressBars';
  */
 class PetStatusBars extends Component {
     /**
-     * Constructor function for setting state
-     * @param {*} props
-     */
-    constructor(props) {
-        super(props);
-        this.state = {
-            petStats: [85, 90, 50, 70],
-        };
-    }
-    /**
         * @return {*} Container
         */
     render() {
@@ -25,22 +15,22 @@ class PetStatusBars extends Component {
                 <ProgressBars
                     petStatLabel="Overall Health"
                     petStatColor="success"
-                    petStatValue={this.state.petStats[0]}
+                    petStatValue={this.props.overallHealth}
                 />
                 <ProgressBars
                     petStatLabel="Hunger"
                     petStatColor="danger"
-                    petStatValue={this.state.petStats[3]}
+                    petStatValue={this.props.hunger}
                 />
                 <ProgressBars
                     petStatLabel="Happiness"
                     petStatColor="info"
-                    petStatValue={this.state.petStats[1]}
+                    petStatValue={this.props.happiness}
                 />
                 <ProgressBars
                     petStatLabel="Fondness"
                     petStatColor="warning"
-                    petStatValue={this.state.petStats[2]}
+                    petStatValue={this.props.fondness}
                 />
             </div>
         );
