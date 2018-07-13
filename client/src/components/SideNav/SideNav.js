@@ -21,7 +21,7 @@ const SideNav = (props) => (
                 </a>
             </li>
             <li className="">
-                <a href="">
+                <a href="/viewstocks">
                     <FontAwesomeIcon icon={faMoneyBillWave} />  Trade Center
                 </a>
             </li>

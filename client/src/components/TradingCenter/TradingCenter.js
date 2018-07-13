@@ -31,6 +31,8 @@ class Transaction extends Component {
         this.toggle = this.toggle.bind(this);
     }
 
+
+
     toggle() {
         this.setState({
             modal: !this.state.modal
@@ -44,6 +46,11 @@ class Transaction extends Component {
     
     addToWatchlist = () => {
         // Need to add to MySQL Watchlist, then check watch list
+        this.state.checkWatchList();
+    }
+
+    removeFromWatchlist = () => {
+        // Need to remove from MySQL Watchlist, then check watch list
         this.state.checkWatchList();
     }
 

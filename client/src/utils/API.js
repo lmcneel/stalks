@@ -5,13 +5,13 @@ import axios from 'axios';
 
 export default {
 
-    buyShares: function(buyData) {
+    buyShares: function (buyData) {
         return axios.post(`/api/trading/buy/`, buyData);
     },
-    sellShares: function(sellData) {
+    sellShares: function (sellData) {
         return axios.post(`/api/trading/sell/`, sellData);
     },
-    findQuotes: function(data) {
+    findQuotes: function (data) {
         console.log(data);
         return axios.get(`/api/trading/quote/${data.ticker}`);
     },
@@ -21,17 +21,25 @@ export default {
     // getBankValue: function() {
     //     return axios.get('api/petfolio/bank');
     // },
-    getPetInfo: function() {
+    getPetInfo: function () {
         return axios.get('/api/petfolio/pets');
     },
-    getTickerText: function() {
+    getTickerText: function () {
         console.log('here in api.js');
         return axios.get('/api/petfolio/ticker');
     },
-    getDocs: function() {
+    getDocs: function () {
         return axios.get('/api/docs');
     },
-    getMyStocks: function(portfolio){
+    getMyStocks: function (portfolio) {
         return axios.get(`api/trading/mystocks/${portfolio}`);
-    }
+    },
+    // Gets all watchlists
+    getwatchlist: function () {
+        return axios.get('/api/watchlist');
+    },
+    // Gets the watchlist with the given id
+    getwatchlist: function (id) {
+        return axios.get('/api/watchlist/' + id);
+    },
 };
