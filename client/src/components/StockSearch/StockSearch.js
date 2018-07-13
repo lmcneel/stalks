@@ -26,7 +26,7 @@ class StockSearch extends Component {
             selected: '',
             response: '',
             collapse: false,
-            watched: true,
+            watched: false,
             eyeWatched: 'faEye',
             DOW: ['AAPL', 'AXP', 'BA', 'CAT', 'CSCO', 'CVX', 'DIS', 'DWDP', 'GE', 'GS', 'HD', 'IBM', 'INTC', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM', 'MRK', 'MSFT', 'NKE', 'PFE', 'PG', 'TRV', 'UNH', 'UTX', 'V', 'VZ', 'WMT', 'XOM'],
             Watchlist: 'AAPL',
@@ -41,30 +41,46 @@ class StockSearch extends Component {
     };
 
     checkWatchList = () => {
-        API.getwatchlist()
-            .then(res => {
-                console.log(res.data);
-                const userWatchList = {};
-                for (var i = 0; i < res.data.length; i++) {
-                    if (userWatchList[res.data[i].ticker] = this.state.ticker) {
-                        return this.state.watched = false;
-                    } else {
-                        return this.state.watched = false;
-                    }
-                }
-            })
-            .catch(err => console.log(err));
+        // If in watchlist set [watched] to true
+        // API.getwatchlist()
+        // .then(res => {
+        //     console.log(res.data);
+        //     for (var i = 0; i < res.data.length; i++) {
+        //         if (userWatchList[res.data[i].ticker] = this.state.ticker) {
+        //             this.setState({watched: !this.state.watched})
+        //         } else {
+        //             this.setState({watched: this.state.watched})
+        //         }
+        //     }
+        // })
+        // .catch(err => console.log(err))
+
+        this.setState({ watched: this.state.watched })
+
+        // return /this.state.watched = false;
 
     };
 
-    addToWatchlist = () => {
+    addToWatchlist = (ticker) => {
         // Need to add to MySQL Watchlist, then check watch list
-        this.state.checkWatchList();
+        // API.addWatchListItem(ticker)
+        // .then(res => {
+
+        //     // Code to add ticker to mySQL
+
+        // })
+        // .catch(err => console.log(err))
     }
 
-    removeFromWatchlist = () => {
+    removeFromWatchlist = (ticker) => {
         // Need to remove from MySQL Watchlist, then check watch list
-        this.state.checkWatchList();
+        // API.removeWatchListItem(ticker)
+        // .then(res => {
+
+        //     // Code to add ticker to mySQL
+
+        // })
+        // .catch(err => console.log(err))        
     }
 
     componentDidMount() {
@@ -240,14 +256,12 @@ class StockSearch extends Component {
                                         }
                                     </div>
                                     <div className='col-sm-3'>
-                                        <FontAwesomeIcon
-                                            {...this.state.watched ? (this.state.eyeWatched = 'faEyeWatched') : (this.state.eyeWatched = 'faEye')}
-                                            className={this.state.eyeWatched}
-                                            onclick={this.state.addToWatchlist}
-                                            size='1x'
-                                            icon={faEye} />
-                                        {/* OnClick Function Required */}
-                                        {/* If not on user watchlist, will need have onclic function to add it to watchlist, and updated state */}
+                                    <FontAwesomeIcon
+                                        {...this.state.watched ? (this.state.eyeWatched = 'faEyeWatched') : (this.state.eyeWatched = 'faEye')}
+                                        className={this.state.eyeWatched}
+                                        onClick = {this.state.watched ? (this.removeFromWatchlist()) : (this.addToWatchlist()) }
+                                        size='1x'
+                                        icon={faEye} />
                                     </div>
                                     <div className='col-sm-3'>
                                         <Button
@@ -312,7 +326,7 @@ class StockSearch extends Component {
                     </div>
                 </div>
                 <div className='stockStats searchStockStats container'>
-                    <div className='contianer'>
+                    <div className='container'>
                         <div className='row listBar'>
                             <div className='col-sm-4'>
                                 <h1>VIEW STOCKS</h1>

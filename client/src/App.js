@@ -56,7 +56,7 @@ class App extends Component {
                 <WatchlistTicker />
                 <Inventory />
                 <Content>
-                    <Switch>
+                <Switch>
                       <Route exact path="/petfolio" component={Petfolio} />
                       <Route exact path='/trading' component={Trading} />
                       <Route exact path='/trading/:ticker' component={TradingCenter} />

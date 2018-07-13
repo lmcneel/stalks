@@ -10,18 +10,7 @@ import _ from 'underscore';
 import { POINT_CONVERSION_COMPRESSED } from 'constants';
 
 
-let watched = false; // This watchlist flag
-let eyeWatched = 'faEye'; // class variable for watchlist condition
 
-const checkWatchList = () => {
-    // If in watchlist set [watched] to true
-    return watched = false;
-};
-
-const addToWatchlist = () => {
-    // Need to add to MySQL Watchlist, then check watch list
-    checkWatchList();
-};
 
 
 class Transaction extends Component {
@@ -34,18 +23,18 @@ class Transaction extends Component {
             shares: 0,
             change: 0,
             response: '',
-            portfolio_id: '5b40fb129adc85a410f488bd',
+            portfolio_id: '5b469e9d1819e80bd4ddeb78',
             transaction: 'buy',
             ROI: 0,
-            id:'5b44cd4e020eda5258fcf2c1',
+            id: '5b469e9d1819e80bd4ddeb75',
             cost: 0,
             datePurchased: '',
             value: 0,
             totalShares: 0,
             cashBalance: 0,
-            watchedArray:["AAPL", "XPP"],
+            watchedArray: ["AAPL", "XPP"],
             modal: false,
-            watched: true,
+            watched: false,
             eyeWatched: 'faEye'
         }
         this.toggle = this.toggle.bind(this);
@@ -61,17 +50,45 @@ class Transaction extends Component {
 
     checkWatchList = () => {
         // If in watchlist set [watched] to true
-        return this.state.watched = false;
+        // API.getwatchlist()
+        // .then(res => {
+        //     console.log(res.data);
+        //     for (var i = 0; i < res.data.length; i++) {
+        //         if (userWatchList[res.data[i].ticker] = this.state.ticker) {
+        //             this.setState({watched: !this.state.watched})
+        //         } else {
+        //             this.setState({watched: this.state.watched})
+        //         }
+        //     }
+        // })
+        // .catch(err => console.log(err))
+
+        this.setState({ watched: this.state.watched })
+
+        // return /this.state.watched = false;
+
     };
 
-    addToWatchlist = () => {
+    addToWatchlist = (ticker) => {
         // Need to add to MySQL Watchlist, then check watch list
-        this.state.checkWatchList();
+        // API.addWatchListItem(ticker)
+        // .then(res => {
+
+        //     // Code to add ticker to mySQL
+
+        // })
+        // .catch(err => console.log(err))
     }
 
-    removeFromWatchlist = () => {
+    removeFromWatchlist = (ticker) => {
         // Need to remove from MySQL Watchlist, then check watch list
-        this.state.checkWatchList();
+        // API.removeWatchListItem(ticker)
+        // .then(res => {
+
+        //     // Code to add ticker to mySQL
+
+        // })
+        // .catch(err => console.log(err))        
     }
 
     componentDidMount() {
@@ -103,7 +120,7 @@ class Transaction extends Component {
 
     myStocks = (portfolio) => {
         console.log('2')
-        
+
         return API.getMyStocks(portfolio)
             .then(res => {
                 console.log('4')
@@ -164,7 +181,7 @@ class Transaction extends Component {
                     }
                 }
                 console.log(userStocks);
-                
+
                 return userStocks
             })
             .catch(err => console.log(err));
@@ -181,7 +198,7 @@ class Transaction extends Component {
             .then(res => {
                 console.log('4')
                 console.log(res.data);
-                allUserStocks=res.data;
+                allUserStocks = res.data;
                 console.log(allUserStocks);
                 for (var i = 0; i < res.data.length; i++) {
                     if (!userStocks[res.data[i].ticker]) {
@@ -195,28 +212,28 @@ class Transaction extends Component {
                 let current = Promise.resolve();
 
                 Object.keys(userStocks).forEach(key => {
-                    current = current.then(()=>{
+                    current = current.then(() => {
                         console.log(key);
                         return API.userQuotes({
-                                ticker: key
-                            })
+                            ticker: key
+                        })
                             .then(res => {
                                 console.log(res.data);
                                 lastPrice.push(res.data[0]);
                                 console.log(lastPrice);
                                 self.ROI(userStocks, lastPrice, allUserStocks);
-                                
+
                             })
                     })
                     // .then(result=>{
                 })
                 return current
-           });                       
+            });
     };
 
     myStocksValue = () => {
         let self = this;
-                
+
         this.myStocks(this.state.portfolio_id)
             .then(result => {
                 console.log(result);
@@ -229,149 +246,148 @@ class Transaction extends Component {
                 let current = Promise.resolve();
 
                 Object.keys(stocks).forEach(function (key) {
-                    current = current.then(()=>{
+                    current = current.then(() => {
                         console.log(key);
                         return API.userQuotes({
-                                ticker: key
-                            })
+                            ticker: key
+                        })
                             .then(res => {
                                 console.log(res.data);
                                 lastPrice.push(res.data[0]);
                                 console.log(lastPrice);
                                 self.portfolioValue(stocks, lastPrice);
-                                
+
                             })
                     })
                     // .then(result=>{
                 })
                 return current
             })
-        };
+    };
 
 
     // This function will calculate the Portfolio Value & Portfolio Value ROI
     // The inputs to this function  are The list of Shares the user has and the latest Rpice of those shares    
     portfolioValue = (stocks, lastPrice) => {
-            console.log(stocks);
-            // Since the Game starts the user with a set starting value it's used as a variable
-            let initCash = 20000.00; 
-            let PV=0;
-            let pvROI =0;
-            // console.log(lastprice);
-            console.log(lastPrice[0]);
-            Object.keys(stocks).forEach( key => {            
-                for (var j = 0, len2 = lastPrice.length; j < len2; j++) {
-                    if (key == lastPrice[j].symbol) {
-                        console.log(stocks[key]);
-                        PV += (stocks[key]*lastPrice[j].price);
-                    }
-                }  
-            })
-            // Portfolio Value is Equal to
-            console.log(PV);
-            let userPortfolioValue = PV.toFixed(2)
-            console.log("The Portfolio Value is: $" + userPortfolioValue);
-            console.log(initCash);
-            let a = userPortfolioValue - initCash;
-            // Portfolio ROI is Callculated Below
-            pvROI = ((a/initCash)-1).toFixed(2);
-            console.log("The Portfolio ROI is:  " + pvROI);
-            return {
-                userPortfolioValue,
-                pvROI
-            };
+        console.log(stocks);
+        // Since the Game starts the user with a set starting value it's used as a variable
+        let initCash = 20000.00;
+        let PV = 0;
+        let pvROI = 0;
+        // console.log(lastprice);
+        console.log(lastPrice[0]);
+        Object.keys(stocks).forEach(key => {
+            for (var j = 0, len2 = lastPrice.length; j < len2; j++) {
+                if (key == lastPrice[j].symbol) {
+                    console.log(stocks[key]);
+                    PV += (stocks[key] * lastPrice[j].price);
+                }
+            }
+        })
+        // Portfolio Value is Equal to
+        console.log(PV);
+        let userPortfolioValue = PV.toFixed(2)
+        console.log("The Portfolio Value is: $" + userPortfolioValue);
+        console.log(initCash);
+        let a = userPortfolioValue - initCash;
+        // Portfolio ROI is Callculated Below
+        pvROI = ((a / initCash) - 1).toFixed(2);
+        console.log("The Portfolio ROI is:  " + pvROI);
+        return {
+            userPortfolioValue,
+            pvROI
+        };
     };
 
     ROI = (allUserStocks, lastPrice, userStocks) => {
         console.log(allUserStocks);
         console.log(lastPrice);
         let eachROI = [];
-             
-        for(var i=0; i < userStocks.length; i++) {
-            if(userStocks[i].type == "Sell")
-            {
-               userStocks.splice(i,1);
+
+        for (var i = 0; i < userStocks.length; i++) {
+            if (userStocks[i].type == "Sell") {
+                userStocks.splice(i, 1);
             }
-         }
-         console.log(userStocks);
-         let boughtStocks = _.uniq(userStocks, function(p){ return p.ticker; });
-         console.log(boughtStocks);
-         
-        
-        Object.keys(allUserStocks).forEach( key => {
+        }
+        console.log(userStocks);
+        let boughtStocks = _.uniq(userStocks, function (p) { return p.ticker; });
+        console.log(boughtStocks);
+
+
+        Object.keys(allUserStocks).forEach(key => {
             for (var j = 0, len1 = lastPrice.length; j < len1; j++) {
                 for (var i = 0, len2 = boughtStocks.length; i < len2; i++) {
                     let obj = {
                         ticker: "",
-                        roi:""
+                        roi: ""
                     };
-                    
-                        if (key == lastPrice[j].symbol && key == boughtStocks[i].ticker) {
-                            obj.ticker = key;
-                            let a = (lastPrice[j].price * allUserStocks[key]);
-                            let b = (allUserStocks[key] * boughtStocks[i].sharePrice);
-                            let c = ((a - b)/b) - 1;
-                            obj.roi = (c).toFixed(2);
-                            eachROI.push(obj);
-                                                               
-                        
-                        }     
-                } 
+
+                    if (key == lastPrice[j].symbol && key == boughtStocks[i].ticker) {
+                        obj.ticker = key;
+                        let a = (lastPrice[j].price * allUserStocks[key]);
+                        let b = (allUserStocks[key] * boughtStocks[i].sharePrice);
+                        let c = ((a - b) / b) - 1;
+                        obj.roi = (c).toFixed(2);
+                        eachROI.push(obj);
+
+
+                    }
+                }
             }
         });
         console.log("The individual Stocks ROI is:");
         console.log(eachROI);
         return eachROI;
 
-};
+    };
 
-// This function will give the Current user Cash
-// The input needs to be the User Portfolio ID.
-    bankValue = (portfolio) =>{
+    // This function will give the Current user Cash
+    // The input needs to be the User Portfolio ID.
+    bankValue = (portfolio) => {
         let bank = 0;
         return API.getMyPortfolio(portfolio)
             .then(res => {
-               console.log(res.data);
-               let data = res.data;
-               console.log(data);
-               bank = (data[0].cash).toFixed(2);
-               console.log(bank);
-               return bank;
+                console.log(res.data);
+                let data = res.data;
+                console.log(data);
+                bank = (data[0].cash).toFixed(2);
+                console.log(bank);
+                return bank;
             })
             .catch(err => console.log(err));
     };
 
-//This Fucntion gives the latest price for the Watch List that in retrieved from MySQL and fed to this function
+    //This Fucntion gives the latest price for the Watch List that in retrieved from MySQL and fed to this function
     myWatchlist = (watchedArray) => {
         console.log(watchedArray);
         let self = this;
-        let watchPrice =[];
-        
-                
+        let watchPrice = [];
+
+
         let current = Promise.resolve();
-            
-                for (let i =0; i< watchedArray.length; i++){
-                    current = current.then(()=>{
-                        console.log(watchedArray[i]);
-                        return API.userQuotes({
-                                ticker: watchedArray[i]
-                            })
-                            .then(res => {
-                                console.log(res.data);
-                                let watch = {
-                                    ticker:"",
-                                    price:""
-                                };
-                                let data = res.data;
-                                 watch.ticker = data[0].symbol;
-                                watch.price = data[0].price;
-                                watchPrice.push(watch);
-                                console.log(watchPrice);
-                            })
+
+        for (let i = 0; i < watchedArray.length; i++) {
+            current = current.then(() => {
+                console.log(watchedArray[i]);
+                return API.userQuotes({
+                    ticker: watchedArray[i]
+                })
+                    .then(res => {
+                        console.log(res.data);
+                        let watch = {
+                            ticker: "",
+                            price: ""
+                        };
+                        let data = res.data;
+                        watch.ticker = data[0].symbol;
+                        watch.price = data[0].price;
+                        watchPrice.push(watch);
+                        console.log(watchPrice);
                     })
-                }            
-                return current
-        };
+            })
+        }
+        return current
+    };
 
     charting = (ticker) => {
         API.findQuotes(ticker)
@@ -538,7 +554,7 @@ class Transaction extends Component {
                                     <FontAwesomeIcon
                                         {...this.state.watched ? (this.state.eyeWatched = 'faEyeWatched') : (this.state.eyeWatched = 'faEye')}
                                         className={this.state.eyeWatched}
-                                        onclick={this.state.addToWatchlist}
+                                        onClick = {this.state.watched ? (this.removeFromWatchlist()) : (this.addToWatchlist()) }
                                         size='1x'
                                         icon={faEye} />
                                     {/* OnClick Function Required */}
