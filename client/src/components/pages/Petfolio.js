@@ -22,7 +22,7 @@ class Petfolio extends Component {
       petfolioValue: 2001,
       bankValue: 2000,
       tickerText: 'Watchlist...StockA 2.35...StockB 4.15...StockC 1.28',
-      tickerForApi,
+      tickerForApi: [],
       portfolioValueColor: 'colorPositive',
       bankValueColor: 'colorPositive',
     };
@@ -37,13 +37,13 @@ class Petfolio extends Component {
       API.getTickerText().then(((r) => {
         if (r.data.length !== 0) {
           let ticker = 'Watchlist...';
-          let tempTicker;
+          let tempTicker = [];
           for (let i=0; i<r.data.length; i++) {
             // API.findQuotes(r.data[i]).then(((r2) => {
             //   console.log(r2);
             // }));
             ticker += r.data[i].uniqueStockSymbol + '...';
-            tempTicker += r.data[i].uniqueStockSymbol;
+            tempTicker.push((r.data[i]).uniqueStockSymbol);
           }
           this.setState({tickerText: ticker});
           this.setState({tickerForApi: tempTicker});
