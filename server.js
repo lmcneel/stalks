@@ -8,6 +8,7 @@ const routes = require('./routes');
 const logger = require('morgan');
 const seedDB = require('./seeds');
 <<<<<<< HEAD
+<<<<<<< HEAD
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const connectSession = require('connect-session-sequelize')(session.Store);
@@ -26,6 +27,9 @@ app.use(session({
 =======
 const db = require('./models/mysql');
 >>>>>>> profile-issue
+=======
+const db = require('./models/mysql');
+>>>>>>> profile-issue#2
 
 app.use(logger('dev'));
 

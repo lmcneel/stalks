@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Nav, NavItem } from 'reactstrap';
-import { Link } from 'react-router-dom'
+import { Link, Switch, Route } from 'react-router-dom'
 import API from '../../utils/API';
-
-
+import Account from './ProfileTabs/Account';
+import GameTips from './ProfileTabs/GameTips';
+import Contact from './ProfileTabs/Contact';
 function Profile(props){
     var {username, petname ,status, accountLength, userFound} = props;
 
@@ -44,6 +45,7 @@ function ProfileNav(props){
     if(!userFound){
         link = '/settings/nouser';
     };
+    console.log(link);
     return(
             <NavItem className='userProfile-nav-item'>
                                 
@@ -58,22 +60,24 @@ class UserProfile extends Component{
     constructor(props){
         super(props)
 
-        this.state = {          
-            firstname: "",
-            lastname: "",
-            username: "",
-            email: "",
-            password: "",
-            balance: 0,
-            mongo_id: 0,
-            last_login: "",
-            status: "",
-            pet_name:"",
-            pet_type:"",
-            account_length: 0,
-            userIsLogginedIn: false,
+        this.state = {
+            user: {
+                firstname: "",
+                lastname: "",
+                username: "",
+                email: "tranmike196@gmail.com",
+                password: "",
+                balance: 0,
+                mongo_id: 0,
+                last_login: "",
+                status: "",
+                pet_name:"",
+                pet_type:"",
+                account_length: 0,
+                emailVerified: false
+            },                      
+            userIsLogginedIn: true,
             searchingForUser: true,
-            emailVerified: false
         };
             
     }
@@ -83,46 +87,23 @@ class UserProfile extends Component{
     };
 
     getUser(){
-        API.getUserProfile()
-            .then(res => {
-                console.log('UserProfile');
-                console.log(res.data);
-                const { 
-                    firstname, 
-                    lastname,
-                    username, 
-                    email, 
-                    password, 
-                    balance, 
-                    mongo_id, 
-                    last_login, 
-                    status, 
-                    account_length, 
-                    emailVerified} = res.data.user;
-                const { pet_type, pet_name } = res.data.pet;
-                this.setState({
-                    firstname: firstname,
-                    lastname : lastname,
-                    username : username,
-                    email : email,
-                    password: password, 
-                    balance: balance,
-                    mongo_id : mongo_id,
-                    last_login: last_login, 
-                    status: status, 
-                    pet_name : pet_name, 
-                    pet_type : pet_type, 
-                    account_length: account_length, 
-                    emailVerified: emailVerified,
-                    searchingForUser: false,
-                    userIsLogginedIn: true});
+        // API.getUserProfile()
+        //     .then(res => {
+        //         console.log('UserProfile');
+        //         console.log(res.data);
+        //         const user = res.data.user;
+        //         const { pet_type, pet_name } = res.data.pet;
+        //         user.pet_type = pet_type;
+        //         user.pet_name = pet_name;
+        //         this.setState({
+        //             user: user, 
+        //             searchingForUser: false,
+        //             userIsLogginedIn: true});
 
-                
+        //     }).catch(err => {
 
-            }).catch(err => {
-
-                    console.log(err);
-                });
+        //             console.log(err);
+        //         });
     };
 
 
@@ -131,28 +112,39 @@ class UserProfile extends Component{
     render(){
         const userFound = this.state.userIsLogginedIn;
         return(
-            <div className='container user-profile-main-container '>
+            <div className='container user-profile-main-container'>
                 <div className='row'>
                     <div className='col-sm-12 col-md-3 profile-containers user-info'>
                             <Profile 
                                 userFound={userFound}
-                                username={this.state.username}
-                                petname={this.state.pet_name}
-                                status={this.state.status}
-                                accountLength={this.state.account_length} /> 
+                                username={this.state.user.username}
+                                petname={this.state.user.pet_name}
+                                status={this.state.user.status}
+                                accountLength={this.state.user.account_length} /> 
 
                     </div>
                 
                     <div className='col-sm-12 col-md-7 profile-containers user-options'>
                         <div className='row'>
-                           
+                            
                                 <Nav>
                                     <ProfileNav userFound={userFound} link={'/settings/account'} linkName={'Account'}/>
                                     <ProfileNav userFound={userFound} link={'/settings/Pet'} linkName={'Pet'}/>
                                     <ProfileNav userFound={userFound} link={'/settings/game'} linkName={'Game Tips'}/>
                                     <ProfileNav userFound={userFound} link={'/settings/contact'} linkName={'Contact Us'}/>
                                 </Nav>
-                                
+                            {this.state.userIsLogginedIn ? (
+                                <Switch>
+                                    <Route exact path="/settings/account" render={(props) => <Account {...props} user={this.state.user} />} />
+                                    <Route exact path="/settings/game" render={(props) => <GameTips {...props} user={this.state.user} />} />
+                                    <Route exact path="/settings/contact" render={(props) => <Contact {...props} user={this.state.user} />} />
+                                </Switch>    
+                            ) : (
+                                <div className='col-12'>
+                                    <h4> You must be logged in to access these options, please log in. </h4>
+                                </div>
+                            )}   
+
                            
                         </div>
                     </div>

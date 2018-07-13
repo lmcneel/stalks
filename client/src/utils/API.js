@@ -28,8 +28,6 @@ export default {
         console.log('here in api.js');
         return axios.get('/api/petfolio/ticker');
     },
-<<<<<<< HEAD
-
     // Saves an article to the database
     login: function(loginData) {
         return axios.post('/api/login', loginData)
@@ -50,13 +48,12 @@ export default {
                 console.log(error);
             });
     },
-=======
     getDocs: function() {
         return axios.get('/api/docs');
     },
     getMyStocks: function(portfolio){
         return axios.get(`api/trading/mystocks/${portfolio}`);
-    },    
+    },
     /*
     **
     **For User Settings / Profile
@@ -66,7 +63,9 @@ export default {
     getUserProfile: function(){
         return axios.get('/api/user/getInfo');
     },
-       
+    checkPassword: function(data){
+        return axios.get('/api/user/checkPassword', data);
+    },
     updateEmail: function(data){
         console.log("Settings API");
         return axios.put('/api/user/update/email', data);
@@ -105,5 +104,4 @@ export default {
     deleteAccount: function(data){
         return axios.delete('/api/user/account/delete', data);
     }
->>>>>>> profile-issue
 };
