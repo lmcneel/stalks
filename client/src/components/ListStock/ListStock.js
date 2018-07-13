@@ -1,62 +1,42 @@
 //The contents of this file should go on client side main pages
 import React, { Component } from 'react';
-import { Collapse, Button } from 'reactstrap';
-import { Typeahead } from 'react-bootstrap-typeahead';
-// import BuySellButton from './BuySellButton';
+import { Input, Collapse, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Highcharts from 'highcharts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faChevronCircleDown } from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
-import ListStock from '../ListStock';
-
-let options = ['MMM','AOS','ABT','ABBV','ACN','ATVI','AYI','ADBE','AAP','AMD','AES','AET','AMG','AFL','A','APD','AKAM','ALK','ALB','ARE','ALXN','ALGN','ALLE','AGN','ADS','LNT','ALL','GOOGL','GOOG','MO','AMZN','AEE','AAL','AEP','AXP','AIG','AMT','AWK','AMP','ABC','AME','AMGN','APH','APC','ADI','ANDV','ANSS','ANTM','AON','APA','AIV','AAPL','AMAT','APTV','ADM','ARNC','AJG','AIZ','T','ADSK','ADP','AZO','AVB','AVY','BHGE','BLL','BAC','BAX','BBT','BDX','BRK.B','BBY','BIIB','BLK','HRB','BA','BKNG','BWA','BXP','BSX','BHF','BMY','AVGO','BF.B','CHRW','CA','COG','CDNS','CPB','COF','CAH','KMX','CCL','CAT','CBOE','CBRE','CBS','CELG','CNC','CNP','CTL','CERN','CF','SCHW','CHTR','CVX','CMG','CB','CHD','CI','XEC','CINF','CTAS','CSCO','C','CFG','CTXS','CME','CMS','KO','CTSH','CL','CMCSA','CMA','CAG','CXO','COP','ED','STZ','GLW','COST','COTY','CCI','CSRA','CSX','CMI','CVS','DHI','DHR','DRI','DVA','DE','DAL','XRAY','DVN','DLR','DFS','DISCA','DISCK','DISH','DG','DLTR','D','DOV','DWDP','DPS','DTE','DUK','DRE','DXC','ETFC','EMN','ETN','EBAY','ECL','EIX','EW','EA','EMR','ETR','EVHC','EOG','EQT','EFX','EQIX','EQR','ESS','EL','RE','ES','EXC','EXPE','EXPD','ESRX','EXR','XOM','FFIV','FB','FAST','FRT','FDX','FIS','FITB','FE','FISV','FLIR','FLS','FLR','FMC','FL','F','FTV','FBHS','BEN','FCX','GPS','GRMN','IT','GD','GE','GGP','GIS','GM','GPC','GILD','GPN','GS','GT','GWW','HAL','HBI','HOG','HRS','HIG','HAS','HCA','HCP','HP','HSIC','HES','HPE','HLT','HOLX','HD','HON','HRL','HST','HPQ','HUM','HBAN','HII','IDXX','INFO','ITW','ILMN','INCY','IR','INTC','ICE','IBM','IP','IPG','IFF','INTU','ISRG','IVZ','IPGP','IQV','IRM','JBHT','JEC','SJM','JNJ','JCI','JPM','JNPR','KSU','K','KEY','KMB','KIM','KMI','KLAC','KSS','KHC','KR','LB','LLL','LH','LRCX','LEG','LEN','LUK','LLY','LNC','LKQ','LMT','L','LOW','LYB','MTB','MAC','M','MRO','MPC','MAR','MMC','MLM','MAS','MA','MAT','MKC','MCD','MCK','MDT','MRK','MET','MTD','MGM','KORS','MCHP','MU','MSFT','MAA','MHK','TAP','MDLZ','MON','MNST','MCO','MS','MSI','MYL','NDAQ','NOV','NAVI','NKTR','NTAP','NFLX','NWL','NFX','NEM','NWSA','NWS','NEE','NLSN','NKE','NI','NBL','JWN','NSC','NTRS','NOC','NCLH','NRG','NUE','NVDA','ORLY','OXY','OMC','OKE','ORCL','PCAR','PKG','PH','PAYX','PYPL','PNR','PBCT','PEP','PKI','PRGO','PFE','PCG','PM','PSX','PNW','PXD','PNC','RL','PPG','PPL','PX','PFG','PG','PGR','PLD','PRU','PEG','PSA','PHM','PVH','QRVO','QCOM','PWR','DGX','RRC','RJF','RTN','O','RHT','REG','REGN','RF','RSG','RMD','RHI','ROK','COL','ROP','ROST','RCL','SPGI','CRM','SBAC','SCG','SLB','STX','SEE','SRE','SHW','SPG','SWKS','SLG','SNA','SO','LUV','SWK','SBUX','STT','SRCL','SYK','STI','SIVB','SYMC','SYF','SNPS','SYY','TROW','TTWO','TPR','TGT','TEL','FTI','TXN','TXT','BK','CLX','COO','HSY','MOS','TRV','DIS','TMO','TIF','TWX','TJX','TMK','TSS','TSCO','TDG','TRIP','FOXA','FOX','TSN','USB','UDR','ULTA','UAA','UA','UNP','UAL','UNH','UPS','URI','UTX','UHS','UNM','VFC','VLO','VAR','VTR','VRSN','VRSK','VZ','VRTX','VIAB','V','VNO','VMC','WMT','WBA','WM','WAT','WEC','WFC','WELL','WDC','WU','WRK','WY','WHR','WMB','WLTW','WYN','WYNN','XEL','XRX','XLNX','XL','XYL','YUM','ZBH','ZION','ZTS'];
 
 
-class StockSearch extends Component {
+class ListStock extends Component {
 
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = {
-            ticker: '',
+            ticker: 'XOM',
             price: 0,
             change: 0,
             value: '',
             selected: '',
             response: '',
             collapse: false,
-            watched: true,
-            eyeWatched: 'faEye',
-            DOW: ['AAPL', 'AXP', 'BA', 'CAT', 'CSCO', 'CVX', 'DIS', 'DWDP', 'GE', 'GS', 'HD', 'IBM', 'INTC', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM', 'MRK', 'MSFT', 'NKE', 'PFE', 'PG', 'TRV', 'UNH', 'UTX', 'V', 'VZ', 'WMT', 'XOM'],
-            Watchlist: 'AAPL',
-            // List: [],
-            // Lists: [],
-            // selectHintOnEnter: true,
+            watched: false,
+            eyeWatched : 'faEye',
         }
+
     }
+
 
     toggle() {
         this.setState({ collapse: !this.state.collapse });
     };
 
     checkWatchList = () => {
-        API.getwatchlist()
-            .then(res => {
-                console.log(res.data);
-                const userWatchList = {};
-                for (var i = 0; i < res.data.length; i++) {
-                    if (userWatchList[res.data[i].ticker] = this.state.ticker) {
-                        return this.state.watched = false;
-                    } else {
-                        return this.state.watched = false;
-                    }
-                }
-            })
-            .catch(err => console.log(err));
-
+        // If in watchlist set [watched] to true
+        return this.state.watched = false;
     };
-
+    
     addToWatchlist = () => {
         // Need to add to MySQL Watchlist, then check watch list
         this.state.checkWatchList();
@@ -71,19 +51,20 @@ class StockSearch extends Component {
         this.charting({ ticker: this.state.ticker });
     };
 
-    // handleInputChange = event => {
-    //     const { name, value } = event.target;
-    //     this.setState({ [name]: value });
-    // };
+    handleInputChange = event => {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+    };
 
     handleTypeheadChange = event => {
-        console.log(event)
-        this.setState({ ticker: event[0] });
+        const { name, selected } = event.target;
+        this.setState({ [name]: selected });
     };
 
     handleFormSubmit = event => {
         this.charting({ ticker: this.state.ticker });
     };
+
 
     charting = (ticker) => {
 
@@ -149,58 +130,17 @@ class StockSearch extends Component {
             .catch(err => console.log(err));
     }
 
+
     render() {
+        // const { selectHintOnEnter } = this.state;
         return (
             <div>
-                <div className='stockStats searchStockStats container'>
-                    <div className='row searchBar'>
-                        <div className='col-sm-4'>
-                            <h1>SEARCH STOCKS</h1>
-                        </div>
-                        <div className='col-sm-4'>
-                            <form>
+                <div className='stockStats listStocks container'>
 
-                                <div className='row'>
-                                    <div className='col-sm-10'>
+                    {/* Goal is to dynamically create elemets based off array of tickers */}
 
-                                        <Typeahead
-                                            placeholder="Enter a ticker symbol..."
-                                            name='ticker'
-                                            onChange={(selected) => { this.handleTypeheadChange(selected) }}
-                                            options={options}
-                                            selected={this.state.selected}
-                                        />
-
-                                        {/* <Input
-                                            type='string'
-                                            name='ticker'
-                                            value={this.state.ticker}
-                                            onChange={this.handleInputChange}
-                                            id='tickerSymbol'
-                                        /> */}
-
-
-                                    </div>
-                                    <div className='col-sm-2'>
-
-
-                                        <Button
-                                            className='searchBtn'
-                                            onClick={this.handleFormSubmit}
-                                        >
-                                            SEARCH
-                                        </Button>
-
-
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-
-                    </div>
-                    <div>
-                        <div className='row stockTickerBarCollapse'>
+                    {/* ====================== */}
+                    <div className='row stockTickerBarCollapse'>
                             <div className='col-sm-6 col-md-6'>
                                 <div className='row'>
                                     <div className='col-sm-2 col-md-3'>
@@ -263,8 +203,6 @@ class StockSearch extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {/* <hr> */}
                     <div className='collapseTop'>
                         <Collapse isOpen={this.state.collapse}>
                             <div className='row'>
@@ -311,23 +249,9 @@ class StockSearch extends Component {
                         </Collapse>
                     </div>
                 </div>
-                <div className='stockStats searchStockStats container'>
-                    <div className='contianer'>
-                        <div className='row listBar'>
-                            <div className='col-sm-4'>
-                                <h1>VIEW STOCKS</h1>
-                            </div>
-                        </div>
-                        <div className='row listBarNav'>
-                            <h2> Watchlist | DOW </h2>
-                        </div>
-                        <ListStock />
-                        {/* {this.createList(this.createList(this.state.DOW))} */}
-                    </div>
-                </div>
             </div >
         )
     }
 }
 
-export default StockSearch;
+export default ListStock;

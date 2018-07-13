@@ -45,6 +45,7 @@ module.exports = {
     myPortfolio: function(req, res) {
         db.Portfolio
             .find({_id: req.params.id})
+            // .find({portfolio_id: req.params.portfolio_id}).select('-_id ticker shares sharePrice date')
             .then((dbTradeModel) => res.json(dbTradeModel))
             .catch((err) => res.status(422).json(err));
     },

@@ -25,7 +25,7 @@ export default {
     // },
     getMyPortfolio: function(portfolio) {
         return axios.get(`/api/trading/myportfolio/${portfolio}`);
-    }, 
+    },
     getPetInfo: function() {
         return axios.get('/api/petfolio/pets');
     },
@@ -37,6 +37,14 @@ export default {
         return axios.get('/api/docs');
     },
     getMyStocks: function(portfolio) {
-        return axios.get(`/api/trading/mystocks/${portfolio}`);
-    },  
+        return axios.get(`api/trading/mystocks/${portfolio}`);
+    },
+    // Gets all watchlists
+    getwatchlist: function() {
+        return axios.get('/api/watchlist');
+    },
+    // Gets the watchlist with the given id
+    getwatchlist: function(id) {
+        return axios.get('/api/watchlist/' + id);
+    },
 };

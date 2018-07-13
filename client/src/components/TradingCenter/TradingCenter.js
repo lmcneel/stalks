@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
 import Promise from 'bluebird';
-import _ from 'underscore'
+import _ from 'underscore';
+import { POINT_CONVERSION_COMPRESSED } from 'constants';
 
 
 let watched = false; // This watchlist flag
@@ -21,6 +22,7 @@ const addToWatchlist = () => {
     // Need to add to MySQL Watchlist, then check watch list
     checkWatchList();
 };
+
 
 class Transaction extends Component {
 
@@ -43,15 +45,35 @@ class Transaction extends Component {
             cashBalance: 0,
             watchedArray:["AAPL", "XPP"],
             modal: false,
+            watched: true,
+            eyeWatched: 'faEye'
         }
         this.toggle = this.toggle.bind(this);
     }
+
+
 
     toggle() {
         this.setState({
             modal: !this.state.modal
         });
     };
+
+    checkWatchList = () => {
+        // If in watchlist set [watched] to true
+        return this.state.watched = false;
+    };
+
+    addToWatchlist = () => {
+        // Need to add to MySQL Watchlist, then check watch list
+        this.state.checkWatchList();
+    }
+
+    removeFromWatchlist = () => {
+        // Need to remove from MySQL Watchlist, then check watch list
+        this.state.checkWatchList();
+    }
+
     componentDidMount() {
         // this.charting({ ticker: this.state.ticker });
         // this.myStocks(this.state.portfolio_id);
@@ -59,6 +81,8 @@ class Transaction extends Component {
         // this.myStocksValue();
         // this.bankValue(this.state.id);
         // this.myWatchlist(this.state.watchedArray);
+        // this.lastPurchase(this.state.portfolio_id);
+        // this.cashCalculator(this.state.portfolio_id);
     };
 
     handleInputChange = (event) => {
@@ -84,10 +108,55 @@ class Transaction extends Component {
             .then(res => {
                 console.log('4')
                 console.log(res.data);
-                
-                
                 let userStocks = {};
-                for (var i = 0; i < res.data.length; i++) {
+                let userShares = {};
+                for (let i = 0; i < res.data.length; i++) {
+                    if (!userStocks[res.data[i].ticker]) {
+                        userStocks[res.data[i].ticker] = res.data[i].shares * res.data[i].sharePrice;
+                    } else {
+                        userStocks[res.data[i].ticker] += res.data[i].shares * res.data[i].sharePrice;
+                    }
+                }
+                for (let i = 0; i < res.data.length; i++) {
+                    if (!userShares[res.data[i].ticker]) {
+                        userShares[res.data[i].ticker] = res.data[i].shares;
+                    } else {
+                        userShares[res.data[i].ticker] += res.data[i].shares;
+                    }
+                }
+                let company = Object.entries(userShares)[0];
+                let spent = Object.entries(userStocks)[0];
+                console.log(spent[1] / company[1]);
+                this.setState({
+                    cost: spent[1] / company[1],
+                    datePurchased: res.data[res.data.length - 1].date.slice(0, 10),
+                })
+            })
+    }
+
+    cashCalculator = (portfolio) => {
+
+        return API.getMyStocks(portfolio)
+            .then(res => {
+                console.log(res.data);
+                let cashTotal = 20000;
+                for (let i = 0; i < res.data.length; i++) {
+                    cashTotal -= res.data[i].sharePrice * res.data[i].shares;
+                }
+                console.log(cashTotal);
+                this.setState({
+                    cashBalance: cashTotal.toFixed(2)
+                })
+            })
+            .catch(err => console.log(err));
+    }
+
+    myStocks = (portfolio) => {
+        return API.getMyStocks(portfolio)
+            .then(res => {
+                console.log(res.data);
+                const userStocks = {};
+                for (let i = 0; i < res.data.length; i++) {
                     if (!userStocks[res.data[i].ticker]) {
                         userStocks[res.data[i].ticker] = res.data[i].shares;
                     } else {
@@ -141,10 +210,8 @@ class Transaction extends Component {
                     })
                     // .then(result=>{
                 })
-
                 return current
-           });
-                            
+           });                       
     };
 
     myStocksValue = () => {
@@ -177,12 +244,8 @@ class Transaction extends Component {
                     })
                     // .then(result=>{
                 })
-
                 return current
             })
-
-        
-
         };
 
 
@@ -207,12 +270,12 @@ class Transaction extends Component {
             // Portfolio Value is Equal to
             console.log(PV);
             let userPortfolioValue = PV.toFixed(2)
-            console.log(userPortfolioValue);
+            console.log("The Portfolio Value is: $" + userPortfolioValue);
             console.log(initCash);
             let a = userPortfolioValue - initCash;
             // Portfolio ROI is Callculated Below
             pvROI = ((a/initCash)-1).toFixed(2);
-            console.log(pvROI);
+            console.log("The Portfolio ROI is:  " + pvROI);
             return {
                 userPortfolioValue,
                 pvROI
@@ -252,14 +315,12 @@ class Transaction extends Component {
                             eachROI.push(obj);
                                                                
                         
-                        }
-                        
+                        }     
                 } 
             }
         });
-
+        console.log("The individual Stocks ROI is:");
         console.log(eachROI);
-        
         return eachROI;
 
 };
@@ -394,7 +455,6 @@ class Transaction extends Component {
                     .then(res => {
                         this.setState({
                             ticker: 'XOM',
-                            price: 0,
                             shares: 0,
                             response: 'Transaction successfully completed'
                         });
@@ -425,7 +485,6 @@ class Transaction extends Component {
                     .then(res => {
                         this.setState({
                             ticker: 'XOM',
-                            price: 0,
                             shares: 0,
                             response: 'Transaction successfully completed'
                         })
@@ -440,7 +499,7 @@ class Transaction extends Component {
 
     render() {
         return (
-            <div className='container trading'>
+            <div className='trading'>
                 <div className='stockStats container'>
                     <h1>Stock Stats</h1>
 
@@ -477,9 +536,9 @@ class Transaction extends Component {
                                 </div>
                                 <div className='col-sm-2'>
                                     <FontAwesomeIcon
-                                        {...watched ? (eyeWatched = 'faEyeWatched') : (eyeWatched = 'faEye')}
-                                        className={eyeWatched}
-                                        onclick={addToWatchlist}
+                                        {...this.state.watched ? (this.state.eyeWatched = 'faEyeWatched') : (this.state.eyeWatched = 'faEye')}
+                                        className={this.state.eyeWatched}
+                                        onclick={this.state.addToWatchlist}
                                         size='1x'
                                         icon={faEye} />
                                     {/* OnClick Function Required */}
@@ -599,7 +658,7 @@ class Transaction extends Component {
                                 <h4>SUBTOTAL:</h4>
                             </div>
                             <div className='col-sm-6 col-md-6 totalCalc'>
-                                <h4>${-2500.00}</h4>
+                                <h4>${this.state.shares * this.state.price}</h4>
                             </div>
                         </div>
                         <div className='row totalCalc'>
@@ -607,7 +666,8 @@ class Transaction extends Component {
                                 <h4>New Bank Vale:</h4>
                             </div>
                             <div className='col-sm-6 col-md-6 totalCalc'>
-                                <h4>${10000.00}</h4>
+                                {this.state.transaction === 'buy' ? (<h4>${(this.state.cashBalance - (this.state.shares * this.state.price)).toFixed(2)}</h4>
+                                ) : (<h4>${((this.state.cashBalance) - (-(this.state.shares) * this.state.price)).toFixed(2)}</h4>)}
                             </div>
                         </div>
                         <div>

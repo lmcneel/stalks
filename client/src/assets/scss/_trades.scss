@@ -3,7 +3,7 @@ body {
 }
 //  ====================
 .trading {
-  width: 80%;
+  // width: 80%;
 }
 .stockStats {
   background-color: $white;
@@ -13,7 +13,7 @@ body {
   float: left;
   margin: 0% 0% 3% 0%;
   padding: 2% 2% 2% 2%;
-  // width: 100%;
+  width: 100%;
 }
 .stockStats h1 {
   // font-family: 'Rubik Gold';
@@ -58,7 +58,6 @@ body {
 }
 .faEye {
 color: $gray-700;
-color: $yellow;
 }
 .faEyeWatched {
   color: $yellow;
@@ -156,12 +155,19 @@ margin: 0px
 }
 //  ====================
 .searchStockStats {
-  margin: 3% 3% 10% 3%;
+  margin: 1% 0% 0% 0%;
   padding: 2% 2% 2% 2%;
-  // width: 100%;
+  width: 90%;
 }
 .searchBar {
   margin-bottom: 20px;
+}
+.listBar {
+  margin-bottom: 20px;
+}
+.listBarNav {
+  margin-bottom: 10px;
+  margin-left: 20px;
 }
 .stockTickerBarCollapse {
   border-bottom: solid 2px $gray-300;
@@ -173,7 +179,9 @@ margin: 0px
 }
 //  ====================
 
-
+.listStocks {
+  width: 100%;
+}
 //  ====================
 
 @media (max-width: 768px) {
