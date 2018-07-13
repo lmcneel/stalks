@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {ProgressBars} from '../PetStats/ProgressBars';
 
 /**
- * @class Petfolio
+ * @class PetStatusBars
  */
 class PetStatusBars extends Component {
     /**
