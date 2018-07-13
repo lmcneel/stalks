@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Card, CardText, CardBody,
-    CardTitle, CardSubtitle, InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Table } from 'reactstrap';
+    CardTitle, CardSubtitle, InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Table, Label, FormGroup, FormText } from 'reactstrap';
 
 
     export class Forum extends Component {
@@ -23,7 +23,7 @@ import { Card, CardText, CardBody,
 
 <Container fluid id="Forum">
     <Row>
-        <Col sm="8" md={{ size: 8, offset: 3 }}>
+        <Col sm="8" md={{ size: 11, offset: 0 }}>
             <Card>
                 <CardTitle>
                     FORUM
@@ -48,12 +48,16 @@ import { Card, CardText, CardBody,
                                 </DropdownMenu>
                         </Dropdown>
                     </div>
+                   
+
                     <div>
+                        <Card>
+                            <CardBody>
                         <Table>
                             <thead>
                                 <tr>
                                     <th>
-                                        POSTS
+                                        POSTS (WILL GO HERE IN THIS TABLE)
                                     </th>
                                 </tr>
                             </thead>
@@ -62,16 +66,16 @@ import { Card, CardText, CardBody,
                                     </tr> 
                                 </tbody>
                         </Table>
+                    
+                    </CardBody>
+                    </Card>
                     </div>
                     <div>
-                        <InputGroup>
-                            <input>
-                            </input>
-                                <button>
-                                    Post!
-                                </button>
-                        </InputGroup>
-                        <br />   
+                    <FormGroup>
+          <Label for="exampleText">Text Area</Label>
+          <Input type="textarea" name="text" id="exampleText" />
+        </FormGroup>
+  
                     </div>
             </Card>         
         </Col>

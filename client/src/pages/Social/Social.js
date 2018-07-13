@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
-import {FriendRequest, FriendSearch, FriendList, FriendsBoard, Forum, Test} from '../../components/FriendsBoard';
-// import {LeaderBoard} from '../../components/LeaderBoard';
+import {FriendsBoard} from '../../components/FriendsBoard';
+import {LeaderBoard} from '../../components/LeaderBoard/LeaderBoard.js';
 import '../../assets/scss/_social.scss';
 import API from './../../utils/API';
 
@@ -12,13 +12,14 @@ render() {
     return (
 
 <Container fluid>
-    <Row>
-        <Forum/>
-        {/* <FriendRequest/> */}
-        <FriendsBoard/>
-        {/* <FriendList/> */}
-        {/* <LeaderBoard/> */}
-    </Row>
+    <Col>
+        <Row>
+            <LeaderBoard/>
+        </Row>
+        <Row>   
+            <FriendsBoard/>      
+        </Row>
+    </Col>
 </Container>
 );
 }
