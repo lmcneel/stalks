@@ -6503,13 +6503,15 @@ a[data-toggle="collapse"] {
   width: 300px; }
 
 .colorPositive {
+  background-image: url("/images/pixelbg-green_160.jpg");
   background-color: green; }
 
 .colorNeutral {
-  background-color: yellow; }
+  background-image: url("../../components/pages/pixelbg-yellow_160.jpg"); }
 
 .colorNegative {
-  background-color: red; }
+  background-image: url("../../components/pages/pixelbg-red_160.jpg"); }
+
 body {
   background-color: #DDDFE1; }
 
