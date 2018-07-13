@@ -43,6 +43,10 @@ export default {
     getwatchlist: function(data) {
         return axios.get(`/api/watchlist/${data}`);
     },
+    // Gets all watchlists
+    getWatchListItem: function(data) {
+        return axios.get(`/api/watchlist/${data.ticker}`);
+    },
     // adds a ticker to the watchlist
     addWatchListItem: function(data) {
         return axios.create(`/api/watchlist/${data.ticker}`);

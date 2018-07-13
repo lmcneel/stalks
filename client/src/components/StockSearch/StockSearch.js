@@ -41,19 +41,17 @@ class StockSearch extends Component {
     };
 
     checkWatchList = () => {
-        // If in watchlist set [watched] to true
-        // API.getwatchlist()
-        // .then(res => {
-        //     console.log(res.data);
-        //     for (var i = 0; i < res.data.length; i++) {
-        //         if (userWatchList[res.data[i].ticker] = this.state.ticker) {
-        //             this.setState({watched: !this.state.watched})
+         // If in watchlist set [watched] to true
+        // API.getWatchListItem(ticker)
+        //     .then(res => {
+        //         console.log(res.data);
+        //         if (res.data.ticker === this.state.ticker) {
+        //             this.setState({ watched: !this.state.watched })
         //         } else {
-        //             this.setState({watched: this.state.watched})
+        //             this.setState({ watched: this.state.watched })
         //         }
-        //     }
-        // })
-        // .catch(err => console.log(err))
+        //     })
+        //     .catch(err => console.log(err))
 
         this.setState({ watched: this.state.watched })
 
