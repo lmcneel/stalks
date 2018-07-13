@@ -33,5 +33,9 @@ export default {
     },
     getMyStocks: function(portfolio){
         return axios.get(`api/trading/mystocks/${portfolio}`);
+    },
+    getFriends: function(){
+        console.log('here is friends.js');
+        return axios.get('api/friends');
     }
 };
