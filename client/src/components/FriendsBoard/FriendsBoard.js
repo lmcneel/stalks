@@ -1,127 +1,86 @@
 import React, {Component} from 'react';
-import {FriendRequest, FriendList, FriendSearch} from '../../components/FriendsBoard';
+import {FriendList, FriendRequest, FriendSearch} from '../../components/FriendsBoard';
 import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row, Button, Container, Collapse} from "reactstrap";
 
+// Main Component to nest all other Friends Components
 export class FriendsBoard extends Component {
 
-
-    constructor(props) {
-        super(props);     
-        this.handleButton1 = this.handleButton1.bind(this);  
-        this.closeButton1 = this.closeButton1.bind(this);  
-        this.state = { collapse: false, button1Value: false, button2Value: false, button3Value: false, };
-
-      }
+constructor(props) {
+    super(props);         
+    this.state = { nav1: false, nav2: false, nav3: false};
+};
     
+// Function to toggle this.state.nav1 for displaying FriendList component
+toggleNav1 = () =>{
+    this.setState({
+        nav1: !this.state.nav1
+    });
+};
 
-      handleButton1() {
-        console.log(this.state.button1Value);  
-        this.setState({button1Value: true});
-        console.log(this.state.button1Value);
-      }
-      
-      closeButton1() {
-        console.log(this.state.button1Value);
-        this.setState({button1Value: false});
-        console.log(this.state.button1Value);
-      }
+// Function to toggle this.state.nav2 for displaying FriendRequest component
+toggleNav2 = () =>{
+    this.setState({
+        nav2: !this.state.nav2
+    });
+};
+
+// Function to toggle this.state.nav3 for displaying FriendSearch component
+toggleNav3 = () =>{
+    this.setState({
+        nav3: !this.state.nav3
+    });
+};
 
    
 
 render (){
 
-    const button1Value = this.state.button1Value;
-    const button2Value = this.state.button2Value;
-    let button1;
-    let button2;
-    let button3;
-
-    if (button1Value) {
-      button1 = <FriendListButton onClick={this.handleButton1} />;
-    } else {
-      button1 = <FriendListButton onClick={this.closeButton1} />
-    }
-
-
-
     return(
+
 <Container>
     <Row>
-    <Col sm="8" md={{ size: 11, offset: 0 }}>
-            <Card color="light">
-                <CardBody>
-                    <CardTitle>Friends Board</CardTitle>
-                        <Navbar color="light" light expand="md">
-                            <Nav tabs>
-                                <NavItem>
-                                    <div>        
-                                {button1}
-                                    </div>
-                                </NavItem>
-                                <NavItem>
-                                    <div>
-                                 {button2}  
-                                    </div>
-                                </NavItem>
-                                <NavItem>
-                                
-                                </NavItem>
-                            </Nav>
-                        </Navbar>
- 
-                            <div>
-        <FriendsList button1Value={button1Value} />
-      </div>
-      <div>
-       
-          </div>
-                </CardBody>
-            </Card>
+        <Col sm="8" md={{ size: 11, offset: 0 }}>
+                <Card color="light">
+                
+                    <CardBody>
+
+                        <CardTitle>Friends Board</CardTitle>
+
+                            <Navbar color="light" light expand="md">
+
+                                <Nav tabs>
+
+                                    {/* NavItem to toggle FriendList component for user */}
+                                    <NavItem onClick={this.toggleNav1}>
+                                        Friends List  
+                                    </NavItem>
+
+                                    {/* NavItem to toggle FriendRequest component for user */}
+                                    <NavItem onClick={this.toggleNav2}>
+                                        |    Friend Request   |
+                                    </NavItem>
+
+                                    {/* NavItem to toggle FriendSearch component for user */}
+                                    <NavItem onClick= {this.toggleNav3}>
+                                        Friend Search
+                                    </NavItem>
+                                    
+                                </Nav>
+                            
+                            </Navbar>
+
+                    </CardBody>
+
+                </Card>
+
+            {/* Functionality to render components  */}
+            {this.state.nav1 && <div><FriendList/></div>}                      
+            {this.state.nav2 && <div><FriendRequest/></div>}    
+            {this.state.nav3 && <div><FriendSearch/></div>}     
+
         </Col>
     </Row>
 </Container>
 )
 }
 };
-
-
-
-function FriendsList(props) {
-    console.log('Friendslist');
-    const button1Value = props.button1Value;
-    if (button1Value) {
-      return <FriendList/>;
-    }
-    return <FriendsRequest/>;
-  }
-  
-  function FriendsRequest(props) {
-    const button2Value = props.button2Value;
-    if (button2Value) {
-        console.log("this is working");
-      return <FriendsRequest/>;
-    }
-    console.log('this is working Friend list');
-    return <FriendList/>;
-  }
-
-
-  function FriendListButton(props) {
-    return (
-      <NavLink onClick={props.onClick}>
-        Friends List
-      </NavLink>
-    );
-  }
-
-  function FriendRequestButton(props) {
-    return (
-      <NavLink onClick={props.onClick}>
-         |   Friend Request    |     
-      </NavLink>
-    );
-  }
-
-
-
-

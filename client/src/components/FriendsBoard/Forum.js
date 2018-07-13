@@ -3,23 +3,28 @@ import { Card, CardText, CardBody,
     CardTitle, CardSubtitle, InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Table, Label, FormGroup, FormText } from 'reactstrap';
 
 
-    export class Forum extends Component {
-        constructor(props) {
-            super(props);
+// Main Forum Component to allow messages to be viewed and posted by user. may allow for reply 
+export class Forum extends Component {
+ 
+constructor(props) {
+    super(props);        
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+        dropdownOpen: false
+};
+}
         
-            this.toggle = this.toggle.bind(this);
-            this.state = {
-              dropdownOpen: false
-            };
-          }
-        
-          toggle() {
-            this.setState(prevState => ({
-              dropdownOpen: !prevState.dropdownOpen
-            }));
-          }
-     render(){
-        return (
+toggle() {
+    this.setState(prevState => ({
+        dropdownOpen: !prevState.dropdownOpen
+}
+)
+);
+}
+ 
+render(){
+
+    return (
 
 <Container fluid id="Forum">
     <Row>
@@ -48,40 +53,36 @@ import { Card, CardText, CardBody,
                                 </DropdownMenu>
                         </Dropdown>
                     </div>
-                   
-
                     <div>
                         <Card>
                             <CardBody>
-                        <Table>
-                            <thead>
-                                <tr>
-                                    <th>
-                                        POSTS (WILL GO HERE IN THIS TABLE)
-                                    </th>
-                                </tr>
-                            </thead>
-                                <tbody>
-                                    <tr>
-                                    </tr> 
-                                </tbody>
-                        </Table>
+                                <Table>
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                POSTS (WILL GO HERE IN THIS TABLE)
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                        <tbody>
+                                            <tr>
+                                            </tr> 
+                                        </tbody>
+                                </Table>
                     
-                    </CardBody>
-                    </Card>
+                            </CardBody>
+                        </Card>                   
                     </div>
                     <div>
-                    <FormGroup>
-          <Label for="exampleText">Text Area</Label>
-          <Input type="textarea" name="text" id="exampleText" />
-        </FormGroup>
-  
-                    </div>
+                        <FormGroup>
+                            <Label for="exampleText">Text Area</Label>
+                            <Input type="textarea" name="text" id="exampleText" />
+                        </FormGroup>
+                  </div>
             </Card>         
         </Col>
     </Row>
 </Container>
 )
 }
-    };
-
+};
