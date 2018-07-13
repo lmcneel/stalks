@@ -38,10 +38,12 @@ class Petfolio extends Component {
             // API.findQuotes(r.data[i]).then(((r2) => {
             //   console.log(r2);
             // }));
-            ticker += r.data[i].symbol + '...';
+            ticker += r.data[i].uniqueStockSymbol + '...';
           }
           this.setState({tickerText: ticker});
           console.log(r.data);
+                  console.log(ticker);
+
         };
       }));
 
