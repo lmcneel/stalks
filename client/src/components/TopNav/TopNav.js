@@ -16,7 +16,8 @@ const TopNav = (props) => {
         <Row className="top-nav px-3 pt-4 pb-3">
             <Col xs="12" md="8" className="d-flex justify-content-sm-center justify-content-md-start">
                 <a href="">
-                    <img src={mainLogo} className="main-logo"/>
+                <img src={mainLogo} className="main-logo"
+                alt="Text Logo for Stock Market Pets in a pixel looking fontface, logo is white on green bg"/>
                 </a>
             <Button id="sidebarCollapse" className="btn btn-info ml-4" onClick={props.navToggleHandler}>
             <FontAwesomeIcon icon={faBars} />
