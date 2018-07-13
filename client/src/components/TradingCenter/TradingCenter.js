@@ -227,7 +227,7 @@ class Transaction extends Component {
 
     render() {
         return (
-            <div className='container trading'>
+            <div className='trading'>
                 <div className='stockStats container'>
                     <h1>Stock Stats</h1>
 

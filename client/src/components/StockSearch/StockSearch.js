@@ -10,7 +10,7 @@ import { faEye, faChevronCircleDown } from '@fortawesome/fontawesome-free-solid'
 import API from '../../utils/API';
 import ListStock from '../ListStock';
 
-var options = ['MMM', '	AOS', '	ABT', '	ABBV', '	ACN', '	ATVI', '	AYI', '	ADBE', '	AAP', '	AMD', '	AES', '	AET', '	AMG', '	AFL', '	A', '	APD', '	AKAM', '	ALK', '	ALB', '	ARE', '	ALXN', '	ALGN', '	ALLE', '	AGN', '	ADS', '	LNT', '	ALL', '	GOOGL', '	GOOG', '	MO', '	AMZN', '	AEE', '	AAL', '	AEP', '	AXP', '	AIG', '	AMT', '	AWK', '	AMP', '	ABC', '	AME', '	AMGN', '	APH', '	APC', '	ADI', '	ANDV', '	ANSS', '	ANTM', '	AON', '	APA', '	AIV', '	AAPL', '	AMAT', '	APTV', '	ADM', '	ARNC', '	AJG', '	AIZ', '	T', '	ADSK', '	ADP', '	AZO', '	AVB', '	AVY', '	BHGE', '	BLL', '	BAC', '	BAX', '	BBT', '	BDX', '	BRK.B', '	BBY', '	BIIB', '	BLK', '	HRB', '	BA', '	BKNG', '	BWA', '	BXP', '	BSX', '	BHF', '	BMY', '	AVGO', '	BF.B', '	CHRW', '	CA', '	COG', '	CDNS', '	CPB', '	COF', '	CAH', '	KMX', '	CCL', '	CAT', '	CBOE', '	CBRE', '	CBS', '	CELG', '	CNC', '	CNP', '	CTL', '	CERN', '	CF', '	SCHW', '	CHTR', '	CVX', '	CMG', '	CB', '	CHD', '	CI', '	XEC', '	CINF', '	CTAS', '	CSCO', '	C', '	CFG', '	CTXS', '	CME', '	CMS', '	KO', '	CTSH', '	CL', '	CMCSA', '	CMA', '	CAG', '	CXO', '	COP', '	ED', '	STZ', '	GLW', '	COST', '	COTY', '	CCI', '	CSRA', '	CSX', '	CMI', '	CVS', '	DHI', '	DHR', '	DRI', '	DVA', '	DE', '	DAL', '	XRAY', '	DVN', '	DLR', '	DFS', '	DISCA', '	DISCK', '	DISH', '	DG', '	DLTR', '	D', '	DOV', '	DWDP', '	DPS', '	DTE', '	DUK', '	DRE', '	DXC', '	ETFC', '	EMN', '	ETN', '	EBAY', '	ECL', '	EIX', '	EW', '	EA', '	EMR', '	ETR', '	EVHC', '	EOG', '	EQT', '	EFX', '	EQIX', '	EQR', '	ESS', '	EL', '	RE', '	ES', '	EXC', '	EXPE', '	EXPD', '	ESRX', '	EXR', '	XOM', '	FFIV', '	FB', '	FAST', '	FRT', '	FDX', '	FIS', '	FITB', '	FE', '	FISV', '	FLIR', '	FLS', '	FLR', '	FMC', '	FL', '	F', '	FTV', '	FBHS', '	BEN', '	FCX', '	GPS', '	GRMN', '	IT', '	GD', '	GE', '	GGP', '	GIS', '	GM', '	GPC', '	GILD', '	GPN', '	GS', '	GT', '	GWW', '	HAL', '	HBI', '	HOG', '	HRS', '	HIG', '	HAS', '	HCA', '	HCP', '	HP', '	HSIC', '	HES', '	HPE', '	HLT', '	HOLX', '	HD', '	HON', '	HRL', '	HST', '	HPQ', '	HUM', '	HBAN', '	HII', '	IDXX', '	INFO', '	ITW', '	ILMN', '	INCY', '	IR', '	INTC', '	ICE', '	IBM', '	IP', '	IPG', '	IFF', '	INTU', '	ISRG', '	IVZ', '	IPGP', '	IQV', '	IRM', '	JBHT', '	JEC', '	SJM', '	JNJ', '	JCI', '	JPM', '	JNPR', '	KSU', '	K', '	KEY', '	KMB', '	KIM', '	KMI', '	KLAC', '	KSS', '	KHC', '	KR', '	LB', '	LLL', '	LH', '	LRCX', '	LEG', '	LEN', '	LUK', '	LLY', '	LNC', '	LKQ', '	LMT', '	L', '	LOW', '	LYB', '	MTB', '	MAC', '	M', '	MRO', '	MPC', '	MAR', '	MMC', '	MLM', '	MAS', '	MA', '	MAT', '	MKC', '	MCD', '	MCK', '	MDT', '	MRK', '	MET', '	MTD', '	MGM', '	KORS', '	MCHP', '	MU', '	MSFT', '	MAA', '	MHK', '	TAP', '	MDLZ', '	MON', '	MNST', '	MCO', '	MS', '	MSI', '	MYL', '	NDAQ', '	NOV', '	NAVI', '	NKTR', '	NTAP', '	NFLX', '	NWL', '	NFX', '	NEM', '	NWSA', '	NWS', '	NEE', '	NLSN', '	NKE', '	NI', '	NBL', '	JWN', '	NSC', '	NTRS', '	NOC', '	NCLH', '	NRG', '	NUE', '	NVDA', '	ORLY', '	OXY', '	OMC', '	OKE', '	ORCL', '	PCAR', '	PKG', '	PH', '	PAYX', '	PYPL', '	PNR', '	PBCT', '	PEP', '	PKI', '	PRGO', '	PFE', '	PCG', '	PM', '	PSX', '	PNW', '	PXD', '	PNC', '	RL', '	PPG', '	PPL', '	PX', '	PFG', '	PG', '	PGR', '	PLD', '	PRU', '	PEG', '	PSA', '	PHM', '	PVH', '	QRVO', '	QCOM', '	PWR', '	DGX', '	RRC', '	RJF', '	RTN', '	O', '	RHT', '	REG', '	REGN', '	RF', '	RSG', '	RMD', '	RHI', '	ROK', '	COL', '	ROP', '	ROST', '	RCL', '	SPGI', '	CRM', '	SBAC', '	SCG', '	SLB', '	STX', '	SEE', '	SRE', '	SHW', '	SPG', '	SWKS', '	SLG', '	SNA', '	SO', '	LUV', '	SWK', '	SBUX', '	STT', '	SRCL', '	SYK', '	STI', '	SIVB', '	SYMC', '	SYF', '	SNPS', '	SYY', '	TROW', '	TTWO', '	TPR', '	TGT', '	TEL', '	FTI', '	TXN', '	TXT', '	BK', '	CLX', '	COO', '	HSY', '	MOS', '	TRV', '	DIS', '	TMO', '	TIF', '	TWX', '	TJX', '	TMK', '	TSS', '	TSCO', '	TDG', '	TRIP', '	FOXA', '	FOX', '	TSN', '	USB', '	UDR', '	ULTA', '	UAA', '	UA', '	UNP', '	UAL', '	UNH', '	UPS', '	URI', '	UTX', '	UHS', '	UNM', '	VFC', '	VLO', '	VAR', '	VTR', '	VRSN', '	VRSK', '	VZ', '	VRTX', '	VIAB', '	V', '	VNO', '	VMC', '	WMT', '	WBA', '	WM', '	WAT', '	WEC', '	WFC', '	WELL', '	WDC', '	WU', '	WRK', '	WY', '	WHR', '	WMB', '	WLTW', '	WYN', '	WYNN', '	XEL', '	XRX', '	XLNX', '	XL', '	XYL', '	YUM', '	ZBH', '	ZION', '	ZTS'];
+let options = ['MMM','AOS','ABT','ABBV','ACN','ATVI','AYI','ADBE','AAP','AMD','AES','AET','AMG','AFL','A','APD','AKAM','ALK','ALB','ARE','ALXN','ALGN','ALLE','AGN','ADS','LNT','ALL','GOOGL','GOOG','MO','AMZN','AEE','AAL','AEP','AXP','AIG','AMT','AWK','AMP','ABC','AME','AMGN','APH','APC','ADI','ANDV','ANSS','ANTM','AON','APA','AIV','AAPL','AMAT','APTV','ADM','ARNC','AJG','AIZ','T','ADSK','ADP','AZO','AVB','AVY','BHGE','BLL','BAC','BAX','BBT','BDX','BRK.B','BBY','BIIB','BLK','HRB','BA','BKNG','BWA','BXP','BSX','BHF','BMY','AVGO','BF.B','CHRW','CA','COG','CDNS','CPB','COF','CAH','KMX','CCL','CAT','CBOE','CBRE','CBS','CELG','CNC','CNP','CTL','CERN','CF','SCHW','CHTR','CVX','CMG','CB','CHD','CI','XEC','CINF','CTAS','CSCO','C','CFG','CTXS','CME','CMS','KO','CTSH','CL','CMCSA','CMA','CAG','CXO','COP','ED','STZ','GLW','COST','COTY','CCI','CSRA','CSX','CMI','CVS','DHI','DHR','DRI','DVA','DE','DAL','XRAY','DVN','DLR','DFS','DISCA','DISCK','DISH','DG','DLTR','D','DOV','DWDP','DPS','DTE','DUK','DRE','DXC','ETFC','EMN','ETN','EBAY','ECL','EIX','EW','EA','EMR','ETR','EVHC','EOG','EQT','EFX','EQIX','EQR','ESS','EL','RE','ES','EXC','EXPE','EXPD','ESRX','EXR','XOM','FFIV','FB','FAST','FRT','FDX','FIS','FITB','FE','FISV','FLIR','FLS','FLR','FMC','FL','F','FTV','FBHS','BEN','FCX','GPS','GRMN','IT','GD','GE','GGP','GIS','GM','GPC','GILD','GPN','GS','GT','GWW','HAL','HBI','HOG','HRS','HIG','HAS','HCA','HCP','HP','HSIC','HES','HPE','HLT','HOLX','HD','HON','HRL','HST','HPQ','HUM','HBAN','HII','IDXX','INFO','ITW','ILMN','INCY','IR','INTC','ICE','IBM','IP','IPG','IFF','INTU','ISRG','IVZ','IPGP','IQV','IRM','JBHT','JEC','SJM','JNJ','JCI','JPM','JNPR','KSU','K','KEY','KMB','KIM','KMI','KLAC','KSS','KHC','KR','LB','LLL','LH','LRCX','LEG','LEN','LUK','LLY','LNC','LKQ','LMT','L','LOW','LYB','MTB','MAC','M','MRO','MPC','MAR','MMC','MLM','MAS','MA','MAT','MKC','MCD','MCK','MDT','MRK','MET','MTD','MGM','KORS','MCHP','MU','MSFT','MAA','MHK','TAP','MDLZ','MON','MNST','MCO','MS','MSI','MYL','NDAQ','NOV','NAVI','NKTR','NTAP','NFLX','NWL','NFX','NEM','NWSA','NWS','NEE','NLSN','NKE','NI','NBL','JWN','NSC','NTRS','NOC','NCLH','NRG','NUE','NVDA','ORLY','OXY','OMC','OKE','ORCL','PCAR','PKG','PH','PAYX','PYPL','PNR','PBCT','PEP','PKI','PRGO','PFE','PCG','PM','PSX','PNW','PXD','PNC','RL','PPG','PPL','PX','PFG','PG','PGR','PLD','PRU','PEG','PSA','PHM','PVH','QRVO','QCOM','PWR','DGX','RRC','RJF','RTN','O','RHT','REG','REGN','RF','RSG','RMD','RHI','ROK','COL','ROP','ROST','RCL','SPGI','CRM','SBAC','SCG','SLB','STX','SEE','SRE','SHW','SPG','SWKS','SLG','SNA','SO','LUV','SWK','SBUX','STT','SRCL','SYK','STI','SIVB','SYMC','SYF','SNPS','SYY','TROW','TTWO','TPR','TGT','TEL','FTI','TXN','TXT','BK','CLX','COO','HSY','MOS','TRV','DIS','TMO','TIF','TWX','TJX','TMK','TSS','TSCO','TDG','TRIP','FOXA','FOX','TSN','USB','UDR','ULTA','UAA','UA','UNP','UAL','UNH','UPS','URI','UTX','UHS','UNM','VFC','VLO','VAR','VTR','VRSN','VRSK','VZ','VRTX','VIAB','V','VNO','VMC','WMT','WBA','WM','WAT','WEC','WFC','WELL','WDC','WU','WRK','WY','WHR','WMB','WLTW','WYN','WYNN','XEL','XRX','XLNX','XL','XYL','YUM','ZBH','ZION','ZTS'];
 
 
 class StockSearch extends Component {
@@ -157,8 +157,9 @@ class StockSearch extends Component {
                         <div className='col-sm-4'>
                             <h1>SEARCH STOCKS</h1>
                         </div>
-                        <form>
-                            <div className='col-sm-10'>
+                        <div className='col-sm-4'>
+                            <form>
+
                                 <div className='row'>
                                     <div className='col-sm-10'>
 
@@ -193,14 +194,16 @@ class StockSearch extends Component {
 
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+
+
                     </div>
                     <div>
                         <div className='row stockTickerBarCollapse'>
                             <div className='col-sm-6 col-md-6'>
                                 <div className='row'>
-                                    <div className='col-sm-2 col-md-2'>
+                                    <div className='col-sm-2 col-md-3'>
                                         <FontAwesomeIcon
                                             // onclick={addToWatchlist}
                                             size='2x'
@@ -208,7 +211,7 @@ class StockSearch extends Component {
                                             onClick={this.toggle}
                                         />
                                     </div>
-                                    <div className='col-sm-4 col-md-4'>
+                                    <div className='col-sm-4 col-md-3'>
                                         <h1>{this.state.ticker}</h1>
                                     </div>
                                     <div className='col-sm-3'>
@@ -221,10 +224,10 @@ class StockSearch extends Component {
                             </div>
                             <div className='col-sm-6 col-md-6'>
                                 <div className='row'>
-                                    <div className='col-sm-4 changeValue'>
+                                    <div className='col-sm-3 changeValue'>
                                         <h2>CHANGE</h2>
                                     </div>
-                                    <div className='col-sm-4'>
+                                    <div className='col-sm-3'>
                                         {this.state.change >= 0 ? (
                                             <div id='changeValuePositive'>
                                                 <h2>{this.state.change.toFixed(2)}%</h2>
@@ -236,7 +239,7 @@ class StockSearch extends Component {
                                             )
                                         }
                                     </div>
-                                    <div className='col-sm-2'>
+                                    <div className='col-sm-3'>
                                         <FontAwesomeIcon
                                             {...this.state.watched ? (this.state.eyeWatched = 'faEyeWatched') : (this.state.eyeWatched = 'faEye')}
                                             className={this.state.eyeWatched}
@@ -246,7 +249,7 @@ class StockSearch extends Component {
                                         {/* OnClick Function Required */}
                                         {/* If not on user watchlist, will need have onclic function to add it to watchlist, and updated state */}
                                     </div>
-                                    <div className='col-sm-2'>
+                                    <div className='col-sm-3'>
                                         <Button
                                             className='buyBtn'
                                         >
