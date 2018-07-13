@@ -45,6 +45,7 @@
     "mysql2": "^1.5.3",
     "node-sass-chokidar": "^1.3.0",
     "sequelize": "^4.38.0",
+    "underscore": "^1.9.1",
     "victory": "^0.27.2"
   },
   "devDependencies": {
