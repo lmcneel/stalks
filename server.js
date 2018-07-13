@@ -10,34 +10,37 @@ const seedDB = require('./seeds');
 const db = require('./models/mysql');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const Sequelize = require('sequelize');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const passport = require('./config/passport.js');
 const achievements = require('./config/middleware/achievements/achievements');
-const mysql = require('mysql');
+// const mysql = require('mysql');
+const userAuth = require('./routes/api/userAuth');
 
-const sequelize = new Sequelize(
-  'database',
-  'username',
-  'password', {
-    'dialect': 'mysql',
-    'storage': './session.mysql',
-  });
-// initialize passport
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/config/config.json')[env];
+let seq;
+
+if (config.use_env_variable) {
+  seq = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  console.log(config.username);
+  seq = new Sequelize(config.database, config.username, config.password, config);
+}
+
+app.use(session({
+  secret: 'keyboard cat',
+  store: new SequelizeStore({db: seq}),
+  resave: false, // we support the touch method so per the express-session docs this should be set to false
+  saveUninitialized: false, // required
+}));
+
 app.use(passport.initialize());
 // store data for authenticated users
 app.use(passport.session());
 // test this code
 // configure express
 app.use(cookieParser());
-app.use(session({
-  secret: 'keyboard cat',
-  store: new SequelizeStore({
-    db: sequelize,
-  }),
-  resave: false, // we support the touch method so per the express-session docs this should be set to false
-  saveUninitialized: false, // required
-}));
 
 app.use(logger('dev'));
 
@@ -55,7 +58,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Define API routes here
 app.use(routes);
-
+app.use('/users', userAuth(app, db));
 // DB Config
 // const db = require('./config/keys').mongoURI;
 
