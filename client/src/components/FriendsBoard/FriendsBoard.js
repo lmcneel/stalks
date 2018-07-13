@@ -9,7 +9,7 @@ export class FriendsBoard extends Component {
         super(props);     
         this.handleButton1 = this.handleButton1.bind(this);  
         this.closeButton1 = this.closeButton1.bind(this);  
-        this.state = { collapse: false, button1Value: false, button2Value: true, button3Value: false, };
+        this.state = { collapse: false, button1Value: false, button2Value: false, button3Value: false, };
 
       }
     
@@ -37,9 +37,9 @@ render (){
     let button3;
 
     if (button1Value) {
-      button1 = <FriendListButton onClick={this.closeButton1} />;
+      button1 = <FriendListButton onClick={this.handleButton1} />;
     } else {
-      button1 = <FriendListButton onClick={this.handleButton1} />
+      button1 = <FriendListButton onClick={this.closeButton1} />
     }
 
 
@@ -54,16 +54,14 @@ render (){
                         <Navbar color="light" light expand="md">
                             <Nav tabs>
                                 <NavItem>
-                                <div>
-        
-        {button1}
-
-      </div>
+                                    <div>        
+                                {button1}
+                                    </div>
                                 </NavItem>
                                 <NavItem>
                                     <div>
                                  {button2}  
-                                </div>
+                                    </div>
                                 </NavItem>
                                 <NavItem>
                                 
@@ -86,9 +84,7 @@ render (){
 }
 };
 
-function GuestGreeting(props) {
-    return <h1>Please sign up.</h1>;
-  }
+
 
 function FriendsList(props) {
     console.log('Friendslist');
@@ -96,7 +92,7 @@ function FriendsList(props) {
     if (button1Value) {
       return <FriendList/>;
     }
-    return <GuestGreeting/>;
+    return <FriendsRequest/>;
   }
   
   function FriendsRequest(props) {
@@ -105,8 +101,8 @@ function FriendsList(props) {
         console.log("this is working");
       return <FriendsRequest/>;
     }
-    console.log('this is working greeting');
-    return <GuestGreeting/>;
+    console.log('this is working Friend list');
+    return <FriendList/>;
   }
 
 
@@ -114,6 +110,14 @@ function FriendsList(props) {
     return (
       <NavLink onClick={props.onClick}>
         Friends List
+      </NavLink>
+    );
+  }
+
+  function FriendRequestButton(props) {
+    return (
+      <NavLink onClick={props.onClick}>
+         |   Friend Request    |     
       </NavLink>
     );
   }
