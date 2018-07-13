@@ -5,6 +5,7 @@ import Highcharts from 'highcharts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
+import { POINT_CONVERSION_COMPRESSED } from 'constants';
 
 class Transaction extends Component {
 
@@ -16,7 +17,7 @@ class Transaction extends Component {
             shares: 0,
             change: 0,
             response: '',
-            portfolio_id: '5b469e9d1819e80bd4ddeb78',
+            portfolio_id: '5b458c3cec9285215f43540f',
             transaction: 'buy',
             ROI: 0,
             cost: 0,
@@ -26,7 +27,7 @@ class Transaction extends Component {
             cashBalance: 0,
             modal: false,
             watched: true,
-            eyeWatched : 'faEye'
+            eyeWatched: 'faEye'
         }
         this.toggle = this.toggle.bind(this);
     }
@@ -43,7 +44,7 @@ class Transaction extends Component {
         // If in watchlist set [watched] to true
         return this.state.watched = false;
     };
-    
+
     addToWatchlist = () => {
         // Need to add to MySQL Watchlist, then check watch list
         this.state.checkWatchList();
@@ -58,6 +59,8 @@ class Transaction extends Component {
         this.charting({ ticker: this.state.ticker });
         this.myStocks(this.state.portfolio_id);
         this.myStocksValue();
+        this.lastPurchase(this.state.portfolio_id);
+        this.cashCalculator(this.state.portfolio_id);
     };
 
     handleInputChange = event => {
@@ -76,27 +79,79 @@ class Transaction extends Component {
         };
     };
 
-    myStocks = (portfolio) => {
+    lastPurchase = (portfolio) => {
         API.getMyStocks(portfolio)
             .then(res => {
                 console.log(res.data);
                 const userStocks = {};
-                for (var i = 0; i < res.data.length; i++) {
+                const userShares = {};
+                for (let i = 0; i < res.data.length; i++) {
+                    if (!userStocks[res.data[i].ticker]) {
+                        userStocks[res.data[i].ticker] = res.data[i].shares * res.data[i].sharePrice;
+                    } else {
+                        userStocks[res.data[i].ticker] += res.data[i].shares * res.data[i].sharePrice;
+                    }
+                }
+                for (let i = 0; i < res.data.length; i++) {
+                    if (!userShares[res.data[i].ticker]) {
+                        userShares[res.data[i].ticker] = res.data[i].shares;
+                    } else {
+                        userShares[res.data[i].ticker] += res.data[i].shares;
+                    }
+                }
+                let company = Object.entries(userShares)[0];
+                let spent = Object.entries(userStocks)[0];
+                console.log(spent[1] / company[1]);
+                this.setState({
+                    cost: spent[1] / company[1],
+                    datePurchased: res.data[res.data.length - 1].date.slice(0, 10),
+                })
+            })
+    }
+
+    cashCalculator = (portfolio) => {
+
+        return API.getMyStocks(portfolio)
+            .then(res => {
+                console.log(res.data);
+                let cashTotal = 20000;
+                for (let i = 0; i < res.data.length; i++) {
+                    cashTotal -= res.data[i].sharePrice * res.data[i].shares;
+                }
+                console.log(cashTotal);
+                this.setState({
+                    cashBalance: cashTotal.toFixed(2)
+                })
+            })
+            .catch(err => console.log(err));
+    }
+
+    myStocks = (portfolio) => {
+        return API.getMyStocks(portfolio)
+            .then(res => {
+                console.log(res.data);
+                const userStocks = {};
+                for (let i = 0; i < res.data.length; i++) {
                     if (!userStocks[res.data[i].ticker]) {
                         userStocks[res.data[i].ticker] = res.data[i].shares;
                     } else {
-                        userStocks[res.data[i].ticker] += res.data[i].shares;                        
-                    }    
+                        userStocks[res.data[i].ticker] += res.data[i].shares;
+                    }
                 }
-                console.log(userStocks); 
+                console.log(userStocks);
                 return userStocks;
             })
             .catch(err => console.log(err));
     };
 
     myStocksValue = () => {
-        const stocks = this.myStocks(this.state.portfolio_id);
-        console.log(stocks);
+        this.myStocks(this.state.portfolio_id)
+            .then(result => {
+                let stocks = result;
+                let company = Object.entries(stocks)[0];
+                console.log(stocks.XOM)
+                this.state.totalShares = company[1];
+            });
     }
 
     charting = (ticker) => {
@@ -181,7 +236,6 @@ class Transaction extends Component {
                     .then(res => {
                         this.setState({
                             ticker: 'XOM',
-                            price: 0,
                             shares: 0,
                             response: 'Transaction successfully completed'
                         });
@@ -212,7 +266,6 @@ class Transaction extends Component {
                     .then(res => {
                         this.setState({
                             ticker: 'XOM',
-                            price: 0,
                             shares: 0,
                             response: 'Transaction successfully completed'
                         })
@@ -264,11 +317,11 @@ class Transaction extends Component {
                                 </div>
                                 <div className='col-sm-2'>
                                     <FontAwesomeIcon
-                                         {...this.state.watched ? (this.state.eyeWatched = 'faEyeWatched') : (this.state.eyeWatched = 'faEye')}
-                                         className={this.state.eyeWatched}
-                                         onclick={this.state.addToWatchlist}
-                                         size='1x'
-                                         icon={faEye} />
+                                        {...this.state.watched ? (this.state.eyeWatched = 'faEyeWatched') : (this.state.eyeWatched = 'faEye')}
+                                        className={this.state.eyeWatched}
+                                        onclick={this.state.addToWatchlist}
+                                        size='1x'
+                                        icon={faEye} />
                                     {/* OnClick Function Required */}
                                     {/* If not on user watchlist, will need have onclic function to add it to watchlist, and updated state */}
 
@@ -386,7 +439,7 @@ class Transaction extends Component {
                                 <h4>SUBTOTAL:</h4>
                             </div>
                             <div className='col-sm-6 col-md-6 totalCalc'>
-                                <h4>${-2500.00}</h4>
+                                <h4>${this.state.shares * this.state.price}</h4>
                             </div>
                         </div>
                         <div className='row totalCalc'>
@@ -394,7 +447,8 @@ class Transaction extends Component {
                                 <h4>New Bank Vale:</h4>
                             </div>
                             <div className='col-sm-6 col-md-6 totalCalc'>
-                                <h4>${10000.00}</h4>
+                                {this.state.transaction === 'buy' ? (<h4>${(this.state.cashBalance - (this.state.shares * this.state.price)).toFixed(2)}</h4>
+                                ) : (<h4>${((this.state.cashBalance) - (-(this.state.shares) * this.state.price)).toFixed(2)}</h4>)}
                             </div>
                         </div>
                         <div>
