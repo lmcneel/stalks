@@ -8,4 +8,13 @@ const Session = sequelize.define('Session', {
     expires: Sequelize.DATE,
     data: Sequelize.STRING(50000)
   });
+  
+  Session.associate = function(models) {
+    Session.belongsTo(models.User, {
+        foreignKey: {
+            allowNull: false,
+        },
+    });
+};
+return Session;
 };
