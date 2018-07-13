@@ -4,6 +4,7 @@ import mainLogo from './../../assets/images/smp-logo.svg';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBars, faQuestionCircle, faCog, faInfo, faSignOutAlt} from '@fortawesome/fontawesome-free-solid';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 const propTypes = {
     navToggleHandler: PropTypes.func,
@@ -26,24 +27,16 @@ const TopNav = (props) => {
             <Col xs="12" md="4">
                 <ul id="topNavIcons" className="nav justify-content-sm-center justify-content-md-end">
                     <li className="nav-item">
-                        <a className="nav-link" href="">
-                        <FontAwesomeIcon className="iconsize" icon={faQuestionCircle} />
-                        </a>
+                        <Link to={'/help'}><FontAwesomeIcon className="iconsize" icon={faQuestionCircle} /></Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="">
-                        <FontAwesomeIcon className="iconsize" icon={faCog} />
-                        </a>
+                        <Link to={'/settings'}><FontAwesomeIcon className="iconsize" icon={faCog} /></Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="">
-                        <FontAwesomeIcon className="iconsize" icon={faInfo} />
-                        </a>
+                        <Link to={'/about'}><FontAwesomeIcon className="iconsize" icon={faInfo} /></Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="">
-                        <FontAwesomeIcon className="iconsize" icon={faSignOutAlt} />
-                        </a>
+                        <Link to={'/signout'}><FontAwesomeIcon className="iconsize" icon={faSignOutAlt} /></Link>
                     </li>
                 </ul>
             </Col>

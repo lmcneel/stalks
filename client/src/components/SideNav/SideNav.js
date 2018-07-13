@@ -17,24 +17,16 @@ const SideNav = (props) => (
                 <FontAwesomeIcon icon={faChartPie} className="sideNavicons"/>  Petfolio</Link>
             </li>
             <li className="">
-                <a href="">
-                    <FontAwesomeIcon icon={faPaw} className="sideNavicons" />  Pet Center
-                </a>
+                    <Link to={'/petcenter'}><FontAwesomeIcon icon={faPaw} />  Pet Center</Link>
             </li>
             <li className="">
-                <a href="">
-                    <FontAwesomeIcon icon={faMoneyBillWave} className="sideNavicons" />  Trade Center
-                </a>
+                    <Link to={'/trading'}><FontAwesomeIcon icon={faMoneyBillWave} />  Trade Center</Link>
             </li>
             <li className="">
-                <a href="">
-                    <FontAwesomeIcon icon={faUsers} className="sideNavicons" />  Friends
-                </a>
+                    <Link to={'/friends'}><FontAwesomeIcon icon={faUsers} />  Friends</Link>
             </li>
             <li className="">
-                <a href="">
-                    <FontAwesomeIcon icon={faComments} className="sideNavicons" />  Forum
-                </a>
+                    <Link to={'/forum'}><FontAwesomeIcon icon={faComments} />  Forum</Link>
             </li>
         </ul>
 
