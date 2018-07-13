@@ -20,7 +20,7 @@ const TopNav = (props) => {
                 alt="Text Logo for Stock Market Pets in a pixel looking fontface, logo is white on green bg"/>
                 </a>
             <Button id="sidebarCollapse" className="btn btn-info ml-4" onClick={props.navToggleHandler}>
-            <FontAwesomeIcon icon={faBars} />
+            <FontAwesomeIcon icon={faBars} className="iconsize" />
             </Button>
             </Col>
             <Col xs="12" md="4">

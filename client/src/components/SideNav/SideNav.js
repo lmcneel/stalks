@@ -11,28 +11,29 @@ const propTypes = {
 
 const SideNav = (props) => (
     <Nav id="sidebar" className={(props.isActive) ? `active` : ``}>
-        <ul className="list-unstyled components">
+        <ul className="components">
             <li className="active">
-                <Link to={`/petfolio`}><FontAwesomeIcon icon={faChartPie} />  Petfolio</Link>
+                <Link to={`/petfolio`}>
+                <FontAwesomeIcon icon={faChartPie} className="sideNavicons"/>  Petfolio</Link>
             </li>
             <li className="">
                 <a href="">
-                    <FontAwesomeIcon icon={faPaw} />  Pet Center
+                    <FontAwesomeIcon icon={faPaw} className="sideNavicons" />  Pet Center
                 </a>
             </li>
             <li className="">
                 <a href="">
-                    <FontAwesomeIcon icon={faMoneyBillWave} />  Trade Center
+                    <FontAwesomeIcon icon={faMoneyBillWave} className="sideNavicons" />  Trade Center
                 </a>
             </li>
             <li className="">
                 <a href="">
-                    <FontAwesomeIcon icon={faUsers} />  Friends
+                    <FontAwesomeIcon icon={faUsers} className="sideNavicons" />  Friends
                 </a>
             </li>
             <li className="">
                 <a href="">
-                    <FontAwesomeIcon icon={faComments} />  Forum
+                    <FontAwesomeIcon icon={faComments} className="sideNavicons" />  Forum
                 </a>
             </li>
         </ul>
