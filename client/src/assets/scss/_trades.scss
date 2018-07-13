@@ -2,13 +2,16 @@ body {
   background-color: $gray-300;
 }
 //  ====================
+.trading {
+  width: 80%;
+}
 .stockStats {
   background-color: $white;
   border-radius: 25px;
   border: none;
   color: $gray-700;
   float: left;
-  margin: 3% 3% 3% 3%;
+  margin: 0% 0% 3% 0%;
   padding: 2% 2% 2% 2%;
   // width: 100%;
 }
@@ -55,7 +58,6 @@ body {
 }
 .faEye {
 color: $gray-700;
-color: $yellow;
 }
 .faEyeWatched {
   color: $yellow;
@@ -77,13 +79,16 @@ color: $yellow;
 }
 
 //  ====================
+.transactionForm {
+margin: 0px 
+}
 .buySell {
   background-color: $white;
   border-radius: 25px;
   border: none;
   color: $gray-700;
   float: left;
-  margin: 3% 3% 3% 3%;
+  margin: 0% 3% 3% 0%;
   padding: 5% 5% 5% 5%;
   // width: 100%;
 }
@@ -119,6 +124,16 @@ color: $yellow;
   // line-height: 1px;
   padding: 5px;
 }
+
+.buyBtn {
+  background-color: $success;
+  border: none;
+  color: #FFFFFF;
+  float: right;
+  // font-family: 'Rubik Gold';
+  font-size: 14px;
+  // width: 100%;  
+}
 .transactionModal {
   height: 100px;
 }
@@ -146,6 +161,13 @@ color: $yellow;
 }
 .searchBar {
   margin-bottom: 20px;
+}
+.listBar {
+  margin-bottom: 20px;
+}
+.listBarNav {
+  margin-bottom: 10px;
+  margin-left: 20px;
 }
 .stockTickerBarCollapse {
   border-bottom: solid 2px $gray-300;
