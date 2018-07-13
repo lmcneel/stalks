@@ -7,14 +7,14 @@ import PortfolioStatus from './components/PortfolioStatus';
 import WatchlistTicker from './components/WatchlistTicker';
 import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Petfolio from './pages/Petfolio';
-import Trading from './pages/Trading';
-import ViewStocks from './pages/ViewStocks';
+import Petfolio from './components/pages/Petfolio';
+import ViewStocks from './components/pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
 import ItemsShopPage from './pages/PetCenter/ItemShopPage'
 import PurchasedItemsPage from './pages/PetCenter/PurchasedItemsPage'
+import Trading from './components/pages/Trading';
 
 /**
  * Class App

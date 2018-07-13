@@ -6502,6 +6502,14 @@ a[data-toggle="collapse"] {
 .statusbars {
   width: 300px; }
 
+.colorPositive {
+  background-color: green; }
+
+.colorNeutral {
+  background-color: yellow; }
+
+.colorNegative {
+  background-color: red; }
 body {
   background-color: #DDDFE1; }
 
