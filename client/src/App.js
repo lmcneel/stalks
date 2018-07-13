@@ -13,6 +13,8 @@ import ViewStocks from './pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
+import ItemsShopPage from './pages/PetCenter/ItemShopPage'
+import PurchasedItemsPage from './pages/PetCenter/PurchasedItemsPage'
 
 /**
  * Class App
@@ -59,6 +61,8 @@ class App extends Component {
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />
+                      <Route exact path='/petcenter' component={PurchasedItemsPage} />
+                      <Route exact path='/petshop' component={ItemsShopPage} />
                     </Switch>
                 </Content>
                 </MainContentWrapper>
