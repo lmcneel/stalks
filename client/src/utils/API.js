@@ -44,7 +44,9 @@ export default {
     getUserProfile: function(){
         return axios.get('/api/user/getInfo');
     },
-       
+    checkPassword: function(data){
+        return axios.get('/api/user/checkPassword', data);
+    },
     updateEmail: function(data){
         console.log("Settings API");
         return axios.put('/api/user/update/email', data);

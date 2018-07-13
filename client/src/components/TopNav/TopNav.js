@@ -30,7 +30,7 @@ const TopNav = (props) => {
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/settings">
+                        <a className="nav-link" href="/settings/account">
                         <FontAwesomeIcon className="iconsize" icon={faCog} />
                         </a>
                     </li>
