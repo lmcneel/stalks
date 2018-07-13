@@ -123,10 +123,10 @@ class Petfolio extends Component {
             <Col>
               <Row>
                 <Col>
-                <PetfolioValue petfolioValue={this.state.petfolioValue} />
+                {/* <PetfolioValue petfolioValue={this.state.petfolioValue} /> */}
               </Col>
               <Col>
-                <BankValue bankValue={this.state.bankValue} />
+                {/* <BankValue bankValue={this.state.bankValue} /> */}
               </Col>
               </Row>
 
