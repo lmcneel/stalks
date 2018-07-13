@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row, Button, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from "reactstrap";
+// import {} from "reactstrap";
 
 export class Test extends Component {
     constructor(props) {
@@ -19,18 +19,7 @@ export class Test extends Component {
   
     render() {
       return (
-        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-          <DropdownToggle caret>
-            Dropdown
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem header>Header</DropdownItem>
-            <DropdownItem disabled>Action</DropdownItem>
-            <DropdownItem>Another Action</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>Another Action</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+<p>HELLO WORLD!!!!!!!!</p>
       );
     }
   }
