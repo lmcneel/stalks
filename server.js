@@ -24,7 +24,6 @@ let seq;
 if (config.use_env_variable) {
   seq = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  console.log(config.username);
   seq = new Sequelize(config.database, config.username, config.password, config);
 }
 
