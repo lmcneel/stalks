@@ -1,29 +1,75 @@
-const bcrypt = require('bcrypt-nodejs');
 module.exports = function(sequelize, Sequelize) {
-    // User Schema
+    // do we want to define this as user of users
     const User = sequelize.define('User', {
+
+        id: {
+            autoIncrement: true,
+            primaryKey: true,
+            type: Sequelize.INTEGER,
+        },
+        // we can combined the to just name if user auth wants this
+        firstname: {
+            type: Sequelize.STRING,
+            notEmpty: true,
+        },
+        lastname: {
+            type: Sequelize.STRING,
+            notEmpty: true,
+        },
+        // fullname: {
+        //     type: Sequelize.STRING,
+        //     notEmpty: true
+        // },
         username: {
             type: Sequelize.STRING,
-        },
-        password: {
-            type: Sequelize.STRING,
+            notEmpty: true,
         },
         email: {
             type: Sequelize.STRING,
+            validate: {
+                isEmail: true,
+            },
         },
-        name: {
+        password: {
             type: Sequelize.STRING,
+            allowNull: false,
+        },
+        // haven't seen levels incorporated in the current scope but if necessary
+        // level: {
+        //     type: Sequelize.INTEGER
+        // },
+        // should be created by association
+        // title_id: {
+        //     type: Sequelize.INTEGER,
+        //     allowNull: false
+        // },
+        balance: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
+        mongo_id: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        last_login: {
+            type: Sequelize.DATE,
+            allowNull: true,
+        },
+        //  this would give us the ability to make accounts inactive is this is decided upon
+        status: {
+            type: Sequelize.ENUM('active', 'inactive'),
+            defaultValue: 'active',
         },
     }, {
-            underscored: false,
-        });
+        underscored: false,
+    });
 
     // names of other models have not been established so the associations are subject to change
     User.associate = function(models) {
         // at this point we are assuming users only have one pet
-        // User.hasOne(models.Pet, {
-        //     onDelete: 'cascade',
-        // }),
+        User.hasOne(models.Pet, {
+            onDelete: 'cascade',
+        }),
         // haven't seen title incorporated in the current scope but if necessary
         // User.belongsTo(models.titles),
         User.hasMany(models.UserWatchlist, {
@@ -44,15 +90,7 @@ module.exports = function(sequelize, Sequelize) {
         User.hasOne(models.UserValidation, {
             onDelete: 'cascade',
         });
-        // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
-        User.prototype.validPassword = function(password) {
-            return bcrypt.compareSync(password, this.password);
-        };
-        // Hooks are automatic methods that run during various phases of the User Model lifecycle
-        // In this case, before a User is created, we will automatically hash their password
-        User.hook('beforeCreate', function(user) {
-            user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
-        });
     };
+
     return User;
 };

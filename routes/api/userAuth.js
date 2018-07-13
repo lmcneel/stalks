@@ -3,8 +3,6 @@ const router = require('express').Router();
 const passport = require('../../config/passport');
 
 module.exports = (app, db) => {
-  console.log(app);
-  console.log(db);
   router.get('/api/user_data', (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
