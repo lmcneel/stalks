@@ -15,12 +15,17 @@ export default {
         console.log(data);
         return axios.get(`/api/trading/quote/${data.ticker}`);
     },
-    // getPortfolioValue: function() {
-    //     return axios.get('api/petfolio/portfolio');
+
+    userQuotes: function(data) {
+        console.log(data);
+        return axios.get(`/api/trading/slimquote/${data.ticker}`);
+    },
+    // getInitialCash: function() {
+    //     return axios.get('api/ptfolio/initialcash');
     // },
-    // getBankValue: function() {
-    //     return axios.get('api/petfolio/bank');
-    // },
+    getMyPortfolio: function(portfolio) {
+        return axios.get(`/api/trading/myportfolio/${portfolio}`);
+    }, 
     getPetInfo: function() {
         return axios.get('/api/petfolio/pets');
     },
@@ -31,7 +36,7 @@ export default {
     getDocs: function() {
         return axios.get('/api/docs');
     },
-    getMyStocks: function(portfolio){
-        return axios.get(`api/trading/mystocks/${portfolio}`);
-    }
+    getMyStocks: function(portfolio) {
+        return axios.get(`/api/trading/mystocks/${portfolio}`);
+    },  
 };
