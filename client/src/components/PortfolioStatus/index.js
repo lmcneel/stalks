@@ -1,1 +1,1 @@
-export { default } from "./PortfolioStatus";
+export {default} from './PortfolioStatus';
