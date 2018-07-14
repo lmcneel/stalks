@@ -9,23 +9,23 @@ import API from '../../utils/API'
 // Saved Component used when saved tab is clicked. shows the saved components
 class MainApp extends Component {
     state = {
-        results: [{name: 'dog', image: "http://via.placeholder.com/140x140" } ]
+        results: []
     };
 
 
 
     displayAccessories = ()=> {
-      let answer=API.getPurchasedAccessories()
-      this.setState({ results: answer })
+      API.getPurchasedAccessories()
+      .then(res => this.setState({results: res.data}))
     
     }
     displayFoodAndToys = ()=> {
-      let answer=API.displayPurchasedFoodAndToys()
-      this.setState({ results: answer })
+        API.getPurchasedAccessories()
+        .then(res => this.setState({results: res.data}))
     }
     displayEnviornments = ()=> {
-      let answer=API.displayPurchasedEnviornments()
-      this.setState({ results: answer })
+        API.getPurchasedAccessories()
+        .then(res => this.setState({results: res.data}))
     }
 
 
@@ -47,7 +47,7 @@ class MainApp extends Component {
                         <div style={{'display': 'flex'}}>
                             {this.state.results.map((result, index) => {
                                 return (
-                                  <Card name={result.name} image={result.image} buttonName={'Use'} style={{'margin':'50px'}}/>
+                                  <Card name={result.Petname} image={result.urlImage} buttonName={'Use'} style={{'margin':'50px'}}/>
                                 );
                             })}
                         </div>

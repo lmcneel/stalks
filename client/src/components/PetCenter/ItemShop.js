@@ -47,7 +47,7 @@ class ItemShop extends Component {
                         <div style={{'display': 'flex'}}>
                             {this.state.results.map((result, index) => {
                                 return (
-                                  <Card name={result.name} image={result.image} buttonName={'Use'} style={{'margin':'50px'}}/>
+                                  <Card name={result.name} image={result.image} buttonName={'buy'} style={{'margin':'50px'}}/>
                                 );
                             })}
                         </div>
