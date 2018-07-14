@@ -14,15 +14,19 @@ class TradingCenter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ticker:  this.props.match.params.ticker,
+
+            ticker: this.props.match.params.ticker,
+
             price: 0,
             shares: 0,
             change: 0,
             response: '',
+
             portfolio_id: '5b40fb129adc85a410f488bd',
             transaction: 'buy',
             ROI: 0,
             id: '5b44cd4e020eda5258fcf2c1',
+
             cost: 0,
             datePurchased: '',
             value: 0,
@@ -162,6 +166,7 @@ class TradingCenter extends Component {
                 let spent = Object.entries(userStocks)[0];
                 console.log(userShares);
                 console.log(spent[1] / company[1]);
+                
                 this.setState({
                     totalShares: company[1],
                     cost: spent[1] / company[1],

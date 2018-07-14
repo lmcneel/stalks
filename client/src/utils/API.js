@@ -37,7 +37,7 @@ export default {
         return axios.get('/api/docs');
     },
     getMyStocks: function(portfolio) {
-        return axios.get(`api/trading/mystocks/${portfolio}`);
+        return axios.get(`/api/trading/mystocks/${portfolio}`);
     },
     // Gets all watchlists
     getwatchlist: function(data) {

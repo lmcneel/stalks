@@ -27,6 +27,7 @@ module.exports = {
             .catch((err) => res.status(422).json(err));
     },
     myStocks: function(req, res) {
+        console.log(res.params)
         db.Trade
             .find({portfolio_id: req.params.portfolio_id})
             .select('ticker type shares sharePrice date')
