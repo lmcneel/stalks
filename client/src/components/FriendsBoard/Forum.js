@@ -28,6 +28,7 @@ export class Forum extends Component {
     // Functions will go here
     loadComments() {
         API.getComments()
+        // console.log("loadComments, Forum.js, res.data" + res.data)
             .then((res) =>
                 this.setState({
                     forum: res.data,
