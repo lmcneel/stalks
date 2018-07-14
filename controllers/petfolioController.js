@@ -12,4 +12,13 @@ module.exports = {
       // console.log(dbUserWl[0].dataValues);
     });
   },
+  getUserPic: function(req, res) {
+    db.Pet.findOne({
+      where: {
+        UserId: 1,
+      },
+    }).then(function(dbUserPic) {
+      res.json(dbUserPic);
+    });
+  },
  };
