@@ -1,7 +1,7 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
-const db = require('../models/mysql/User.js');
+const db = require('../models/mysql/user.js');
 
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
 passport.use('local-signup', new LocalStrategy(
