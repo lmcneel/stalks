@@ -7,34 +7,14 @@ import PortfolioStatus from './components/PortfolioStatus';
 import WatchlistTicker from './components/WatchlistTicker';
 import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-<<<<<<< HEAD
-import Petfolio from './pages/Petfolio';
-import Trading from './pages/Trading';
-// import PetCenter from './components/pages/PetCenter';
-// import Forum from './components/pages/Forum';
-// import Friends from './components/pages/Friends';
-import Home from './pages/Home';
-import About from './pages/About';
-// import Settings from './components/pages/Settings';
-// import Login from './components/pages/Login';
-// import Logout from './components/pages/Logout';
-// import SignUp from './components/pages/SignUp';
-// import Achievements from './components/pages/Achievements';
-import ViewStocks from './pages/ViewStocks';
-import DocsList from './components/DocsList/DocsList';
-import HelpLanding from './components/HelpLanding/HelpLanding';
-import Inventory from './components/userTabs';
-import ItemsShopPage from './pages/PetCenter/ItemShopPage'
-import PurchasedItemsPage from './pages/PetCenter/PurchasedItemsPage'
-=======
 import Petfolio from './components/pages/Petfolio';
 import ViewStocks from './components/pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
 import Trading from './components/pages/Trading';
->>>>>>> 752cad1cb18a455f065b7ca289c8251f34aa2f86
-
+import ItemsShopPage from './components/pages/PetCenter/ItemShopPage'
+import PurchasedItemsPage from './components/pages/PetCenter/PurchasedItemsPage'
 /**
  * Class App
  */
@@ -80,8 +60,8 @@ class App extends Component {
                       {/* <Route exact path='/petcenter' component={PetCenter} />
                       <Route exact path='/friends' component={Friends} />
                       <Route exact path='/forum' component={Forum} /> */}
-                      <Route exact path='/' component={Home} />
-                      <Route exact path='/about' component={About} />
+                      {/* <Route exact path='/' component={Home} />
+                      <Route exact path='/about' component={About} /> */}
                       {/* <Route exact path='/settings' component={Settings} />
                       <Route exact path='/login' component={Login} />
                       <Route exact path='/logout' component={Logout} />
