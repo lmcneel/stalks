@@ -24,7 +24,7 @@ router.post('route/api/create/forum/', (req, res) => {
         })
 });
 
-router.get('route/api/view/forum/', (req, res) => {
+router.get('/', (req, res) => {
     Forum.find((err, forum) => {
         if (err) {
             return res.json({ err })
@@ -32,6 +32,7 @@ router.get('route/api/view/forum/', (req, res) => {
         return res.json({ data: forum })
     })
 });
+
 
 router.put('route/api/update/forum/', (req, res) => {
 

@@ -35,6 +35,7 @@ export default {
         return axios.get(`api/trading/mystocks/${portfolio}`);
     },
     getComments: function() {
-        return axios.get('api/comments');
+        console.log('hit API.js')
+        return axios.get('api/forum/');
     },
 };
