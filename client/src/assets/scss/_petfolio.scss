@@ -5,15 +5,15 @@
     width: 300px;
 }
 .colorPositive {
-    background-image: url('./images/pixelbg-green_160.jpg');
-    background-color: green;
+    background-image: url('/images/pixelbg-green_160.jpg');
+    // background-color: green;
 }
 .colorNeutral {
-    background-image: url('./images/pixelbg-yellow_160.jpg');
+    background-image: url('/images/pixelbg-yellow_160.jpg');
     background-color: yellow;
 }
 .colorNegative {
-    background-image: url('./images/pixelbg-red_160.jpg');
+    background-image: url('/images/pixelbg-red_160.jpg');
     background-color: red;
 }
 
