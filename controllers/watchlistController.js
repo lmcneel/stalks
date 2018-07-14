@@ -23,15 +23,14 @@ module.exports = {
   },
   update: function(req, res) {
     db.userWatchlist
-      .findOneAndUpdate({_id: req.params.id}, req.body)
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
+    .update(req.body, {where: {id: req.params.id}})
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
     db.userWatchlist
-      .findById({_id: req.params.id})
-      .then((dbModel) => dbModel.remove())
-      .then((dbModel) => res.json(dbModel))
-      .catch((err) => res.status(422).json(err));
+    .destory({where: {id: req.params.id}})
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
   },
 };
