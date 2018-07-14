@@ -2,6 +2,7 @@
 const router = require('express').Router();
 const passport = require('../../config/passport');
 
+//Need to fix this and make it like the other api routes
 module.exports = (app, db) => {
   router.get('/api/user_data', (req, res) => {
     if (!req.user) {
