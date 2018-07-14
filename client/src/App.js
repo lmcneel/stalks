@@ -36,13 +36,27 @@ class App extends Component {
   *@param {*} props
   */
  constructor(props) {
-   super(props);
-   this.state = {
-     sideNav: false,
-   };
-   this.navToggleHandler = this.navToggleHandler.bind(this);
- }
+  super(props);
+  this.state = {
+    sideNav: false,
+  };
+  this.navToggleHandler = this.navToggleHandler.bind(this);
+}
 
+/**
+ * Function that handles the click for the nav button
+ *@param {*} e
+ */
+navToggleHandler(e) {
+  this.setState({sideNav: !this.state.sideNav});
+}
+/**
+ * Render function for App Component
+ * @return {JSX}
+ */
+ render() {
+ return (
+   <Router>
         <div className="App">
             <TopNav navToggleHandler={this.navToggleHandler}/>
             <Wrapper>
