@@ -37,5 +37,6 @@ export default {
     getFriends: function(){
         console.log('here is friends.js');
         return axios.get('/api/view/friends');
+
     }
 };
