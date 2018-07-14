@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import StockSearch from '../StockSearch';
+import StockSearch from '../components/StockSearch';
 
 /**
  * View Stocks Page
