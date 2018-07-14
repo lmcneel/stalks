@@ -5,19 +5,16 @@
     width: 300px;
 }
 .colorPositive {
-    // background-image: url('/../../components/pages/pixelbg-green_160.jpg');
-    // background-image: url('/client/src/components/pages/pixelbg-green_160.jpg');
-
-    background-image: url('/images/pixelbg-green_160.jpg');
+    background-image: url('./images/pixelbg-green_160.jpg');
     background-color: green;
 }
 .colorNeutral {
-    // background-color: yellow;
-    background-image: url('../../components/pages/pixelbg-yellow_160.jpg');
+    background-image: url('./images/pixelbg-yellow_160.jpg');
+    background-color: yellow;
 }
 .colorNegative {
-    // background-color: red;
-    background-image: url('../../components/pages/pixelbg-red_160.jpg');
+    background-image: url('./images/pixelbg-red_160.jpg');
+    background-color: red;
 }
 
 /* This CSS animation creates the horizontal scrolling stock ticker */

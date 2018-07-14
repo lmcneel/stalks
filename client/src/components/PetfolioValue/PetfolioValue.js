@@ -10,7 +10,7 @@ class PetfolioValue extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      petfolioValue: 2001,
+      petfolioValue: 500,
     };
   }
   /**
@@ -19,7 +19,7 @@ class PetfolioValue extends Component {
   render() {
     return (
         <div>
-          $ {this.state.petfolioValue}
+          ${this.state.petfolioValue}
         </div>
     );
   }

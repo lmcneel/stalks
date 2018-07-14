@@ -21,6 +21,8 @@ class Petfolio extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      petfolioValue: 500,
+      bankValue: 3000,
       portfolioValueColor: 'colorPositive',
       bankValueColor: 'colorPositive',
     };
@@ -42,7 +44,6 @@ class Petfolio extends Component {
             } else {
               this.setState({petfolioValueColor: 'colorNegative'});
             };
-
       // }));
       // calc.bankValue().then(((r) => {
       //   this.setState({bankValue: r});
