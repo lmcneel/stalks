@@ -4,7 +4,7 @@ import PetStatusBars from '../PetStats/PetStatusBars';
 import PetPic from '../PetStats/PetPic';
 import PetName from '../PetStats/PetName';
 
-export const PetStatsHoriz = () => {
+const PetStatsHoriz = () => {
     return (
       <div>
         <Container>
@@ -30,4 +30,6 @@ export const PetStatsHoriz = () => {
       </div>
     );
 };
+
+export default PetStatsHoriz;
 
