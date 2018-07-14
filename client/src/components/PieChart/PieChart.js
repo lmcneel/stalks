@@ -5,7 +5,7 @@ import {VictoryPie} from 'victory';
 
 const PieChart = (props) => {
     return (
-      <div>
+      <div class="pieChart">
       <VictoryPie
          colorScale={['tomato', 'orange', 'gold', 'cyan', 'navy']}
          height={250}

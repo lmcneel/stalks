@@ -142,20 +142,22 @@ class App extends Component {
               text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
               selector: '.portfolioValue',
             },
+
             {
-              title: 'Click Tab 2',
-              text: 'Hides the "next" button!',
-              selector: '.tabtwo',
-              style: {
-                footer: {
-                  display: 'none',
-                },
-              },
+              title: 'Your Pet',
+              text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+              selector: '.petWrapper',
             },
             {
-              title: 'Item Two',
-              selector: '.itemtwo',
-            }
+              title: 'Your Stocks',
+              text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+              selector: '.pieChart',
+            },
+            {
+              title: 'Your Stocks',
+              text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+              selector: '.stockStats',
+            },
             ]}
           run={this.state.run} // or some other boolean for when you want to start it
           type={'continuous'}
