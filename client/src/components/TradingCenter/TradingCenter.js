@@ -9,20 +9,20 @@ import Promise from 'bluebird';
 import _ from 'underscore';
 
 
-class Transaction extends Component {
+class TradingCenter extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            ticker: 'XOM',
+            ticker:  this.props.match.params.ticker,
             price: 0,
             shares: 0,
             change: 0,
             response: '',
-            portfolio_id: '5b458c3cec9285215f43540f',
+            portfolio_id: '5b40fb129adc85a410f488bd',
             transaction: 'buy',
             ROI: 0,
-            id: '5b458c3cec9285215f43540f',
+            id: '5b44cd4e020eda5258fcf2c1',
             cost: 0,
             datePurchased: '',
             value: 0,
@@ -87,14 +87,15 @@ class Transaction extends Component {
 
 
     componentDidMount() {
-        this.charting({ ticker: this.state.ticker });
-        this.myStocks(this.state.portfolio_id);
-        this.dbStocks(this.state.portfolio_id);
-        this.myStocksValue();
+
+        // this.charting({ ticker: this.state.ticker });
+        // this.myStocks(this.state.portfolio_id);
+        // this.dbStocks(this.state.portfolio_id);
+        // this.myStocksValue();
         // this.bankValue(this.state.id);
         // this.myWatchlist(this.state.watchedArray);
         // this.lastPurchase(this.state.portfolio_id);
-        this.cashCalculator(this.state.portfolio_id);
+        // this.cashCalculator(this.state.portfolio_id);
     };
 
     handleInputChange = (event) => {
@@ -162,7 +163,8 @@ class Transaction extends Component {
                 console.log(cashTotal);
                 this.setState({
                     cashBalance: cashTotal.toFixed(2)
-                })
+                    
+                });
             })
             .catch(err => console.log(err));
     }
@@ -737,4 +739,4 @@ class Transaction extends Component {
     }
 }
 
-export default Transaction;
+export default TradingCenter;
