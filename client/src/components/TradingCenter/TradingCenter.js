@@ -14,19 +14,15 @@ class TradingCenter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
             ticker: this.props.match.params.ticker,
-
             price: 0,
             shares: 0,
             change: 0,
             response: '',
-
             portfolio_id: '5b469e9d1819e80bd4ddeb78',
             transaction: 'buy',
             ROI: 0,
             id: '5b469e9d1819e80bd4ddeb78',
-
             cost: 0,
             datePurchased: '',
             value: 0,
@@ -635,7 +631,7 @@ class TradingCenter extends Component {
                                     <h4>PRICE PURCHASED</h4>
                                 </div>
                                 <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>${this.state.cost}</h4>
+                                    <h4>${this.state.cost.toFixed(2)}</h4>
                                 </div>
                             </div>
                             <div className='row'>

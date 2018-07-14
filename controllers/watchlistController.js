@@ -25,7 +25,7 @@ module.exports = {
     db.userWatchlist
     .update(req.body, {where: {id: req.params.id}})
     .then((dbModel) => res.json(dbModel))
-    .catch((err) => res.status(422).json(err));
+    .catch((err )=> res.status(422).json(err));
   },
   remove: function(req, res) {
     db.userWatchlist

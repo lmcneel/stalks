@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Splash from './components/Splash';
 import TopNav from './components/TopNav';
 import Wrapper from './components/Wrapper';
 import SideNav from './components/SideNav';
@@ -9,27 +8,11 @@ import WatchlistTicker from './components/WatchlistTicker';
 import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
-<<<<<<< HEAD
-import Trading from './pages/Trading';
 import TradingCenter from './components/TradingCenter';
-=======
-// import PetCenter from './components/pages/PetCenter';
-// import Forum from './components/pages/Forum';
-// import Friends from './components/pages/Friends';
-import Home from './pages/Home';
-import About from './pages/About';
-// import Settings from './components/pages/Settings';
-// import Login from './components/pages/Login';
-// import Logout from './components/pages/Logout';
-// import SignUp from './components/pages/SignUp';
-// import Achievements from './components/pages/Achievements';
->>>>>>> a1000a89fe5369faf365d18179c840952902f3fc
 import ViewStocks from './pages/ViewStocks';
-import ListHoldings from './pages/ListHoldings';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
-import Trading from './components/pages/Trading';
 
 
 /**
@@ -73,22 +56,11 @@ class App extends Component {
                 <Content>
                 <Switch>
                       <Route exact path="/petfolio" component={Petfolio} />
-                      <Route exact path='/trading' component={Trading} />
-                      <Route exact path='/splash' component={Splash} />
-                      {/* <Route exact path='/petcenter' component={PetCenter} />
-                      <Route exact path='/friends' component={Friends} />
-                      <Route exact path='/forum' component={Forum} /> */}
-                      <Route exact path='/' component={Home} />
-                      <Route exact path='/about' component={About} />
-                      {/* <Route exact path='/settings' component={Settings} />
-                      <Route exact path='/login' component={Login} />
-                      <Route exact path='/logout' component={Logout} />
-                      <Route exact path='/signup' component={SignUp} />
-                      <Route exact path='/achievements' component={Achievements} /> */}
+                      <Route exact path='/trading' component={TradingCenter} />
+                      <Route exact path='/trading/:ticker' component={TradingCenter} />
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />
-                      <Route exact path='/ownedstocks' component={ListHoldings} />
                     </Switch>
                 </Content>
                 </MainContentWrapper>
