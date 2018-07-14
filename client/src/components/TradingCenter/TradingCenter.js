@@ -14,19 +14,15 @@ class TradingCenter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
             ticker: this.props.match.params.ticker,
-
             price: 0,
             shares: 0,
             change: 0,
             response: '',
-
             portfolio_id: '5b469e9d1819e80bd4ddeb78',
             transaction: 'buy',
             ROI: 0,
             id: '5b469e9d1819e80bd4ddeb78',
-
             cost: 0,
             datePurchased: '',
             value: 0,
