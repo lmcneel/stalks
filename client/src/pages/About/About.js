@@ -29,7 +29,8 @@ class About extends Component {
               <Images
               id={data.id}
               key={data.id}
-              img={data.image}
+              img={data.image} 
+              src={data.image}
               name={data.name}
               title={data.title}
               portfolio={data.portfolio}
