@@ -18,7 +18,7 @@ class PetStats extends React.Component {
     this.state = {
       name: 'Wolfy',
       pic: wolfy,
-      lastFed: '2018-07-12 12:00:00'
+      lastFed: '2018-07-13 12:00:00'
     }
   }
 
