@@ -21,7 +21,6 @@ import About from './pages/About';
 import ViewStocks from './pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
-import Inventory from './components/userTabs';
 import Trading from './components/pages/Trading';
 import StockTicker from './components/StockTicker/StockTicker';
 
@@ -62,7 +61,6 @@ class App extends Component {
               <MainContentWrapper>
                 <PortfolioStatus />
                 <StockTicker />
-                <Inventory />
                 <Content>
                 <Switch>
                       <Route exact path="/petfolio" component={Petfolio} />
