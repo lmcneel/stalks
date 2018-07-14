@@ -1,29 +1,54 @@
-import React from "react";
-import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row} from 'reactstrap';
+import React, { Component } from 'react';
+import { Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row } from 'reactstrap';
+import API from '../../utils/API';
 
-// Component to list current user friends on render
-export const FriendList = (props) => {
+// component to list current user friends on render
+export class FriendList extends Component {
 
-    return(
+    //     constructor(props) {
+    //         super(props);
+    //         state = {
+    //          friends: 0,    
+    //           };
 
-<Card>
-    <CardBody>
-        <div>
+    //     };
 
-            <Row>
-                <Col sm="12">
-                    <Card color="light">
-                        <CardBody>
-                            <CardTitle>Friend List</CardTitle>
-        
-                        </CardBody>
-                    </Card>
-                </Col>
-            </Row>
-              
-        </div>
-    </CardBody>
-</Card>
-)
+    //     componentDidMount() {
+    //         this.showFriends();
+
+    //     };
+
+    // // Query for user friends will go here!!! from mysql
+    // showFriends = () => {
+    //     API.whatgoeshere()
+    //         .then(res => this.setState({whatgoeshere}))
+    //         .catch(err => console.log(err));
+    // }
+
+    render() {
+
+
+        return (
+
+            <Card>
+                <CardBody>
+                    <div>
+
+                        <Row>
+                            <Col sm="12">
+                                <Card color="light">
+                                    <CardBody>
+                                        <CardTitle>Friend List</CardTitle>
+                                    </CardBody>
+                                </Card>
+                            </Col>
+                        </Row>
+
+                    </div>
+                </CardBody>
+            </Card>
+
+        )
+    }
 };
 

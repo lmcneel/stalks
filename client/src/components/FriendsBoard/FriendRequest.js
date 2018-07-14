@@ -1,11 +1,24 @@
-import React from "react";
+import React, {Component} from "react";
 import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row} from "reactstrap";
-
+import API from '../../utils/API';
 
 // FriendRequest component that will render all user pending friend request on render
-export const FriendRequest = (props) => {
-    
-    return(
+export class FriendRequest extends Component {
+ 
+    constructor(props) {
+        super(props);        
+        
+    };
+
+componentDidMount() {
+// Query for current friend request will go here!!!
+
+};    
+
+// function to accept or deny friend request will go here!!!
+render(){
+   
+return(
 
 <Card>
     <CardBody>        
@@ -23,5 +36,5 @@ export const FriendRequest = (props) => {
     </CardBody>
 </Card>
 )
-};
+}};
 

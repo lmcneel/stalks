@@ -1,34 +1,51 @@
-import React from "react";
-import { Card, CardText, CardBody, Container,
-    CardTitle, CardSubtitle, Col, Row } from 'reactstrap';
+import React, {Component} from "react";
+import {
+  Card, CardText, CardBody, Container,
+  CardTitle, CardSubtitle, Col, Row
+} from 'reactstrap';
+import API from '../../utils/API';
 
-export const LeaderBoard = (props) => (
+export class LeaderBoard extends Component {
 
+  constructor(props) {
+    super(props);
 
+  };
 
-<Container>
-  <Row>
-    <Col sm="8" md={{ size: 11, offset: 0 }}>
-      <Card color="light">
-        <CardBody>
-          <CardTitle>
-            Leaderboard
+  ComponentDidMount() {
+    // Query for current top scores will go here based on protfolio value
+
+  };
+
+  render() {
+
+    return (
+
+      <Container>
+        <Row>
+          <Col sm="8" md={{ size: 11, offset: 0 }}>
+
+            <Card color="light">
+              <CardBody>
+                <CardTitle>
+                  Leaderboard
           </CardTitle>
-            <CardSubtitle>
-             Leaderboard 
+                <CardSubtitle>
+                  Leaderboard
             </CardSubtitle>
-            <Card>
-            <CardBody> 
-            <CardText>
-              Leaderboard ITEMS WILL GO HERE!
-            </CardText>
-            </CardBody>
-            </Card> 
-        </CardBody>
-      </Card> 
-    </Col>
-  </Row>
-</Container>
+                <Card>
+                  <CardBody>
+                    <CardText>
+                      Leaderboard ITEMS WILL GO HERE!
+                  </CardText>
+                  </CardBody>
+                </Card>
+              </CardBody>
+            </Card>
 
-);
-
+          </Col>
+        </Row>
+      </Container>
+    )
+  }
+};
