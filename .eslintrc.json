@@ -21,6 +21,13 @@
         }
     },
     "rules":{
-        "max-len": [2, 120, 4, {"ignoreUrls": true}]
+        "max-len": [2, 120, 4, {"ignoreUrls": true}],
+        "linebreak-style": 0,
+        "global-require": 0,
+        "eslint linebreak-style": [
+          0,
+          "error",
+          "windows"
+        ]
     }
 }
