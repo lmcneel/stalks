@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import StockTicker from './StockTicker';
 
 /**
@@ -23,9 +23,9 @@ class Test extends Component {
         <div>
           <div className="main">
           <h2>Test Page</h2>
-          </div>  
+          </div>
           <StockTicker text={this.state.text} />
-        </div>  
+        </div>
       );
    };
 }
