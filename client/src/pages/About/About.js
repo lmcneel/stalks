@@ -23,6 +23,8 @@ class About extends Component {
                 </div>
                 <Container >
             {/* <div className="wrapper"> */}
+            <div className = "row">
+            <div className="col-md-4">
             {this.state.data.map(data=>(
               <Images
               id={data.id}
@@ -34,8 +36,8 @@ class About extends Component {
             />
         
             ))}
-      
-            {/* </div> */}
+            </div>
+            </div>
               </Container>
             </div>
         );
