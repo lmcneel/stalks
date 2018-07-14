@@ -20,7 +20,13 @@ const SideNav = (props) => (
                     <Link to={'/petcenter'}><FontAwesomeIcon icon={faPaw} />  Pet Center</Link>
             </li>
             <li className="">
+<<<<<<< HEAD
                     <Link to={'/trading'}><FontAwesomeIcon icon={faMoneyBillWave} />  Trade Center</Link>
+=======
+                <a href="/viewstocks">
+                    <FontAwesomeIcon icon={faMoneyBillWave} />  Trade Center
+                </a>
+>>>>>>> 3d33cb365840009e3b691e273486d561c972fd5e
             </li>
             <li className="">
                     <Link to={'/friends'}><FontAwesomeIcon icon={faUsers} />  Friends</Link>
