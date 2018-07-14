@@ -1,18 +1,15 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
-import {PetName, PetPic, PetStats, PetWrapper} from '../../components/PetStats';
-import BankValue from '../../components/BankValue';
-import PetfolioValue from '../../components/PetfolioValue';
-import PieChart from '../../components/PieChart';
-import wolfy from './defaultPetPic.png';
-// import other 3 pet pics here
-import StockTicker from '../../components/StockTicker/StockTicker';
-// import '../../assets/scss/_petfolio.scss';
-import API from './../../utils/API';
+import {PetStatsVert} from '../PetStats';
+import BankValue from '../BankValue/BankValue';
+import PetfolioValue from '../PetfolioValue/PetfolioValue';
+import PieChart from '../PieChart/PieChart';
+import StockTicker from '../StockTicker/StockTicker';
+import API from '../../utils/API';
 // const calc = require('./../../utils/Calc');
 
 /**
- * @class Portfolio
+ * @class Petfolio
  */
 class Petfolio extends Component {
   /**
@@ -22,13 +19,10 @@ class Petfolio extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      petName: 'Wolf',
-      petPic: wolfy,
-      petStats: [85, 90, 50, 70],
-      // tickerText,
       petfolioValue: 2001,
       bankValue: 2000,
       tickerText: 'Watchlist...StockA 2.35...StockB 4.15...StockC 1.28',
+      tickerForApi: [],
       portfolioValueColor: 'colorPositive',
       bankValueColor: 'colorPositive',
     };
@@ -36,20 +30,25 @@ class Petfolio extends Component {
 
     /**
      * Setting state of portfolio and bank values and all pet info(name, pic, stats) once component is mounted
+     * tempTicker only includes stock symbols from UserWatchList
+     * for the api call to get current prices for the ticker tape
      */
     componentDidMount() {
       API.getTickerText().then(((r) => {
         if (r.data.length !== 0) {
           let ticker = 'Watchlist...';
+          let tempTicker = [];
           for (let i=0; i<r.data.length; i++) {
             // API.findQuotes(r.data[i]).then(((r2) => {
             //   console.log(r2);
             // }));
-
-            ticker += r.data[i].symbol + '...';
+            ticker += r.data[i].uniqueStockSymbol + '...';
+            tempTicker.push((r.data[i]).uniqueStockSymbol);
           }
           this.setState({tickerText: ticker});
-          console.log(r.data);
+          this.setState({tickerForApi: tempTicker});
+          // console.log(r.data);
+          console.log(tempTicker);
         };
       }));
 
@@ -118,54 +117,42 @@ class Petfolio extends Component {
               </Col>
             </Row>
 
-            {/** Row 3: PetStats and PieChart*/}
+            {/** Row 3: Vertical PetStats and PieChart*/}
             <Row>
               <Col>
-              <div className="main">
-                <PetWrapper>
-
-                  <PetPic>
-                    {this.state.petPic}
-                  </PetPic>
-
-                  <div className="petname">
-                    <PetName>
-                      {this.state.petName}
-                    </PetName>
-                  </div>
-
-                  <div className="statusbars">
-                    <PetStats
-                      petStat="Overall Health"
-                      petStatColor="success"
-                      petStatValue={this.state.petStats[0]}
-                    />
-                    <PetStats
-                      petStat="Hunger"
-                      petStatColor="danger"
-                      petStatValue={this.state.petStats[3]}
-                    />
-                    <PetStats
-                      petStat="Happiness"
-                      petStatColor="info"
-                      petStatValue={this.state.petStats[1]}
-                    />
-                    <PetStats
-                      petStat="Fondness"
-                      petStatColor="warning"
-                      petStatValue={this.state.petStats[2]}
-                    />
-                  </div>
-                </PetWrapper>
-              </div>
-            </Col>
+                <div className="statusbarwidth">
+                <PetStatsVert />
+                </div>
+              </Col>
 
             <Col>
-              <PieChart />
-          </Col>
-        </Row>
-        </Col>
-        </Row>
+              <Row>
+                <Col>
+                {/* <PetfolioValue petfolioValue={this.state.petfolioValue} /> */}
+              </Col>
+              <Col>
+                {/* <BankValue bankValue={this.state.bankValue} /> */}
+              </Col>
+              </Row>
+
+              <Row>
+                <Col>
+                 <PieChart />
+                </Col>
+              </Row>
+            </Col>
+
+          </Row>
+
+          {/* This row contains the owned stock details -- trading component*/}
+          {/* <i class="fas fa-chevron-circle-down"></i>  or     f13a*/}
+
+          <Row>
+            <Col>
+            </Col>
+          </Row>
+      </Col>
+      </Row>
       </Container>
     );
   }
