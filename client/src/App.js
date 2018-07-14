@@ -9,7 +9,6 @@ import WatchlistTicker from './components/WatchlistTicker';
 import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
-import Trading from './pages/Trading';
 // import PetCenter from './components/pages/PetCenter';
 // import Forum from './components/pages/Forum';
 // import Friends from './components/pages/Friends';
