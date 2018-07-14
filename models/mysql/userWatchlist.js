@@ -6,6 +6,7 @@ module.exports = function(sequelize, Sequelize) {
       // not sure what data type this will be stored as
       type: Sequelize.STRING,
       allowNull: false,
+      unique: true,
     },
   });
   UserWatchlist.associate = function(models) {

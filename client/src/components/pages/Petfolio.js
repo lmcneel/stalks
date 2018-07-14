@@ -28,6 +28,8 @@ class Petfolio extends Component {
 
     /**
      * Setting state of portfolio and bank values and all pet info(name, pic, stats) once component is mounted
+     * tempTicker only includes stock symbols from UserWatchList
+     * for the api call to get current prices for the ticker tape
      */
     componentDidMount() {
       // calc.portfolioValue().then(((r) => {

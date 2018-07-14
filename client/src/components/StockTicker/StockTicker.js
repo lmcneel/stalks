@@ -14,6 +14,7 @@ class StockTicker extends Component {
       super(props);
       this.state = {
         tickerText: 'Watchlist...StockA 2.35...StockB 4.15...StockC 1.28',
+      tickerForApi: [],
       };
     }
     /**
@@ -21,18 +22,22 @@ class StockTicker extends Component {
      */
       componentDidMount() {
         API.getTickerText().then(((r) => {
-          if (r.data.length !== 0) {
-            let ticker = 'Watchlist...';
-            for (let i=0; i<r.data.length; i++) {
-              // API.findQuotes(r.data[i]).then(((r2) => {
-              //   console.log(r2);
-              // }));
-              ticker += r.data[i].symbol + '...';
-            }
-            this.setState({tickerText: ticker});
-            console.log(r.data);
-          };
-        }));
+            if (r.data.length !== 0) {
+              let ticker = 'Watchlist...';
+              let tempTicker = [];
+              for (let i=0; i<r.data.length; i++) {
+                // API.findQuotes(r.data[i]).then(((r2) => {
+                //   console.log(r2);
+                // }));
+                ticker += r.data[i].uniqueStockSymbol + '...';
+                tempTicker.push((r.data[i]).uniqueStockSymbol);
+              }
+              this.setState({tickerText: ticker});
+              this.setState({tickerForApi: tempTicker});
+              // console.log(r.data);
+              console.log(tempTicker);
+            };
+          }));
       };
 
     /**

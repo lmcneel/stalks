@@ -41,8 +41,7 @@ class Petfolio extends Component {
       API.getTickerText().then(((r) => {
         if (r.data.length !== 0) {
           let ticker = 'Watchlist...';
-          for (let i=0; i<r.data.length; i++){
-
+          for (let i=0; i<r.data.length; i++) {
             // API.findQuotes(r.data[i]).then(((r2) => {
             //   console.log(r2);
             // }));
@@ -52,32 +51,27 @@ class Petfolio extends Component {
           this.setState({tickerText: ticker});
           console.log(r.data);
         };
-
       }));
 
       // calc.portfolioValue().then(((r) => {
       //   this.setState({petfolioValue: r});
 
-            if (this.state.petfolioValue >= 1000){
+            if (this.state.petfolioValue >= 1000) {
               this.setState({portfolioValueColor: 'colorPositive'});
-            }
-            else if (this.state.petfolioValue >=500){
+            } else if (this.state.petfolioValue >=500) {
               this.setState({portfolioValueColor: 'colorNeutral'});
-            }
-            else {
+            } else {
               this.setState({petfolioValueColor: 'colorNegative'});
             };
 
       // }));
       // calc.bankValue().then(((r) => {
       //   this.setState({bankValue: r});
-      if (this.state.bankValue > 1000){
+      if (this.state.bankValue > 1000) {
         this.setState({bankValueColor: 'colorPositive'});
-      }
-      else if (this.state.bankValue >1){
+      } else if (this.state.bankValue >1) {
         this.setState({bankValueColor: 'colorNeutral'});
-      }
-      else {
+      } else {
         this.setState({bankValueColor: 'colorNegative'});
       };
       // }));
