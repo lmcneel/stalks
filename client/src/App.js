@@ -8,10 +8,8 @@ import WatchlistTicker from './components/WatchlistTicker';
 import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
-import Trading from './pages/Trading';
 import TradingCenter from './components/TradingCenter';
 import ViewStocks from './pages/ViewStocks';
-import ListHoldings from './pages/ListHoldings';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
@@ -63,7 +61,6 @@ class App extends Component {
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />
-                      <Route exact path='/ownedstocks' component={ListHoldings} />
                     </Switch>
                 </Content>
                 </MainContentWrapper>

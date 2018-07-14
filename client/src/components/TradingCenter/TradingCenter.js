@@ -631,7 +631,7 @@ class TradingCenter extends Component {
                                     <h4>PRICE PURCHASED</h4>
                                 </div>
                                 <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>${this.state.cost}</h4>
+                                    <h4>${this.state.cost.toFixed(2)}</h4>
                                 </div>
                             </div>
                             <div className='row'>

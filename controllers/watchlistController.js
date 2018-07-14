@@ -1,4 +1,4 @@
-const db = require("../models/mysql");
+const db = require('../models/mysql');
 
 // Defining methods for the userWatchlistsController
 module.exports = {
@@ -24,13 +24,13 @@ module.exports = {
   update: function(req, res) {
     db.userWatchlist
     .update(req.body, {where: {id: req.params.id}})
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(422).json(err));
+    .then((dbModel) => res.json(dbModel))
+    .catch((err )=> res.status(422).json(err));
   },
   remove: function(req, res) {
     db.userWatchlist
     .destory({where: {id: req.params.id}})
-    .then(dbModel => res.json(dbModel))
-    .catch(err => res.status(422).json(err));
+    .then((dbModel) => res.json(dbModel))
+    .catch((err) => res.status(422).json(err));
   },
 };
