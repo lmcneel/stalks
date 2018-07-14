@@ -1,5 +1,5 @@
 import React from 'react';
-import './Images.css';
+// import './Images.css';
 import {Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button} from 'reactstrap';
   // import LinkButton from '/components/LinkButton'
@@ -31,7 +31,7 @@ const Images = (props) => {
       <Card >
         <CardImg onClick={(event)=>{
 console.log('Working');
-}} top width="200px" top height="200px" src={props.img}alt={props.name} />
+}}  src={props.img}alt={props.name} />
         <CardBody>
           <CardTitle>{props.name}</CardTitle>
           <CardSubtitle>{props.title}</CardSubtitle>
