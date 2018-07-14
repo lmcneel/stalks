@@ -22,6 +22,7 @@ class Petfolio extends Component {
       petfolioValue: 2001,
       bankValue: 2000,
       tickerText: 'Watchlist...StockA 2.35...StockB 4.15...StockC 1.28',
+      tickerForApi: [],
       portfolioValueColor: 'colorPositive',
       bankValueColor: 'colorPositive',
     };
@@ -29,19 +30,25 @@ class Petfolio extends Component {
 
     /**
      * Setting state of portfolio and bank values and all pet info(name, pic, stats) once component is mounted
+     * tempTicker only includes stock symbols from UserWatchList
+     * for the api call to get current prices for the ticker tape
      */
     componentDidMount() {
       API.getTickerText().then(((r) => {
         if (r.data.length !== 0) {
           let ticker = 'Watchlist...';
+          let tempTicker = [];
           for (let i=0; i<r.data.length; i++) {
             // API.findQuotes(r.data[i]).then(((r2) => {
             //   console.log(r2);
             // }));
-            ticker += r.data[i].symbol + '...';
+            ticker += r.data[i].uniqueStockSymbol + '...';
+            tempTicker.push((r.data[i]).uniqueStockSymbol);
           }
           this.setState({tickerText: ticker});
-          console.log(r.data);
+          this.setState({tickerForApi: tempTicker});
+          // console.log(r.data);
+          console.log(tempTicker);
         };
       }));
 
@@ -121,10 +128,10 @@ class Petfolio extends Component {
             <Col>
               <Row>
                 <Col>
-                <PetfolioValue petfolioValue={this.state.petfolioValue} />
+                {/* <PetfolioValue petfolioValue={this.state.petfolioValue} /> */}
               </Col>
               <Col>
-                <BankValue bankValue={this.state.bankValue} />
+                {/* <BankValue bankValue={this.state.bankValue} /> */}
               </Col>
               </Row>
 

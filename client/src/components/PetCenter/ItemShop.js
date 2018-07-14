@@ -39,7 +39,7 @@ class ItemShop extends Component {
           <Button onClick={this.displayFoodAndToys} style={{'margin-right': '2px'}}> Food and Toys</Button>
           <Button onClick={this.displayAccessories}style={{'margin-right': '2px'}}> Accessories </Button>
           <Button onClick={this.displayEnviornments}style={{'margin-right': '2px'}}> Enviornment </Button>
-              <p> hi you are in the item shop </p>
+
           <Col></Col>
           <Container>
           <Row>
