@@ -22,10 +22,10 @@ class TradingCenter extends Component {
             change: 0,
             response: '',
 
-            portfolio_id: '5b40fb129adc85a410f488bd',
+            portfolio_id: '5b469e9d1819e80bd4ddeb78',
             transaction: 'buy',
             ROI: 0,
-            id: '5b44cd4e020eda5258fcf2c1',
+            id: '5b469e9d1819e80bd4ddeb78',
 
             cost: 0,
             datePurchased: '',
@@ -42,14 +42,14 @@ class TradingCenter extends Component {
 
     componentDidMount() {
 
-        // this.charting({ ticker: this.state.ticker });
-        // this.myStocks(this.state.portfolio_id);
-        // this.dbStocks(this.state.portfolio_id);
-        // this.myStocksValue();
-        // this.bankValue(this.state.id);
-        // this.myWatchlist(this.state.watchedArray);
+        this.charting({ ticker: this.state.ticker });
+        this.myStocks(this.state.portfolio_id);
+        this.dbStocks(this.state.portfolio_id);
+        this.myStocksValue();
+        this.bankValue(this.state.id);
+        this.myWatchlist(this.state.watchedArray);
         // this.lastPurchase(this.state.portfolio_id);
-        // this.cashCalculator(this.state.portfolio_id);
+        this.cashCalculator(this.state.portfolio_id);
         this.checkWatchList();
     };
 

@@ -63,7 +63,7 @@ function seedDB() {
                                                             Trade.create({
                                                                     date: Date.now(),
                                                                     type: 'Buy',
-                                                                    ticker: 'AALP',
+                                                                    ticker: 'AAPL',
                                                                     sharePrice: 184.94,
                                                                     shares: 10,
                                                                 }, {
