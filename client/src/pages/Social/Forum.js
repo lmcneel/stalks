@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {Container, Row, Col} from 'reactstrap';
+import {Container, Row} from 'reactstrap';
 import {Forum} from '../../components/FriendsBoard';
-import API from './../../utils/API';
+// import API from './../../utils/API';
 
 
 class ForumPage extends Component {
-
 render() {
     return (
 

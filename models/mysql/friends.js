@@ -1,5 +1,5 @@
-module.exports = function (sequelize, DataTypes) {
-    var Friends = sequelize.define("Friends", {
+module.exports = function(sequelize, DataTypes) {
+    let Friends = sequelize.define('Friends', {
         user_id: {
             type: DataTypes.INTEGER,
             allownull: false,
@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
         valuation: {
             type: DataTypes.INTEGER,
             allownull: false,
-        }
+        },
     });
 
     Friends.associate = function(models) {

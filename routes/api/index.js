@@ -10,7 +10,7 @@ router.use('/docs', docRoutes);
 // Trading routes
 router.use('/trading', tradingRoutes);
 
-//Social routes
+// Social routes
 router.use('/friends', friendRoutes);
 router.use('/forum', forumRoutes);
 

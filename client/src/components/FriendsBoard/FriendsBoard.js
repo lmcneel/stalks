@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {FriendList, FriendRequest, FriendSearch} from '../../components/FriendsBoard';
-import {Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row, Button, Container, Collapse} from "reactstrap";
+import {Card, CardBody, CardTitle, Navbar, Nav, NavItem, Col, Row, Container} from "reactstrap";
 
 // Main Component to nest all other Friends Components
 export class FriendsBoard extends Component {

@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
-import { Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row } from 'reactstrap';
-import API from '../../utils/API';
+import React, {Component} from 'react';
+import {Card, CardBody, CardTitle, Col, Row} from 'reactstrap';
+// import API from '../../utils/API';
 
 // component to list current user friends on render
 export class FriendList extends Component {
-
     //     constructor(props) {
     //         super(props);
     //         state = {
-    //          friends: 0,    
+    //          friends: 0,
     //           };
 
     //     };
@@ -26,8 +25,6 @@ export class FriendList extends Component {
     // }
 
     render() {
-
-
         return (
 
             <Card>
@@ -48,7 +45,7 @@ export class FriendList extends Component {
                 </CardBody>
             </Card>
 
-        )
+        );
     }
 };
 
