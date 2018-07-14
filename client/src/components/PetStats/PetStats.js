@@ -34,6 +34,12 @@ class PetStats extends React.Component {
   }
 
   getFondness() {
+
+    // Get last time animal was pet and the amount of fondness at that time
+    // Subtract the appropriate amount based on the draining time
+    // When the pet button is clicked add the appropriate amount of fondness, write the time it was pet and the new amount of fondness
+    // Start a timer for the cooldown on the pet button
+
     this.state.fondness = 80;
   }
 
