@@ -8,7 +8,7 @@ import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
 import TradingCenter from './components/TradingCenter';
-import ViewStocks from './pages/ViewStocks';
+import ViewStocks from './pages/ViewStocks/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
