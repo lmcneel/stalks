@@ -7,15 +7,14 @@ import PortfolioStatus from './components/PortfolioStatus';
 import WatchlistTicker from './components/WatchlistTicker';
 import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Petfolio from './pages/Petfolio';
-import Trading from './pages/Trading';
-import ViewStocks from './pages/ViewStocks';
+import Petfolio from './components/pages/Petfolio';
+import ViewStocks from './components/pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
-import ItemsShopPage from './pages/PetCenter/ItemShopPage'
-import PurchasedItemsPage from './pages/PetCenter/PurchasedItemsPage'
-
+import Trading from './components/pages/Trading';
+import ItemsShopPage from './components/pages/PetCenter/ItemShopPage'
+import PurchasedItemsPage from './components/pages/PetCenter/PurchasedItemsPage'
 /**
  * Class App
  */
@@ -55,9 +54,19 @@ class App extends Component {
                 <WatchlistTicker />
                 <Inventory />
                 <Content>
-                    <Switch>
+                <Switch>
                       <Route exact path="/petfolio" component={Petfolio} />
                       <Route exact path='/trading' component={Trading} />
+                      {/* <Route exact path='/petcenter' component={PetCenter} />
+                      <Route exact path='/friends' component={Friends} />
+                      <Route exact path='/forum' component={Forum} /> */}
+                      {/* <Route exact path='/' component={Home} />
+                      <Route exact path='/about' component={About} /> */}
+                      {/* <Route exact path='/settings' component={Settings} />
+                      <Route exact path='/login' component={Login} />
+                      <Route exact path='/logout' component={Logout} />
+                      <Route exact path='/signup' component={SignUp} />
+                      <Route exact path='/achievements' component={Achievements} /> */}
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />
