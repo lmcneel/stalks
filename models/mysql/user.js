@@ -2,11 +2,29 @@ const bcrypt = require('bcryptjs');
 module.exports = function(sequelize, Sequelize) {
 // User Schema
     const User = sequelize.define('User', {
+<<<<<<< HEAD
         username: {
+=======
+
+        id: {
+            autoIncrement: true,
+            primaryKey: true,
+            type: Sequelize.INTEGER,
+        },
+        firstname: {
+            type: Sequelize.STRING,
+            notEmpty: true,
+        },
+        lastname: {
+>>>>>>> profile-issues#4
             type: Sequelize.STRING,
             unique: true,
         },
+<<<<<<< HEAD
         password: {
+=======
+        username: {
+>>>>>>> profile-issues#4
             type: Sequelize.STRING,
         },
         email: {
@@ -16,9 +34,15 @@ module.exports = function(sequelize, Sequelize) {
         name: {
             type: Sequelize.STRING,
         },
+<<<<<<< HEAD
         verified: {
             type: Sequelize.BOOLEAN,
             defaultValue: false,
+=======
+        balance: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+>>>>>>> profile-issues#4
         },
         // This is to make sure users only have one update request open at a time
         // Also helps me while in updating both userValidation and this table :D - Michael
@@ -44,8 +68,6 @@ module.exports = function(sequelize, Sequelize) {
         User.hasOne(models.Pet, {
             onDelete: 'cascade',
         }),
-        // haven't seen title incorporated in the current scope but if necessary
-        // User.belongsTo(models.titles),
         User.hasMany(models.UserWatchlist, {
             onDelete: 'cascade',
         });
@@ -58,9 +80,6 @@ module.exports = function(sequelize, Sequelize) {
         // User.hasMany(models.users_accomplishments, {
         //     onDelete: 'cascade'
         // }),
-        // User.hasMany(models.users_gifts, {
-        //     onDelete: 'cascade'
-        // });
         User.hasOne(models.UserValidation, {
             onDelete: 'cascade',
         });
