@@ -7,7 +7,6 @@ module.exports = function(sequelize, Sequelize) {
             primaryKey: true,
             type: Sequelize.INTEGER,
         },
-        // we can combined the to just name if user auth wants this
         firstname: {
             type: Sequelize.STRING,
             notEmpty: true,
@@ -16,10 +15,6 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.STRING,
             notEmpty: true,
         },
-        // fullname: {
-        //     type: Sequelize.STRING,
-        //     notEmpty: true
-        // },
         username: {
             type: Sequelize.STRING,
             notEmpty: true,
@@ -34,15 +29,6 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.STRING,
             allowNull: false,
         },
-        // haven't seen levels incorporated in the current scope but if necessary
-        // level: {
-        //     type: Sequelize.INTEGER
-        // },
-        // should be created by association
-        // title_id: {
-        //     type: Sequelize.INTEGER,
-        //     allowNull: false
-        // },
         balance: {
             type: Sequelize.INTEGER,
             allowNull: false,
@@ -61,7 +47,7 @@ module.exports = function(sequelize, Sequelize) {
             defaultValue: 'active',
         },
     }, {
-        underscored: true,
+        underscored: false,
     });
 
     // names of other models have not been established so the associations are subject to change
@@ -70,23 +56,21 @@ module.exports = function(sequelize, Sequelize) {
         User.hasOne(models.Pet, {
             onDelete: 'cascade',
         }),
-        // haven't seen title incorporated in the current scope but if necessary
-        // User.belongsTo(models.titles),
         User.hasMany(models.UserWatchlist, {
             onDelete: 'cascade',
-        }),
+        });
         User.hasMany(models.UserLogins, {
             onDelete: 'cascade',
-        }),
-        User.hasMany(models.Friends, {
-            onDelete: 'cascade',
         });
+        // User.hasMany(models.Friends, {
+        //     onDelete: 'cascade',
+        // });
         // User.hasMany(models.users_accomplishments, {
         //     onDelete: 'cascade'
         // }),
-        // User.hasMany(models.users_gifts, {
-        //     onDelete: 'cascade'
-        // });
+        User.hasOne(models.UserValidation, {
+            onDelete: 'cascade',
+        });
     };
 
     return User;
