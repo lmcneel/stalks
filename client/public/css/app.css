@@ -6518,9 +6518,8 @@ body {
   border: none;
   color: #404850;
   float: left;
-  margin: 0% 0% 3% 0%;
-  padding: 2% 2% 2% 2%;
-  width: 100%; }
+  margin: 0px 0px 20px 0px;
+  padding: 20px 20px 20px 20px; }
 
 .stockStats h1 {
   font-size: 22px;
@@ -6586,8 +6585,8 @@ body {
   border: none;
   color: #404850;
   float: left;
-  margin: 0% 3% 3% 0%;
-  padding: 5% 5% 5% 5%; }
+  margin: 0px 20px 0px 0px;
+  padding: 20px 20px 20px 20px; }
 
 .buySell h1 {
   font-size: 22px;
@@ -6639,8 +6638,8 @@ body {
   margin-bottom: 15px; }
 
 .searchStockStats {
-  margin: 1% 0% 0% 0%;
-  padding: 2% 2% 2% 2%;
+  margin: 20px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
   width: 90%; }
 
 .searchBar {
@@ -6659,9 +6658,6 @@ body {
 
 .collapseTop {
   padding-top: 20px; }
-
-.listStocks {
-  width: 100%; }
 
 .listBtn {
   margin-right: 10px; }
