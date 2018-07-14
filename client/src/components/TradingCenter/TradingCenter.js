@@ -14,15 +14,15 @@ class Transaction extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ticker: 'XOM',
+            ticker: this.props.match.params.ticker,
             price: 0,
             shares: 0,
             change: 0,
             response: '',
-            portfolio_id: '5b458c3cec9285215f43540f',
+            portfolio_id: '5b441266c5cc0cf8a8a33457',
             transaction: 'buy',
             ROI: 0,
-            id: '5b458c3cec9285215f43540f',
+            id: '5b441266c5cc0cf8a8a33457',
             cost: 0,
             datePurchased: '',
             value: 0,
@@ -140,6 +140,7 @@ class Transaction extends Component {
                 let spent = Object.entries(userStocks)[0];
                 console.log(userShares);
                 console.log(spent[1] / company[1]);
+                
                 this.setState({
                     totalShares: company[1],
                     cost: spent[1] / company[1],
