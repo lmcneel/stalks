@@ -5,21 +5,17 @@ import PetPic from '../PetStats/PetPic';
 import PetName from '../PetStats/PetName';
 import wolfy from '../pages/defaultPetPic.png';
 
-/** This component will create a status bar for the user's pet.
- *  The value for each must be obtained from the DB
- *  petStat = Overall Health, Happiness, Fondness, Hunger
- *  petStatColor = color of bar
- *  petStatValue = % filled
+/**
+ * @class
  */
-
 class PetStats extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: 'Wolfy',
       pic: wolfy,
-      lastFed: '2018-07-12 12:00:00'
-    }
+      lastFed: '2018-07-13 12:00:00',
+    };
   }
 
   componentDidMount() {
@@ -34,12 +30,11 @@ class PetStats extends React.Component {
   }
 
   getFondness() {
-
     // Get last time animal was pet and the amount of fondness at that time
     // Subtract the appropriate amount based on the draining time
-    // When the pet button is clicked add the appropriate amount of fondness, write the time it was pet and the new amount of fondness
+    // When the pet button is clicked add the appropriate amount of fondness
+    // Write the time it was pet and the new amount of fondness
     // Start a timer for the cooldown on the pet button
-
     this.state.fondness = 80;
   }
 
@@ -48,27 +43,21 @@ class PetStats extends React.Component {
   }
 
   getHunger() {
-
     // Drain hunger based on a time interval.
     // The drain will take effect upon login.
-    // To calculate the amount of drain we will use the last time they logged in as a time stamp and subtract that from their current login then drain the hunger appropriately.
+    // To calculate the amount of drain we will use the last time they logged in as-
+    // -a time stamp and subtract that from their current login then drain the hunger appropriately.
     // 24 hours until your pet food reaches 0
     // (Last login timestamp) - (Current login timestamp) = (Hunger drain)
-    const now = Date.now()
+    const now = Date.now();
     const timeSinceFed = now - new Date(this.state.lastFed);
     const hungerLeft = Math.max(((1 - (timeSinceFed / 86400000)) * 100), 0);
-    console.log(hungerLeft);
-
     this.state.hungerLeft = hungerLeft;
-    
   }
-    
+
   feed() {
-    
     // Feeding your pet is how you will increase the hunger bar (meaning it will not need food for a while)
     // You can buy the food using in game currency in the shop, you can only own so much food at a time.
-    
-    
   }
 
   render() {
@@ -88,10 +77,10 @@ class PetStats extends React.Component {
               <PetName name={this.state.name}/>
             </div>
             <div>
-              <PetStatusBars 
-              hunger={this.state.hungerLeft} 
-              overallHealth={this.state.overallHealth} 
-              fondness={this.state.fondness} 
+              <PetStatusBars
+              hunger={this.state.hungerLeft}
+              overallHealth={this.state.overallHealth}
+              fondness={this.state.fondness}
               happiness={this.state.happiness}/>
             </div>
             </Col>
@@ -101,7 +90,6 @@ class PetStats extends React.Component {
       </div>
     );
   }
-
 }
 
 export {PetStats};
