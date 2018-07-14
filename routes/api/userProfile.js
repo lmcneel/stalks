@@ -1,13 +1,14 @@
-const router = require('express').Router();
+const {Router} = require('express');
+const router = new Router();
 
 const userController = require('../../controllers/userController');
 const userVerificationController = require('../../controllers/userVerificationController');
 
-//Get users information when on this page
+// Get users information when on this page
 router.get('/getInfo', userController.getInfo);
 
 router.get('/checkPassword', userController.checkPassword);
-//Updates users email after clicking on email link
+// Updates users email after clicking on email link
 router.put('/update/email', userController.updateEmail);
 
 
@@ -18,23 +19,24 @@ router.put('/update/password', userController.updatePassword);
 router.put('/update/Username', userController.updateUsername);
 
 // //
-router.post('/api/user/post/update/verification', userVerificationController.sendEmailForUpdate);
+router.post('/user/post/update/verification', userVerificationController.sendEmailForUpdate);
 
 // //
-router.post('/api/user/confirm/update/verification', userVerificationController.testCodeForUpdate);
+router.post('/user/confirm/update/verification', userVerificationController.testCodeForUpdate);
 
 // //
-router.post('/api/user/post/emal/verification', userVerificationController.sendEmailForLink);
+router.post('/sendEmailVerification', userVerificationController.sendEmailForLink);
 
 // //
-router.post('/api/user/get/update/email/verification/:key', userVerificationController.confirmViaLink);
+router.post('/user/get/update/email/verification/:key', userVerificationController.confirmViaLink);
 
 // //
-router.put('/api/user/account/put/message', userVerificationController.sendMessageFromUser);
+router.put('/user/account/put/message', userVerificationController.sendMessageFromUser);
 
-router.post('/api/user/account/delete', userVerificationController.deleteAccount);
- 
-router.post('/api/user/account/', userController.toggleTips);
-//Few more pet roputes but ehh might not do them
+router.post('/user/account/delete', userVerificationController.deleteAccount);
+
+//
+router.post('/user/account/', userController.toggleTips);
+// Few more pet roputes but ehh might not do them
 
 module.exports = router;

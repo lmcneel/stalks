@@ -37,6 +37,7 @@
   "dependencies": {
     "availity-reactstrap-validation": "^2.0.2",
     "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "connect-session-sequelize": "^5.2.2",
     "cookie-parser": "^1.4.3",

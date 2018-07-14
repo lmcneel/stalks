@@ -1,36 +1,26 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/fontawesome-free-solid';
-import { Button } from 'reactstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faChevronDown} from '@fortawesome/fontawesome-free-solid';
+import {Button} from 'reactstrap';
 
 const propTypes = {
     option: PropTypes.string,
     togglePage: PropTypes.func,
-    verified: PropTypes.bool
-}
-class OptionLi extends Component{
-    constructor(props){
+    verified: PropTypes.bool,
+};
+/**
+ * @return {*} Container
+ */
+class OptionLi extends Component {
+        /**
+     * Constructor function for setting state
+     * @param {*} props
+     */
+    constructor(props) {
         super(props);
-        this.state = {
-            reqEmailVerified: true,
-            optionName: "",
-            isVerified: false,
-            clicked: false
-        }
-
-        this.togglePage = this.togglePage.bind(this);
-    }
-
-    componentDidMount(){
-        this.checkOption();
-    };
-
-    checkOption(){
-        let reqEmailVerified = this.state.reqEmailVerified;
-        let optionName = this.props.option;
-        let isVerified = this.props.verified;
-        switch(this.props.option){
+        let reqEmailVerified = true;
+        switch (this.props.option) {
             case 'Change Email':
                 reqEmailVerified = false;
                 break;
@@ -39,22 +29,28 @@ class OptionLi extends Component{
                 break;
             default:
                 reqEmailVerified = true;
-
+        };
+        this.state = {
+            reqEmailVerified: reqEmailVerified,
+            optionName: props.option,
+            isVerified: props.verified,
+            clicked: false,
         };
 
-        this.setState({
-            reqEmailVerified: reqEmailVerified,
-            optionName: optionName,
-            isVerified: isVerified
-        });
+        this.togglePage = this.togglePage.bind(this);
     }
 
-
-    togglePage(){
+    /**
+     * Function that toggle the parent components page
+     */
+    togglePage() {
         this.props.togglePage(this.state.optionName);
     };
-    render(){
-        return(
+    /**
+     * @return {*} Container
+     */
+    render() {
+        return (
             <li className='col-md-12 account-option'>
                 <div className='holder'>
                     <div className='option-body' onClick={this.togglePage}>
@@ -66,7 +62,7 @@ class OptionLi extends Component{
                     <hr className='userProfile-hr' />
                 </div>
             </li>
-        )
+        );
     }
 }
 
