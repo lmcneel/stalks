@@ -24,7 +24,7 @@ import ViewStocks from './pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
-import Social from './pages/Social/Social.js';
+import Friends from './pages/Social/Friends';
 import ForumPage from './pages/Social/Forum.js'
 
 
@@ -81,6 +81,7 @@ navToggleHandler(e) {
                       <Route exact path='/logout' component={Logout} />
                       <Route exact path='/signup' component={SignUp} />
                       <Route exact path='/achievements' component={Achievements} /> */}
+                      <Route exact path='/friends' component={Friends} />
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />
