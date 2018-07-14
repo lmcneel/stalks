@@ -19,7 +19,7 @@ router.route('/quote/:ticker')
         if (!error && response.statusCode === 200) {
             const found = JSON.parse(body);
             res.json(found);
-            // console.log(found);
+            console.log(found);
         } else {
             console.log(error);
             found = {};

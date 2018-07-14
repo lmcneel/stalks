@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import TradingCenter from '/TradingCenter';
+import TradingCenter from '../TradingCenter';
 
 /**
  * Trading Page
