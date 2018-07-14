@@ -6502,6 +6502,16 @@ a[data-toggle="collapse"] {
 .statusbars {
   width: 300px; }
 
+.colorPositive {
+  background-image: url("/images/pixelbg-green_160.jpg");
+  background-color: green; }
+
+.colorNeutral {
+  background-image: url("../../components/pages/pixelbg-yellow_160.jpg"); }
+
+.colorNegative {
+  background-image: url("../../components/pages/pixelbg-red_160.jpg"); }
+
 body {
   background-color: #DDDFE1; }
 

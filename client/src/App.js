@@ -7,6 +7,7 @@ import PortfolioStatus from './components/PortfolioStatus';
 import WatchlistTicker from './components/WatchlistTicker';
 import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+<<<<<<< HEAD
 import Petfolio from './pages/Petfolio';
 import Trading from './pages/Trading';
 // import PetCenter from './components/pages/PetCenter';
@@ -25,6 +26,14 @@ import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
 import ItemsShopPage from './pages/PetCenter/ItemShopPage'
 import PurchasedItemsPage from './pages/PetCenter/PurchasedItemsPage'
+=======
+import Petfolio from './components/pages/Petfolio';
+import ViewStocks from './components/pages/ViewStocks';
+import DocsList from './components/DocsList/DocsList';
+import HelpLanding from './components/HelpLanding/HelpLanding';
+import Inventory from './components/userTabs';
+import Trading from './components/pages/Trading';
+>>>>>>> 752cad1cb18a455f065b7ca289c8251f34aa2f86
 
 /**
  * Class App
