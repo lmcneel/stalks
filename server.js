@@ -42,12 +42,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks');
  seedDB();
 
 
-// Connect to the Mongo DB
-// mongoose
-// .connect(db)
-// .then(() => console.log('MongoDB Connected'))
-// .catch((err) => console.log(err));
-
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get('*', (req, res) => {
@@ -71,3 +65,4 @@ db.sequelize.sync({force: false}).then(function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
 });
+

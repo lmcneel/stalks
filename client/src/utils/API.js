@@ -16,7 +16,7 @@ export default {
     },
     // login axios call
     login: function(loginData) {
-        return axios.post('/api/login', loginData)
+        return axios.post('/api/userAuth/login', loginData)
             .then((response) => {
                 console.log(response);
             })
@@ -26,7 +26,7 @@ export default {
     },
     // signup axios call
     signup: function(signupData) {
-        return axios.post('/api/signup', signupData)
+        return axios.post('/api/userAuth/signup', signupData)
             .then((response) => {
                 console.log(response);
             })
@@ -36,7 +36,7 @@ export default {
     },
     // Saves an article to the database
     logout: function (logoutData) {
-        return axios.post('/api/logout', logoutData)
+        return axios.post('/api/userAuth/logout', logoutData)
             .then((response) => {
                 console.log(response);
             })
