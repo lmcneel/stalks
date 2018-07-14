@@ -5,11 +5,9 @@ import Wrapper from './components/Wrapper';
 import SideNav from './components/SideNav';
 import MainContentWrapper from './components/MainContentWrapper';
 import PortfolioStatus from './components/PortfolioStatus';
-import WatchlistTicker from './components/WatchlistTicker';
 import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
-import Trading from './pages/Trading';
 // import PetCenter from './components/pages/PetCenter';
 // import Forum from './components/pages/Forum';
 // import Friends from './components/pages/Friends';
@@ -23,6 +21,8 @@ import ViewStocks from './pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
+import Trading from './components/pages/Trading';
+import StockTicker from './components/StockTicker/StockTicker';
 
 /**
  * Class App
@@ -60,7 +60,7 @@ class App extends Component {
               <SideNav isActive={this.state.sideNav}/>
               <MainContentWrapper>
                 <PortfolioStatus />
-                <WatchlistTicker />
+                <StockTicker />
                 <Inventory />
                 <Content>
                 <Switch>
