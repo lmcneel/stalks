@@ -93,13 +93,13 @@ class ListStock extends Component {
                     return dayArray;
                 });
 
-                const chartCategories = res.data.chart.map(day => {
-                    let dateArray = [];
-                    dateArray.push(day.date);
-                    return dateArray;
-                });
+                // const chartCategories = res.data.chart.map(day => {
+                //     let dateArray = [];
+                //     dateArray.push(day.date);
+                //     return dateArray;
+                // });
 
-                Highcharts.chart('stockChart', {
+                Highcharts.chart(this.state.ticker, {
                     chart: {
                         spacingBottom: 20,
                         // plotBackgroundColor: '#DDDFE1',
@@ -137,6 +137,8 @@ class ListStock extends Component {
                         tooltip: { valueDecimals: 2 },
                     }]
                 });
+
+
             })
             .catch(err => console.log(err));
     }
@@ -212,7 +214,7 @@ class ListStock extends Component {
                         <Collapse isOpen={this.state.collapse}>
                             <div className='row'>
                                 <div className='col-sm-12 col-md-12 chartSection'>
-                                    <div id='stockChart'>
+                                    <div id= {this.state.ticker}>
 
                                     </div>
                                 </div>

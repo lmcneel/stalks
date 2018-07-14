@@ -30,7 +30,6 @@ export default {
         return axios.get('/api/petfolio/pets');
     },
     getTickerText: function() {
-        console.log('here in api.js');
         return axios.get('/api/petfolio/ticker');
     },
     getDocs: function() {
@@ -38,21 +37,5 @@ export default {
     },
     getMyStocks: function(portfolio) {
         return axios.get(`api/trading/mystocks/${portfolio}`);
-    },
-    // Gets all watchlists
-    getwatchlist: function(data) {
-        return axios.get(`/api/watchlist/${data}`);
-    },
-    // Gets all watchlists
-    getWatchListItem: function(data) {
-        return axios.get(`/api/watchlist/${data.ticker}`);
-    },
-    // adds a ticker to the watchlist
-    addWatchListItem: function(data) {
-        return axios.create(`/api/watchlist/${data.ticker}`);
-    },
-    // removes a ticker from the watchlist
-    removeWatchListItem: function(data) {
-        return axios.delete(`/api/watchlist/${data.ticker}`);
     },
 };

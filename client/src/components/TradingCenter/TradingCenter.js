@@ -14,15 +14,15 @@ class TradingCenter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ticker:  this.props.match.params.ticker,
+            ticker: this.props.match.params.ticker,
             price: 0,
             shares: 0,
             change: 0,
             response: '',
-            portfolio_id: '5b40fb129adc85a410f488bd',
+            portfolio_id: '5b469e9d1819e80bd4ddeb78',
             transaction: 'buy',
             ROI: 0,
-            id: '5b44cd4e020eda5258fcf2c1',
+            id: '5b469e9d1819e80bd4ddeb78',
             cost: 0,
             datePurchased: '',
             value: 0,
@@ -36,7 +36,18 @@ class TradingCenter extends Component {
         this.toggle = this.toggle.bind(this);
     }
 
+    componentDidMount() {
 
+        this.charting({ ticker: this.state.ticker });
+        this.myStocks(this.state.portfolio_id);
+        this.dbStocks(this.state.portfolio_id);
+        this.myStocksValue();
+        this.bankValue(this.state.id);
+        this.myWatchlist(this.state.watchedArray);
+        // this.lastPurchase(this.state.portfolio_id);
+        this.cashCalculator(this.state.portfolio_id);
+        this.checkWatchList();
+    };
 
     toggle() {
         this.setState({
@@ -46,6 +57,26 @@ class TradingCenter extends Component {
 
     checkWatchList = (ticker) => {
         // If in watchlist set [watched] to true
+        API.getTickerText().then(((r) => {
+            if (r.data.length !== 0) {
+              // let ticker = 'Watchlist...';
+              let tempTicker = [];
+              for (let i=0; i<r.data.length; i++) {
+                // API.findQuotes(r.data[i]).then(((r2) => {
+                //   console.log(r2);
+                // }));
+                // ticker += r.data[i].uniqueStockSymbol + '...';
+                tempTicker.push((r.data[i]).uniqueStockSymbol);
+              }
+              // this.setState({tickerText: ticker});
+              this.setState({tickerForApi: tempTicker});
+              // console.log(r.data);
+              // console.log(ticker);
+              console.log(tempTicker);
+            };
+          }));
+
+        
         // API.getWatchListItem(ticker)
         //     .then(res => {
         //         console.log(res.data);
@@ -57,7 +88,7 @@ class TradingCenter extends Component {
         //     })
         //     .catch(err => console.log(err))
 
-        this.setState({ watched: this.state.watched })
+        // this.setState({ watched: this.state.watched })
 
         // return /this.state.watched = false;
 
@@ -86,17 +117,7 @@ class TradingCenter extends Component {
     }
 
 
-    componentDidMount() {
-
-        // this.charting({ ticker: this.state.ticker });
-        // this.myStocks(this.state.portfolio_id);
-        // this.dbStocks(this.state.portfolio_id);
-        // this.myStocksValue();
-        // this.bankValue(this.state.id);
-        // this.myWatchlist(this.state.watchedArray);
-        // this.lastPurchase(this.state.portfolio_id);
-        // this.cashCalculator(this.state.portfolio_id);
-    };
+    
 
     handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -141,6 +162,7 @@ class TradingCenter extends Component {
                 let spent = Object.entries(userStocks)[0];
                 console.log(userShares);
                 console.log(spent[1] / company[1]);
+                
                 this.setState({
                     totalShares: company[1],
                     cost: spent[1] / company[1],
@@ -609,7 +631,7 @@ class TradingCenter extends Component {
                                     <h4>PRICE PURCHASED</h4>
                                 </div>
                                 <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>${this.state.cost}</h4>
+                                    <h4>${this.state.cost.toFixed(2)}</h4>
                                 </div>
                             </div>
                             <div className='row'>
