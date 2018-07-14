@@ -1,10 +1,29 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export const PetName = (props) => {
-    return (
-        <div className="petpic">
-            <h3>{props.children}</h3>
-        </div>
-    );
+/**
+ * @class PetName
+ */
+class PetName extends Component {
+    /**
+   * Constructor function for setting state
+   * @param {*} props
+   */
+    constructor(props) {
+        super(props);
+        this.state = {
+            petName: 'Wolff',
+         };
+    }
+    /**
+     * @return {*} Container
+     */
+    render() {
+        return (
+                <div>
+                   <h3>{this.state.petName}</h3>
+                </div>
+        );
+    }
 };
 
+export default PetName;
