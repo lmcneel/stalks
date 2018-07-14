@@ -6444,6 +6444,71 @@ a[data-toggle="collapse"] {
 .statusbars {
   width: 300px; }
 
+.colorPositive {
+  background-image: url("/images/pixelbg-green_160.jpg"); }
+
+.colorNeutral {
+  background-image: url("/images/pixelbg-yellow_160.jpg");
+  background-color: yellow; }
+
+.colorNegative {
+  background-image: url("/images/pixelbg-red_160.jpg");
+  background-color: red; }
+
+/* This CSS animation creates the horizontal scrolling stock ticker */
+.stockticker {
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  background: black;
+  color: white;
+  border: 1px solid grey; }
+
+.stockticker p {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  line-height: 50px;
+  text-align: center;
+  /* Starting position */
+  -moz-transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+  /* Apply animation to this element */
+  -moz-animation: stockticker 20s linear infinite;
+  -webkit-animation: stockticker 20s linear infinite;
+  animation: stockticker 20s linear infinite; }
+
+/* Move it (define the animation) */
+@-moz-keyframes stockticker {
+  0% {
+    -moz-transform: translateX(100%); }
+  100% {
+    -moz-transform: translateX(-100%); } }
+
+@-webkit-keyframes stockticker {
+  0% {
+    -webkit-transform: translateX(100%); }
+  100% {
+    -webkit-transform: translateX(-100%); } }
+
+@keyframes stockticker {
+  0% {
+    -moz-transform: translateX(100%);
+    /* Browser bug fix */
+    -webkit-transform: translateX(100%);
+    /* Browser bug fix */
+    transform: translateX(100%); }
+  100% {
+    -moz-transform: translateX(-100%);
+    /* Browser bug fix */
+    -webkit-transform: translateX(-100%);
+    /* Browser bug fix */
+    transform: translateX(-100%); } }
+
+/* End of stockticker animation CSS */
+/* -------------------------------------- */
 body {
   background-color: #DDDFE1; }
 
