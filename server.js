@@ -10,19 +10,36 @@ const seedDB = require('./seeds');
 const db = require('./models/mysql');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const Sequelize = require('sequelize');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const bcrypt = require('bcrypt-nodejs');
+const passport = require('./config/passport.js');
+const achievements = require('./config/middleware/achievements/achievements');
+// const mysql = require('mysql');
+const userAuth = require('./routes/api/userAuth');
 
-app.use(cookieParser());
-// sessions
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/config/config.json')[env];
+let seq;
+
+if (config.use_env_variable) {
+  seq = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  seq = new Sequelize(config.database, config.username, config.password, config);
+}
+
 app.use(session({
-  secret: 'seceiha',
-  store: new SequelizeStore({
-    db: sequelize,
-    }),
-    resave: false,
-    proxy: true,
-    }));
+  secret: 'keyboard cat',
+  store: new SequelizeStore({db: seq}),
+  resave: false, // we support the touch method so per the express-session docs this should be set to false
+  saveUninitialized: false, // required
+}));
+
+app.use(passport.initialize());
+// store data for authenticated users
+app.use(passport.session());
+// test this code
+// configure express
+app.use(cookieParser());
 
 app.use(logger('dev'));
 
@@ -31,7 +48,7 @@ app.use(bodyParser.json());
 
 // Define middleware here
 app.use(express.json());
-app.use(acheivements);
+app.use(achievements);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
@@ -40,7 +57,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Define API routes here
 app.use(routes);
-
+app.use('/users', userAuth(app, db));
 // DB Config
 // const db = require('./config/keys').mongoURI;
 
@@ -62,8 +79,8 @@ app.get('*', (req, res) => {
   // res.sendFile(path.join(__dirname, './client/public/index.html'));
 });
 
-// change to true to drop tables
-db.sequelize.sync({force: false}).then(function() {
+
+db.sequelize.sync({force: true}).then(function() {
   app.listen(PORT, () => {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
