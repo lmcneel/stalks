@@ -7,32 +7,25 @@ const bodyParser = require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
 const seedDB = require('./seeds');
-<<<<<<< HEAD
-<<<<<<< HEAD
-const session = require('express-session');
+
+const db = require('./models/mysql');
+
+// Configure SequilizeSessions
 const cookieParser = require('cookie-parser');
-const connectSession = require('connect-session-sequelize')(session.Store);
-const bcrypt = require('bcrypt');
-
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 app.use(cookieParser());
-// sessions
 app.use(session({
-  secret: 'seceiha',
+  secret: 'keyboard mouse',
   store: new SequelizeStore({
-    db: sequelize,
-    }),
-    resave: false,
-    proxy: true,
-    }));
-=======
-const db = require('./models/mysql');
->>>>>>> profile-issue
-=======
-const db = require('./models/mysql');
->>>>>>> profile-issue#2
-
+    db: db,
+    table: 'Sessions',
+    extendDefaultFields: extendDefaultFields,
+  }),
+  resave: false,
+  proxy: true,
+}));
 app.use(logger('dev'));
-
 // Bodyparser Middleware
 app.use(bodyParser.json());
 
@@ -74,3 +67,16 @@ db.sequelize.sync({force: true}).then(function() {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
 });
+
+/**
+ * @return {object}
+ * @param {*} defaults uses defaults
+ * @param {*} session choses what sessions
+ */
+function extendDefaultFields(defaults, session) {
+  return {
+    data: defaults.data,
+    expires: defaults.expires,
+    userId: session.userId,
+  };
+};

@@ -78,7 +78,13 @@ class SignupForm extends Component {
         //TODO: add code to handle api route for signup
         if(!err){
             console.log('calling api signup post method')
-            API.signup(this.state.props);
+            const data = {
+                email: this.state.username,
+                password: this.state.password,
+            };
+            API.signup(data).then((response) =>{
+                console.log(response);
+            });
         }
         else
         {

@@ -14,6 +14,7 @@ import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
 import UserSettings from './pages/Settings';
+import SignupForm from './components/SignupForm';
 /**
  * Class App
  */
@@ -60,6 +61,7 @@ class App extends Component {
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />
                       <Route path='/settings' component={UserSettings} />
+                      <Route exact path='/signup' component={SignupForm} />
                     </Switch>
                 </Content>
                 </MainContentWrapper>

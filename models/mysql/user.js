@@ -1,18 +1,38 @@
-// const bcrypt = require('bcryptjs');
-module.exports = function(sequelize, DataTypes) {
+const bcrypt = require('bcryptjs');
+module.exports = function(sequelize, Sequelize) {
 // User Schema
     const User = sequelize.define('User', {
         username: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
+            unique: true,
         },
         password: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
         },
         email: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
+            unique: true,
         },
         name: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
+        },
+        verified: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false,
+        },
+        // This is to make sure users only have one update request open at a time
+        // Also helps me while in updating both userValidation and this table :D - Michael
+        updateRequestOpen: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false,
+        },
+        createdAt: {
+            type: Sequelize.DATE,
+            defaultValue: sequelize.fn('NOW'),
+        },
+        updatedAt: {
+            type: Sequelize.DATE,
+            defaultValue: sequelize.fn('NOW'),
         },
     }, {
         underscored: false,
@@ -44,6 +64,11 @@ module.exports = function(sequelize, DataTypes) {
         User.hasOne(models.UserValidation, {
             onDelete: 'cascade',
         });
+    };
+
+    // Custom method to check user password
+    User.prototype.validPassword = function(password) {
+        return bcrypt.compareSync(password, this.password);
     };
     return User;
 };
