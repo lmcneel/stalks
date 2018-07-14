@@ -14,7 +14,7 @@ class ListStock extends Component {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = {
-            ticker: 'XOM',
+            ticker: this.props.ticker,
             price: 0,
             change: 0,
             value: '',
@@ -77,22 +77,7 @@ class ListStock extends Component {
         this.charting({ ticker: this.state.ticker });
     };
 
-    handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({ [name]: value });
-    };
-
-    handleTypeheadChange = event => {
-        const { name, selected } = event.target;
-        this.setState({ [name]: selected });
-    };
-
-    handleFormSubmit = event => {
-        this.charting({ ticker: this.state.ticker });
-    };
-
-
-    charting = (ticker) => {
+     charting = (ticker) => {
 
         API.findQuotes(ticker)
             .then(res => {
@@ -162,10 +147,6 @@ class ListStock extends Component {
         return (
             <div>
                 <div className='stockStats listStocks container'>
-
-                    {/* Goal is to dynamically create elemets based off array of tickers */}
-
-                    {/* ====================== */}
                     <div className='row stockTickerBarCollapse'>
                         <div className='col-sm-6 col-md-6'>
                             <div className='row'>
