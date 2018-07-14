@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
-import {PetStatsVert} from '../PetStats';
+import {PetStats} from '../PetStats';
 import BankValue from '../BankValue/BankValue';
 import PetfolioValue from '../PetfolioValue/PetfolioValue';
 import PieChart from '../PieChart/PieChart';
@@ -121,7 +121,7 @@ class Petfolio extends Component {
             <Row>
               <Col>
                 <div className="statusbarwidth">
-                <PetStatsVert />
+                <PetStats />
                 </div>
               </Col>
 
