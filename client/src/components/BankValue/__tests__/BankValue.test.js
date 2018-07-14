@@ -9,12 +9,14 @@ describe('Bank Value', ()=>{
     it('renders without error', ()=>{
         const div = document.createElement('div');
         ReactDOM.render(<Component/>, div);
-        ReactDOM.unmountComponentAtNode(div);      
+        ReactDOM.unmountComponentAtNode(div);
     });
 });
 describe('stockStats', ()=>{
     it('exists', ()=>{
         const mountWrapper = mount(<Component/>);
         expect(mountWrapper.find('.stockStats').exists()).toBe(true);
+    });
+    it('@TODO: contains properties', ()=>{
     });
 });
