@@ -29,7 +29,7 @@ module.exports = {
     myStocks: function(req, res) {
         db.Trade
             .find({portfolio_id: req.params.portfolio_id})
-            .select('ticker type shares sharePrice')
+            .select('ticker type shares sharePrice date')
             .then((dbTradeModel) => res.json(dbTradeModel))
             .catch((err) => res.status(422).json(err));
     },
