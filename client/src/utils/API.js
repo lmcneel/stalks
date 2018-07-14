@@ -15,8 +15,8 @@ export default {
         return axios.get('/api/trading/quote', symbol);
     },
     // login axios call
-    login: function(SigninData) {
-        return axios.post('/api/signin', SigninData)
+    signin: function(signinData) {
+        return axios.post('/api/signin', signinData)
             .then((response) => {
                 console.log(response);
             })
@@ -36,12 +36,12 @@ export default {
     },
 
     // Saves an article to the database
-    login: function(signinData) {
-        return axios.post('/api/login', signinData)
+    signin: function(signinData) {
+        return axios.post('/api/signin', signinData)
     },
     // Saves an article to the database
-    logout: function (signoutData) {
-        return axios.post('/api/logout', signoutData)
+    signout: function (signoutData) {
+        return axios.post('/api/signout', signoutData)
             .then((response) => {
                 console.log(response);
             })

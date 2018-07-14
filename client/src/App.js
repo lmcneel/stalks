@@ -1,3 +1,4 @@
+// import CollapseRow from './components/CollapseRow/index';
 import React, {Component} from 'react';
 import Splash from './components/Splash';
 import TopNav from './components/TopNav';
@@ -39,7 +40,6 @@ class App extends Component {
     };
     this.navToggleHandler = this.navToggleHandler.bind(this);
   }
-
   /**
    * Function that handles the click for the nav button
    * @param {*} e
@@ -93,3 +93,4 @@ class App extends Component {
 
 
 export default App;
+
