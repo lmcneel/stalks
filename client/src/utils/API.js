@@ -1,4 +1,5 @@
 // This file goes in the client/src/utils folder
+// axios is like jquery; make requests from within app
 
 import axios from 'axios';
 
@@ -37,6 +38,7 @@ export default {
     // Saves an article to the database
     login: function(loginData) {
         return axios.post('/api/login', loginData)
+    },
     // Saves an article to the database
     logout: function (logoutData) {
         return axios.post('/api/logout', logoutData)
@@ -56,5 +58,23 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
+    // getPortfolioValue: function() {
+    //     return axios.get('api/petfolio/portfolio');
+    // },
+    // getBankValue: function() {
+    //     return axios.get('api/petfolio/bank');
+     },
+    getPetInfo: function() {
+        return axios.get('/api/petfolio/pets');
+    },
+    getTickerText: function() {
+        console.log('here in api.js');
+        return axios.get('/api/petfolio/ticker');
+    },
+    getDocs: function() {
+        return axios.get('/api/docs');
+    },
+    getMyStocks: function(portfolio) {
+        return axios.get(`api/trading/mystocks/${portfolio}`);
     },
 };
