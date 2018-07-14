@@ -24,7 +24,7 @@ const TopNav = (props) => {
             <FontAwesomeIcon icon={faBars} className="iconsize" />
             </Button>
             </Col>
-            <Col xs="12" md="4">
+            <Col xs="12" md="4" className="pr-0">
                 <ul id="topNavIcons" className="nav justify-content-sm-center justify-content-md-end">
                     <li className="nav-item">
                         <Link to={'/help'}><FontAwesomeIcon className="iconsize" icon={faQuestionCircle} /></Link>
