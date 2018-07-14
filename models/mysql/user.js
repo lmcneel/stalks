@@ -1,5 +1,5 @@
-module.exports = function(sequelize, DataTypes) {
-// User Schema
+module.exports = function(sequelize, Sequelize) {
+    // do we want to define this as user of users
     const User = sequelize.define('User', {
 
         id: {
@@ -16,10 +16,18 @@ module.exports = function(sequelize, DataTypes) {
             notEmpty: true,
         },
         username: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
+            notEmpty: true,
+        },
+        email: {
+            type: Sequelize.STRING,
+            validate: {
+                isEmail: true,
+            },
         },
         password: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
+            allowNull: false,
         },
         balance: {
             type: Sequelize.INTEGER,
@@ -33,8 +41,10 @@ module.exports = function(sequelize, DataTypes) {
             type: Sequelize.DATE,
             allowNull: true,
         },
-        name: {
-            type: DataTypes.STRING,
+        //  this would give us the ability to make accounts inactive is this is decided upon
+        status: {
+            type: Sequelize.ENUM('active', 'inactive'),
+            defaultValue: 'active',
         },
     }, {
         underscored: false,
@@ -62,5 +72,6 @@ module.exports = function(sequelize, DataTypes) {
             onDelete: 'cascade',
         });
     };
+
     return User;
 };

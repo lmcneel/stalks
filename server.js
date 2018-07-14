@@ -10,7 +10,7 @@ const seedDB = require('./seeds');
 const db = require('./models/mysql');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const connectSession = require('connect-session-sequelize')(session.Store);
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const bcrypt = require('bcrypt-nodejs');
 
 app.use(cookieParser());
