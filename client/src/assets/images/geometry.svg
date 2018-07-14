@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="683px" height="565px" viewBox="0 0 683 565" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>geometry</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="geometry" transform="translate(3.000000, 3.000000)">
+            <path d="M201.373604,166.554549 L264.626396,184.445451" id="Line" stroke="#F1F1F1" stroke-width="6" opacity="0.0645380435" stroke-linecap="square"></path>
+            <circle id="Oval" stroke="#F1F1F1" stroke-width="6" opacity="0.0645380435" cx="115.5" cy="92.5" r="24.5"></circle>
+            <circle id="Oval" stroke="#F1F1F1" stroke-width="6" opacity="0.0645380435" cx="353.5" cy="24.5" r="24.5"></circle>
+            <g id="Group-2" opacity="0.0645380435" transform="translate(253.000000, 280.000000)" stroke="#F1F1F1" stroke-width="6">
+                <path d="M1.66533454e-16,0.00500053839 C13.3001661,0.271252351 24,11.1360861 24,24.5 C24,37.8639139 13.3001661,48.7287476 1.77635684e-15,48.9949995 L0,0.00500053839 L1.66533454e-16,0.00500053839 Z" id="Combined-Shape"></path>
+            </g>
+            <g id="Group-2" opacity="0.0645380435" transform="translate(145.000000, 457.500000) rotate(-90.000000) translate(-145.000000, -457.500000) translate(133.000000, 433.000000)" stroke="#F1F1F1" stroke-width="6">
+                <path d="M1.66533454e-16,0.00500053839 C13.3001661,0.271252351 24,11.1360861 24,24.5 C24,37.8639139 13.3001661,48.7287476 1.77635684e-15,48.9949995 L0,0.00500053839 L1.66533454e-16,0.00500053839 Z" id="Combined-Shape"></path>
+            </g>
+            <g id="Group-2" opacity="0.0593863225" transform="translate(145.500000, 534.000000) rotate(137.000000) translate(-145.500000, -534.000000) translate(133.500000, 509.500000)" stroke="#F1F1F1" stroke-width="6">
+                <path d="M-2.83384427e-14,0.00500053839 C13.3001661,0.271252351 24,11.1360861 24,24.5 C24,37.8639139 13.3001661,48.7287476 -2.7533531e-14,48.9949995 L-2.84217094e-14,0.00500053839 L-2.83384427e-14,0.00500053839 Z" id="Combined-Shape"></path>
+            </g>
+            <rect id="Rectangle-2" stroke="#F1F1F1" stroke-width="6" opacity="0.0645380435" transform="translate(419.719300, 199.719300) rotate(45.000000) translate(-419.719300, -199.719300) " x="393.2193" y="173.2193" width="53" height="53"></rect>
+            <rect id="Rectangle-2" stroke="#F1F1F1" stroke-width="6" opacity="0.0645380435" transform="translate(115.719300, 287.719300) rotate(45.000000) translate(-115.719300, -287.719300) " x="89.2193001" y="261.2193" width="53" height="53"></rect>
+            <path d="M575.815455,220.5 L630.815455,184.5" id="Line" stroke="#F1F1F1" stroke-width="6" opacity="0.0645380435" stroke-linecap="square"></path>
+            <g id="Group" opacity="0.0645380435" stroke-linecap="square" transform="translate(369.000000, 477.000000)" stroke="#F1F1F1" stroke-width="6">
+                <path d="M0,63 L63.2527915,80.8909019" id="Line"></path>
+                <path d="M0,63.2527915 L17.8909019,0" id="Line"></path>
+            </g>
+            <g id="Group" opacity="0.0645380435" stroke-linecap="square" transform="translate(530.000000, 108.500000) rotate(-160.000000) translate(-530.000000, -108.500000) translate(498.000000, 68.000000)" stroke="#F1F1F1" stroke-width="6">
+                <path d="M0,63 L63.2527915,80.8909019" id="Line"></path>
+                <path d="M0,63.2527915 L17.8909019,0" id="Line"></path>
+            </g>
+            <g id="Group" opacity="0.0645380435" stroke-linecap="square" transform="translate(630.921980, 389.002196) rotate(-127.000000) translate(-630.921980, -389.002196) translate(598.921980, 348.502196)" stroke="#F1F1F1" stroke-width="6">
+                <path d="M0,63 L63.2527915,80.8909019" id="Line"></path>
+                <path d="M0,63.2527915 L17.8909019,5.68434189e-14" id="Line"></path>
+            </g>
+            <path d="M370,342 L401.069443,399.928315" id="Line" stroke="#F1F1F1" stroke-width="6" opacity="0.0645380435" stroke-linecap="square"></path>
+            <path d="M675.575167,539.800508 L637.677625,486.090394" id="Line" stroke="#F1F1F1" stroke-width="6" opacity="0.0645380435" stroke-linecap="square"></path>
+            <circle id="Oval" fill="#F1F1F1" fill-rule="nonzero" opacity="0.0645380435" cx="251.5" cy="502.5" r="10.5"></circle>
+            <circle id="Oval" fill="#F1F1F1" fill-rule="nonzero" opacity="0.0645380435" cx="540.5" cy="329.5" r="10.5"></circle>
+            <circle id="Oval" fill="#F1F1F1" fill-rule="nonzero" opacity="0.0645380435" cx="230.5" cy="92.5" r="10.5"></circle>
+            <circle id="Oval" fill="#F1F1F1" fill-rule="nonzero" opacity="0.0645380435" cx="24.5" cy="550.5" r="10.5"></circle>
+            <g id="Group-2" opacity="0.0649343297" transform="translate(553.949549, 490.871315) rotate(-20.000000) translate(-553.949549, -490.871315) translate(541.949549, 466.371315)" stroke="#F1F1F1" stroke-width="6">
+                <path d="M-1.19351751e-12,0.00500053839 C13.3001661,0.271252351 24,11.1360861 24,24.5 C24,37.8639139 13.3001661,48.7287476 -1.19154686e-12,48.9949995 L-1.1937118e-12,0.00500053839 L-1.19351751e-12,0.00500053839 Z" id="Combined-Shape"></path>
+            </g>
+            <circle id="Oval" stroke="#F1F1F1" stroke-width="6" opacity="0.0645380435" cx="24.5" cy="194.5" r="24.5"></circle>
+            <circle id="Oval" fill="#F1F1F1" fill-rule="nonzero" opacity="0.0645380435" cx="63.5" cy="389.5" r="10.5"></circle>
+        </g>
+    </g>
+</svg>

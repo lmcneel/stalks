@@ -9,7 +9,7 @@ module.exports = {
       // },
     }).then(function(dbUserWl) {
       res.json(dbUserWl);
-      console.log(dbUserWl[0].dataValues);
+      // console.log(dbUserWl[0].dataValues);
     });
   },
  };
