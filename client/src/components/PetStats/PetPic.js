@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
-import wolfy from '../pages/defaultPetPic.png';
+import wolfy from '../../assets/images/Wolf1.svg';
+import bear from '../../assets/images/Bear1.svg';
+import bull from '../../assets/images/Bull1.svg';
+import ostrich from '../../assets/images/Ostrich1.svg';
+import API from '../../utils/API';
 // import other images here
 
 /**
@@ -13,9 +17,30 @@ class PetPic extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            petPic: wolfy,
+            petPic: [],
          };
     }
+    /**
+     * setting state of picture
+     */
+    componentDidMount() {
+        API.getUserPic().then(((r) => {
+              let url = r.data.urlImage;
+            console.log(url);
+            if (url = './client/src/assets/images/Ostrich1.svg') {
+                this.setState({petPic: ostrich});
+            } else if (url = './client/src/assets/images/Bull1.svg') {
+                this.setState({petPic: bull});
+            } else if (url = './client/src/assets/images/Bear1.svg') {
+                this.setState({petPic: bear});
+            } else {
+                this.setState({petPic: wolfy});
+            };
+              // console.log(r.data);
+              console.log(r.data.urlImage);
+          }));
+      };
+
     /**
      * @return {*} Container
      */

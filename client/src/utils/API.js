@@ -33,4 +33,7 @@ export default {
     getMyStocks: function(portfolio) {
         return axios.get(`api/trading/mystocks/${portfolio}`);
     },
+    getUserPic: function() {
+        return axios.get('api/petfolio/userpic');
+    },
 };

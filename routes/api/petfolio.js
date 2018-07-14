@@ -14,4 +14,7 @@ const petfolioController = require('../../controllers/petfolioController');
 router.route('/ticker')
 .get(petfolioController.getTickerText);
 
+router.route('/userpic')
+.get(petfolioController.getUserPic);
+
 module.exports = router;
