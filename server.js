@@ -10,19 +10,12 @@ const seedDB = require('./seeds');
 const db = require('./models/mysql');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const connectSession = require('connect-session-sequelize')(session.Store);
-const bcrypt = require('bcrypt-nodejs');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+// const bcrypt = require('bcrypt-nodejs');
 
 app.use(cookieParser());
-// sessions
-app.use(session({
-  secret: 'seceiha',
-  store: new SequelizeStore({
-    db: sequelize,
-    }),
-    resave: false,
-    proxy: true,
-    }));
+
+
 
 app.use(logger('dev'));
 
@@ -31,7 +24,7 @@ app.use(bodyParser.json());
 
 // Define middleware here
 app.use(express.json());
-app.use(acheivements);
+// app.use(acheivements);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
@@ -46,7 +39,7 @@ app.use(routes);
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks');
 
-seedDB();
+ seedDB();
 
 
 // Connect to the Mongo DB
@@ -61,6 +54,16 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './client/build/index.html'));
   // res.sendFile(path.join(__dirname, './client/public/index.html'));
 });
+
+// sessions
+app.use(session({
+  secret: 'seceiha',
+  store: new SequelizeStore({
+    db: db.sequelize,
+  }),
+  resave: false,
+  proxy: true,
+}));
 
 // change to true to drop tables
 db.sequelize.sync({force: false}).then(function() {

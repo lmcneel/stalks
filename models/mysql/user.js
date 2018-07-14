@@ -5,14 +5,14 @@ module.exports = function(sequelize, DataTypes) {
         id: {
             autoIncrement: true,
             primaryKey: true,
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
         },
         firstname: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             notEmpty: true,
         },
         lastname: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             notEmpty: true,
         },
         username: {
@@ -22,15 +22,15 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
         },
         balance: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         mongo_id: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         last_login: {
-            type: Sequelize.DATE,
+            type: DataTypes.DATE,
             allowNull: true,
         },
         name: {
