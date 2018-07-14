@@ -6,8 +6,8 @@ const request = require('request');
 const User = require('../../models/mysql/user');
 const Friendship = require('../../models/mysql/friends');
 
-
-router.get('/api/view/friends', (req, res) => {
+// The url to get this route is /api/friends/view/:id
+router.get('/view', (req, res) => {
     Friendship.findAll({
         where: { user: id },
         include: [{
