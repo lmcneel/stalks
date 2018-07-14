@@ -25,7 +25,6 @@ export default {
         return axios.get('/api/petfolio/pets');
     },
     getTickerText: function() {
-        console.log('here in api.js');
         return axios.get('/api/petfolio/ticker');
     },
     getDocs: function() {
@@ -38,4 +37,7 @@ export default {
         return axios.get(`api/trading/mystocks/${portfolio}`);
     },
 
+    getMyStocks: function(portfolio) {
+        return axios.get(`api/trading/mystocks/${portfolio}`);
+    },
 };
