@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Container from "../../components/Container";
 import Images from "../../components/Images";
 import data from "../../data.json";
+import '../../assets/scss/_about.scss';
 
 /**
  * Trading Page
@@ -21,7 +22,7 @@ class About extends Component {
                 <h1>Meet the Team!</h1>
                 </div>
                 <Container >
-            <div className="wrapper">
+            {/* <div className="wrapper"> */}
             {this.state.data.map(data=>(
               <Images
               id={data.id}
@@ -34,7 +35,7 @@ class About extends Component {
         
             ))}
       
-            </div>
+            {/* </div> */}
               </Container>
             </div>
         );

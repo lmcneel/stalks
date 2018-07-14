@@ -1,7 +1,7 @@
-import React from "react";
-import "./Images.css";
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+import React from 'react';
+// import './Images.css';
+import {Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button} from 'reactstrap';
   // import LinkButton from '/components/LinkButton'
 
 // const Images = props => (
@@ -9,13 +9,13 @@ import { Card, CardImg, CardText, CardBody,
 //     <div className="img-container">
 //       <img alt={props.name} src={props.img} />
 //       <p name={props.name}
-//       /> 
-//       <p title={props.title} 
+//       />
+//       <p title={props.title}
 //       />
 //       <p portfolio={props.portfolio}
 //       />
-      
-//     </div>    
+
+//     </div>
 //   </div>
 // );
 
@@ -29,7 +29,9 @@ const Images = (props) => {
     <div className = "card">
       <div className = "img-container">
       <Card >
-        <CardImg onClick={(event)=>{console.log("Working")}} top width="200px" top height="200px" src={props.img}alt={props.name} />
+        <CardImg onClick={(event)=>{
+console.log('Working');
+}}  src={props.img}alt={props.name} />
         <CardBody>
           <CardTitle>{props.name}</CardTitle>
           <CardSubtitle>{props.title}</CardSubtitle>

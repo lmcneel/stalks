@@ -1,12 +1,4 @@
-import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-import Container from "./components/Container";
-import Images from "./components/Images";
-
-
-// import LinkButton from "./components/LinkButton";
-import data from "./data.json";
+import React, {Component} from 'react';
 import Splash from './components/Splash';
 import TopNav from './components/TopNav';
 import Wrapper from './components/Wrapper';
@@ -33,6 +25,9 @@ import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
 
+/**
+ * Class App
+ */
 class App extends Component {
   /**
    * @param {*} props
