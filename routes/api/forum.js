@@ -8,7 +8,7 @@ const request = require("request");
 const User = require('../../models/mongo/user');
 const Forum = require('../../models/mongo/forum');
 
-router.post('route/api/create/forum/', (req, res) => {
+router.post('/create/', (req, res) => {
     User.find()
         .populate('forum')
         .populate({
@@ -24,7 +24,7 @@ router.post('route/api/create/forum/', (req, res) => {
         })
 });
 
-router.get('/', (req, res) => {
+router.get('/view/', (req, res) => {
     Forum.find((err, forum) => {
         if (err) {
             return res.json({ err })
@@ -34,10 +34,10 @@ router.get('/', (req, res) => {
 });
 
 
-router.put('route/api/update/forum/', (req, res) => {
+router.put('/update/', (req, res) => {
 
 });
-router.delete('route/api/delete/forum/', (req, res) => {
+router.delete('/delete/', (req, res) => {
 
 });
 
