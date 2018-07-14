@@ -17,14 +17,20 @@
     background-color: red;
 }
 
+/* ---------------------------------------------------
+    HORIZONTAL WATCHLIST TICKER
+----------------------------------------------------- */
+
 /* This CSS animation creates the horizontal scrolling stock ticker */
 .stockticker {
     height: 50px;	
     overflow: hidden;
     position: relative;
-    background: black;
-    color: white;
-    border: 1px solid grey;
+    background: $gray-800;
+    color: lighten($yellow, 25);
+    text-transform: uppercase;
+    font-family: $font-family-monospace;
+    // border: 1px solid grey;
  }
  .stockticker p {
     position: absolute;
@@ -38,9 +44,9 @@
     -webkit-transform:translateX(100%);	
     transform:translateX(100%);
     /* Apply animation to this element */	
-    -moz-animation: stockticker 20s linear infinite;
-    -webkit-animation: stockticker 20s linear infinite;
-    animation: stockticker 20s linear infinite;
+    -moz-animation: stockticker 30s linear infinite;
+    -webkit-animation: stockticker 30s linear infinite;
+    animation: stockticker 30s linear infinite;
 }
  /* Move it (define the animation) */
  @-moz-keyframes stockticker {
