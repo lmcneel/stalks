@@ -14,9 +14,8 @@ import Petfolio from './pages/Petfolio';
 import Home from './pages/Home';
 import About from './pages/About';
 // import Settings from './components/pages/Settings';
-// import Login from './components/pages/Login';
 // import Logout from './components/pages/Logout';
-// import SignUp from './components/pages/SignUp';
+import SignUp from './pages/SignUp';
 // import Achievements from './components/pages/Achievements';
 import ViewStocks from './pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
@@ -71,11 +70,10 @@ class App extends Component {
                       <Route exact path='/forum' component={Forum} /> */}
                       <Route exact path='/' component={Home} />
                       <Route exact path='/about' component={About} />
-                      {/* <Route exact path='/settings' component={Settings} />
-                      <Route exact path='/login' component={Login} />
-                      <Route exact path='/logout' component={Logout} />
+                      {/* <Route exact path='/settings' component={Settings} /> */}
+                      {/* <Route exact path='/logout' component={Logout} /> */}
                       <Route exact path='/signup' component={SignUp} />
-                      <Route exact path='/achievements' component={Achievements} /> */}
+                      {/* <Route exact path='/achievements' component={Achievements} /> */}
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />

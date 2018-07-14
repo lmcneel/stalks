@@ -31,7 +31,7 @@ const Images = (props) => {
       <Card >
         <CardImg onClick={(event)=>{
 console.log('Working');
-}}  src={props.img}alt={props.name} />
+}} src={props.img}alt={props.name} />
         <CardBody>
           <CardTitle>{props.name}</CardTitle>
           <CardSubtitle>{props.title}</CardSubtitle>
