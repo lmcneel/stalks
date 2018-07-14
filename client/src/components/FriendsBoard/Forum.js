@@ -103,3 +103,5 @@ export class Forum extends Component {
         )
     }
 };
+
+export default Forum;
