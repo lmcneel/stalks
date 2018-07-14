@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-    Card, CardText, CardBody,
-    CardTitle, CardSubtitle, InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Table, Label, FormGroup, FormText
+    Card, CardBody,
+    CardTitle, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Table, Label, FormGroup,
 } from 'reactstrap';
 import API from '../../utils/API';
 
 
-// Main Forum Component to allow messages to be viewed and posted by user. may allow for reply 
+// Main Forum Component to allow messages to be viewed and posted by user. may allow for reply
 export class Forum extends Component {
-
     constructor(props) {
         super(props);
-        // Handles dropdown menu functionality  
+        // Handles dropdown menu functionality
         this.toggle = this.toggle.bind(this);
         this.state = {
             dropdownOpen: false,
@@ -22,7 +21,6 @@ export class Forum extends Component {
 
     componentDidMount() {
         this.loadComments();
-
     };
 
     // Functions will go here
@@ -44,20 +42,19 @@ export class Forum extends Component {
 
     // Toggle function for dropDown menu
     toggle() {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
+        this.setState((prevState) => ({
+            dropdownOpen: !prevState.dropdownOpen,
         }
         )
         );
     }
 
     render() {
-
         return (
 
             <Container fluid id="Forum">
                 <Row>
-                    <Col sm="8" md={{ size: 11, offset: 0 }}>
+                    <Col sm="8" md={{size: 11, offset: 0}}>
                         <Card>
                             <CardTitle>
                                 FORUM
@@ -91,7 +88,7 @@ export class Forum extends Component {
                                                     <th>
                                                         POSTS (WILL GO HERE IN THIS TABLE)
                                                         <div>
- {/* {this.state.forums.map((forum) => ( 
+ {/* {this.state.forums.map((forum) => (
    <div> key={forum._id}
      subject={forum.subject}
      comments={forum.comments}
@@ -121,7 +118,7 @@ export class Forum extends Component {
                     </Col>
                 </Row>
             </Container>
-        )
+        );
     }
 };
 

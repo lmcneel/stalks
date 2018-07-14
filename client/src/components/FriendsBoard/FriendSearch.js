@@ -1,13 +1,11 @@
-import React, {Component} from "react";
-import { Card, CardText, CardBody, CardTitle, Navbar, Nav, NavItem, NavLink, Col, Row, Button, Container } from "reactstrap";
-import API from '../../utils/API';
+import React, {Component} from 'react';
+import {Card, CardText, CardBody, CardTitle, Col, Row, Button} from 'reactstrap';
+// import API from '../../utils/API';
 
 // Component to serch for friends by name
 export class FriendSearch extends Component {
-
     constructor(props) {
         super(props);
-
     };
 
     componentDidMount() {
@@ -16,11 +14,9 @@ export class FriendSearch extends Component {
     };
 
 
-
     // Functon to Request a Freind will go here!!!
 
     render() {
-
         return (
 
             <Card>
@@ -47,7 +43,7 @@ export class FriendSearch extends Component {
                     </div>
                 </CardBody>
             </Card>
-        )
+        );
     }
 };
 

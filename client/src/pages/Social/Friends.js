@@ -3,11 +3,10 @@ import {Container, Row, Col} from 'reactstrap';
 import {FriendsBoard} from '../../components/FriendsBoard';
 import {LeaderBoard} from '../../components/LeaderBoard/LeaderBoard.js';
 import '../../assets/scss/_social.scss';
-import API from './../../utils/API';
+// import API from './../../utils/API';
 
 
 class Social extends Component {
-
 render() {
     return (
 
@@ -16,16 +15,14 @@ render() {
         <Row>
             <LeaderBoard/>
         </Row>
-        <Row>   
-            <FriendsBoard/>      
+        <Row>
+            <FriendsBoard/>
         </Row>
     </Col>
 </Container>
 );
 }
 };
-
-
 
 
     export default Social;

@@ -13,8 +13,8 @@ import Trading from './pages/Trading';
 // import PetCenter from './components/pages/PetCenter';
 import Forum from './components/FriendsBoard/Forum';
 // import Friends from './components/pages/Friends';
-import Home from './pages/Home';
-import About from './pages/About';
+// import Home from './pages/Home';
+// import About from './pages/About';
 // import Settings from './components/pages/Settings';
 // import Login from './components/pages/Login';
 // import Logout from './components/pages/Logout';
@@ -25,7 +25,6 @@ import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
 import Friends from './pages/Social/Friends';
-import ForumPage from './pages/Social/Forum.js'
 
 
 /**

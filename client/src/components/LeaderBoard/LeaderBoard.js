@@ -1,15 +1,13 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import {
   Card, CardText, CardBody, Container,
-  CardTitle, CardSubtitle, Col, Row
+  CardTitle, CardSubtitle, Col, Row,
 } from 'reactstrap';
-import API from '../../utils/API';
+// import API from '../../utils/API';
 
 export class LeaderBoard extends Component {
-
   constructor(props) {
     super(props);
-
   };
 
   ComponentDidMount() {
@@ -18,12 +16,11 @@ export class LeaderBoard extends Component {
   };
 
   render() {
-
     return (
 
       <Container>
         <Row>
-          <Col sm="8" md={{ size: 11, offset: 0 }}>
+          <Col sm="8" md={{size: 11, offset: 0}}>
 
             <Card color="light">
               <CardBody>
@@ -46,7 +43,7 @@ export class LeaderBoard extends Component {
           </Col>
         </Row>
       </Container>
-    )
+    );
   }
 };
 
