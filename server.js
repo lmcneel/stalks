@@ -24,7 +24,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Define API routes here
-var db = require("./models/mysql");
+
 app.use(routes);
 
 // DB Config

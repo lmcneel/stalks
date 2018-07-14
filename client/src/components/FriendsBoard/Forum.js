@@ -1,4 +1,4 @@
-import React, {Component } from 'react';
+import React, { Component } from 'react';
 import {
     Card, CardText, CardBody,
     CardTitle, CardSubtitle, InputGroup, InputGroupAddon, InputGroupText, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Table, Label, FormGroup, FormText
@@ -14,17 +14,28 @@ export class Forum extends Component {
         // Handles dropdown menu functionality  
         this.toggle = this.toggle.bind(this);
         this.state = {
-            dropdownOpen: false
+            dropdownOpen: false,
+            fourm: [],
         };
+        this.loadComments = this.loadComments.bind(this);
     }
 
     componentDidMount() {
-
+        this.loadComments();
 
     };
 
     // Functions will go here
+    loadComments() {
+        API.getComments()
+            .then((res) =>
+                this.setState({
+                    forum: res.data,
 
+                }),
+        )
+            .catch((err) => console.log(err));
+    };
     // Function(s)  to query fourms based on dropdown selection of (General, Stocks, or Help! categories) from mongoDB
 
     // Function to Post from input box into current Forum
@@ -78,6 +89,15 @@ export class Forum extends Component {
                                                 <tr>
                                                     <th>
                                                         POSTS (WILL GO HERE IN THIS TABLE)
+                                                        <div>
+ {/* {this.state.forums.map((forum) => ( 
+   <div> key={forum._id}
+     subject={forum.subject}
+     comments={forum.comments}
+     </div>
+))}; */}
+
+                                                            </div>
                                             </th>
                                                 </tr>
                                             </thead>

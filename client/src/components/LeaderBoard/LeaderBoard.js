@@ -49,3 +49,5 @@ export class LeaderBoard extends Component {
     )
   }
 };
+
+export default LeaderBoard;
