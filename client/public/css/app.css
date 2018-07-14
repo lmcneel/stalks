@@ -6656,6 +6656,9 @@ body {
 .listStocks {
   width: 100%; }
 
+.listBtn {
+  margin-right: 10px; }
+
 @media (max-width: 768px) {
   .submitBtn {
     background-color: #5EBF92;

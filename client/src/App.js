@@ -58,7 +58,7 @@ class App extends Component {
                 <Content>
                 <Switch>
                       <Route exact path="/petfolio" component={Petfolio} />
-                      <Route exact path='/trading' component={Trading} />
+                      <Route exact path='/trading' component={TradingCenter} />
                       <Route exact path='/trading/:ticker' component={TradingCenter} />
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />

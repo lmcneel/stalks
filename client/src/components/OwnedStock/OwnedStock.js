@@ -1,25 +1,12 @@
 //The contents of this file should go on client side main pages
 import React, { Component } from 'react';
 import { Input, Collapse, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 import Highcharts from 'highcharts';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faChevronCircleDown } from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
 
-
-let watched = false; // This watchlist flag
-let eyeWatched = 'faEye'; // class variable for watchlist condition
-
-
-const checkWatchList = () => {
-    // If in watchlist set [watched] to true
-    return watched = false;
-};
-
-const addToWatchlist = () => {
-    // Need to add to MySQL Watchlist, then check watch list
-    checkWatchList();
-}
 
 class OwnedStock extends Component {
 
@@ -27,20 +14,64 @@ class OwnedStock extends Component {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = {
-            ticker: 'XOM',
+            ticker: 'HAL',
             price: 0,
             change: 0,
             value: '',
             selected: '',
             response: '',
             collapse: false,
+            watched: false,
+            eyeWatched: 'faEye',
         }
 
     }
 
+
     toggle() {
         this.setState({ collapse: !this.state.collapse });
     };
+
+    checkWatchList = () => {
+        // If in watchlist set [watched] to true
+        // API.getWatchListItem(ticker)
+        //     .then(res => {
+        //         console.log(res.data);
+        //         if (res.data.ticker === this.state.ticker) {
+        //             this.setState({ watched: !this.state.watched })
+        //         } else {
+        //             this.setState({ watched: this.state.watched })
+        //         }
+        //     })
+        //     .catch(err => console.log(err))
+
+        this.setState({ watched: this.state.watched })
+
+        // return /this.state.watched = false;
+
+    };
+
+    addToWatchlist = (ticker) => {
+        // Need to add to MySQL Watchlist, then check watch list
+        // API.addWatchListItem(ticker)
+        // .then(res => {
+
+        //     // Code to add ticker to mySQL
+
+        // })
+        // .catch(err => console.log(err))
+    }
+
+    removeFromWatchlist = (ticker) => {
+        // Need to remove from MySQL Watchlist, then check watch list
+        // API.removeWatchListItem(ticker)
+        // .then(res => {
+
+        //     // Code to add ticker to mySQL
+
+        // })
+        // .catch(err => console.log(err))        
+    }
 
     componentDidMount() {
         this.charting({ ticker: this.state.ticker });
@@ -130,18 +161,15 @@ class OwnedStock extends Component {
         // const { selectHintOnEnter } = this.state;
         return (
             <div>
-                <div className='stockStats searchStockStats container'>
-                    <div className='row searchBar'>
-                        <div className='col-sm-4'>
-                            <h1>Owned Stocks</h1>
-                        </div>
-                    </div>
+                <div className='stockStats listStocks container'>
+
+                    {/* Goal is to dynamically create elemets based off array of tickers */}
 
                     {/* ====================== */}
                     <div className='row stockTickerBarCollapse'>
                         <div className='col-sm-6 col-md-6'>
                             <div className='row'>
-                                <div className='col-sm-2 col-md-2'>
+                                <div className='col-sm-2 col-md-3'>
                                     <FontAwesomeIcon
                                         // onclick={addToWatchlist}
                                         size='2x'
@@ -149,7 +177,7 @@ class OwnedStock extends Component {
                                         onClick={this.toggle}
                                     />
                                 </div>
-                                <div className='col-sm-4 col-md-4'>
+                                <div className='col-sm-4 col-md-3'>
                                     <h1>{this.state.ticker}</h1>
                                 </div>
                                 <div className='col-sm-3'>
@@ -162,10 +190,10 @@ class OwnedStock extends Component {
                         </div>
                         <div className='col-sm-6 col-md-6'>
                             <div className='row'>
-                                <div className='col-sm-4 changeValue'>
+                                <div className='col-sm-3 changeValue'>
                                     <h2>CHANGE</h2>
                                 </div>
-                                <div className='col-sm-4'>
+                                <div className='col-sm-3'>
                                     {this.state.change >= 0 ? (
                                         <div id='changeValuePositive'>
                                             <h2>{this.state.change.toFixed(2)}%</h2>
@@ -177,23 +205,24 @@ class OwnedStock extends Component {
                                         )
                                     }
                                 </div>
-                                <div className='col-sm-2'>
+                                <div className='col-sm-3'>
                                     <FontAwesomeIcon
-                                        {...watched ? (eyeWatched = 'faEyeWatched') : (eyeWatched = 'faEye')}
-                                        className={eyeWatched}
-                                        onclick={addToWatchlist}
+                                        {...this.state.watched ? (this.state.eyeWatched = 'faEyeWatched') : (this.state.eyeWatched = 'faEye')}
+                                        className={this.state.eyeWatched}
+                                        onClick={this.state.watched ? (this.removeFromWatchlist()) : (this.addToWatchlist())}
                                         size='1x'
                                         icon={faEye} />
-                                    {/* OnClick Function Required */}
-                                    {/* If not on user watchlist, will need have onclic function to add it to watchlist, and updated state */}
                                 </div>
-                                <div className='col-sm-2'>
+                                <div className='col-sm-3'>
                                     <Button
                                         className='buyBtn'
-                                        onClick={this.state.goToTransaction}
                                     >
-                                        BUY / SELL
-                                        </Button>
+                                        <Link
+                                            to={'/trading/' + this.state.ticker}
+                                        >
+                                            BUY / SELL
+                                        </Link>
+                                    </Button>
                                 </div>
                             </div>
                         </div>

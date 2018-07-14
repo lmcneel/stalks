@@ -7,10 +7,6 @@ import { faEye } from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
 import Promise from 'bluebird';
 import _ from 'underscore';
-import { POINT_CONVERSION_COMPRESSED } from 'constants';
-
-
-
 
 
 class Transaction extends Component {
@@ -23,10 +19,10 @@ class Transaction extends Component {
             shares: 0,
             change: 0,
             response: '',
-            portfolio_id: '5b469e9d1819e80bd4ddeb78',
+            portfolio_id: '5b458c3cec9285215f43540f',
             transaction: 'buy',
             ROI: 0,
-            id: '5b469e9d1819e80bd4ddeb75',
+            id: '5b458c3cec9285215f43540f',
             cost: 0,
             datePurchased: '',
             value: 0,
@@ -89,15 +85,16 @@ class Transaction extends Component {
         // .catch(err => console.log(err))        
     }
 
+
     componentDidMount() {
-        // this.charting({ ticker: this.state.ticker });
-        // this.myStocks(this.state.portfolio_id);
-        // this.dbStocks(this.state.portfolio_id);
-        // this.myStocksValue();
+        this.charting({ ticker: this.state.ticker });
+        this.myStocks(this.state.portfolio_id);
+        this.dbStocks(this.state.portfolio_id);
+        this.myStocksValue();
         // this.bankValue(this.state.id);
         // this.myWatchlist(this.state.watchedArray);
         // this.lastPurchase(this.state.portfolio_id);
-        // this.cashCalculator(this.state.portfolio_id);
+        this.cashCalculator(this.state.portfolio_id);
     };
 
     handleInputChange = (event) => {
@@ -141,11 +138,15 @@ class Transaction extends Component {
                 }
                 let company = Object.entries(userShares)[0];
                 let spent = Object.entries(userStocks)[0];
+                console.log(userShares);
                 console.log(spent[1] / company[1]);
                 this.setState({
+                    totalShares: company[1],
                     cost: spent[1] / company[1],
                     datePurchased: res.data[res.data.length - 1].date.slice(0, 10),
                 })
+                console.log(userStocks);
+                return userShares;
             })
     }
 
@@ -166,24 +167,24 @@ class Transaction extends Component {
             .catch(err => console.log(err));
     }
 
-    myStocks = (portfolio) => {
-        return API.getMyStocks(portfolio)
-            .then(res => {
-                console.log(res.data);
-                const userStocks = {};
-                for (let i = 0; i < res.data.length; i++) {
-                    if (!userStocks[res.data[i].ticker]) {
-                        userStocks[res.data[i].ticker] = res.data[i].shares;
-                    } else {
-                        userStocks[res.data[i].ticker] += res.data[i].shares;
-                    }
-                }
-                console.log(userStocks);
+    // myStocks = (portfolio) => {
+    //     return API.getMyStocks(portfolio)
+    //         .then(res => {
+    //             console.log(res.data);
+    //             const userStocks = {};
+    //             for (let i = 0; i < res.data.length; i++) {
+    //                 if (!userStocks[res.data[i].ticker]) {
+    //                     userStocks[res.data[i].ticker] = res.data[i].shares;
+    //                 } else {
+    //                     userStocks[res.data[i].ticker] += res.data[i].shares;
+    //                 }
+    //             }
+    //             console.log(userStocks);
 
-                return userStocks
-            })
-            .catch(err => console.log(err));
-    };
+    //             return userStocks
+    //         })
+    //         .catch(err => console.log(err));
+    // };
 
     dbStocks = (portfolio) => {
         let self = this;
@@ -219,12 +220,16 @@ class Transaction extends Component {
                                 console.log(res.data);
                                 lastPrice.push(res.data[0]);
                                 console.log(lastPrice);
-                                self.ROI(userStocks, lastPrice, allUserStocks);
+                                const myROI = self.ROI(userStocks, lastPrice, allUserStocks);
+                                this.setState({
+                                    ROI: myROI[0].roi,
+                                })
 
                             })
                     })
                     // .then(result=>{
                 })
+                console.log(current);
                 return current
             });
     };
@@ -263,6 +268,16 @@ class Transaction extends Component {
             })
     };
 
+    // myStocksValue = () => {
+    //     this.myStocks(this.state.portfolio_id)
+    //         .then(result => {
+    //             let stocks = result;
+    //             let company = Object.entries(stocks)[0];
+    //             console.log(stocks.XOM)
+    //             this.state.totalShares = company[1];
+    //         });
+    // }
+
 
     // This function will calculate the Portfolio Value & Portfolio Value ROI
     // The inputs to this function  are The list of Shares the user has and the latest Rpice of those shares    
@@ -276,7 +291,7 @@ class Transaction extends Component {
         console.log(lastPrice[0]);
         Object.keys(stocks).forEach(key => {
             for (var j = 0, len2 = lastPrice.length; j < len2; j++) {
-                if (key == lastPrice[j].symbol) {
+                if (key === lastPrice[j].symbol) {
                     console.log(stocks[key]);
                     PV += (stocks[key] * lastPrice[j].price);
                 }
@@ -284,12 +299,13 @@ class Transaction extends Component {
         })
         // Portfolio Value is Equal to
         console.log(PV);
-        let userPortfolioValue = PV.toFixed(2)
+        console.log(this.state.cashBalance)
+        let userPortfolioValue = PV + Number(this.state.cashBalance)
         console.log("The Portfolio Value is: $" + userPortfolioValue);
         console.log(initCash);
         let a = userPortfolioValue - initCash;
         // Portfolio ROI is Callculated Below
-        pvROI = ((a / initCash) - 1).toFixed(2);
+        pvROI = ((a / initCash) * 100).toFixed(2);
         console.log("The Portfolio ROI is:  " + pvROI);
         return {
             userPortfolioValue,
@@ -303,7 +319,7 @@ class Transaction extends Component {
         let eachROI = [];
 
         for (var i = 0; i < userStocks.length; i++) {
-            if (userStocks[i].type == "Sell") {
+            if (userStocks[i].type === "Sell") {
                 userStocks.splice(i, 1);
             }
         }
@@ -320,11 +336,11 @@ class Transaction extends Component {
                         roi: ""
                     };
 
-                    if (key == lastPrice[j].symbol && key == boughtStocks[i].ticker) {
+                    if (key === lastPrice[j].symbol && key === boughtStocks[i].ticker) {
                         obj.ticker = key;
                         let a = (lastPrice[j].price * allUserStocks[key]);
                         let b = (allUserStocks[key] * boughtStocks[i].sharePrice);
-                        let c = ((a - b) / b) - 1;
+                        let c = ((a - b) / b) * 100;
                         obj.roi = (c).toFixed(2);
                         eachROI.push(obj);
 
@@ -335,6 +351,7 @@ class Transaction extends Component {
         });
         console.log("The individual Stocks ROI is:");
         console.log(eachROI);
+
         return eachROI;
 
     };
@@ -388,6 +405,7 @@ class Transaction extends Component {
     };
 
     charting = (ticker) => {
+
         API.findQuotes(ticker)
             .then(res => {
                 console.log(res.data);
@@ -580,7 +598,7 @@ class Transaction extends Component {
                                     <h4>ROI</h4>
                                 </div>
                                 <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>${this.state.ROI}</h4>
+                                    <h4>{this.state.ROI}%</h4>
                                     {/* Placeholder */}
                                 </div>
                             </div>
