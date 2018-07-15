@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import StockSearch from '../components/StockSearch';
+import StockSearch from '../../components/StockSearch';
+// import ListStock from '../components/ListStock';
 
 /**
  * View Stocks Page
@@ -13,6 +14,7 @@ class ViewStocks extends Component {
             <div>
                 <div id="container"></div>
                 <StockSearch />
+                {/* <ListStock /> */}
             </div>
         );
     }

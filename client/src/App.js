@@ -17,12 +17,12 @@ import About from './pages/About';
 // import Logout from './components/pages/Logout';
 import SignUp from './pages/SignUp';
 // import Achievements from './components/pages/Achievements';
-import ViewStocks from './pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
-import Trading from './components/pages/Trading';
 import StockTicker from './components/StockTicker/StockTicker';
+import ViewStocks from './pages/ViewStocks/ViewStocks';
+import TradingCenter from './components/TradingCenter';
 
 /**
  * Class App
@@ -65,8 +65,7 @@ class App extends Component {
                 <Inventory />
                 <Content>
                 <Switch>
-                      <Route exact path="/petfolio" component={Petfolio} />
-                      <Route exact path='/trading' component={Trading} />
+                <Route exact path="/petfolio" component={Petfolio} />
                       <Route exact path='/splash' component={Splash} />
                       {/* <Route exact path='/petcenter' component={PetCenter} />
                       <Route exact path='/friends' component={Friends} />
@@ -77,10 +76,12 @@ class App extends Component {
                       {/* <Route exact path='/logout' component={Logout} /> */}
                       <Route exact path='/signup' component={SignUp} />
                       {/* <Route exact path='/achievements' component={Achievements} /> */}
-                      <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />
-                    </Switch>
+                      <Route exact path='/viewstocks' component={ViewStocks} />
+                      <Route exact path='/trading' component={TradingCenter} />
+                      <Route exact path='/trading/:ticker' component={TradingCenter} />
+                      </Switch>
                 </Content>
                 </MainContentWrapper>
               </Wrapper>
