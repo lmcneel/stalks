@@ -27,8 +27,8 @@ router.route('/useraccessories/:id')
 
 //matches with /api/pets/accessories
 //gets all the food and toys in the store
-// router.route('/useraccessories/:id')
-// .get(petsController.getuseraccessories)
+router.route('/userfoodandtoys/:id')
+.get(petsController.getuserfoodandtoys)
 
 
 module.exports = router;
