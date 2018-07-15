@@ -136,7 +136,6 @@ let docData = [
  * fucntion to seed doc database
  */
 function seedDB() {
-  console.log("hit")
   // Remove all users
   Doc.remove({}, function (err) {
     if (err) {
