@@ -44,7 +44,7 @@ class MainApp extends Component {
           <Container>
           <Row>
                     {(this.state.results.length) ? (
-                        <div style={{'display': 'flex'}}>
+                        <div style={{'display': 'contents'}}>
                             {this.state.results.map((result, index) => {
                                 return (
                                   <Card name={result.Petname} image={result.urlImage} buttonName={'Use'} style={{'margin':'50px'}}/>

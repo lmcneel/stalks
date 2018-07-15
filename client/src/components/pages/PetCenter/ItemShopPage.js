@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import ItemShop from '../../PetCenter/ItemShop';
-import PetStatsHoriz from '../../PetStats/PetStatsHoriz';
+import {PetStats} from '../../PetStats/PetStats';
 
 
 
 
 const ItemShopPage = () => (
-<div>
-<PetStatsHoriz/>
+<div style={{'display':'contents'}}>
+<PetStats/>
 <ItemShop/>
 </div>
 );

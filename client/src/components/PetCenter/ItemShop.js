@@ -44,7 +44,7 @@ class ItemShop extends Component {
           <Container>
           <Row>
                     {(this.state.results.length) ? (
-                        <div style={{'display': 'flex'}}>
+                        <div style={{'display': 'contents'}}>
                             {this.state.results.map((result, index) => {
                                 return (
                                   <Card name={result.name} image={result.image} buttonName={'buy'} style={{'margin':'50px'}}/>
