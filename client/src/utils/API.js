@@ -12,10 +12,8 @@ export default {
         return axios.post(`/api/trading/sell/`, sellData);
     },
     findQuotes: function(data) {
-        // console.log(data);
         return axios.get(`/api/trading/quote/${data.ticker}`);
     },
-
     userQuotes: function(data) {
         // console.log(data);
         return axios.get(`/api/trading/slimquote/${data.ticker}`);
@@ -31,6 +29,13 @@ export default {
     },
     getTickerText: function() {
         return axios.get('/api/petfolio/ticker');
+    },
+    getWatchPrices: function(data) {
+        if (!Array.isArray(data)) {
+            throw new Error('Data needs to be of type array');
+        }
+        return axios
+                .get(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${data.join(',')}&types=price`);
     },
     getDocs: function() {
         return axios.get('/api/docs');

@@ -14,13 +14,17 @@ class StockTicker extends Component {
       super(props);
       this.state = {
         tickerText: 'Watchlist...StockA 2.35...StockB 4.15...StockC 1.28',
-      tickerForApi: [],
+        tickerForApi: ['AAPL', 'AXP', 'CSCO'],
       };
     }
     /**
      * Setting state for ticker text
      */
       componentDidMount() {
+        API.getWatchPrices(['aapl', 'ba', 'slb'])
+          .then((r) => {
+            console.log(r.data);
+          });
         API.getTickerText().then(((r) => {
             if (r.data.length !== 0) {
               let ticker = 'Watchlist...';
