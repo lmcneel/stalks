@@ -30,7 +30,7 @@ const TopNav = (props) => {
                         <Link to={'/help'}><FontAwesomeIcon className="iconsize" icon={faQuestionCircle} /></Link>
                     </li>
                     <li className="nav-item">
-                        <Link to={'/settings'}><FontAwesomeIcon className="iconsize" icon={faCog} /></Link>
+                        <Link to={'/settings/account'}><FontAwesomeIcon className="iconsize" icon={faCog} /></Link>
                     </li>
                     <li className="nav-item">
                         <Link to={'/about'}><FontAwesomeIcon className="iconsize" icon={faInfo} /></Link>

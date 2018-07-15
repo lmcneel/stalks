@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "Root",
+=======
+    "password": "password",
+>>>>>>> origin/profile-issues#6
     "database": "stalks_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
