@@ -10,9 +10,10 @@ class PetfolioValue extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      petfolioValue: 500,
+      petfolioValue: 50000,
     };
   }
+
   /**
    * @return {*} Container
    */
