@@ -23,7 +23,7 @@ class StockTicker extends Component {
       componentDidMount() {
         API.getTickerText().then(((r) => {
             if (r.data.length !== 0) {
-              let ticker = 'Watchlist...';
+              let ticker = 'Watchlist ... ';
               let tickerForApi = [];
               // lopp through user's data and pull out watched stock symbols to put into arr for next api call
               for (let i=0; i<r.data.length; i++) {
@@ -38,7 +38,7 @@ class StockTicker extends Component {
                     // loop through the nested obj and pull out stock symbol and price
                     for (let p in r.data) {
                       if (p !== undefined) {
-                        ticker += p + ' ' + r.data[p].price + '...';
+                        ticker += p + ' ' + r.data[p].price + ' ... ';
                       }
                     }
                     this.setState({tickerText: ticker});
