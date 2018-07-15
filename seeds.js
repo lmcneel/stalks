@@ -29,7 +29,7 @@ function seedDB() {
             if (err) {
                 console.log(err);
             }
-            console.log('removed ');
+            console.log('removed Users');
             Portfolio.remove({}, function(err) {
                     if (err) {
                         console.log(err);
