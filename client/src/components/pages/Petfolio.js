@@ -1,14 +1,10 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
 import {PetStatsVert} from '../PetStats';
-// import ListStock from '../ListStock/ListStock';
 import BankValue from '../BankValue/BankValue';
 import PetfolioValue from '../PetfolioValue/PetfolioValue';
 import PieChart from '../PieChart/PieChart';
-// import StockTicker from '../StockTicker/StockTicker';
-// import API from '../../utils/API';
 import '../../assets/scss/_petfolio.scss';
-// const calc = require('./../../utils/Calc');
 
 /**
  * @class Petfolio
@@ -34,19 +30,16 @@ class Petfolio extends Component {
      * for the api call to get current prices for the ticker tape
      */
     componentDidMount() {
-      // calc.portfolioValue().then(((r) => {
-      //   this.setState({petfolioValue: r});
+      // set the Petfolio Value box background color according to PetfolioValue
+      if (this.state.petfolioValue >= 1000) {
+        this.setState({portfolioValueColor: 'colorPositive'});
+      } else if (this.state.petfolioValue >=500) {
+        this.setState({portfolioValueColor: 'colorNeutral'});
+      } else {
+        this.setState({petfolioValueColor: 'colorNegative'});
+      };
 
-            if (this.state.petfolioValue >= 1000) {
-              this.setState({portfolioValueColor: 'colorPositive'});
-            } else if (this.state.petfolioValue >=500) {
-              this.setState({portfolioValueColor: 'colorNeutral'});
-            } else {
-              this.setState({petfolioValueColor: 'colorNegative'});
-            };
-      // }));
-      // calc.bankValue().then(((r) => {
-      //   this.setState({bankValue: r});
+      // set the bankValue box background color according to bankValue
       if (this.state.bankValue > 1000) {
         this.setState({bankValueColor: 'colorPositive'});
       } else if (this.state.bankValue >1) {
@@ -54,7 +47,6 @@ class Petfolio extends Component {
       } else {
         this.setState({bankValueColor: 'colorNegative'});
       };
-      // }));
     };
 
     /**
@@ -78,13 +70,13 @@ class Petfolio extends Component {
             <Col>
               <Row>
               <Col>
-                <div className= {this.state.portfolioValueColor}>
+                <div className= {`${this.state.portfolioValueColor} border rounded colorBoxes`}>
                 Petfolio Value
                 <PetfolioValue />
                 </div>
               </Col>
               <Col>
-                <div className={this.state.bankValueColor}>
+                <div className={`${this.state.bankValueColor} border rounded colorBoxes`}>
                 Bank Value
                 <BankValue />
                 </div>
