@@ -40,7 +40,7 @@ class SigninForm extends Component {
                 <InputGroup>
                     <InputGroupAddon addonType="prepend"><FontAwesomeIcon icon='faKey' /></InputGroupAddon>
                     <Input 
-                        value={this.state.username}
+                        value={this.state.password}
                         onChange={this.handleInputChange}
                         name='password'
                         placeholder='password' />

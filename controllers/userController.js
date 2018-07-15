@@ -1,48 +1,21 @@
 const db = require('../models/mysql');
 const User = db.User;
-const passport = require('../config/passport');
 module.exports = {
     getInfo: function(req, res ) {
         console.log('We connected');
-        if (req.user) {
+        console.log(`Checking if user is in session`);
+        console.log(req.session.user);
+        if (req.session.user) {
             // assumsing sessions works
-            res.json(req.user);
+            res.json(req.session.user);
         } else {
-            /* res.json('User is not logged in..');
-
-                Im assuming this it how it should got is sessionStore is working correctly
-                but commenting to put dummy data
-                */
-            const user = {
-                id: 123456789,
-                firstname: 'Michael',
-                lastname: 'Tran',
-                username: 'MyUserName',
-                email: 'myEmail@gmail.com',
-                password: 'MyPassword123',
-                balance: 123456465321,
-                emailVerified: true,
-                mongo_id: 1445563,
-                account_length: 20,
-                status: 'Active',
-            };
-            const pet = {
-                pet_type: 'Lion',
-                pet_name: 'Leo',
-            };
-
-            const data = {
-                user: user,
-                pet: pet,
-            };
-            res.json(data);
+           res.json('User not logged in');
         }
     },
     checkPassword: function(req, res ) {
         console.log(req.body);
         console.log('checking password');
         console.log('look for user in database given info...');
-        
         const fakeData = {
             current_email: 'email@gmail.com',
             password_input: 'somepassword',
