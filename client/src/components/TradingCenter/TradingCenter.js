@@ -28,9 +28,12 @@ class TradingCenter extends Component {
  */
     constructor(props) {
         super(props);
+        // These are triggerd from opClick
         this.toggle = this.toggle.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
+        // -------------------------------------
+        // The function below are used in transactions and render
         this.checkWatchList = this.checkWatchList.bind(this);
         // this.addToWatchlist = this.addToWatchlist.bind(this);
         // this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
@@ -40,7 +43,7 @@ class TradingCenter extends Component {
         this.dbStocks = this.dbStocks.bind(this);
         this.myStocksValue = this.myStocksValue.bind(this);
         this.portfolioValue = this.portfolioValue.bind(this);
-        this.ROI = this.ROI.bind(this);
+        this.returnOnInvestment = this.returnOnInvestment.bind(this);
         this.bankValue = this.bankValue.bind(this);
         this.myWatchlist = this.myWatchlist.bind(this);
         this.charting = this.charting.bind(this);
@@ -55,10 +58,10 @@ class TradingCenter extends Component {
             primaryExchange: '',
             sector: '',
             response: '',
-            portfolio_id: '5b40fb129adc85a410f488bd',
+            portfolio_id: '5b4b7308fa4a6953ea654561',
             transaction: 'buy',
             ROI: 0,
-            id: '5b44cd4e020eda5258fcf2c1',
+            id: '5b4b7308fa4a6953ea654561',
             cost: 0,
             datePurchased: '',
             value: 0,
