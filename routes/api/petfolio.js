@@ -4,6 +4,9 @@ const petfolioController = require('../../controllers/petfolioController');
 router.route('/ticker')
 .get(petfolioController.getTickerText);
 
+router.route('/userpic')
+.get(petfolioController.getUserPic);
+
 router.route('/addTicker')
 .post(petfolioController.addTicker);
 
