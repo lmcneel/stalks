@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const bodyParser= require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
-const seedDB = require('./seeds');
+// const seedDB = require('./seeds');
 const db = require('./models/mysql');
 
 app.use(logger('dev'));
@@ -33,7 +33,7 @@ mongoose
 .then(() => console.log('MongoDB Connected'))
 .catch((err) => console.log(err));
 
-seedDB();
+// seedDB();
 
 
 // Send every other request to the React app
