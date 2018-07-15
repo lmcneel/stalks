@@ -5,6 +5,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
+const apiRoutes = require('./api');
 const logger = require('morgan');
 const seedDB = require('./seeds');
 const db = require('./models/mysql');
@@ -29,7 +30,7 @@ if (config.use_env_variable) {
 
 app.use(session({
   secret: 'keyboard cat',
-  store: new SequelizeStore({db: seq}),
+  store: new SequelizeStore({db: db.sequelize}),
   resave: false, // we support the touch method so per the express-session docs this should be set to false
   saveUninitialized: false, // required
 }));
@@ -57,6 +58,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // Define API routes here
 app.use(routes);
+app.use(apiRoutes);
 app.use('/users', userAuth(app, db));
 // DB Config
 // const db = require('./config/keys').mongoURI;

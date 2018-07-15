@@ -24,21 +24,6 @@ export default {
                 console.log(error);
             });
     },
-    // signup axios call
-    signup: function(signupData) {
-        return axios.post('/api/signup', signupData)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    },
-
-    // Saves an article to the database
-    signin: function(signinData) {
-        return axios.post('/api/signin', signinData)
-    },
     // Saves an article to the database
     signout: function (signoutData) {
         return axios.post('/api/signout', signoutData)
@@ -49,7 +34,7 @@ export default {
                 console.log(error);
             });
     },
-    // Saves an article to the database
+    // Saves an user to the database
     signup: function(signupData) {
         return axios.post('/api/signup', signupData)
             .then((response) => {
