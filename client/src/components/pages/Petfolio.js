@@ -5,11 +5,9 @@ import {PetStatsVert} from '../PetStats';
 import BankValue from '../BankValue/BankValue';
 import PetfolioValue from '../PetfolioValue/PetfolioValue';
 import PieChart from '../PieChart/PieChart';
-// import StockTicker from '../StockTicker/StockTicker';
 // import API from '../../utils/API';
 import '../../assets/scss/_petfolio.scss';
 // const calc = require('./../../utils/Calc');
-
 /**
  * @class Petfolio
  */
