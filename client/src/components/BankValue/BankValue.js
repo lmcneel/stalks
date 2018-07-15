@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import API from '../../utils/API';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPiggyBank} from '@fortawesome/fontawesome-free-solid';
 /**
  * @class BankValue
  */
@@ -49,6 +51,7 @@ class BankValue extends Component {
   render() {
     return (
       <div>
+        <FontAwesomeIcon icon={faPiggyBank} className="pad"/>
         ${this.state.bankValue}
       </div>
   );

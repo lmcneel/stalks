@@ -9,6 +9,7 @@ const logger = require('morgan');
 // const seedDB = require('./seeds');
 const db = require('./models/mysql');
 
+
 app.use(logger('dev'));
 
 // Bodyparser Middleware
@@ -23,10 +24,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Define API routes here
+
 app.use(routes);
 
 // DB Config
 // const db = require('./config/keys').mongoURI;
+
 
 mongoose
 .connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks')

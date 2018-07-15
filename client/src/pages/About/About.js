@@ -18,28 +18,30 @@ class About extends Component {
     render() {
         return (
             <div>
-                <div id="container">
-                <h1>Meet the Team!</h1>
+                <div id="">
+                <h2>Meet the Team!</h2>
                 </div>
                 <Container >
             {/* <div className="wrapper"> */}
+            <div className = "row">
             {this.state.data.map(data=>(
               <Images
               id={data.id}
               key={data.id}
-              img={data.image}
+              img={data.image} 
+              src={data.image}
               name={data.name}
               title={data.title}
               portfolio={data.portfolio}
             />
         
             ))}
-      
-            {/* </div> */}
+            </div>
               </Container>
             </div>
         );
     }
 }
 export default About;
+
 
