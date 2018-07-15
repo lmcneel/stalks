@@ -24,21 +24,21 @@ class PetPic extends Component {
      * setting state of picture
      */
     componentDidMount() {
-        API.getUserPic().then(((r) => {
-              let url = r.data.urlImage;
-            console.log(url);
-            if (url = './client/src/assets/images/Ostrich1.svg') {
-                this.setState({petPic: ostrich});
-            } else if (url = './client/src/assets/images/Bull1.svg') {
-                this.setState({petPic: bull});
-            } else if (url = './client/src/assets/images/Bear1.svg') {
-                this.setState({petPic: bear});
-            } else {
-                this.setState({petPic: wolfy});
-            };
-              // console.log(r.data);
-              console.log(r.data.urlImage);
-          }));
+        // API.getUserPic().then(((r) => {
+        //       let url = r.data.urlImage;
+        //     console.log(url);
+        //     if (url = './client/src/assets/images/Ostrich1.svg') {
+        //         this.setState({petPic: ostrich});
+        //     } else if (url = './client/src/assets/images/Bull1.svg') {
+        //         this.setState({petPic: bull});
+        //     } else if (url = './client/src/assets/images/Bear1.svg') {
+        //         this.setState({petPic: bear});
+        //     } else {
+        //         this.setState({petPic: wolfy});
+        //     };
+        //       // console.log(r.data);
+        //       console.log(r.data.urlImage);
+        //   }));
       };
 
     /**
