@@ -6659,6 +6659,10 @@ body {
 .collapseTop {
   padding-top: 20px; }
 
+.stockDetails {
+  margin-bottom: 10px;
+  margin-left: 10px; }
+
 .listBtn {
   margin-right: 10px; }
 

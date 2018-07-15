@@ -5,6 +5,11 @@ import Highcharts from 'highcharts';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faEye, faChevronCircleDown} from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+    ticker: PropTypes.string,
+};
 
 /**
  * This component generates a single stock view component
@@ -17,6 +22,11 @@ class ListStock extends Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
+        this.checkWatchList = this.checkWatchList.bind(this);
+        // this.addToWatchlist = this.addToWatchlist.bind(this);
+        // this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.charting = this.charting.bind(this);
         this.state = {
             ticker: this.props.ticker,
             price: 0,
@@ -40,21 +50,23 @@ class ListStock extends Component {
  * @public checkWatchList function will check if the current 'ticker' is listed in user watchlist
  * @param {*} ticker
  */
-checkWatchList(ticker) {
-    // If in watchlist set [watched] to true
-    API.getTickerText(ticker).then(((r) => {
-        if (r.data.length !== 0) {
-        let tempTicker = [];
-        for (let i=0; i<r.data.length; i++) {
-            tempTicker.push((r.data[i]).uniqueStockSymbol);
-        }
-        console.log(tempTicker);
-        if (tempTicker.includes(this.state.ticker)) {
-          return this.setState({watched: !this.state.watched});
-        };
-        };
-    }));
-}
+    checkWatchList(ticker) {
+        // If in watchlist set [watched] to true
+        API.getTickerText(ticker).then(((r) => {
+            if (r.data.length !== 0) {
+            let tempTicker = [];
+            for (let i=0; i<r.data.length; i++) {
+                tempTicker.push((r.data[i]).uniqueStockSymbol);
+            }
+            // console.log(tempTicker);
+            if (tempTicker.includes(this.state.ticker)) {
+              return this.setState({watched: true});
+            } else {
+              return this.setState({watched: false});
+            };
+            };
+        }));
+    }
 /**
  * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
  * @param {*} ticker
@@ -197,22 +209,9 @@ checkWatchList(ticker) {
                                 </div>
                                 <div className='col-sm-3'>
                                     <FontAwesomeIcon
-
-
-                                        {...this.state.watched ? (
-                                            this.state.eyeWatched = 'faEyeWatched'
-                                        ) : (
-                                            this.state.eyeWatched = 'faEye'
-                                        )}
-
-                                        // {...this.state.watched ? (
-                                        //     this.setState({eyeWatched: 'faEyeWatched'})
-                                        // ) : (
-                                        //     this.setState({eyeWatched: 'faEye'})
-                                        // )}
-
-                                        className={this.state.eyeWatched}
-                                        onClick={this.state.watched ? (this.removeFromWatchlist()) : (this.addToWatchlist())}
+                                        className={(this.state.watched ? `faEyeWatched`:`faEye`)}
+                                        onClick={this.state.watched ?
+                                        (this.removeFromWatchlist) : (this.addToWatchlist)}
                                         size='1x'
                                         icon={faEye} />
                                 </div>
@@ -280,5 +279,5 @@ checkWatchList(ticker) {
         );
     }
 }
-
+ListStock.propTypes = propTypes;
 export default ListStock;
