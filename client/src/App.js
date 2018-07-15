@@ -19,7 +19,8 @@ import SignUp from './pages/SignUp';
 // import Achievements from './components/pages/Achievements';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
-import Inventory from './components/userTabs';
+// import Inventory from './components/userTabs';
+// import Trading from './components/pages/Trading';
 import StockTicker from './components/StockTicker/StockTicker';
 import ViewStocks from './pages/ViewStocks/ViewStocks';
 import TradingCenter from './components/TradingCenter';
@@ -61,7 +62,6 @@ class App extends Component {
               <MainContentWrapper>
                 <PortfolioStatus />
                 <StockTicker />
-                <Inventory />
                 <Content>
                 <Switch>
                 <Route exact path="/petfolio" component={Petfolio} />
