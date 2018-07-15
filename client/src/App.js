@@ -152,21 +152,75 @@ class App extends Component {
                     text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
                     selector: '.portfolioValue',
                   },
-
                   {
-                    title: 'Your Pet',
-                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
-                    selector: '.petWrapper',
-                  },
-                  {
-                    title: 'Your Stocks',
-                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
-                    selector: '.pieChart',
-                  },
-                  {
-                    title: 'Your Stocks',
+                    title: 'Stock Overview',
                     text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
                     selector: '.stockStats',
+                  },
+                  {
+                    title: 'Stock Name',
+                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+                    selector: '.stockName',
+                  },
+                  {
+                    title: 'Stock Price',
+                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+                    selector: '.stockPrice',
+                  },
+                  {
+                    title: 'Percent Change',
+                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+                    selector: '.stockChange',
+                  },
+                  {
+                    title: 'Add to Your Watchlist',
+                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+                    selector: '.stockWatch',
+                  },
+                  {
+                    title: 'View Your Watchlist',
+                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+                    selector: '.stockticker',
+                  },
+                  {
+                    title: 'Stock Chart',
+                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+                    selector: '.chartSection',
+                  },
+                  {
+                    title: 'Shares Owned',
+                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+                    selector: '.sharesOwned',
+                  },
+                  {
+                    title: 'ROI',
+                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+                    selector: '.roiRow',
+                  },
+                  {
+                    title: 'Price and Date Purchased',
+                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+                    selector: '.priceAndDateRow',
+                  },
+                  {
+                    title: 'Making a Transaction',
+                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+                    selector: '.buySell',
+                  },
+                  {
+                    title: 'Buying and Selling Stocks',
+                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+                    selector: '.tradeInputs',
+                  },
+                  {
+                    title: 'Number of Shares',
+                    text: 'A share is an indivisible unit of capital, expressing the ownership relationship between the company and the shareholder, which is you. ',
+                    selector: '.numOfShares',
+                  },
+                  {
+                    title: 'Subtotal and New Bank Value',
+                    text: 'This shows you the sum of all stocks multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets. ',
+                    selector: '.bottomTwoRows',
                   },
                 ]}
                 run={this.state.run} // or some other boolean for when you want to start it

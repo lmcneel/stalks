@@ -79,10 +79,10 @@ class Transaction extends Component {
                     if (!userStocks[res.data[i].ticker]) {
                         userStocks[res.data[i].ticker] = res.data[i].shares;
                     } else {
-                        userStocks[res.data[i].ticker] += res.data[i].shares;                        
-                    }    
+                        userStocks[res.data[i].ticker] += res.data[i].shares;
+                    }
                 }
-                console.log(userStocks); 
+                console.log(userStocks);
                 return userStocks;
             })
             .catch(err => console.log(err));
@@ -228,19 +228,22 @@ class Transaction extends Component {
                     <div className='row stockTickerBar'>
                         <div className='col-sm-6 col-md-6'>
                             <div className='row'>
-                                <div className='col-sm-6 col-md-6'>
+                                <div className='col-sm-6 col-md-6 stockName'>
                                     <h1>{this.state.ticker}</h1>
                                 </div>
+                                <div className="stockPrice">
                                 <div className='col-sm-3'>
                                     <h2>PRICE</h2>
                                 </div>
                                 <div className='col-sm-3'>
                                     <h2>${this.state.price}</h2>
                                 </div>
+                                </div>
                             </div>
                         </div>
                         <div className='col-sm-6 col-md-6'>
                             <div className='row'>
+                            <div className='stockChange'>
                                 <div className='col-sm-4 changeValue'>
                                     <h2>CHANGE</h2>
                                 </div>
@@ -256,7 +259,8 @@ class Transaction extends Component {
                                         )
                                     }
                                 </div>
-                                <div className='col-sm-2'>
+                                </div>
+                                <div className='col-sm-2 stockWatch'>
                                     <FontAwesomeIcon
                                         {...watched ? (eyeWatched = 'faEyeWatched') : (eyeWatched = 'faEye')}
                                         className={eyeWatched}
@@ -277,7 +281,7 @@ class Transaction extends Component {
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-4 dataSection'>
-                            <div className='row'>
+                            <div className='row sharesOwned'>
                                 <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>SHARES OWNED</h4>
                                 </div>
@@ -286,7 +290,7 @@ class Transaction extends Component {
                                     {/* Placeholder */}
                                 </div>
                             </div>
-                            <div className='row'>
+                            <div className='row roiRow'>
                                 <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>ROI</h4>
                                 </div>
@@ -295,20 +299,22 @@ class Transaction extends Component {
                                     {/* Placeholder */}
                                 </div>
                             </div>
-                            <div className='row'>
-                                <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>PRICE PURCHASED</h4>
+                            <div className="priceAndDateRow">
+                                <div className='row'>
+                                    <div className='col-sm-6 col-md-6 stockData'>
+                                        <h4>PRICE PURCHASED</h4>
+                                    </div>
+                                    <div className='col-sm-6 col-md-6 stockData'>
+                                        <h4>${this.state.cost}</h4>
+                                    </div>
                                 </div>
-                                <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>${this.state.cost}</h4>
-                                </div>
-                            </div>
-                            <div className='row'>
-                                <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>DATE PURCHASED</h4>
-                                </div>
-                                <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>{this.state.datePurchased}</h4>
+                                <div className='row'>
+                                    <div className='col-sm-6 col-md-6 stockData'>
+                                        <h4>DATE PURCHASED</h4>
+                                    </div>
+                                    <div className='col-sm-6 col-md-6 stockData'>
+                                        <h4>{this.state.datePurchased}</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -359,7 +365,7 @@ class Transaction extends Component {
                                     </div>
                                 </Label>
                             </div>
-                            <div className='col-sm-12 col-md-6'>
+                            <div className='col-sm-12 col-md-6 numOfShares'>
                                 <Label
                                     for='numberOfShares'>
                                     <h2>Number of Shares</h2>
@@ -375,20 +381,22 @@ class Transaction extends Component {
                                 />
                             </div>
                         </div>
-                        <div className='row'>
-                            <div className='col-sm-6 col-md-6 totalCalcLabel'>
-                                <h4>SUBTOTAL:</h4>
+                        <div className='bottomTwoRows'>
+                            <div className='row'>
+                                <div className='col-sm-6 col-md-6 totalCalcLabel'>
+                                    <h4>SUBTOTAL:</h4>
+                                </div>
+                                <div className='col-sm-6 col-md-6 totalCalc'>
+                                    <h4>${-2500.00}</h4>
+                                </div>
                             </div>
-                            <div className='col-sm-6 col-md-6 totalCalc'>
-                                <h4>${-2500.00}</h4>
-                            </div>
-                        </div>
-                        <div className='row totalCalc'>
-                            <div className='col-sm-6 col-md-6 totalCalcLabel'>
-                                <h4>New Bank Vale:</h4>
-                            </div>
-                            <div className='col-sm-6 col-md-6 totalCalc'>
-                                <h4>${10000.00}</h4>
+                            <div className='row totalCalc'>
+                                <div className='col-sm-6 col-md-6 totalCalcLabel'>
+                                    <h4>New Bank Value:</h4>
+                                </div>
+                                <div className='col-sm-6 col-md-6 totalCalc'>
+                                    <h4>${10000.00}</h4>
+                                </div>
                             </div>
                         </div>
                         <div>
