@@ -28,7 +28,7 @@ class StockSearch extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleWatchlistSubmit = this.handleWatchlistSubmit.bind(this);
         this.state = {
-            ticker: 'ABC',
+            ticker: 'SLB',
             price: 0,
             change: 0,
             value: '',
@@ -168,6 +168,7 @@ class StockSearch extends Component {
  */
     handleFormSubmit(event) {
         this.charting({ticker: this.state.ticker});
+        this.checkWatchList({ticker: this.state.ticker});
     };
 /**
  * @public charting function assigns chart data from API

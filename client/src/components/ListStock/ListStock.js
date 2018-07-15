@@ -57,29 +57,22 @@ checkWatchList(ticker) {
 }
 /**
  * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
+ * @param {*} ticker
  */
-    addToWatchlist() {
-        // Need to add to MySQL Watchlist, then check watch list
-        // API.addWatchListItem(ticker)
-        // .then(res => {
+    addToWatchlist(ticker) {
+        // API.addNewTicker(ticker)
 
-        //     // Code to add ticker to mySQL
-
-        // })
-        // .catch(err => console.log(err))
+        // Need to add to MySQL Watchlist
     }
 /**
  * @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
+ * @param {*} ticker
  */
     removeFromWatchlist() {
-        // Need to remove from MySQL Watchlist, then check watch list
-        // API.removeWatchListItem(ticker)
-        // .then(res => {
+        // API.removeExistingTicer(ticker)
 
-        //     // Code to add ticker to mySQL
+        // Need to remove from MySQL Watchlist
 
-        // })
-        // .catch(err => console.log(err))
         }
 /**
  * @public componentDidMount function will render the chart

@@ -38,4 +38,10 @@ export default {
     getMyStocks: function(portfolio) {
         return axios.get(`/api/trading/mystocks/${portfolio}`);
     },
+    addNewTicker: function() {
+        return axios.post('/api/petfolio/addTicker');
+    },
+    removeExistingTicker: function() {
+        return axios.delete('/api/petfolio/removeTicker');
+    },
 };
