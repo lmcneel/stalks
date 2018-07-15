@@ -2,22 +2,28 @@ import React from 'react';
 import {Row, Col} from 'reactstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBriefcase, faPiggyBank} from '@fortawesome/fontawesome-free-solid';
+import PetfolioValue from '../PetfolioValue/PetfolioValue';
+import BankValue from '../BankValue/BankValue';
 
 const PortfolioStatus = (props) => (
     <div id="portfolio-stats" className="bg-light pt-3 px-4">
         <Row>
-            <Col xs="12" md="4" className="d-flex justify-content-sm-center justify-content-md-start">
-                <h2>Page Title</h2>
+            <Col sm="12" md="4" className="d-flex justify-content-sm-center justify-content-md-start">
+                <h1>Page Title</h1>
             </Col>
-            <Col xs="12" md="8">
+            <Col sm="12" md="8">
                 <ul className="d-flex justify-content-sm-center justify-content-md-end">
                     <li className="portfolioValue">
                         <FontAwesomeIcon icon={faBriefcase} />
-                        $100,000,000
+                        <span className="pad"><PetfolioValue /></span>
                 </li>
+<<<<<<< HEAD
                     <li className="ml-5 bankValue">
+=======
+                    <li className="bank">
+>>>>>>> 7120e4a52f035f889e9a91ad0abcfb049b81c497
                         <FontAwesomeIcon icon={faPiggyBank} />
-                        $100,000,000
+                        <span className="pad"><BankValue /></span>
                 </li>
 
                 </ul>
