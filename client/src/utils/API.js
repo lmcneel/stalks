@@ -15,12 +15,17 @@ export default {
         console.log(data);
         return axios.get(`/api/trading/quote/${data.ticker}`);
     },
-    // getPortfolioValue: function() {
-    //     return axios.get('api/petfolio/portfolio');
+
+    userQuotes: function(data) {
+        console.log(data);
+        return axios.get(`/api/trading/slimquote/${data.ticker}`);
+    },
+    // getInitialCash: function() {
+    //     return axios.get('api/ptfolio/initialcash');
     // },
-    // getBankValue: function() {
-    //     return axios.get('api/petfolio/bank');
-    // },
+    getMyPortfolio: function(portfolio) {
+        return axios.get(`/api/trading/myportfolio/${portfolio}`);
+    },
     getPetInfo: function() {
         return axios.get('/api/petfolio/pets');
     },
@@ -33,7 +38,20 @@ export default {
     getMyStocks: function(portfolio) {
         return axios.get(`api/trading/mystocks/${portfolio}`);
     },
-    getUserPic: function() {
-        return axios.get('api/petfolio/userpic');
+    // Gets all watchlists
+    getwatchlist: function(data) {
+        return axios.get(`/api/watchlist/${data}`);
+    },
+    // Gets all watchlists
+    getWatchListItem: function(data) {
+        return axios.get(`/api/watchlist/${data.ticker}`);
+    },
+    // adds a ticker to the watchlist
+    addWatchListItem: function(data) {
+        return axios.create(`/api/watchlist/${data.ticker}`);
+    },
+    // removes a ticker from the watchlist
+    removeWatchListItem: function(data) {
+        return axios.delete(`/api/watchlist/${data.ticker}`);
     },
 };
