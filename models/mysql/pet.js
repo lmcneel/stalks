@@ -25,7 +25,10 @@ module.exports = function(sequelize, Sequelize) {
         },
 
     });
-
+    Pet.beforeCreate(function(pet) {
+        // setting petname default to pettype for now.
+        pet.petName = pet.petType;
+     });
     Pet.associate = function(models) {
         Pet.hasMany(models.Accessory);
     };

@@ -23,7 +23,9 @@ app.use(session({
     extendDefaultFields: extendDefaultFields,
   }),
   resave: false,
+  saveUninitialized: false,
   proxy: true,
+  unset: 'keep',
 }));
 app.use(logger('dev'));
 // Bodyparser Middleware
@@ -77,6 +79,6 @@ function extendDefaultFields(defaults, session) {
   return {
     data: defaults.data,
     expires: defaults.expires,
-    userId: session.userId,
+    userId: session.user.id,
   };
 };
