@@ -38,29 +38,23 @@ class ListStock extends Component {
     };
 /**
  * @public checkWatchList function will check if the current 'ticker' is listed in user watchlist
+ * @param {*} ticker
  */
-    checkWatchList(ticker) {
-        // If in watchlist set [watched] to true
-        API.getTickerTextSymbol(ticker).then(((r) => {
-            if (r.data.length !== 0) {
-              
-              let tempTicker = [];
-              for (let i=0; i<r.data.length; i++) {
-              
-              
-                tempTicker.push((r.data[i]).uniqueStockSymbol);
-              }
-              
-              this.setState({Watchlist: tempTicker});
-              // console.log(r.data);
-            //   console.log(tempTicker);
-            };
-          }));
-
-        // this.setState({watched: this.state.watched});
-
-        // return /this.state.watched = false;
-    };
+checkWatchList(ticker) {
+    // If in watchlist set [watched] to true
+    API.getTickerText(ticker).then(((r) => {
+        if (r.data.length !== 0) {
+        let tempTicker = [];
+        for (let i=0; i<r.data.length; i++) {
+            tempTicker.push((r.data[i]).uniqueStockSymbol);
+        }
+        console.log(tempTicker);
+        if (tempTicker.includes(this.state.ticker)) {
+          return this.setState({watched: !this.state.watched});
+        };
+        };
+    }));
+}
 /**
  * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
  */
@@ -92,7 +86,7 @@ class ListStock extends Component {
  */
     componentDidMount() {
         this.charting({ticker: this.state.ticker});
-        // this.checkWatchList({ticker: this.state.ticker});
+        this.checkWatchList({ticker: this.state.ticker});
     };
 /**
  * @public charting function assigns chart data from API

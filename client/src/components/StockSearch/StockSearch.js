@@ -28,7 +28,7 @@ class StockSearch extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleWatchlistSubmit = this.handleWatchlistSubmit.bind(this);
         this.state = {
-            ticker: 'SLB',
+            ticker: 'ABC',
             price: 0,
             change: 0,
             value: '',
@@ -66,13 +66,12 @@ class StockSearch extends Component {
             this.setState({Watchlist: tempTicker});
             // console.log(r.data);
             console.log(tempTicker);
+            if (tempTicker.includes(this.state.ticker)) {
+              return this.setState({watched: !this.state.watched});
+            };
             };
         }));
-
-    // this.setState({watched: this.state.watched});
-
-    // return /this.state.watched = false;
-};
+    };
 /**
  * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
  */
@@ -427,9 +426,7 @@ class StockSearch extends Component {
                             </div>
                         </div>
                         <this.ListComponent listFlag={this.state.showList} />
-
                         {/* {this.state.Watchlist.map(List => <OwnedStock ticker={List} />)} */}
-                        
                     </div>
                 </div>
             </div >
