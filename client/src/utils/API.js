@@ -17,7 +17,7 @@ export default {
     },
 
     userQuotes: function(data) {
-        console.log(data);
+        // console.log(data);
         return axios.get(`/api/trading/slimquote/${data.ticker}`);
     },
     // getInitialCash: function() {

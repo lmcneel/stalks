@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Collapse, Button} from 'reactstrap';
-import {Typeahead} from 'react-bootstrap-typeahead';
+import {Input, Collapse, Button} from 'reactstrap';
+// import {Typeahead} from 'react-bootstrap-typeahead';
 import {Link} from 'react-router-dom';
 import Highcharts from 'highcharts';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -8,8 +8,6 @@ import {faEye, faChevronCircleDown} from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
 import ListStock from '../ListStock';
 
-
-const options = ['MMM', 'AOS', 'ABT', 'ABBV', 'ACN', 'ATVI', 'AYI', 'ADBE', 'AAP', 'AMD', 'AES', 'AET', 'AMG', 'AFL', 'A', 'APD', 'AKAM', 'ALK', 'ALB', 'ARE', 'ALXN', 'ALGN', 'ALLE', 'AGN', 'ADS', 'LNT', 'ALL', 'GOOGL', 'GOOG', 'MO', 'AMZN', 'AEE', 'AAL', 'AEP', 'AXP', 'AIG', 'AMT', 'AWK', 'AMP', 'ABC', 'AME', 'AMGN', 'APH', 'APC', 'ADI', 'ANDV', 'ANSS', 'ANTM', 'AON', 'APA', 'AIV', 'AAPL', 'AMAT', 'APTV', 'ADM', 'ARNC', 'AJG', 'AIZ', 'T', 'ADSK', 'ADP', 'AZO', 'AVB', 'AVY', 'BHGE', 'BLL', 'BAC', 'BAX', 'BBT', 'BDX', 'BRK.B', 'BBY', 'BIIB', 'BLK', 'HRB', 'BA', 'BKNG', 'BWA', 'BXP', 'BSX', 'BHF', 'BMY', 'AVGO', 'BF.B', 'CHRW', 'CA', 'COG', 'CDNS', 'CPB', 'COF', 'CAH', 'KMX', 'CCL', 'CAT', 'CBOE', 'CBRE', 'CBS', 'CELG', 'CNC', 'CNP', 'CTL', 'CERN', 'CF', 'SCHW', 'CHTR', 'CVX', 'CMG', 'CB', 'CHD', 'CI', 'XEC', 'CINF', 'CTAS', 'CSCO', 'C', 'CFG', 'CTXS', 'CME', 'CMS', 'KO', 'CTSH', 'CL', 'CMCSA', 'CMA', 'CAG', 'CXO', 'COP', 'ED', 'STZ', 'GLW', 'COST', 'COTY', 'CCI', 'CSRA', 'CSX', 'CMI', 'CVS', 'DHI', 'DHR', 'DRI', 'DVA', 'DE', 'DAL', 'XRAY', 'DVN', 'DLR', 'DFS', 'DISCA', 'DISCK', 'DISH', 'DG', 'DLTR', 'D', 'DOV', 'DWDP', 'DPS', 'DTE', 'DUK', 'DRE', 'DXC', 'ETFC', 'EMN', 'ETN', 'EBAY', 'ECL', 'EIX', 'EW', 'EA', 'EMR', 'ETR', 'EVHC', 'EOG', 'EQT', 'EFX', 'EQIX', 'EQR', 'ESS', 'EL', 'RE', 'ES', 'EXC', 'EXPE', 'EXPD', 'ESRX', 'EXR', 'XOM', 'FFIV', 'FB', 'FAST', 'FRT', 'FDX', 'FIS', 'FITB', 'FE', 'FISV', 'FLIR', 'FLS', 'FLR', 'FMC', 'FL', 'F', 'FTV', 'FBHS', 'BEN', 'FCX', 'GPS', 'GRMN', 'IT', 'GD', 'GE', 'GGP', 'GIS', 'GM', 'GPC', 'GILD', 'GPN', 'GS', 'GT', 'GWW', 'HAL', 'HBI', 'HOG', 'HRS', 'HIG', 'HAS', 'HCA', 'HCP', 'HP', 'HSIC', 'HES', 'HPE', 'HLT', 'HOLX', 'HD', 'HON', 'HRL', 'HST', 'HPQ', 'HUM', 'HBAN', 'HII', 'IDXX', 'INFO', 'ITW', 'ILMN', 'INCY', 'IR', 'INTC', 'ICE', 'IBM', 'IP', 'IPG', 'IFF', 'INTU', 'ISRG', 'IVZ', 'IPGP', 'IQV', 'IRM', 'JBHT', 'JEC', 'SJM', 'JNJ', 'JCI', 'JPM', 'JNPR', 'KSU', 'K', 'KEY', 'KMB', 'KIM', 'KMI', 'KLAC', 'KSS', 'KHC', 'KR', 'LB', 'LLL', 'LH', 'LRCX', 'LEG', 'LEN', 'LUK', 'LLY', 'LNC', 'LKQ', 'LMT', 'L', 'LOW', 'LYB', 'MTB', 'MAC', 'M', 'MRO', 'MPC', 'MAR', 'MMC', 'MLM', 'MAS', 'MA', 'MAT', 'MKC', 'MCD', 'MCK', 'MDT', 'MRK', 'MET', 'MTD', 'MGM', 'KORS', 'MCHP', 'MU', 'MSFT', 'MAA', 'MHK', 'TAP', 'MDLZ', 'MON', 'MNST', 'MCO', 'MS', 'MSI', 'MYL', 'NDAQ', 'NOV', 'NAVI', 'NKTR', 'NTAP', 'NFLX', 'NWL', 'NFX', 'NEM', 'NWSA', 'NWS', 'NEE', 'NLSN', 'NKE', 'NI', 'NBL', 'JWN', 'NSC', 'NTRS', 'NOC', 'NCLH', 'NRG', 'NUE', 'NVDA', 'ORLY', 'OXY', 'OMC', 'OKE', 'ORCL', 'PCAR', 'PKG', 'PH', 'PAYX', 'PYPL', 'PNR', 'PBCT', 'PEP', 'PKI', 'PRGO', 'PFE', 'PCG', 'PM', 'PSX', 'PNW', 'PXD', 'PNC', 'RL', 'PPG', 'PPL', 'PX', 'PFG', 'PG', 'PGR', 'PLD', 'PRU', 'PEG', 'PSA', 'PHM', 'PVH', 'QRVO', 'QCOM', 'PWR', 'DGX', 'RRC', 'RJF', 'RTN', 'O', 'RHT', 'REG', 'REGN', 'RF', 'RSG', 'RMD', 'RHI', 'ROK', 'COL', 'ROP', 'ROST', 'RCL', 'SPGI', 'CRM', 'SBAC', 'SCG', 'SLB', 'STX', 'SEE', 'SRE', 'SHW', 'SPG', 'SWKS', 'SLG', 'SNA', 'SO', 'LUV', 'SWK', 'SBUX', 'STT', 'SRCL', 'SYK', 'STI', 'SIVB', 'SYMC', 'SYF', 'SNPS', 'SYY', 'TROW', 'TTWO', 'TPR', 'TGT', 'TEL', 'FTI', 'TXN', 'TXT', 'BK', 'CLX', 'COO', 'HSY', 'MOS', 'TRV', 'DIS', 'TMO', 'TIF', 'TWX', 'TJX', 'TMK', 'TSS', 'TSCO', 'TDG', 'TRIP', 'FOXA', 'FOX', 'TSN', 'USB', 'UDR', 'ULTA', 'UAA', 'UA', 'UNP', 'UAL', 'UNH', 'UPS', 'URI', 'UTX', 'UHS', 'UNM', 'VFC', 'VLO', 'VAR', 'VTR', 'VRSN', 'VRSK', 'VZ', 'VRTX', 'VIAB', 'V', 'VNO', 'VMC', 'WMT', 'WBA', 'WM', 'WAT', 'WEC', 'WFC', 'WELL', 'WDC', 'WU', 'WRK', 'WY', 'WHR', 'WMB', 'WLTW', 'WYN', 'WYNN', 'XEL', 'XRX', 'XLNX', 'XL', 'XYL', 'YUM', 'ZBH', 'ZION', 'ZTS'];
 
 /**
  * This component generates a single stock view component
@@ -22,11 +20,18 @@ class StockSearch extends Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
+        this.checkWatchList = this.checkWatchList.bind(this);
+        // this.addToWatchlist = this.addToWatchlist.bind(this);
+        // this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
+        this.handleWatchlistSubmit = this.handleWatchlistSubmit.bind(this);
+        this.handleDowlistSubmit = this.handleDowlistSubmit.bind(this);
         this.DowListComponent = this.DowListComponent.bind(this);
         this.WatchListComponent = this.WatchListComponent.bind(this);
         this.ListComponent = this.ListComponent.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
-        this.handleWatchlistSubmit = this.handleWatchlistSubmit.bind(this);
+        this.charting = this.charting.bind(this);
         this.state = {
             ticker: 'SLB',
             price: 0,
@@ -38,7 +43,9 @@ class StockSearch extends Component {
             showList: false,
             watched: false,
             eyeWatched: 'faEye',
-            DOW: ['AAPL', 'AXP', 'BA', 'CAT', 'CSCO', 'CVX', 'DIS', 'DWDP', 'GE', 'GS', 'HD', 'IBM', 'INTC', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM', 'MRK', 'MSFT', 'NKE', 'PFE', 'PG', 'TRV', 'UNH', 'UTX', 'V', 'VZ', 'WMT', 'XOM'],
+            DOW: ['AAPL', 'AXP', 'BA', 'CAT', 'CSCO', 'CVX', 'DIS', 'DWDP', 'GE',
+             'GS', 'HD', 'IBM', 'INTC', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM', 'MRK',
+              'MSFT', 'NKE', 'PFE', 'PG', 'TRV', 'UNH', 'UTX', 'V', 'VZ', 'WMT', 'XOM'],
             Watchlist: ['AAPL', 'SLB'],
             // List: [],
             // Lists: [],
@@ -65,9 +72,11 @@ class StockSearch extends Component {
             }
             this.setState({Watchlist: tempTicker});
             // console.log(r.data);
-            console.log(tempTicker);
+            // console.log(tempTicker);
             if (tempTicker.includes(this.state.ticker)) {
-              return this.setState({watched: !this.state.watched});
+              return this.setState({watched: true});
+            } else {
+              return this.setState({watched: false});
             };
             };
         }));
@@ -114,18 +123,22 @@ class StockSearch extends Component {
 /**
  * @public componentDidMount function will render the chart
  * @param {*} List is the current ticker state
+ * @param {*} i indes for map
  * @return {*} div with ListStock component
  */
-   DowListComponent(List) {
-        return <div> {this.state.DOW.map((List) => <ListStock ticker={List} />)} </div>;
+   DowListComponent(List, i) {
+        return <div> {this.state.DOW.map((List) => <ListStock ticker={List}
+        key={`dowlistComponent${i}`} />)} </div>;
     }
 /**
  * @public componentDidMount function will render the chart
  * @param {*} List is the current ticker state
+ * @param {*} i indes for map
  * @return {*} div with ListStock component
  */
-    WatchListComponent(List) {
-        return <div> {this.state.Watchlist.map((List) => <ListStock ticker={List} />)} </div>;
+    WatchListComponent(List, i) {
+        return <div> {this.state.Watchlist.map((List) => <ListStock ticker={List}
+        key={`dowlistComponent${i}`} />)} </div>;
     }
 /**
  * @public ListComponent function will display correct list in component
@@ -148,19 +161,23 @@ class StockSearch extends Component {
         this.checkWatchList({ticker: this.state.ticker});
     };
 
-    // handleInputChange = event => {
-    //     const { name, value } = event.target;
-    //     this.setState({ [name]: value });
-    // };
-
 /**
- * @public handleTypeheadChange function for Typehead onClick
+ * @public handleInputChange function for Search
  * @param {*} event
  */
-    handleTypeheadChange(event) {
-        console.log(event);
-        this.setState({ticker: event[0]});
+    handleInputChange(event) {
+        const {name, value} = event.target;
+        this.setState({[name]: value});
     };
+
+// /**
+//  * @public handleTypeheadChange function for Typehead onClick
+//  * @param {*} event
+//  */
+//     handleTypeheadChange(event) {
+//         console.log(event);
+//         this.setState({ticker: event[0]});
+//     };
 
 /**
  * @public handleFormSubmit function for ticker search onClick
@@ -181,6 +198,9 @@ class StockSearch extends Component {
                 this.setState({
                     price: res.data.quote.latestPrice,
                     change: res.data.quote.changePercent,
+                    companyName: res.data.quote.companyName,
+                    primaryExchange: res.data.quote.primaryExchange,
+                    sector: res.data.quote.sector,
                 });
                 const chartData = res.data.chart.map((day) => {
                     let dayArray = [];
@@ -255,7 +275,7 @@ class StockSearch extends Component {
                                 <div className='row'>
                                     <div className='col-sm-10'>
 
-                                        <Typeahead
+                                        {/* <Typeahead
                                             placeholder="Enter a ticker symbol..."
                                             name='ticker'
                                             onChange={(selected) => {
@@ -263,17 +283,15 @@ class StockSearch extends Component {
                                             }}
                                             options={options}
                                             selected={this.state.selected}
-                                        />
+                                        /> */}
 
-                                        {/* <Input
+                                        <Input
                                             type='string'
                                             name='ticker'
                                             value={this.state.ticker}
                                             onChange={this.handleInputChange}
                                             id='tickerSymbol'
-                                        /> */}
-
-
+                                        />
                                     </div>
                                     <div className='col-sm-2'>
 
@@ -335,9 +353,9 @@ class StockSearch extends Component {
                                     </div>
                                     <div className='col-sm-3'>
                                         <FontAwesomeIcon
-                                            {...this.state.watched ? (this.state.eyeWatched = 'faEyeWatched') : (this.state.eyeWatched = 'faEye')}
-                                            className={this.state.eyeWatched}
-                                            onClick={this.state.watched ? (this.removeFromWatchlist()) : (this.addToWatchlist())}
+                                            className={(this.state.watched ? `faEyeWatched`:`faEye`)}
+                                            onClick={this.state.watched ?
+                                                (this.removeFromWatchlist) : (this.addToWatchlist)}
                                             size='1x'
                                             icon={faEye} />
                                     </div>
@@ -360,9 +378,20 @@ class StockSearch extends Component {
                         <Collapse isOpen={this.state.collapse}>
                             <div className='row'>
                                 <div className='col-sm-12 col-md-12 chartSection'>
-                                    <div id='stockChart'>
-
+                                <div className='row stockDetails'>
+                                        <div className='col-sm-3'>
+                                            <h3>{this.state.companyName}</h3>
+                                        </div>
+                                        <div className='col-sm-3'>
+                                            <h3>Sector: {this.state.sector}</h3>
+                                        </div>
+                                        <div className='col-sm-6'>
+                                            <h3>Primary Exchange: {this.state.primaryExchange}</h3>
+                                        </div>
                                     </div>
+                                    <div id='stockChart'>
+                                    </div>
+                                   
                                 </div>
                                 {/* <div className='col-sm-12 col-md-4 dataSection'>
                                     <div className='row'>
