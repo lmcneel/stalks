@@ -1,10 +1,10 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import {Container, Row, Col, Button} from 'reactstrap';
 import mainLogo from './../../assets/images/smp-logo.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faQuestionCircle, faCog, faInfo, faSignOutAlt } from '@fortawesome/fontawesome-free-solid';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faBars, faQuestionCircle, faCog, faInfo, faSignOutAlt} from '@fortawesome/fontawesome-free-solid';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const propTypes = {
     navToggleHandler: PropTypes.func,
@@ -18,7 +18,7 @@ const TopNav = (props) => {
                 <Col xs="12" md="8" className="d-flex justify-content-sm-center justify-content-md-start">
                     <a href="">
                         <img src={mainLogo} className="main-logo"
-                            alt="Text Logo for Stock Market Pets in a pixel looking fontface, logo is white on green bg" />
+                        alt="Text Logo for Stock Market Pets in a pixel looking fontface, logo is white on green bg" />
                     </a>
                     <Button id="sidebarCollapse" className="btn btn-info ml-4" onClick={props.navToggleHandler}>
                         <FontAwesomeIcon icon={faBars} className="iconsize" />
