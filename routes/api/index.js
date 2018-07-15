@@ -14,4 +14,5 @@ router.use('/petfolio', petfolioRoutes);
 router.use('/user', userProfileRoutes);
 
 router.use('/auth', userAuthRoutes);
+
 module.exports = router;

@@ -62,10 +62,12 @@ app.get('*', (req, res) => {
   // res.sendFile(path.join(__dirname, './client/public/index.html'));
 });
 
+console.log(routes);
 // change to true to drop tables
 db.sequelize.sync({force: true}).then(function() {
   app.listen(PORT, () => {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
+    require('./api-table')('/', routes.stack);
   });
 });
 

@@ -31,5 +31,9 @@ router.post('/login', function(req, res, next) {
         }
     })(req, res, next);
 });
+
+router.get('/test', function(req, res, next) {
+    res.send('Testing auth routes');
+});
 module.exports = router;
 

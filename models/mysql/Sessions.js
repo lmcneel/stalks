@@ -7,7 +7,7 @@ module.exports = function(sequelize, Sequelize) {
           },
         userId: Sequelize.STRING,
         expires: Sequelize.DATE,
-        data: Sequelize.STRING(50000),
+        data: Sequelize.TEXT,
     });
 
     return Sessions;
