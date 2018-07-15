@@ -127,7 +127,8 @@ class ChangeEmail extends Component {
                                     this.state.unknownErr &&
                                     <div className='errors-holder'>
                                         <h3 className='error'>
-                                            There was an issue with you request. Please try again later or attempt to contact us.
+                                            There was an issue with you request.
+                                            Please try again later or attempt to contact us.
                                         </h3>
                                     </div>
                                 }
@@ -145,7 +146,6 @@ class ChangeEmail extends Component {
                                 {this.state.processing ? 'Processing' : 'Submit'}
                             </Button>
                         </Form>
-                    
                 </div>
             ) : (
                 <div className="col-md-12">

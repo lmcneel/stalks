@@ -23,7 +23,9 @@ app.use(session({
     extendDefaultFields: extendDefaultFields,
   }),
   resave: false,
+  saveUninitialized: false,
   proxy: true,
+  unset: 'keep',
 }));
 app.use(logger('dev'));
 // Bodyparser Middleware
@@ -39,21 +41,20 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Define API routes here
+
 app.use(routes);
 
 // DB Config
 // const db = require('./config/keys').mongoURI;
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks');
 
-seedDB();
+mongoose
+.connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks')
+.then(() => console.log('MongoDB Connected'))
+.catch((err) => console.log(err));
 
+// seedDB();
 
-// Connect to the Mongo DB
-// mongoose
-// .connect(db)
-// .then(() => console.log('MongoDB Connected'))
-// .catch((err) => console.log(err));
 
 // Send every other request to the React app
 // Define any API routes before this runs
@@ -78,6 +79,6 @@ function extendDefaultFields(defaults, session) {
   return {
     data: defaults.data,
     expires: defaults.expires,
-    userId: session.userId,
+    userId: session.user.id,
   };
 };
