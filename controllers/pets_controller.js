@@ -31,17 +31,23 @@ module.exports = {
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  getfoodandtoy: (req, res) => {
+  getstorefoodandtoy: (req, res) => {
     db.ItemStore
       .findAll({where: {category: ['food', 'toy']}})
       .then(foodandtoy=> res.send(foodandtoy))
       .catch(err => res.send(err))
   },
-  getaccessories: (req, res) => {
+  getstoreaccessories: (req, res) => {
     db.ItemStore
       .findAll({where: {category: 'accessory'}})
       .then(accessories=> res.send(accessories))
       .catch(err => res.send(err))
   },
+  getuseraccessories: (req,res) =>{  db.Pet.findById(req.params.id)
+  .then((pet)=> {
+    pet.getAccessories()
+    .then((accessories) => {
+      res.send(accessories);
+    })})}
 };
 
