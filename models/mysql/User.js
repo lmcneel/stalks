@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-module.exports = function(sequelize, DataTypes) {
-=======
 const bCrypt = require('bcryptjs');
 const DB = require('../mongo');
 module.exports = function(sequelize, Sequelize) {
->>>>>>> origin/profile-issues#6
 // User Schema
     const User = sequelize.define('User', {
         id: {
@@ -21,17 +17,13 @@ module.exports = function(sequelize, Sequelize) {
             notEmpty: true,
         },
         username: {
-<<<<<<< HEAD
-            type: DataTypes.STRING,
-=======
             type: Sequelize.STRING,
         },
         email: {
             type: Sequelize.STRING,
->>>>>>> origin/profile-issues#6
         },
         password: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
         },
         balance: {
             type: Sequelize.INTEGER,
@@ -45,14 +37,9 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.DATE,
             allowNull: true,
         },
-<<<<<<< HEAD
-        name: {
-            type: DataTypes.STRING,
-=======
         status: {
             type: Sequelize.ENUM('active', 'inactive'),
             defaultValue: 'active',
->>>>>>> origin/profile-issues#6
         },
         emailVerified: {
             type: Sequelize.BOOLEAN,
@@ -128,14 +115,11 @@ module.exports = function(sequelize, Sequelize) {
             onDelete: 'cascade',
         });
     };
-<<<<<<< HEAD
-=======
 
 
     // A custom method for our User model. It will compare user pawword wit stored password.
     User.prototype.validPassword = function(password) {
         return bcrypt.compareSync(password, this.password);
     };
->>>>>>> origin/profile-issues#6
     return User;
 };
