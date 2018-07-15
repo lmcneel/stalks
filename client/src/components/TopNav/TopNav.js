@@ -16,10 +16,10 @@ const TopNav = (props) => {
         <Container fluid>
             <Row className="top-nav pt-2 pb-2">
                 <Col xs="12" md="8" className="d-flex justify-content-sm-center justify-content-md-start">
-                    <a href="">
+                    <Link to={'/petfolio'}>
                         <img src={mainLogo} className="main-logo"
                         alt="Text Logo for Stock Market Pets in a pixel looking fontface, logo is white on green bg" />
-                    </a>
+                    </Link>
                     <Button id="sidebarCollapse" className="btn btn-info ml-4" onClick={props.navToggleHandler}>
                         <FontAwesomeIcon icon={faBars} className="iconsize" />
                     </Button>
