@@ -22,16 +22,16 @@ class OwnedStock extends Component {
  * @param {*} props
  */
     constructor(props) {
-        this.toggle = this.toggle.bind(this);
-        // this.myStocks = this.myStocks.bind(this);
-        // this.cashCalculator = this.cashCalculator.bind(this);
-        // this.dbStocks = this.dbStocks.bind(this);
-        // this.myStocksValue = this.myStocksValue.bind(this);
-        // this.portfolioValue = this.portfolioValue.bind(this);
-        // this.ROI = this.ROI.bind(this);
-        // this.bankValue = this.bankValue.bind(this);
-        // this.charting = this.charting.bind(this);
         super(props);
+        this.toggle = this.toggle.bind(this);
+        this.myStocks = this.myStocks.bind(this);
+        this.cashCalculator = this.cashCalculator.bind(this);
+        this.dbStocks = this.dbStocks.bind(this);
+        this.myStocksValue = this.myStocksValue.bind(this);
+        this.portfolioValue = this.portfolioValue.bind(this);
+        this.returnOnInvestment = this.returnOnInvestment.bind(this);
+        this.bankValue = this.bankValue.bind(this);
+        this.charting = this.charting.bind(this);
         this.toggle = this.toggle.bind(this);
         this.state = {
             ticker: this.props.ticker,
@@ -54,7 +54,7 @@ class OwnedStock extends Component {
             collapse: false,
             watched: false,
             eyeWatched: 'faEye',
-        },
+        };
     }
 /**
  * @public componentDidMount function will render the chart
@@ -63,9 +63,9 @@ class OwnedStock extends Component {
         this.charting({ticker: this.state.ticker});
         this.myStocks(this.state.portfolio_id);
         this.dbStocks(this.state.portfolio_id);
-        // this.myStocksValue();
-        // this.bankValue(this.state.id);
-        // this.cashCalculator(this.state.portfolio_id);
+        this.myStocksValue();
+        this.bankValue(this.state.id);
+        this.cashCalculator(this.state.portfolio_id);
         this.checkWatchList();
     };
 /**
@@ -222,7 +222,7 @@ dbStocks(portfolio) {
                             // console.log(res.data);
                             lastPrice.push(res.data[0]);
                             // console.log(lastPrice);
-                            const myROI = self.ROI(userStocks, lastPrice, allUserStocks);
+                            const myROI = self.returnOnInvestment(userStocks, lastPrice, allUserStocks);
                             if (key === this.state.ticker) {
                                 for (let i = 0; i < myROI.length; i++) {
                                     if (key === myROI[i].ticker) {
@@ -326,7 +326,7 @@ portfolioValue(stocks, lastPrice) {
 * @param {*} userStocks
 * @return {*} returns users ROI
 */
-ROI(allUserStocks, lastPrice, userStocks) {
+returnOnInvestment(allUserStocks, lastPrice, userStocks) {
     // console.log(allUserStocks);
     // console.log(lastPrice);
     let eachROI = [];
