@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PurchasedItems from '../../PetCenter/PurchasedItems';
-import PetStatsHoriz from '../../PetStats/PetStatsHoriz';
+import {PetStats} from '../../PetStats/PetStats';
 
 
 
 const PurchasedItemsPage = () => { return(
-<div> 
-<PetStatsHoriz/>
+<div style={{'display':'contents'}}> 
+<PetStats/>
 <PurchasedItems/>
 </div>
 )};
