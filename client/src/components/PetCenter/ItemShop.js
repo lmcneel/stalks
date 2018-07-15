@@ -12,19 +12,23 @@ class ItemShop extends Component {
     };
 
 
-
     displayAccessories = ()=> {
-      let answer=API.getStoreAccessories()
-      this.setState({ results: answer })
+        API.getPurchasedAccessories()
+        .then(res => this.setState({results: res.data}))
+      
+      }
+    displayAccessories = ()=> {
+      API.getStoreAccessories()
+      .then(res => this.setState({ results: res.data }))
     
     }
     displayFoodAndToys = ()=> {
-      let answer=API.displayStoreFoodAndToys()
-      this.setState({ results: answer })
+      API.displayStoreFoodAndToys()
+      .then(res => this.setState({ results: res.data }))
     }
     displayEnviornments = ()=> {
-      let answer=API.displayStoreEnviornments()
-      this.setState({ results: answer })
+      API.displayStoreEnviornments()
+      .then(res => this.setState({ results: res.data }))
     }
 
 
@@ -47,7 +51,7 @@ class ItemShop extends Component {
                         <div style={{'display': 'contents'}}>
                             {this.state.results.map((result, index) => {
                                 return (
-                                  <Card name={result.name} image={result.image} buttonName={'buy'} style={{'margin':'50px'}}/>
+                                  <Card name={result.itemName} image={result.image} buttonName={'buy'} style={{'margin':'50px'}}/>
                                 );
                             })}
                         </div>

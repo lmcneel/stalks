@@ -9,4 +9,9 @@ const petsController = require('../../controllers/pets_controller.js');
 router.route('/ozairishere')
 .get(petsController.findAll)
 
+router.route('/foodandtoys')
+.get(petsController.getfoodandtoy)
+
+router.route('/accessories')
+.get(petsController.getaccessories)
 module.exports = router;
