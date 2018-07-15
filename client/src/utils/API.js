@@ -36,6 +36,6 @@ export default {
     },
     getComments: function() {
         console.log('hit API.js');
-        return axios.get('api/forum/view');
+        return axios.get('/api/forum/');
     },
 };

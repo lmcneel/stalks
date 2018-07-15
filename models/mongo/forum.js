@@ -6,10 +6,9 @@ const Schema = mongoose.Schema;
 // Using the Schema constructor, create a new ForumSchema object
 const forumSchema = new Schema({
     subject: {type: String, required: true},
-    comments: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment',
-    }],
+    comments: {type: String, required: true
+            
+    },
 });
 const Forum = mongoose.model('Forum', forumSchema);
 module.exports = Forum;

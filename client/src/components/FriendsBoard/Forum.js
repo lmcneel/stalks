@@ -14,24 +14,28 @@ export class Forum extends Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
             dropdownOpen: false,
-            fourm: [],
+            forum: {
+                data: [{subject: '', comments: '',}]
+            },
         };
         this.loadComments = this.loadComments.bind(this);
     }
 
     componentDidMount() {
         this.loadComments();
+       
     };
 
     // Functions will go here
     loadComments() {
         API.getComments()
         // console.log("loadComments, Forum.js, res.data" + res.data)
-            .then((res) =>
-                this.setState({
-                    forum: res.data,
+        .then((res) =>
+        this.setState({
+            forum: res.data,
 
-                }),
+        }),
+        // console.log(res.data)   
         )
             .catch((err) => console.log(err));
     };
@@ -60,7 +64,7 @@ export class Forum extends Component {
                                 FORUM
                 </CardTitle>
                             <div>
-                                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}> 
                                     <DropdownToggle caret>
                                         Choose a Topic . . .
                             </DropdownToggle>
@@ -77,7 +81,7 @@ export class Forum extends Component {
                                             HELP!
                                     </DropdownItem>
                                     </DropdownMenu>
-                                </Dropdown>
+                                </Dropdown> 
                             </div>
                             <div>
                                 <Card>
@@ -87,13 +91,12 @@ export class Forum extends Component {
                                                 <tr>
                                                     <th>
                                                         POSTS (WILL GO HERE IN THIS TABLE)
-                                                        <div>
- {/* {this.state.forums.map((forum) => (
-   <div> key={forum._id}
-     subject={forum.subject}
-     comments={forum.comments}
-     </div>
-))}; */}
+                                                        <div>                                                                                      {this.state.forum.data.map((data, i) =>{
+    return(<div key={`id${i}`}>
+            <h3>{data.subject}</h3>
+            <p>{data.comments}</p>
+        </div>);
+})}
 
                                                             </div>
                                             </th>

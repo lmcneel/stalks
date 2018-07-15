@@ -24,12 +24,13 @@ router.post('/create', (req, res) => {
         });
 });
 
-router.get('/view', (req, res) => {
+router.get('/', (req, res) => {
     Forum.find((err, forum) => {
         if (err) {
             return res.json({err});
         }
         return res.json({data: forum});
+        
     });
 });
 
