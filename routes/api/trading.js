@@ -7,7 +7,7 @@ const request = require('request');
 // Importing Models
 const User = require('../../models/mongo/user');
 const Portfolio = require('../../models/mongo/portfolio');
-// const Trades = require('../../models/mongo/trade');
+const Trade = require('../../models/mongo/trade');
 
 
 router.route('/quote/:ticker')
@@ -82,7 +82,7 @@ router.get('/trades', (req, res) => {
     });
  });
 router.get('/portfolio', (req, res) => {
-    Portfolio.find({_id:'5b44cd4e020eda5258fcf2c1'})
+    Portfolio.find({_id: '5b44cd4e020eda5258fcf2c1'})
     // .populate('trades')
     // .populate({
     //     path: 'porfolios',

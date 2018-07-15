@@ -1,18 +1,32 @@
-//The contents of this file should go on client side main pages
-import React, { Component } from 'react';
-import { Input, Collapse, Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Collapse, Button} from 'reactstrap';
+import {Link} from 'react-router-dom';
 import Highcharts from 'highcharts';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faChevronCircleDown } from '@fortawesome/fontawesome-free-solid';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faEye, faChevronCircleDown} from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
+import PropTypes from 'prop-types';
 
+const propTypes = {
+    ticker: PropTypes.string,
+};
 
+/**
+ * This component generates a single stock view component
+ * @class ListSock
+ */
 class ListStock extends Component {
-
+/**
+ * @param {*} props
+ */
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
+        this.checkWatchList = this.checkWatchList.bind(this);
+        // this.addToWatchlist = this.addToWatchlist.bind(this);
+        // this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.charting = this.charting.bind(this);
         this.state = {
             ticker: this.props.ticker,
             price: 0,
@@ -23,109 +37,114 @@ class ListStock extends Component {
             collapse: false,
             watched: false,
             eyeWatched: 'faEye',
-        }
-
+        };
     }
 
-
+/**
+ * @public toggle function for reactstap <Collapse> onClick trigger
+ */
     toggle() {
-        this.setState({ collapse: !this.state.collapse });
+        this.setState({collapse: !this.state.collapse});
     };
-
-    checkWatchList = () => {
+/**
+ * @public checkWatchList function will check if the current 'ticker' is listed in user watchlist
+ * @param {*} ticker
+ */
+    checkWatchList(ticker) {
         // If in watchlist set [watched] to true
-        // API.getWatchListItem(ticker)
-        //     .then(res => {
-        //         console.log(res.data);
-        //         if (res.data.ticker === this.state.ticker) {
-        //             this.setState({ watched: !this.state.watched })
-        //         } else {
-        //             this.setState({ watched: this.state.watched })
-        //         }
-        //     })
-        //     .catch(err => console.log(err))
-
-        this.setState({ watched: this.state.watched })
-
-        // return /this.state.watched = false;
-
-    };
-
-    addToWatchlist = (ticker) => {
-        // Need to add to MySQL Watchlist, then check watch list
-        // API.addWatchListItem(ticker)
-        // .then(res => {
-
-        //     // Code to add ticker to mySQL
-
-        // })
-        // .catch(err => console.log(err))
+        API.getTickerText(ticker).then(((r) => {
+            if (r.data.length !== 0) {
+            let tempTicker = [];
+            for (let i=0; i<r.data.length; i++) {
+                tempTicker.push((r.data[i]).uniqueStockSymbol);
+            }
+            // console.log(tempTicker);
+            if (tempTicker.includes(this.state.ticker)) {
+              return this.setState({watched: true});
+            } else {
+              return this.setState({watched: false});
+            };
+            };
+        }));
     }
+/**
+ * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
+ * @param {*} ticker
+ */
+    addToWatchlist(ticker) {
+        // API.addNewTicker(ticker)
 
-    removeFromWatchlist = (ticker) => {
-        // Need to remove from MySQL Watchlist, then check watch list
-        // API.removeWatchListItem(ticker)
-        // .then(res => {
-
-        //     // Code to add ticker to mySQL
-
-        // })
-        // .catch(err => console.log(err))        
+        // Need to add to MySQL Watchlist
     }
+/**
+ * @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
+ * @param {*} ticker
+ */
+    removeFromWatchlist() {
+        // API.removeExistingTicer(ticker)
 
+        // Need to remove from MySQL Watchlist
+
+        }
+/**
+ * @public componentDidMount function will render the chart
+ */
     componentDidMount() {
-        this.charting({ ticker: this.state.ticker });
+        this.charting({ticker: this.state.ticker});
+        this.checkWatchList({ticker: this.state.ticker});
     };
-
-     charting = (ticker) => {
-
+/**
+ * @public charting function assigns chart data from API
+ * @param {*} ticker is the current ticker state
+ */
+     charting(ticker) {
         API.findQuotes(ticker)
-            .then(res => {
-                console.log(res.data);
+            .then((res) => {
+                // console.log(res.data);
                 this.setState({
                     price: res.data.quote.latestPrice,
                     change: res.data.quote.changePercent,
                 });
-                const chartData = res.data.chart.map(day => {
+                const chartData = res.data.chart.map((day) => {
                     let dayArray = [];
                     dayArray.push(day.date);
                     dayArray.push(day.close);
                     return dayArray;
                 });
 
-                const chartCategories = res.data.chart.map(day => {
-                    let dateArray = [];
-                    dateArray.push(day.date);
-                    return dateArray;
-                });
+                // const chartCategories = res.data.chart.map(day => {
+                //     let dateArray = [];
+                //     dateArray.push(day.date);
+                //     return dateArray;
+                // });
 
-                Highcharts.chart('stockChart', {
+                Highcharts.chart(this.state.ticker, {
                     chart: {
                         spacingBottom: 20,
                         // plotBackgroundColor: '#DDDFE1',
                         // backgroundColor: '#DDDFE1',
-                        height: null
+                        height: null,
                     },
                     title: {
                         // text: `${this.state.ticker} Stock Price`
-                        text: null
+                        text: null,
                     },
 
                     xAxis: {
-                        title: { text: 'Past 30 Days' },
+                        title: {text: 'Past 30 Days'},
                         // categories: chartCategories,
                         categories: null,
                         text: null,
                         lineColor: '#404850',
-                        lineWidth: 2
+                        lineWidth: 2,
                     },
                     yAxis: {
                         title: null,
                         lineColor: '#404850',
-                        lineWidth: 2
+                        lineWidth: 2,
                     },
                     legend: {
-                        enabled: false
+                        enabled: false,
                     },
 
                     series: [{
@@ -133,15 +152,17 @@ class ListStock extends Component {
                         color: '#0C425C',
                         name: this.state.ticker,
                         data: chartData,
-                        marker: { enabled: true },
-                        tooltip: { valueDecimals: 2 },
-                    }]
+                        marker: {enabled: true},
+                        tooltip: {valueDecimals: 2},
+                    }],
                 });
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
     }
 
-
+/**
+ * @return {*} Will render stock view component
+ */
     render() {
         // const { selectHintOnEnter } = this.state;
         return (
@@ -188,9 +209,9 @@ class ListStock extends Component {
                                 </div>
                                 <div className='col-sm-3'>
                                     <FontAwesomeIcon
-                                        {...this.state.watched ? (this.state.eyeWatched = 'faEyeWatched') : (this.state.eyeWatched = 'faEye')}
-                                        className={this.state.eyeWatched}
-                                        onClick={this.state.watched ? (this.removeFromWatchlist()) : (this.addToWatchlist())}
+                                        className={(this.state.watched ? `faEyeWatched`:`faEye`)}
+                                        onClick={this.state.watched ?
+                                        (this.removeFromWatchlist) : (this.addToWatchlist)}
                                         size='1x'
                                         icon={faEye} />
                                 </div>
@@ -212,7 +233,7 @@ class ListStock extends Component {
                         <Collapse isOpen={this.state.collapse}>
                             <div className='row'>
                                 <div className='col-sm-12 col-md-12 chartSection'>
-                                    <div id='stockChart'>
+                                    <div id= {this.state.ticker}>
 
                                     </div>
                                 </div>
@@ -255,8 +276,8 @@ class ListStock extends Component {
                     </div>
                 </div>
             </div >
-        )
+        );
     }
 }
-
+ListStock.propTypes = propTypes;
 export default ListStock;
