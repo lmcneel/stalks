@@ -10,38 +10,46 @@
 }
 .colorNeutral {
     background-image: url('/images/pixelbg-yellow_160.jpg');
-    background-color: yellow;
+    background-color: $yellow;
 }
 .colorNegative {
     background-image: url('/images/pixelbg-red_160.jpg');
-    background-color: red;
+    background-color:$red;
 }
+
+/* ---------------------------------------------------
+    HORIZONTAL WATCHLIST TICKER
+----------------------------------------------------- */
 
 /* This CSS animation creates the horizontal scrolling stock ticker */
 .stockticker {
-    height: 50px;	
+    height: 35px;	
     overflow: hidden;
     position: relative;
-    background: black;
-    color: white;
-    border: 1px solid grey;
+    background: $gray-800;
+    color: lighten($yellow, 25);
+    text-transform: uppercase;
+    font-family: $font-family-monospace;
+    letter-spacing: 2px;
+
+    p {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        line-height: 35px;
+        text-align: center;
+        /* Starting position */
+        -moz-transform:translateX(100%);
+        -webkit-transform:translateX(100%);	
+        transform:translateX(100%);
+        /* Apply animation to this element */	
+        -moz-animation: stockticker 25s linear infinite;
+        -webkit-animation: stockticker 25s linear infinite;
+        animation: stockticker 25s linear infinite;
+    }
  }
- .stockticker p {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    line-height: 50px;
-    text-align: center;
-    /* Starting position */
-    -moz-transform:translateX(100%);
-    -webkit-transform:translateX(100%);	
-    transform:translateX(100%);
-    /* Apply animation to this element */	
-    -moz-animation: stockticker 20s linear infinite;
-    -webkit-animation: stockticker 20s linear infinite;
-    animation: stockticker 20s linear infinite;
-}
+
  /* Move it (define the animation) */
  @-moz-keyframes stockticker {
   0%   { -moz-transform: translateX(100%); }
@@ -65,5 +73,4 @@
  }
  /* End of stockticker animation CSS */
  /* -------------------------------------- */
-
  
