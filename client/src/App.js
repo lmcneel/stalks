@@ -35,6 +35,7 @@ class App extends Component {
     super(props);
     this.state = {
       sideNav: false,
+      location: 'Here!',
     };
     this.navToggleHandler = this.navToggleHandler.bind(this);
   }
