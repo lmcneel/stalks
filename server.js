@@ -9,6 +9,7 @@ const logger = require('morgan');
 // const seedDB = require('./seeds');
 const db = require('./models/mysql');
 
+
 app.use(logger('dev'));
 
 // Bodyparser Middleware
@@ -23,10 +24,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Define API routes here
+
 app.use(routes);
 
 // DB Config
 // const db = require('./config/keys').mongoURI;
+
 
 mongoose
 .connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks')
@@ -43,8 +46,8 @@ app.get('*', (req, res) => {
   // res.sendFile(path.join(__dirname, './client/public/index.html'));
 });
 
-
-db.sequelize.sync({force: true}).then(function() {
+// change to true to drop tables
+db.sequelize.sync({force: false}).then(function() {
   app.listen(PORT, () => {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
