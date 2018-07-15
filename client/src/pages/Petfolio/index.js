@@ -1,1 +1,1 @@
-export {default} from './Petfolio.js';
+export {default} from '../../components/pages/Petfolio';

@@ -2,10 +2,11 @@
 
 module.exports = function(sequelize, Sequelize) {
   const UserWatchlist = sequelize.define('UserWatchlist', {
-    unique_stock_id: {
+    uniqueStockSymbol: {
       // not sure what data type this will be stored as
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING,
       allowNull: false,
+      unique: true,
     },
   });
   UserWatchlist.associate = function(models) {

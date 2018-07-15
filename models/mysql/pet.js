@@ -1,30 +1,35 @@
-module.exports = function(sequelize, DataTypes) {
-    var Pet = sequelize.define("Pet", {
-      // The email cannot be null, and must be a proper email before creation
-      pet_type: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      pet_name: {
-          type: DataTypes.STRING,
-          allowNull: false
-      },
-      health: {
-          type: DataTypes.Double,
-      },
-      fondness: {
-          type: DataTypes.Double,
-      },
-      happiness: {
-          type: DataTypes.Double,
-      },
-      hunger: {
-          type: DataTypes.Double,
-      }
+module.exports = function(sequelize, Sequelize) {
+    const Pet = sequelize.define('Pet', {
+        // The email cannot be null, and must be a proper email before creation
+        petType: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        petName: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        health: {
+            type: Sequelize.DOUBLE,
+        },
+        fondness: {
+            type: Sequelize.DOUBLE,
+        },
+        happiness: {
+            type: Sequelize.DOUBLE,
+        },
+        hunger: {
+            type: Sequelize.DOUBLE,
+        },
+        urlImage: {
+            type: Sequelize.TEXT,
+        },
 
     });
-    
+
     Pet.associate = function(models) {
-      models.Pet.hasMany(models.Accessories);
-    }
+        Pet.hasMany(models.Accessory);
+    };
+
+    return Pet;
 };

@@ -27,10 +27,29 @@ module.exports = {
             .catch((err) => res.status(422).json(err));
     },
     myStocks: function(req, res) {
+        console.log(res.params);
         db.Trade
-            .find({portfolio_id: req.params.portfolio_id}).select('-_id ticker shares')
+            .find({portfolio_id: req.params.portfolio_id})
+            .select('ticker type shares sharePrice date')
+            .then((dbTradeModel) => res.json(dbTradeModel))
+            .catch((err) => res.status(422).json(err));
+    },
+
+    initialCash: function(req, res) {
+        db.Portfolio
+            .findOne({portfolio_id: req.params.portfolio_id})
+            .sort({created_at: 1})
+            .then((dbTradeModel) => res.json(dbTradeModel))
+            .catch((err) => res.status(422).json(err));
+    },
+
+    myPortfolio: function(req, res) {
+        db.Portfolio
+            .find({_id: req.params.id})
+            // .find({portfolio_id: req.params.portfolio_id}).select('-_id ticker shares sharePrice date')
             .then((dbTradeModel) => res.json(dbTradeModel))
             .catch((err) => res.status(422).json(err));
     },
 };
+
 
