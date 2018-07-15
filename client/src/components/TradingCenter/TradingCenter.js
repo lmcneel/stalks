@@ -55,10 +55,10 @@ class TradingCenter extends Component {
             primaryExchange: '',
             sector: '',
             response: '',
-            portfolio_id: '5b4afa1a094706432fda700b',
+            portfolio_id: '5b40fb129adc85a410f488bd',
             transaction: 'buy',
             ROI: 0,
-            id: '5b4afa1a094706432fda700b',
+            id: '5b44cd4e020eda5258fcf2c1',
             cost: 0,
             datePurchased: '',
             value: 0,
@@ -267,7 +267,7 @@ class TradingCenter extends Component {
                                 // console.log(res.data);
                                 lastPrice.push(res.data[0]);
                                 // console.log(lastPrice);
-                                const myROI = self.ROI(userStocks, lastPrice, allUserStocks);
+                                const myROI = self.returnOnInvestment(userStocks, lastPrice, allUserStocks);
                                 if (key === this.state.ticker) {
                                     for (let i = 0; i < myROI.length; i++) {
                                         if (key === myROI[i].ticker) {
@@ -371,7 +371,7 @@ class TradingCenter extends Component {
  * @param {*} userStocks
  * @return {*} returns users ROI
 */
-    ROI(allUserStocks, lastPrice, userStocks) {
+    returnOnInvestment(allUserStocks, lastPrice, userStocks) {
         // console.log(allUserStocks);
         // console.log(lastPrice);
         let eachROI = [];
@@ -406,8 +406,8 @@ class TradingCenter extends Component {
                 };
             };
         });
-        // console.log('The individual Stocks ROI is:');
-        // console.log(eachROI);
+        console.log('The individual Stocks ROI is:');
+        console.log(eachROI);
 
         return eachROI;
     };
