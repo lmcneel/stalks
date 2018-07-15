@@ -2,7 +2,15 @@ import React, {Component} from 'react';
 import Container from "../../components/Container";
 import Images from "../../components/Images";
 import data from "../../data.json";
-import '../../assets/scss/_about.scss';
+
+function importAll(r) {
+    let images = {};
+    r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images;
+}
+
+const images = importAll(require.context('./assets/people', false, '/\.jpg/'));
+console.log(images);
 
 /**
  * Trading Page
