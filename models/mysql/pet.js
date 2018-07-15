@@ -9,17 +9,14 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.STRING,
             allowNull: false,
         },
-        health: {
+        lastPet: {
+            type: Sequelize.DATE,
+        },
+        lastFondness: {
             type: Sequelize.DOUBLE,
         },
-        fondness: {
-            type: Sequelize.DOUBLE,
-        },
-        happiness: {
-            type: Sequelize.DOUBLE,
-        },
-        hunger: {
-            type: Sequelize.DOUBLE,
+        lastFed: {
+            type: Sequelize.DATE,
         },
         urlImage: {
             type: Sequelize.TEXT,

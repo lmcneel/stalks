@@ -21,8 +21,11 @@ export default {
     // getBankValue: function() {
     //     return axios.get('api/petfolio/bank');
     // },
-    getPetInfo: function() {
-        return axios.get('/api/petfolio/pets');
+    updatePetInfo: function(pet) {
+        return axios.post('/api/pets/' + pet.petId, pet);
+    },
+    getPetInfo: function(petId) {
+        return axios.get('/api/pets/' + petId);
     },
     getTickerText: function() {
         return axios.get('/api/petfolio/ticker');

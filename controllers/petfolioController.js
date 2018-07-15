@@ -12,4 +12,10 @@ module.exports = {
       console.log(dbUserWl[0].dataValues);
     });
   },
+  getPetInfo: (req, res) => {
+    console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+    db.Pet.findById(req.params.id).then((data) => {
+      res.json(data);
+    });
+  }
  };

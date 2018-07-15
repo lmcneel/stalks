@@ -3,7 +3,7 @@ import {Container, Row, Col} from 'reactstrap';
 import PetStatusBars from '../PetStats/PetStatusBars';
 import PetPic from '../PetStats/PetPic';
 import PetName from '../PetStats/PetName';
-import wolfy from '../pages/defaultPetPic.png';
+import API from '../../utils/API';
 
 /**
  * @class
@@ -11,22 +11,30 @@ import wolfy from '../pages/defaultPetPic.png';
 class PetStats extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: 'Wolfy',
-      pic: wolfy,
-      lastFed: '2018-07-13 12:00:00',
-    };
+    this.petAnimal = this.petAnimal.bind(this);
+    this.state = {};
   }
-
+  
   componentDidMount() {
-    this.getOverallHealth();
+    API.getPetInfo(1).then((res) => {
+      console.log(res);
+      this.setState( {
+        name: res.data.petName,
+        pic: res.data.urlImage,
+        lastFed: res.data.lastFed,
+        lastPet: res.data.lastPet,
+        lastFondness: res.data.lastFondness,
+        petId: res.data.id,
+      });
+      this.getOverallHealth();
+    })
   }
 
   getOverallHealth() {
     this.getFondness();
     this.getHappiness();
     this.getHunger();
-    this.state.overallHealth = (this.state.fondness + this.state.happiness + this.state.hungerLeft) / 3;
+    this.setState({overallHealth: (this.state.fondness + this.state.happiness + this.state.hungerLeft) / 3});
   }
 
   getFondness() {
@@ -35,7 +43,10 @@ class PetStats extends React.Component {
     // When the pet button is clicked add the appropriate amount of fondness
     // Write the time it was pet and the new amount of fondness
     // Start a timer for the cooldown on the pet button
-    this.state.fondness = 80;
+    const timeSincePet = Date.now() - new Date(this.state.lastPet);
+    const fondnessDrained = (timeSincePet / 172800000) * 100;
+    let fondness = this.state.lastFondness - fondnessDrained;
+    this.setState({fondness: fondness});
   }
 
   getHappiness() {
@@ -52,7 +63,7 @@ class PetStats extends React.Component {
     const now = Date.now();
     const timeSinceFed = now - new Date(this.state.lastFed);
     const hungerLeft = Math.max(((1 - (timeSinceFed / 86400000)) * 100), 0);
-    this.state.hungerLeft = hungerLeft;
+    this.setState({hungerLeft: hungerLeft});
   }
 
   feed() {
@@ -60,7 +71,18 @@ class PetStats extends React.Component {
     // You can buy the food using in game currency in the shop, you can only own so much food at a time.
   }
 
+  petAnimal() {
+    this.setState({fondness: this.state.fondness + 20, 
+    lastPet: Date.now(),
+    lastFondness: this.state.fondness + 20,
+    }, () => {
+      API.updatePetInfo(this.state)
+    });
+    console.log(this.state.lastPet)
+  }
+
   render() {
+    if(this.state.name)
     return (
       <div>
         <Container>
@@ -81,7 +103,9 @@ class PetStats extends React.Component {
               hunger={this.state.hungerLeft}
               overallHealth={this.state.overallHealth}
               fondness={this.state.fondness}
-              happiness={this.state.happiness}/>
+              happiness={this.state.happiness}
+              petHandler={this.petAnimal}
+              />
             </div>
             </Col>
 
@@ -89,6 +113,7 @@ class PetStats extends React.Component {
         </Container>
       </div>
     );
+  return false;
   }
 }
 
