@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import OptionLi from './OptionLi';
-import {ChangeEmail, ChangeUsername, ChangePassword, DeleteAcc} from './Forms';
+import {withRouter} from 'react-router-dom';
+import {ChangeEmail, ChangeUsername, ChangePassword, DeleteAcc, Verification} from './Forms';
 const propTypes = {
     checkForm: PropTypes.func,
     user: PropTypes.object,
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
 };
 /**
  * @return {*} Container
@@ -18,6 +22,7 @@ class Account extends Component {
         super(props);
         console.log(props);
         this.state = {
+            user: props.user,
             showList: true,
             bodyShown: ' ',
         };
@@ -29,16 +34,18 @@ class Account extends Component {
      * @param {string} body Uses string to deteremine which body to show
      */
     toggleBody(body) {
-        console.log(body);
-        this.setState({
-            bodyShown: body,
-            showList: !this.state.showList});
+            this.setState({
+                bodyShown: body,
+                showList: !this.state.showList});
     };
     /**
      * @return {*} Container
      */
     render() {
         const user = this.props.user;
+        if (user.username.length === 0) {
+            // this.props.history.push('/login');
+        }
         console.log(user);
         return (
             <div className="row account-page-holder">
@@ -60,7 +67,11 @@ class Account extends Component {
                         <OptionLi
                             verified={user.emailVerified}
                             option={'Delete Account'}
-                            togglePage={() => this.toggleBody('Delete Account')}/>
+                            togglePage={() => this.toggleBody('Change Password')}/>
+                        <OptionLi
+                            verified={user.emailVerified}
+                            option={'Verification'}
+                            togglePage={() => this.toggleBody('Verification')}/>
                     </ul>
                 ) : (
                     <div>
@@ -76,6 +87,9 @@ class Account extends Component {
                         {this.state.bodyShown === 'Delete Account' &&
                             <DeleteAcc email={user.email} goBack={() => this.toggleBody(' ')}/>
                         }
+                        {this.state.bodyShown === 'Verification' &&
+                            <Verification email={user.email} goBack={() => this.toggleBody(' ')}/>
+                        }
                     </div>
                 )}
                 </div>
@@ -85,4 +99,4 @@ class Account extends Component {
 }
 Account.propTypes = propTypes;
 
-export default Account;
+export default withRouter(Account);
