@@ -17,4 +17,10 @@ router.route('/ticker')
 router.route('/userpic')
 .get(petfolioController.getUserPic);
 
+router.route('/addTicker')
+.post(petfolioController.addTicker);
+
+router.route('/removeTicker')
+.delete(petfolioController.removeTicker);
+
 module.exports = router;
