@@ -1,21 +1,38 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
+=======
+import React, {Component} from 'react';
+import Splash from './components/Splash';
+>>>>>>> 7120e4a52f035f889e9a91ad0abcfb049b81c497
 import TopNav from './components/TopNav';
 import Wrapper from './components/Wrapper';
 import SideNav from './components/SideNav';
 import MainContentWrapper from './components/MainContentWrapper';
 import PortfolioStatus from './components/PortfolioStatus';
-import WatchlistTicker from './components/WatchlistTicker';
 import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
-import Trading from './pages/Trading';
+// import PetCenter from './components/pages/PetCenter';
+// import Forum from './components/pages/Forum';
+// import Friends from './components/pages/Friends';
+import Home from './pages/Home';
+import About from './pages/About';
+// import Settings from './components/pages/Settings';
+// import Logout from './components/pages/Logout';
+import SignUp from './pages/SignUp';
+// import Achievements from './components/pages/Achievements';
 import ViewStocks from './pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
+<<<<<<< HEAD
 import Joyride from 'react-joyride';
 import Modal from 'react-modal';
 import './react-joyride-compiled.css';
+=======
+import Trading from './components/pages/Trading';
+import StockTicker from './components/StockTicker/StockTicker';
+>>>>>>> 7120e4a52f035f889e9a91ad0abcfb049b81c497
 
 /**
  * Class App
@@ -123,6 +140,7 @@ class App extends Component {
 
 
         <div className="App">
+<<<<<<< HEAD
 
           <TopNav navToggleHandler={this.navToggleHandler} />
           <Wrapper>
@@ -202,6 +220,36 @@ class App extends Component {
               </Content>
             </MainContentWrapper>
           </Wrapper>
+=======
+            <TopNav navToggleHandler={this.navToggleHandler}/>
+            <Wrapper>
+              <SideNav isActive={this.state.sideNav}/>
+              <MainContentWrapper>
+                <PortfolioStatus />
+                <StockTicker />
+                <Inventory />
+                <Content>
+                <Switch>
+                      <Route exact path="/petfolio" component={Petfolio} />
+                      <Route exact path='/trading' component={Trading} />
+                      <Route exact path='/splash' component={Splash} />
+                      {/* <Route exact path='/petcenter' component={PetCenter} />
+                      <Route exact path='/friends' component={Friends} />
+                      <Route exact path='/forum' component={Forum} /> */}
+                      <Route exact path='/' component={Home} />
+                      <Route exact path='/about' component={About} />
+                      {/* <Route exact path='/settings' component={Settings} /> */}
+                      {/* <Route exact path='/logout' component={Logout} /> */}
+                      <Route exact path='/signup' component={SignUp} />
+                      {/* <Route exact path='/achievements' component={Achievements} /> */}
+                      <Route exact path='/viewstocks' component={ViewStocks} />
+                      <Route exact path='/help' component={HelpLanding} />
+                      <Route exact path='/docs' component={DocsList} />
+                    </Switch>
+                </Content>
+                </MainContentWrapper>
+              </Wrapper>
+>>>>>>> 7120e4a52f035f889e9a91ad0abcfb049b81c497
         </div>
       </Router>
     );
