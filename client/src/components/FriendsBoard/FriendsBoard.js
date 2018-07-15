@@ -70,11 +70,11 @@ render (){
                             </Navbar>
 
                     </CardBody>
-
+        
                 </Card>
 
             {/* Functionality to render components  */}
-            {this.state.nav1 && <div><FriendList/></div>}                      
+            {this.state.nav1 && <div><FriendList/></div>}                 
             {this.state.nav2 && <div><FriendRequest/></div>}    
             {this.state.nav3 && <div><FriendSearch/></div>}     
 

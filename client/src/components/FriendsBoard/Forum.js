@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {
     Card, CardBody,
-    CardTitle, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Table, Label, FormGroup,
+    CardTitle, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Label, FormGroup,
 } from 'reactstrap';
+import {ForumPostButton, ForumDeleteButton, ForumEditButton} from '../../components/FriendsBoard';
 import API from '../../utils/API';
 
 
@@ -86,37 +87,23 @@ export class Forum extends Component {
                             <div>
                                 <Card>
                                     <CardBody>
-                                        <Table>
-                                            <thead>
-                                                <tr>
-                                                    <th>
-                                                        POSTS (WILL GO HERE IN THIS TABLE)
+                                       
+                                                        
                                                         <div>                                                                                      {this.state.forum.data.map((data, i) =>{
-    return(<div key={`id${i}`}>
-            <h3>{data.subject}</h3>
-            <p>{data.comments}</p>
+    return(<div key={`data${i}`}>
+            <h2>{data.subject}<ForumEditButton/><ForumDeleteButton/></h2>
+            <p>{data.comments}<ForumEditButton/><ForumDeleteButton/></p>
         </div>);
 })}
 
                                                             </div>
-                                            </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                </tr>
-                                            </tbody>
-                                        </Table>
+                                        
+                                     
 
                                     </CardBody>
                                 </Card>
                             </div>
-                            <div>
-                                <FormGroup>
-                                    <Label for="exampleText">Text Area</Label>
-                                    <Input type="textarea" name="text" id="exampleText" />
-                                </FormGroup>
-                            </div>
+                       <ForumPostButton/>
                         </Card>
                     </Col>
                 </Row>
