@@ -3,15 +3,31 @@ const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require('mongoose');
-const bodyParser= require('body-parser');
+const bodyParser = require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
-// const seedDB = require('./seeds');
+const seedDB = require('./seeds');
+
 const db = require('./models/mysql');
 
-
+// Configure SequilizeSessions
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+app.use(cookieParser());
+app.use(session({
+  secret: 'keyboard mouse',
+  store: new SequelizeStore({
+    db: db,
+    table: 'Sessions',
+    extendDefaultFields: extendDefaultFields,
+  }),
+  resave: false,
+  saveUninitialized: false,
+  proxy: true,
+  unset: 'keep',
+}));
 app.use(logger('dev'));
-
 // Bodyparser Middleware
 app.use(bodyParser.json());
 
@@ -47,8 +63,21 @@ app.get('*', (req, res) => {
 });
 
 // change to true to drop tables
-db.sequelize.sync({force: false}).then(function() {
+db.sequelize.sync({force: true}).then(function() {
   app.listen(PORT, () => {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
 });
+
+/**
+ * @return {object}
+ * @param {*} defaults uses defaults
+ * @param {*} session choses what sessions
+ */
+function extendDefaultFields(defaults, session) {
+  return {
+    data: defaults.data,
+    expires: defaults.expires,
+    userId: session.user.id,
+  };
+};
