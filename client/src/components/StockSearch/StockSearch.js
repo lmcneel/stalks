@@ -127,7 +127,7 @@ class StockSearch extends Component {
  * @return {*} div with ListStock component
  */
    DowListComponent(List, i) {
-        return <div> {this.state.DOW.map((List) => <ListStock ticker={List}
+        return <div> {this.state.DOW.map((List, i) => <ListStock ticker={List}
         key={`dowlistComponent${i}`} />)} </div>;
     }
 /**
@@ -137,7 +137,7 @@ class StockSearch extends Component {
  * @return {*} div with ListStock component
  */
     WatchListComponent(List, i) {
-        return <div> {this.state.Watchlist.map((List) => <ListStock ticker={List}
+        return <div> {this.state.Watchlist.map((List, i) => <ListStock ticker={List}
         key={`dowlistComponent${i}`} />)} </div>;
     }
 /**
