@@ -17,11 +17,7 @@ const PortfolioStatus = (props) => (
                         <FontAwesomeIcon icon={faBriefcase} />
                         <span className="pad"><PetfolioValue /></span>
                 </li>
-<<<<<<< HEAD
-                    <li className="ml-5 bankValue">
-=======
-                    <li className="bank">
->>>>>>> 7120e4a52f035f889e9a91ad0abcfb049b81c497
+                    <li className="ml-5 bankValue bank">
                         <FontAwesomeIcon icon={faPiggyBank} />
                         <span className="pad"><BankValue /></span>
                 </li>
