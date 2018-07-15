@@ -14,26 +14,19 @@ import Petfolio from './pages/Petfolio';
 import Home from './pages/Home';
 import About from './pages/About';
 // import Settings from './components/pages/Settings';
-<<<<<<< HEAD
 import SigninForm from './components/SigninForm';
 import SignoutForm from './components/SignoutForm';
 import SignupForm from './components/SignupForm';
-=======
 // import Logout from './components/pages/Logout';
 import SignUp from './pages/SignUp';
->>>>>>> origin/profile-issues#6
 // import Achievements from './components/pages/Achievements';
 import ViewStocks from './pages/ViewStocks';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
 import UserSettings from './pages/Settings';
-import SignupForm from './components/SignupForm';
 import Trading from './components/pages/Trading';
-<<<<<<< HEAD
-=======
 import StockTicker from './components/StockTicker/StockTicker';
->>>>>>> origin/profile-issues#6
 
 /**
  * Class App
@@ -83,17 +76,14 @@ class App extends Component {
                       <Route exact path='/forum' component={Forum} /> */}
                       <Route exact path='/' component={Home} />
                       <Route exact path='/about' component={About} />
-<<<<<<< HEAD
                       {/* <Route exact path='/settings' component={Settings} /> */}
                       <Route exact path='/signin' component={SigninForm} />
                       <Route exact path='/logout' component={SignoutForm} />
                       <Route exact path='/signup' component={SignupForm} />
                        {/*<Route exact path='/achievements' component={Achievements} /> */}
-=======
                       {/* <Route exact path='/logout' component={Logout} /> */}
-                      <Route exact path='/signup' component={SignUp} />
+                      {/*<Route exact path='/signup' component={SignUp} /> */}
                       {/* <Route exact path='/achievements' component={Achievements} /> */}
->>>>>>> origin/profile-issues#6
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />
