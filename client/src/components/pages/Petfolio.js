@@ -8,7 +8,6 @@ import PieChart from '../PieChart/PieChart';
 // import API from '../../utils/API';
 import '../../assets/scss/_petfolio.scss';
 // const calc = require('./../../utils/Calc');
-import Title from '../PageTitle/PageTitle';
 /**
  * @class Petfolio
  */
@@ -104,7 +103,6 @@ class Petfolio extends Component {
 
           <Row>
             <Col>
-            
             </Col>
           </Row>
 
