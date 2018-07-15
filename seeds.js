@@ -89,7 +89,7 @@ function seedDB() {
                                                                     type: 'Sell',
                                                                     ticker: 'XPP',
                                                                     sharePrice: 190.45,
-                                                                    shares: 20,
+                                                                    shares: -20,
                                                                 },
                                                                 {
                                                                     date: Date.now(),
@@ -105,7 +105,7 @@ function seedDB() {
                                                                     type: 'sell',
                                                                     ticker: 'AAPL',
                                                                     sharePrice: 184.94,
-                                                                    shares: 3,
+                                                                    shares: -3,
                                                                 },
                                                                 {
                                                                     date: Date.now(),
@@ -113,7 +113,7 @@ function seedDB() {
                                                                     type: 'sell',
                                                                     ticker: 'AAPL',
                                                                     sharePrice: 184.94,
-                                                                    shares: 2,
+                                                                    shares: -2,
                                                                 },
                                                                     function(err, trade) {
                                                                         if (err) {
