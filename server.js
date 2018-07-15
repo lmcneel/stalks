@@ -40,21 +40,20 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Define API routes here
+
 app.use(routes);
 
 // DB Config
 // const db = require('./config/keys').mongoURI;
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks');
 
-seedDB();
+mongoose
+.connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks')
+.then(() => console.log('MongoDB Connected'))
+.catch((err) => console.log(err));
 
+// seedDB();
 
-// Connect to the Mongo DB
-// mongoose
-// .connect(db)
-// .then(() => console.log('MongoDB Connected'))
-// .catch((err) => console.log(err));
 
 // Send every other request to the React app
 // Define any API routes before this runs
