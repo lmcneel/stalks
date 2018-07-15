@@ -21,7 +21,7 @@ class PetfolioValue extends Component {
   render() {
     return (
         <div>
-          <FontAwesomeIcon icon={faBriefcase} />
+          <FontAwesomeIcon icon={faBriefcase} className="pad"/>
           ${this.state.petfolioValue}
         </div>
     );

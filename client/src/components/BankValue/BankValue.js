@@ -21,7 +21,7 @@ class BankValue extends Component {
   render() {
     return (
       <div>
-        <FontAwesomeIcon icon={faPiggyBank} />
+        <FontAwesomeIcon icon={faPiggyBank} className="pad"/>
         ${this.state.bankValue}
       </div>
   );
