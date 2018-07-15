@@ -32,6 +32,7 @@ export default {
     },
     getWatchPrices: function(data) {
         if (!Array.isArray(data)) {
+            console.log(data);
             throw new Error('Data needs to be of type array');
         }
         return axios

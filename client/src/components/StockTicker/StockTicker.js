@@ -21,33 +21,31 @@ class StockTicker extends Component {
      * Setting state for ticker text
      */
       componentDidMount() {
-        API.getWatchPrices(['aapl', 'ba', 'slb'])
-          .then((r) => {
-            console.log(r.data);
-          });
         API.getTickerText().then(((r) => {
             if (r.data.length !== 0) {
               let ticker = 'Watchlist...';
-              let tempTicker = [];
+              let tickerForApi = [];
+              // lopp through user's data and pull out watched stock symbols to put into arr for next api call
               for (let i=0; i<r.data.length; i++) {
-                // API.findQuotes(r.data[i]).then(((r2) => {
-                //   console.log(r2);
-                // }));
-                ticker += r.data[i].uniqueStockSymbol + '...';
-                tempTicker.push((r.data[i]).uniqueStockSymbol);
+                tickerForApi.push((r.data[i]).uniqueStockSymbol);
               }
-              this.setState({tickerText: ticker});
-              this.setState({tickerForApi: tempTicker});
-              console.log(r.data);
-              console.log(tempTicker);
+              this.setState({tickerForApi: tickerForApi});
+
+              // if the user has watched stocks, get their prices
+              if (tickerForApi !== []) {
+                API.getWatchPrices(tickerForApi)
+                  .then((r) => {
+                    // loop through the nested obj and pull out stock symbol and price
+                    for (let p in r.data) {
+                      if (p !== undefined) {
+                        ticker += p + ' ' + r.data[p].price + '...';
+                      }
+                    }
+                    this.setState({tickerText: ticker});
+                  });
+              };
             };
           }));
-
-        API.findQuotes('KO').then(((res) => {
-          console.log('----------------------------------')
-          console.log(this.tempTicker)
-          console.log(res.data.quotes.latestPrice);
-        }));
       };
 
     /**

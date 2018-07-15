@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import TradeFunctions from '../../utils/TradeFunctions';
 /**
  * @class PetfolioValue
  */
@@ -11,18 +10,9 @@ class PetfolioValue extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      petfolioValue: 500,
+      petfolioValue: 50000,
     };
   }
-
-  /**
-   * Setting state for petfolioValue
-   */
-  // componentDidMount() {
-  //   TradeFunctions.myStocksValue().then(((r) => {
-  //     console.log(r);
-  //   }));
-  // };
 
   /**
    * @return {*} Container
