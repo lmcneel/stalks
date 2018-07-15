@@ -47,7 +47,7 @@ class MainApp extends Component {
                         <div style={{'display': 'contents'}}>
                             {this.state.results.map((result, index) => {
                                 return (
-                                  <Card name={result.Petname} image={result.urlImage} buttonName={'Use'} style={{'margin':'50px'}}/>
+                                  <Card name={result.petName} image={result.urlImage} buttonName={'Use'} style={{'margin':'50px'}}/>
                                 );
                             })}
                         </div>
