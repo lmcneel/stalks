@@ -1,16 +1,15 @@
-//The contents of this file should go on client side main pages
-import React, { Component } from 'react';
-import { Button, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+// The contents of this file should go on client side main pages
+import React, {Component} from 'react';
+import {Button, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import Highcharts from 'highcharts';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/fontawesome-free-solid';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faEye} from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
 import Promise from 'bluebird';
 import _ from 'underscore';
 
 
 class TradingCenter extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -19,26 +18,25 @@ class TradingCenter extends Component {
             shares: 0,
             change: 0,
             response: '',
-            portfolio_id: '5b469e9d1819e80bd4ddeb78',
+            portfolio_id: '5b458c3cec9285215f43540f',
             transaction: 'buy',
             ROI: 0,
-            id: '5b469e9d1819e80bd4ddeb78',
+            id: '5b458c3cec9285215f43540f',
             cost: 0,
             datePurchased: '',
             value: 0,
             totalShares: 0,
             cashBalance: 0,
-            watchedArray: ["AAPL", "XPP"],
+            watchedArray: ['AAPL', 'XPP'],
             modal: false,
             watched: false,
-            eyeWatched: 'faEye'
-        }
+            eyeWatched: 'faEye',
+        };
         this.toggle = this.toggle.bind(this);
     }
 
     componentDidMount() {
-
-        this.charting({ ticker: this.state.ticker });
+        this.charting({ticker: this.state.ticker});
         this.myStocks(this.state.portfolio_id);
         this.dbStocks(this.state.portfolio_id);
         this.myStocksValue();
@@ -51,32 +49,32 @@ class TradingCenter extends Component {
 
     toggle() {
         this.setState({
-            modal: !this.state.modal
+            modal: !this.state.modal,
         });
     };
 
-    checkWatchList = (ticker) => {
+    checkWatchList(ticker) {
         // If in watchlist set [watched] to true
         API.getTickerText().then(((r) => {
             if (r.data.length !== 0) {
-              // let ticker = 'Watchlist...';
-              let tempTicker = [];
-              for (let i=0; i<r.data.length; i++) {
-                // API.findQuotes(r.data[i]).then(((r2) => {
-                //   console.log(r2);
-                // }));
-                // ticker += r.data[i].uniqueStockSymbol + '...';
-                tempTicker.push((r.data[i]).uniqueStockSymbol);
-              }
-              // this.setState({tickerText: ticker});
-              this.setState({tickerForApi: tempTicker});
-              // console.log(r.data);
-              // console.log(ticker);
-              console.log(tempTicker);
+                // let ticker = 'Watchlist...';
+                let tempTicker = [];
+                for (let i = 0; i < r.data.length; i++) {
+                    // API.findQuotes(r.data[i]).then(((r2) => {
+                    //   console.log(r2);
+                    // }));
+                    // ticker += r.data[i].uniqueStockSymbol + '...';
+                    tempTicker.push((r.data[i]).uniqueStockSymbol);
+                }
+                // this.setState({tickerText: ticker});
+                this.setState({tickerForApi: tempTicker});
+                // console.log(r.data);
+                // console.log(ticker);
+                console.log(tempTicker);
             };
-          }));
+        }));
 
-        
+
         // API.getWatchListItem(ticker)
         //     .then(res => {
         //         console.log(res.data);
@@ -91,10 +89,9 @@ class TradingCenter extends Component {
         // this.setState({ watched: this.state.watched })
 
         // return /this.state.watched = false;
-
     };
 
-    addToWatchlist = (ticker) => {
+    addToWatchlist(ticker) {
         // Need to add to MySQL Watchlist, then check watch list
         // API.addWatchListItem(ticker)
         // .then(res => {
@@ -105,7 +102,7 @@ class TradingCenter extends Component {
         // .catch(err => console.log(err))
     }
 
-    removeFromWatchlist = (ticker) => {
+    removeFromWatchlist(ticker) {
         // Need to remove from MySQL Watchlist, then check watch list
         // API.removeWatchListItem(ticker)
         // .then(res => {
@@ -113,21 +110,17 @@ class TradingCenter extends Component {
         //     // Code to add ticker to mySQL
 
         // })
-        // .catch(err => console.log(err))        
+        // .catch(err => console.log(err))
     }
 
-
-    
-
-    handleInputChange = (event) => {
-        const { name, value } = event.target;
+    handleInputChange(event) {
+        const {name, value} = event.target;
         this.setState({
-            [name]: value
+            [name]: value,
         });
     };
 
-
-    transactionExec = () => {
+    transactionExec() {
         if (this.state.transaction === 'buy') {
             this.buyShares();
         } else {
@@ -135,12 +128,9 @@ class TradingCenter extends Component {
         };
     };
 
-    myStocks = (portfolio) => {
-        console.log('2')
-
+    myStocks(portfolio) {
         return API.getMyStocks(portfolio)
-            .then(res => {
-                console.log('4')
+            .then((res) => {
                 console.log(res.data);
                 let userStocks = {};
                 let userShares = {};
@@ -158,25 +148,36 @@ class TradingCenter extends Component {
                         userShares[res.data[i].ticker] += res.data[i].shares;
                     }
                 }
-                let company = Object.entries(userShares)[0];
-                let spent = Object.entries(userStocks)[0];
-                console.log(userShares);
-                console.log(spent[1] / company[1]);
-                
-                this.setState({
-                    totalShares: company[1],
-                    cost: spent[1] / company[1],
-                    datePurchased: res.data[res.data.length - 1].date.slice(0, 10),
-                })
+
+                for (let i = 0; i < Object.keys(userShares).length; i++) {
+                    let company = Object.entries(userShares)[i];
+                    let spent = Object.entries(userStocks)[i];
+                    console.log(userShares);
+
+                    if (company[0] === this.state.ticker && company.length > 0) {
+                        this.setState({
+                            totalShares: company[1],
+                            cost: spent[1] / company[1],
+                            datePurchased: res.data[res.data.length - 1].date.slice(0, 10),
+                        });
+                        console.log(spent[i] / company[i]);
+                    } else {
+                        this.setState({
+                            totalShares: 0,
+                            cost: 0,
+                            datePurchased: 'N/A',
+                        });
+                    }
+                };
+
                 console.log(userStocks);
                 return userShares;
-            })
+            });
     }
 
-    cashCalculator = (portfolio) => {
-
+    cashCalculator(portfolio) {
         return API.getMyStocks(portfolio)
-            .then(res => {
+            .then((res) => {
                 console.log(res.data);
                 let cashTotal = 20000;
                 for (let i = 0; i < res.data.length; i++) {
@@ -184,46 +185,24 @@ class TradingCenter extends Component {
                 }
                 console.log(cashTotal);
                 this.setState({
-                    cashBalance: cashTotal.toFixed(2)
-                    
+                    cashBalance: cashTotal.toFixed(2),
+
                 });
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
     }
 
-    // myStocks = (portfolio) => {
-    //     return API.getMyStocks(portfolio)
-    //         .then(res => {
-    //             console.log(res.data);
-    //             const userStocks = {};
-    //             for (let i = 0; i < res.data.length; i++) {
-    //                 if (!userStocks[res.data[i].ticker]) {
-    //                     userStocks[res.data[i].ticker] = res.data[i].shares;
-    //                 } else {
-    //                     userStocks[res.data[i].ticker] += res.data[i].shares;
-    //                 }
-    //             }
-    //             console.log(userStocks);
-
-    //             return userStocks
-    //         })
-    //         .catch(err => console.log(err));
-    // };
-
-    dbStocks = (portfolio) => {
+    dbStocks(portfolio) {
         let self = this;
-
-        console.log('2')
         let allUserStocks;
         let lastPrice = [];
         let userStocks = {};
         return API.getMyStocks(portfolio)
-            .then(res => {
-                console.log('4')
+            .then((res) => {
                 console.log(res.data);
                 allUserStocks = res.data;
                 console.log(allUserStocks);
-                for (var i = 0; i < res.data.length; i++) {
+                for (let i = 0; i < res.data.length; i++) {
                     if (!userStocks[res.data[i].ticker]) {
                         userStocks[res.data[i].ticker] = res.data[i].shares;
                     } else {
@@ -234,130 +213,126 @@ class TradingCenter extends Component {
 
                 let current = Promise.resolve();
 
-                Object.keys(userStocks).forEach(key => {
+                Object.keys(userStocks).forEach((key) => {
                     current = current.then(() => {
                         console.log(key);
                         return API.userQuotes({
-                            ticker: key
+                            ticker: key,
                         })
-                            .then(res => {
+                            .then((res) => {
                                 console.log(res.data);
                                 lastPrice.push(res.data[0]);
                                 console.log(lastPrice);
                                 const myROI = self.ROI(userStocks, lastPrice, allUserStocks);
-                                this.setState({
-                                    ROI: myROI[0].roi,
-                                })
-
-                            })
-                    })
-                    // .then(result=>{
-                })
+                                if (key === this.state.ticker) {
+                                    for (let i = 0; i < myROI.length; i++) {
+                                        if (key === myROI[i].ticker) {
+                                            this.setState({
+                                                ROI: myROI[i].roi,
+                                            });
+                                        };
+                                    };
+                                } else {
+                                    this.setState({
+                                        ROI: 0,
+                                    });
+                                }
+                            });
+                    });
+                });
                 console.log(current);
-                return current
+                return current;
             });
     };
 
-    myStocksValue = () => {
+    myStocksValue() {
         let self = this;
 
         this.myStocks(this.state.portfolio_id)
-            .then(result => {
+            .then((result) => {
                 console.log(result);
                 let stocks = result;
                 let lastPrice = [];
 
-                console.log('5')
                 console.log(stocks);
 
                 let current = Promise.resolve();
 
-                Object.keys(stocks).forEach(function (key) {
+                Object.keys(stocks).forEach(function(key) {
                     current = current.then(() => {
                         console.log(key);
                         return API.userQuotes({
-                            ticker: key
+                            ticker: key,
                         })
-                            .then(res => {
+                            .then((res) => {
                                 console.log(res.data);
                                 lastPrice.push(res.data[0]);
                                 console.log(lastPrice);
                                 self.portfolioValue(stocks, lastPrice);
-
-                            })
-                    })
-                    // .then(result=>{
-                })
-                return current
-            })
+                            });
+                    });
+                });
+                return current;
+            });
     };
-
-    // myStocksValue = () => {
-    //     this.myStocks(this.state.portfolio_id)
-    //         .then(result => {
-    //             let stocks = result;
-    //             let company = Object.entries(stocks)[0];
-    //             console.log(stocks.XOM)
-    //             this.state.totalShares = company[1];
-    //         });
-    // }
 
 
     // This function will calculate the Portfolio Value & Portfolio Value ROI
-    // The inputs to this function  are The list of Shares the user has and the latest Rpice of those shares    
-    portfolioValue = (stocks, lastPrice) => {
+    // The inputs to this function  are The list of Shares the user has and the latest Rpice of those shares
+    portfolioValue(stocks, lastPrice) {
         console.log(stocks);
         // Since the Game starts the user with a set starting value it's used as a variable
         let initCash = 20000.00;
         let PV = 0;
         let pvROI = 0;
-        // console.log(lastprice);
+
         console.log(lastPrice[0]);
-        Object.keys(stocks).forEach(key => {
-            for (var j = 0, len2 = lastPrice.length; j < len2; j++) {
+        Object.keys(stocks).forEach((key) => {
+            for (let j = 0, len2 = lastPrice.length; j < len2; j++) {
                 if (key === lastPrice[j].symbol) {
                     console.log(stocks[key]);
                     PV += (stocks[key] * lastPrice[j].price);
-                }
-            }
-        })
+                };
+            };
+        });
         // Portfolio Value is Equal to
         console.log(PV);
-        console.log(this.state.cashBalance)
-        let userPortfolioValue = PV + Number(this.state.cashBalance)
-        console.log("The Portfolio Value is: $" + userPortfolioValue);
+        console.log(this.state.cashBalance);
+        let userPortfolioValue = PV + Number(this.state.cashBalance);
+        console.log('The Portfolio Value is: $' + userPortfolioValue);
         console.log(initCash);
         let a = userPortfolioValue - initCash;
         // Portfolio ROI is Callculated Below
         pvROI = ((a / initCash) * 100).toFixed(2);
-        console.log("The Portfolio ROI is:  " + pvROI);
+        console.log('The Portfolio ROI is:  ' + pvROI);
         return {
             userPortfolioValue,
-            pvROI
+            pvROI,
         };
     };
 
-    ROI = (allUserStocks, lastPrice, userStocks) => {
+    ROI(allUserStocks, lastPrice, userStocks) {
         console.log(allUserStocks);
         console.log(lastPrice);
         let eachROI = [];
 
-        for (var i = 0; i < userStocks.length; i++) {
-            if (userStocks[i].type === "Sell") {
+        for (let i = 0; i < userStocks.length; i++) {
+            if (userStocks[i].type === 'Sell') {
                 userStocks.splice(i, 1);
-            }
-        }
+            };
+        };
         console.log(userStocks);
-        let boughtStocks = _.uniq(userStocks, function (p) { return p.ticker; });
+        let boughtStocks = _.uniq(userStocks, function(p) {
+            return p.ticker;
+        });
         console.log(boughtStocks);
 
-
-        Object.keys(allUserStocks).forEach(key => {
-            for (var j = 0, len1 = lastPrice.length; j < len1; j++) {
-                for (var i = 0, len2 = boughtStocks.length; i < len2; i++) {
+        Object.keys(allUserStocks).forEach((key) => {
+            for (let j = 0, len1 = lastPrice.length; j < len1; j++) {
+                for (let i = 0, len2 = boughtStocks.length; i < len2; i++) {
                     let obj = {
-                        ticker: "",
-                        roi: ""
+                        ticker: '',
+                        roi: '',
                     };
 
                     if (key === lastPrice[j].symbol && key === boughtStocks[i].ticker) {
@@ -367,25 +342,22 @@ class TradingCenter extends Component {
                         let c = ((a - b) / b) * 100;
                         obj.roi = (c).toFixed(2);
                         eachROI.push(obj);
-
-
-                    }
-                }
-            }
+                    };
+                };
+            };
         });
-        console.log("The individual Stocks ROI is:");
+        console.log('The individual Stocks ROI is:');
         console.log(eachROI);
 
         return eachROI;
-
     };
 
     // This function will give the Current user Cash
     // The input needs to be the User Portfolio ID.
-    bankValue = (portfolio) => {
+    bankValue(portfolio) {
         let bank = 0;
         return API.getMyPortfolio(portfolio)
-            .then(res => {
+            .then((res) => {
                 console.log(res.data);
                 let data = res.data;
                 console.log(data);
@@ -393,58 +365,55 @@ class TradingCenter extends Component {
                 console.log(bank);
                 return bank;
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
     };
 
-    //This Fucntion gives the latest price for the Watch List that in retrieved from MySQL and fed to this function
-    myWatchlist = (watchedArray) => {
+    // This Fucntion gives the latest price for the Watch List that in retrieved from MySQL and fed to this function
+    myWatchlist(watchedArray) {
         console.log(watchedArray);
         let self = this;
         let watchPrice = [];
-
-
         let current = Promise.resolve();
 
         for (let i = 0; i < watchedArray.length; i++) {
             current = current.then(() => {
                 console.log(watchedArray[i]);
                 return API.userQuotes({
-                    ticker: watchedArray[i]
+                    ticker: watchedArray[i],
                 })
-                    .then(res => {
+                    .then((res) => {
                         console.log(res.data);
                         let watch = {
-                            ticker: "",
-                            price: ""
+                            ticker: '',
+                            price: '',
                         };
                         let data = res.data;
                         watch.ticker = data[0].symbol;
                         watch.price = data[0].price;
                         watchPrice.push(watch);
                         console.log(watchPrice);
-                    })
-            })
-        }
-        return current
+                    });
+            });
+        };
+        return current;
     };
 
-    charting = (ticker) => {
-
+    charting(ticker) {
         API.findQuotes(ticker)
-            .then(res => {
+            .then((res) => {
                 console.log(res.data);
                 this.setState({
                     price: res.data.quote.latestPrice,
                     change: res.data.quote.changePercent,
                 });
-                const chartData = res.data.chart.map(day => {
+                const chartData = res.data.chart.map((day) => {
                     let dayArray = [];
                     dayArray.push(day.date);
                     dayArray.push(day.close);
                     return dayArray;
                 });
 
-                const chartCategories = res.data.chart.map(day => {
+                const chartCategories = res.data.chart.map((day) => {
                     let dateArray = [];
                     dateArray.push(day.date);
                     return dateArray;
@@ -455,28 +424,28 @@ class TradingCenter extends Component {
                         spacingBottom: 20,
                         // plotBackgroundColor: '#DDDFE1',
                         // backgroundColor: '#DDDFE1',
-                        height: null
+                        height: null,
                     },
                     title: {
                         // text: `${this.state.ticker} Stock Price`
-                        text: null
+                        text: null,
                     },
 
                     xAxis: {
-                        title: { text: 'Past 30 Days' },
+                        title: {text: 'Past 30 Days'},
                         // categories: chartCategories,
                         categories: null,
                         text: null,
                         lineColor: '#404850',
-                        lineWidth: 2
+                        lineWidth: 2,
                     },
                     yAxis: {
                         title: null,
                         lineColor: '#404850',
-                        lineWidth: 2
+                        lineWidth: 2,
                     },
                     legend: {
-                        enabled: false
+                        enabled: false,
                     },
 
                     series: [{
@@ -484,73 +453,89 @@ class TradingCenter extends Component {
                         color: '#0C425C',
                         name: this.state.ticker,
                         data: chartData,
-                        marker: { enabled: true },
-                        tooltip: { valueDecimals: 2 },
-                    }]
+                        marker: {enabled: true},
+                        tooltip: {valueDecimals: 2},
+                    }],
                 });
             })
-            .catch(err => console.log(err));
+            .catch((err) => console.log(err));
     }
 
 
-    buyShares = () => {
-        // event.preventDefault();
-        API.findQuotes(
-            { ticker: this.state.ticker }
-        ).then(res => {
-            console.log(res.data);
-            this.setState({ price: res.data.quote.latestPrice });
-            if (this.state.ticker && this.state.price && this.state.shares) {
-                API.buyShares({
-                    portfolio_id: this.state.portfolio_id,
-                    type: 'buy',
-                    ticker: this.state.ticker,
-                    sharePrice: this.state.price,
-                    shares: this.state.shares
-                })
-                    .then(res => {
-                        this.setState({
-                            ticker: 'XOM',
-                            shares: 0,
-                            response: 'Transaction successfully completed'
-                        });
-                        console.log(this.state.response);
-                        this.toggle();
+    buyShares() {
+        if ((this.state.cashBalance - (this.state.shares * this.state.price)) >= 0) {
+            API.findQuotes(
+                {ticker: this.state.ticker}
+            ).then((res) => {
+                console.log(res.data);
+                this.setState({price: res.data.quote.latestPrice});
+                if (this.state.ticker && this.state.price && this.state.shares) {
+                    API.buyShares({
+                        portfolio_id: this.state.portfolio_id,
+                        type: 'buy',
+                        ticker: this.state.ticker,
+                        sharePrice: this.state.price,
+                        shares: this.state.shares,
                     })
-                    .catch(err => console.log(err));
-
-            }
-        }).catch(err => console.log(err));
+                        .then((res) => {
+                            this.setState({
+                                shares: 0,
+                                response: 'Your order was submitted and processed!',
+                            });
+                            console.log(this.state.response);
+                            this.myStocks(this.state.portfolio_id);
+                            this.dbStocks(this.state.portfolio_id);
+                            this.myStocksValue();
+                            this.cashCalculator(this.state.portfolio_id);
+                            this.toggle();
+                        })
+                        .catch((err) => console.log(err));
+                }
+            }).catch((err) => console.log(err));
+        } else {
+            this.setState({
+                response: 'Insuficient funds to proceed with this transaction',
+            });
+            this.toggle();
+        }
     };
 
 
-    sellShares = () => {
-        // event.preventDefault();
-        API.findQuotes(
-            { ticker: this.state.ticker }
-        ).then(res => {
-            this.setState({ price: res.data.quote.latestPrice });
-            if (this.state.ticker && this.state.price && this.state.shares) {
-                API.sellShares({
-                    portfolio_id: this.state.portfolio_id,
-                    type: 'sell',
-                    ticker: this.state.ticker,
-                    sharePrice: this.state.price,
-                    shares: -(this.state.shares)
-                })
-                    .then(res => {
-                        this.setState({
-                            ticker: 'XOM',
-                            shares: 0,
-                            response: 'Transaction successfully completed'
-                        })
-                        console.log(this.state.response);
-                        this.toggle();
+    sellShares() {
+        if (this.state.shares <= this.state.totalShares) {
+            API.findQuotes(
+                {ticker: this.state.ticker}
+            ).then((res) => {
+                this.setState({price: res.data.quote.latestPrice});
+                if (this.state.ticker && this.state.price && this.state.shares) {
+                    API.sellShares({
+                        portfolio_id: this.state.portfolio_id,
+                        type: 'sell',
+                        ticker: this.state.ticker,
+                        sharePrice: this.state.price,
+                        shares: -(this.state.shares),
                     })
-                    .catch(err => console.log(err));
-
-            }
-        }).catch(err => console.log(err));
+                        .then((res) => {
+                            this.setState({
+                                shares: 0,
+                                response: 'Transaction successfully completed',
+                            });
+                            console.log(this.state.response);
+                            this.myStocks(this.state.portfolio_id);
+                            this.dbStocks(this.state.portfolio_id);
+                            this.myStocksValue();
+                            this.cashCalculator(this.state.portfolio_id);
+                            this.toggle();
+                        })
+                        .catch((err) => console.log(err));
+                }
+            }).catch((err) => console.log(err));
+        } else {
+            this.setState({
+                response: 'You do not own enough shares to proceed',
+            });
+            this.toggle();
+        }
     };
 
     render() {
@@ -592,9 +577,13 @@ class TradingCenter extends Component {
                                 </div>
                                 <div className='col-sm-2'>
                                     <FontAwesomeIcon
-                                        {...this.state.watched ? (this.state.eyeWatched = 'faEyeWatched') : (this.state.eyeWatched = 'faEye')}
+                                        {...this.state.watched ?
+                                            (this.state.eyeWatched= 'faEyeWatched') :
+                                            (this.state.eyeWatched= 'faEye')}
                                         className={this.state.eyeWatched}
-                                        onClick={this.state.watched ? (this.removeFromWatchlist()) : (this.addToWatchlist())}
+                                        onClick={this.state.watched ? 
+                                            (this.removeFromWatchlist())
+                                            : (this.addToWatchlist())}
                                         size='1x'
                                         icon={faEye} />
                                 </div>
@@ -716,11 +705,14 @@ class TradingCenter extends Component {
                         </div>
                         <div className='row totalCalc'>
                             <div className='col-sm-6 col-md-6 totalCalcLabel'>
-                                <h4>New Bank Vale:</h4>
+                                <h4>New Bank Value:</h4>
                             </div>
                             <div className='col-sm-6 col-md-6 totalCalc'>
-                                {this.state.transaction === 'buy' ? (<h4>${(this.state.cashBalance - (this.state.shares * this.state.price)).toFixed(2)}</h4>
-                                ) : (<h4>${((this.state.cashBalance) - (-(this.state.shares) * this.state.price)).toFixed(2)}</h4>)}
+                                {this.state.transaction === 'buy' ?
+                                (<h4>${(this.state.cashBalance -
+                                    (this.state.shares * this.state.price)).toFixed(2)}</h4>
+                                ) : (<h4>${((this.state.cashBalance) -
+                                (-(this.state.shares) * this.state.price)).toFixed(2)}</h4>)}
                             </div>
                         </div>
                         <div>
@@ -739,17 +731,17 @@ class TradingCenter extends Component {
                                 <ModalHeader
                                     toggle={this.toggle}
                                     className='buySell'>
-                                    <h2>TRANSACTION COMPLETE</h2>
+                                    <h2>TRANSACTION STATUS</h2>
                                 </ModalHeader>
                                 <ModalBody
                                     className='buySell transactionModal'>
-                                    <h3>Your order was submitted and processed!</h3>
+                                    <h3>{this.state.response}</h3>
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button
                                         color="secondary"
                                         onClick={this.toggle}>
-                                        Cancel
+                                        Close
                                     </Button>
                                 </ModalFooter>
                             </Modal>
@@ -757,7 +749,7 @@ class TradingCenter extends Component {
                     </form>
                 </div >
             </div >
-        )
+        );
     }
 }
 
