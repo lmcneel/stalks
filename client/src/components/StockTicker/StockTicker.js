@@ -38,6 +38,12 @@ class StockTicker extends Component {
               console.log(tempTicker);
             };
           }));
+
+        API.findQuotes('KO').then(((res) => {
+          console.log('----------------------------------')
+          console.log(this.tempTicker)
+          console.log(res.data.quotes.latestPrice);
+        }));
       };
 
     /**
