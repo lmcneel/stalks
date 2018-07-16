@@ -149,7 +149,7 @@ class Petfolio extends Component {
           steps={[
             {
               title: 'Your Pet Overview',
-              text: 'This is the overview of a pet. There is plenty of useful information here!',
+              text: 'This is the overview of your pet. There is plenty of useful information here!',
               selector: '.statusbarwidth',
             },
             {
