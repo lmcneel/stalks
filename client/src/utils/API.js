@@ -37,8 +37,8 @@ export default {
         }
         return axios
                 .get(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${data.join(',')}&types=price`);
-    // Saves an article to the database
-    login: function (loginData) {
+    },
+    login: function(loginData) {
         return axios.post('/api/auth/login', loginData)
             .then((response) => {
                 console.log(response);

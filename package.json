@@ -53,6 +53,7 @@
     "nodemailer": "^4.6.7",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "react-joyride": "^1.11.4",
     "sequelize": "^4.38.0",
     "sequelize-session-store": "^0.1.0",
     "underscore": "^1.9.1",

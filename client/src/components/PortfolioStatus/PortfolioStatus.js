@@ -4,6 +4,7 @@ import PetfolioValue from '../PetfolioValue/PetfolioValue';
 import BankValue from '../BankValue/BankValue';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPiggyBank, faBriefcase} from '@fortawesome/fontawesome-free-solid';
+import Title from '../PageTitle/PageTitle';
 
 const PortfolioStatus = (props) => (
     <div id="portfolio-stats" className="bg-light pt-3 px-4">

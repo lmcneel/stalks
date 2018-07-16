@@ -65,18 +65,6 @@ class Petfolio extends Component {
         this.setState({bankValueColor: 'colorNegative'});
       };
     };
-    // }));
-    // calc.bankValue().then(((r) => {
-    //   this.setState({bankValue: r});
-    if (this.state.bankValue > 1000) {
-      this.setState({ bankValueColor: 'colorPositive' });
-    } else if (this.state.bankValue > 1) {
-      this.setState({ bankValueColor: 'colorNeutral' });
-    } else {
-      this.setState({ bankValueColor: 'colorNegative' });
-    };
-    // }));
-  };
 
   /**
   * handleSelect function
@@ -121,7 +109,7 @@ class Petfolio extends Component {
               title: 'Happiness',
               text: 'This bar represents your pets pondness. The happiness level of your pet is a direct reflection of your return on investment, ROI, which is the ratio between the net profit and cost of investment resulting from an investment of a stock. In simpler terms, the better your stocks do, the happy your pet will be. There are also toys and treats in the shop which will make your pet very happy.',
               selector: '.happiness',
-            }, 
+            },
             {
               title: 'Hunger',
               text: 'This bar represents your pets hunger. Just like a real pet, your little fluff ball needs to eat too. A complete bar means they are full but that will slowly drop. The shop has all the meals you need for your pet, just make sure you stop by before they get too hungry and start munching on your money instead!',
@@ -162,7 +150,6 @@ class Petfolio extends Component {
 
             <Col>
               <Row>
-<<<<<<< HEAD
               <Col>
                 <div className= {`${this.state.portfolioValueColor} border rounded colorBoxes`}>
                 Petfolio Value
@@ -172,17 +159,6 @@ class Petfolio extends Component {
               <Col>
                 <div className={`${this.state.bankValueColor} border rounded colorBoxes`}>
                 Bank Value
-=======
-                <Col>
-                  <div className={this.state.portfolioValueColor}>
-                    Petfolio Value
-                <PetfolioValue />
-                  </div>
-                </Col>
-                <Col>
-                  <div className={this.state.bankValueColor}>
-                    Bank Value
->>>>>>> 59f0fb57f1c32c30c69320b5a630fee6865e8753
                 <BankValue />
                   </div>
                 </Col>
