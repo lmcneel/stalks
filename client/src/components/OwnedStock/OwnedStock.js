@@ -24,6 +24,9 @@ class OwnedStock extends Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
+        this.checkWatchList = this.checkWatchList.bind(this);
+        this.addToWatchlist = this.addToWatchlist.bind(this);
+        this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
         this.myStocks = this.myStocks.bind(this);
         this.cashCalculator = this.cashCalculator.bind(this);
         this.dbStocks = this.dbStocks.bind(this);
@@ -54,6 +57,7 @@ class OwnedStock extends Component {
             collapse: false,
             watched: false,
             eyeWatched: 'faEye',
+            sqlId: 1,
         };
     }
 /**
@@ -78,40 +82,51 @@ class OwnedStock extends Component {
  * @public checkWatchList function will check if the current 'ticker' is listed in user watchlist
  * @param {*} ticker
  */
-    checkWatchList(ticker) {
-        // If in watchlist set [watched] to true
-        API.getTickerText(ticker).then(((r) => {
-            if (r.data.length !== 0) {
-            let tempTicker = [];
-            for (let i=0; i<r.data.length; i++) {
-                tempTicker.push((r.data[i]).uniqueStockSymbol);
-            }
-            // console.log(tempTicker);
-            if (tempTicker.includes(this.state.ticker)) {
-            return this.setState({watched: !this.state.watched});
-            };
-            };
-        }));
-    }
-/**
- * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
- * @param {*} ticker
- */
-    addToWatchlist(ticker) {
-        // API.addNewTicker(ticker)
+checkWatchList() {
+    // If in watchlist set [watched] to true
+    API.getTickerText().then(((r) => {
+        if (r.data.length !== 0) {
+        let tempTicker = [];
+        for (let i=0; i<r.data.length; i++) {
+            tempTicker.push((r.data[i]).uniqueStockSymbol);
+        }
+        if (tempTicker.includes(this.state.ticker)) {
+            return this.setState({watched: true});
+          } else {
+            return this.setState({watched: false});
+          }
+        };
+    }));
+};
 
-        // Need to add to MySQL Watchlist
-    }
-/**
- * @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
- * @param {*} ticker
- */
-    removeFromWatchlist() {
-        // API.removeExistingTicer(ticker)
+    /**
+    * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
+    * @param {*} SQL_ID
+    * @param {*} Ticker
+    */
+       addToWatchlist() {
+           API.addNewTicker(this.state.sqlId, this.state.ticker)
+           .then((res) => {
+               console.log('Ticker Added to Watchlist');
+               this.checkWatchList();
+           })
+           .catch((err) => console.log(err));
+       };
 
-        // Need to remove from MySQL Watchlist
+   /**
+   * @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
+   * @param {*} SQL_ID
+   * @param {*} Ticker
 
-    }
+   */
+       removeFromWatchlist() {
+       API.removeExistingTicker(this.state.sqlId, this.state.ticker)
+       .then((res) => {
+           console.log('done');
+           this.checkWatchList();
+       })
+       .catch((err) => console.log(err));
+       };
 /**
  * @public myStocks function that gets users stocks from mongo database
  * @param {*} portfolio
@@ -509,7 +524,7 @@ charting(ticker) {
                                     <FontAwesomeIcon
                                         className={(this.state.eyeWatched ? `faEyeWatched`:`faEye`)}
                                         onClick={this.state.watched ?
-                                        (this.removeFromWatchlist()) : (this.addToWatchlist())}
+                                        (this.removeFromWatchlist) : (this.addToWatchlist)}
                                         size='1x'
                                         icon={faEye} />
                                 </div>

@@ -38,8 +38,8 @@ class TradingCenter extends Component {
         // ---The function below are used in transactions and render---
         // ------------------------------------------------------------
         this.checkWatchList = this.checkWatchList.bind(this);
-        // this.addToWatchlist = this.addToWatchlist.bind(this);
-        // this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
+        this.addToWatchlist = this.addToWatchlist.bind(this);
+        this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
         this.transactionExec = this.transactionExec.bind(this);
         this.myStocks = this.myStocks.bind(this);
         this.cashCalculator = this.cashCalculator.bind(this);
@@ -65,9 +65,7 @@ class TradingCenter extends Component {
             transaction: 'buy',
             ROI: 0,
             id: '5b4b9d856acd8b08c04ca749',
-            UserId: 12,
-            // sqlId: 18,
-            // ticker:'TTT',
+            sqlId: 1,
             cost: 0,
             datePurchased: '',
             value: 0,
@@ -92,8 +90,6 @@ class TradingCenter extends Component {
         this.myWatchlist(this.state.watchedArray);
         this.cashCalculator(this.state.portfolio_id);
         this.checkWatchList();
-        // this.addToWatchlist(this.state.sqlId, this.state.ticker);
-        // this.removeFromWatchlist(this.state.sqlId, this.state.ticker);
     };
 /**
  * @public toggle function for reactstap <Modal> onClick trigger
@@ -129,8 +125,8 @@ class TradingCenter extends Component {
  * @param {*} SQL_ID
  * @param {*} Ticker
  */
-    addToWatchlist( SQL_ID, Ticker) {
-        API.addNewTicker(SQL_ID, Ticker)
+    addToWatchlist() {
+        API.addNewTicker(this.state.sqlId, this.state.ticker)
         .then((res) => {
             console.log('Ticker Added to Watchlist');
             this.checkWatchList();
@@ -144,8 +140,8 @@ class TradingCenter extends Component {
 * @param {*} Ticker
 
 */
-removeFromWatchlist( SQL_ID, Ticker) {
-    API.removeExistingTicker(SQL_ID, Ticker)
+removeFromWatchlist() {
+    API.removeExistingTicker(this.state.sqlId, this.state.ticker)
     .then((res) => {
         console.log('done');
         this.checkWatchList();
@@ -626,8 +622,8 @@ removeFromWatchlist( SQL_ID, Ticker) {
                                     <FontAwesomeIcon
                                         className={(this.state.watched ? `faEyeWatched`:`faEye`)}
                                         onClick={this.state.watched ?
-                                            (this.removeFromWatchlist())
-                                            : (this.addToWatchlist())}
+                                            (this.removeFromWatchlist)
+                                            : (this.addToWatchlist)}
                                         size='1x'
                                         icon={faEye} />
                                 </div>
@@ -775,7 +771,7 @@ removeFromWatchlist( SQL_ID, Ticker) {
                                 <ModalHeader
                                     toggle={this.toggle}
                                     className='buySell'>
-                                    <h2>TRANSACTION STATUS</h2>
+                                    TRANSACTION STATUS
                                 </ModalHeader>
                                 <ModalBody
                                     className='buySell transactionModal'>

@@ -22,8 +22,8 @@ class StockSearch extends Component {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.checkWatchList = this.checkWatchList.bind(this);
-        // this.addToWatchlist = this.addToWatchlist.bind(this);
-        // this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
+        this.addToWatchlist = this.addToWatchlist.bind(this);
+        this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
         this.handleWatchlistSubmit = this.handleWatchlistSubmit.bind(this);
         this.handleDowlistSubmit = this.handleDowlistSubmit.bind(this);
         this.DowListComponent = this.DowListComponent.bind(this);
@@ -48,6 +48,7 @@ class StockSearch extends Component {
              'GS', 'HD', 'IBM', 'INTC', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM', 'MRK',
               'MSFT', 'NKE', 'PFE', 'PG', 'TRV', 'UNH', 'UTX', 'V', 'VZ', 'WMT', 'XOM'],
             Watchlist: ['AAPL', 'SLB'],
+            sqlId: 1,
             // List: [],
             // Lists: [],
             // selectHintOnEnter: true,
@@ -84,34 +85,37 @@ class StockSearch extends Component {
     };
 /**
  * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
+ * @param {*} SQL_ID
+ * @param {*} Ticker
  */
     addToWatchlist() {
-        // Need to add to MySQL Watchlist, then check watch list
-        // API.addWatchListItem(ticker)
-        // .then(res => {
+        API.addNewTicker(this.state.sqlId, this.state.ticker)
+        .then((res) => {
+            console.log('Ticker Added to Watchlist');
+            this.checkWatchList();
+        })
+        .catch((err) => console.log(err));
+    };
 
-        //     // Code to add ticker to mySQL
-
-        // })
-        // .catch(err => console.log(err))
-    }
 /**
- * @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
- */
+* @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
+* @param {*} SQL_ID
+* @param {*} Ticker
+
+*/
     removeFromWatchlist() {
-        // Need to remove from MySQL Watchlist, then check watch list
-        // API.removeWatchListItem(ticker)
-        // .then(res => {
-
-        //     // Code to add ticker to mySQL
-
-        // })
-        // .catch(err => console.log(err))
-    }
+    API.removeExistingTicker(this.state.sqlId, this.state.ticker)
+    .then((res) => {
+        console.log('done');
+        this.checkWatchList();
+    })
+    .catch((err) => console.log(err));
+    };
 /**
  * @public handleWatchlist function will handle onClick for Watchlist/DOW toggle button
  */
     handleWatchlistSubmit() {
+        this.checkWatchList();
         this.setState({showList: !this.state.showList});
     }
 /**
@@ -119,6 +123,7 @@ class StockSearch extends Component {
  * @param {*} props is the current ticker state
  */
     handleDowlistSubmit() {
+        this.checkWatchList();
         this.setState({showList: !this.state.showDowList});
     }
 /**
