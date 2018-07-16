@@ -22,6 +22,10 @@ class ItemShop extends Component {
       .then(res => this.setState({ results: res.data }))
     }
 
+    buyItem = (id) => {
+        console.log('hi ozair')
+       }
+
     componentDidMount() {
         this.displayAccessories()
     };
@@ -40,12 +44,13 @@ class ItemShop extends Component {
           <Col></Col>
           <Container>
           <Row>
+              
                     {(this.state.results.length) ? (
                         <div style={{'display': 'contents'}}>
                             {this.state.results.map((result, index) => {
                                 return (
-                                //   <Card name={result.itemName} image={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStE88QZWx1eLEsnCSjvXBQHjxiXJ1nY0PlNkf7H6twi9ru_NBU3g'} buttonName={'buy'} style={{'margin':'50px'}}/>
-                                  <Card name={result.itemName} image={'../../assets/images/Ostrich1.svg'} buttonName={'buy'} style={{'margin':'50px'}}/>
+                                  <Card name={result.itemName}  onClick={() => this.buyItem(result.id)} image={result.imageURL} buttonName={'buy'} style={{'margin':'50px'}}  />
+                                 
                                 );
                             })}
                         </div>

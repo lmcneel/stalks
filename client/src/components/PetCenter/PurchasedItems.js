@@ -47,7 +47,7 @@ class MainApp extends Component {
                         <div style={{'display': 'contents'}}>
                             {this.state.results.map((result, index) => {
                                 return (
-                                  <Card name={result.name} image={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStE88QZWx1eLEsnCSjvXBQHjxiXJ1nY0PlNkf7H6twi9ru_NBU3g'} buttonName={'Use'} style={{'margin':'50px'}}/>
+                                  <Card name={result.name} image={result.imageURL} buttonName={'Use'} style={{'margin':'50px'}}/>
                                 );
                             })}
                         </div>
