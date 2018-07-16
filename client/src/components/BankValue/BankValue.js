@@ -16,7 +16,7 @@ class BankValue extends Component {
     this.state = {
       bankValue: 3500,
 
-      portfolio_id: '5b4cdce882dae09a12f3fb79',
+      portfolio_id: '5b4cf8a4f387eda4bd04e253',
 
     };
   }
