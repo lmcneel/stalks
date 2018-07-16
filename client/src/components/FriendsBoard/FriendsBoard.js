@@ -3,18 +3,25 @@ import {FriendList, FriendRequest, FriendSearch} from '../../components/FriendsB
 import {Card, CardBody, CardTitle, Navbar, Nav, NavItem, Col, Row, Container} from "reactstrap";
 
 // Main Component to nest all other Friends Components
-export class FriendsBoard extends Component {
+export class FriendsBoard extends React.Component {
 
 constructor(props) {
     super(props);         
     this.state = { nav1: false, nav2: false, nav3: false};
+    this.toggleNav1= this.toggleNav1.bind(this);
+    this.toggleNav2= this.toggleNav2.bind(this);
+    this.toggleNav3= this.toggleNav3.bind(this);
+
 };
-    
+ 
+
 // Function to toggle this.state.nav1 for displaying FriendList component
 toggleNav1 = () =>{
     this.setState({
         nav1: !this.state.nav1
+
     });
+     
 };
 
 // Function to toggle this.state.nav2 for displaying FriendRequest component
@@ -74,9 +81,8 @@ render (){
                 </Card>
 
             {/* Functionality to render components  */}
-            {this.state.nav1 && <div><FriendList/></div>}                 
-            {this.state.nav2 && <div><FriendRequest/></div>}    
-            {this.state.nav3 && <div><FriendSearch/></div>}     
+        {this.state.nav1 && <div><FriendList toggleNav1={this.toggleNav1}/></div>}         {this.state.nav2 && <div><FriendRequest toggleNav2={this.toggleNav2}/></div>}    
+        {this.state.nav3 && <div><FriendSearch toggleNav3={this.toggleNav3}/></div>}     
 
         </Col>
     </Row>

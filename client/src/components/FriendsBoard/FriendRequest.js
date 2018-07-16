@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Card, CardBody, CardTitle, Col, Row} from 'reactstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faWindowClose} from '@fortawesome/fontawesome-free-solid';
 // import API from '../../utils/API';
 
 // FriendRequest component that will render all user pending friend request on render
@@ -18,6 +20,10 @@ render() {
 return (
 
 <Card>
+<div onClick={this.props.toggleNav2}>           
+                <FontAwesomeIcon
+    icon={faWindowClose}  />
+                </div>  
     <CardBody>
         <div>
             <Row>
