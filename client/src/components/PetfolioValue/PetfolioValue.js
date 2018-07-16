@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import API from '../../utils/API';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faBriefcase} from '@fortawesome/fontawesome-free-solid';
 /**
  * @class PetfolioValue
  */
@@ -52,10 +49,9 @@ class PetfolioValue extends Component {
    */
   render() {
     return (
-        <div>
-          <FontAwesomeIcon icon={faBriefcase} className="pad"/>
+        <span>
           ${this.state.petfolioValue}
-        </div>
+        </span>
     );
   }
 };
