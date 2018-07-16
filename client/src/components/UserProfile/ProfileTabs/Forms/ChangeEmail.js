@@ -52,7 +52,9 @@ class ChangeEmail extends Component {
      * Function that finalizes change of email through API call
      */
     sendEmailLink() {
+        const host = window.location.host;
         const data = {
+            host: host,
             current_email: this.state.userEmail,
             emailToVerify: this.state.emailVal,
         };

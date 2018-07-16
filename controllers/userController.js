@@ -1,6 +1,7 @@
 const db = require('../models/mysql');
 const User = db.User;
 module.exports = {
+    // Complete
     getInfo: function(req, res ) {
         console.log('We connected');
         console.log(`Checking if user is in session`);
@@ -12,6 +13,7 @@ module.exports = {
            res.json('User not logged in');
         }
     },
+    // In Progress
     checkPassword: function(req, res ) {
         console.log(req.body);
         console.log('checking password');
@@ -33,6 +35,7 @@ module.exports = {
         console.log(data);
         res.json(data);
     },
+    // Not sure i need this anymore but will go the process
     updateEmail: function(req, res ) {
         console.log(req.body);
         console.log('This how it may look ');
@@ -57,6 +60,7 @@ module.exports = {
         console.log('Update User Email');
         res.json('Update Email Route');
     },
+    // In progress
     updatePassword: function(req, res ) {
         console.log(req.body);
         console.log('This how it may look ');
@@ -70,6 +74,7 @@ module.exports = {
         console.log('Update user password');
         res.json('update password route');
     },
+    // In progress
     updateUsername: function(req, res ) {
         console.log(req.body);
         console.log('This how it may look ');
@@ -83,6 +88,7 @@ module.exports = {
         console.log('Update user username');
         res.json('update username route');
     },
+    // In progress
     toggleTips: function(req, res ) {
         console.log(req.body);
         console.log('toggle tips');

@@ -47,7 +47,12 @@ class SignUp extends Component {
         };
         console.log(data);
         API.signup(data).then((response) =>{
-            console.log(response);
+            console.log(response.data);
+        })
+        .catch((err) => {
+            if (err) {
+                console.log(err);
+            };
         });
             
 

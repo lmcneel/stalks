@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
-const seedDB = require('./seeds');
-
+// const seedDB = require('./seeds');
+// const docSeeds = require('./db/docSeeds');
 const db = require('./models/mysql');
 const achievements = require('./config/middleware/achievements/achievements');
 
@@ -23,7 +23,7 @@ app.use(session({
     table: 'Sessions',
     extendDefaultFields: extendDefaultFields,
   }),
-  resave: false,
+  resave: true,
   saveUninitialized: false,
   proxy: true,
   unset: 'keep',
@@ -34,12 +34,19 @@ app.use(bodyParser.json());
 
 // Define middleware here
 app.use(express.json());
+<<<<<<< HEAD
 app.use(achievements);
+=======
+>>>>>>> 59f0fb57f1c32c30c69320b5a630fee6865e8753
 
+// app.use(acheivements);
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config();
+};
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
-}
+};
 
 // Define API routes here
 
@@ -53,6 +60,8 @@ mongoose
 .connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks')
 .then(() => console.log('MongoDB Connected'))
 .catch((err) => console.log(err));
+// seedDB();
+// docSeeds();
 
 // seedDB();
 
@@ -65,7 +74,7 @@ app.get('*', (req, res) => {
 });
 
 // change to true to drop tables
-db.sequelize.sync({force: true}).then(function() {
+db.sequelize.sync({force: false}).then(function() {
   app.listen(PORT, () => {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
