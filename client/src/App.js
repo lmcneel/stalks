@@ -77,12 +77,7 @@ navToggleHandler(e) {
                       {/* <Route exact path='/logout' component={Logout} /> */}
                       <Route exact path='/signup' component={SignUp} />
                       {/* <Route exact path='/achievements' component={Achievements} /> */}
-<<<<<<< HEAD
-                      <Route exact path='/trading' component={TradingCenter} />
-                      <Route exact path='/trading/:ticker' component={TradingCenter} />
-=======
                       <Route exact path='/friends' component={Friends} />
->>>>>>> 93f713b1f603283e46adf96f25ee0d8ab01638c8
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />
