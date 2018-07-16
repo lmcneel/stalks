@@ -21,7 +21,7 @@ let docData = [
       },
       {
         'sub': 'Percentage Change',
-        'par': 'You will see this value listed next to the price per share and it will be in either green or red to indicate positive or negative performance. '
+        'par': 'You will see this value listed next to the price per share and it will be in either green or red to indicate positive or negative performance since the opening of the trading day. '
       },
       {
         'sub': 'Ticker Symbol',
@@ -120,6 +120,14 @@ let docData = [
   {
     title: 'Friends',
     article: [
+      {
+        'sub': 'Friends',
+        'par': 'You can search for friends using their usernames. You can add them to your friends list to compare scores with them. From your friends list you can remove them if you need to'
+      },
+      {
+        'sub': 'Leaderboard',
+        'par': 'The leaderboard will be used to compare scores amongst your friends. Your score will be based on your petfolio value.'
+      },
       {
         'sub': 'Forum',
         'par': 'You can communicate with one another using the forum. You can create a new post or comment on another user’s post. In the forum, you can ask question, connect with the community, and seek advice about how to grow your petfolio!'
