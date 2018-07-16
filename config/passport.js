@@ -1,6 +1,5 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const AuthTokenStrategy = require('passport-auth-token').Strategy;
 const db = require('../models/mysql');
 const User = db.User;
 const Pet = db.Pet;
@@ -13,20 +12,15 @@ passport.use('local-signup', new LocalStrategy(
     passReqToCallback: true,
   },
   function(req, username, password, done) {
-    console.log('in signup');
-    console.log(req.body);
     const {firstname, lastname, email, pet} = req.body;
     // When a user tries to sign un this code runs
     // Check if username is taken
     checkMultipleUsername(username, function(response, err) {
-      console.log('response?');
-      console.log(response);
       // If its taken should throw an error saying username is taken
       if (err) {
         return done('Username is taken');
       } else {
         // If not taken will now check if email is taken
-        console.log('we made it here');
         checkMultipleEmail(email, function(response, err) {
           // Same as username
           if (err) {
@@ -126,6 +120,7 @@ passport.use('local-signin', new LocalStrategy(
       };
     });
 }));
+
 
 // In order to help keep authentication state across HTTP requests,
 // Sequelize needs to serialize and deserialize the user

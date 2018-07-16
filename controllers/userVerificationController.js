@@ -1,6 +1,7 @@
 const uniqid = require('uniqid');
 const db = require('../models/mysql');
-// const User = db.User;
+const User = db.User;
+const UserValidation = db.UserValidation;
 // Nodemailer config
 const nodemailer = require('nodemailer');
 const creds = require('../config/nodemailer');
@@ -70,7 +71,7 @@ module.exports = {
         const host = req.body.host;
         if (req.body.current_email) {
             const currentEmail = req.body.current_email;
-            db.User.findOne({
+            User.findOne({
                 where: {
                     email: currentEmail,
                 },
@@ -82,7 +83,7 @@ module.exports = {
                 const verificationType = 'email';
                 const uniqueValidationCode = uniqid();
 
-                db.UserValidation.create({
+                UserValidation.create({
                     validationCode: uniqueValidationCode,
                     validationType: verificationType,
                     UserId: usersID,
@@ -113,41 +114,6 @@ module.exports = {
                         });
                     });
             });
-        } else {
-            const verificationType = req.body.type;
-            const uniqueValidationCode = uniqid();
-            db.User.findOne({
-                where: {
-                    email: EmailtoVerify,
-                },
-            })
-            .then(function(dbUser) {
-                console.log(dbUser);
-                const host = req.get('host');
-                const link = `http://${host}/userProfile/account/verify?id=${dbUser.id}&type=${verificationType}&code=${uniqueValidationCode}`;
-                const verificationEmail = {
-                    from: creds.USER,
-                    to: EmailtoVerify,
-                    subject: 'Verification link sent From Stalks!',
-                    text: 'Email Verification',
-                    html: `<p>Hello, please click this link to verify your email</p><button>
-                            <a href="${link}">Click here to verify your email</a></button>`,
-                };
-
-                console.log(verificationEmail);
-                transporter.sendMail(verificationEmail, (err, data) => {
-                    if (err) {
-                        res.json({
-                            message: 'fail',
-                        });
-                    } else {
-                        res.json({
-                            msg: 'Verification has been sent to email',
-                        });
-                    }
-                });
-            });
-            res.json('Send Email Update');
         };
     },
     // Complete but may update to try and integrate passport for this
@@ -163,7 +129,7 @@ module.exports = {
          * */
         const {userID, validationID, verificationType, verificationCode} = req.body;
 
-        db.UserValidation.update(
+        UserValidation.update(
             {
                 resolved: true,
             },
@@ -188,19 +154,19 @@ module.exports = {
                 if (dbUser.email === emailToValidate) {
                     db.User.findOne({
                         where: {
-                            id: db.User.id,
+                            id: userID,
                         },
                         include: {
-                            model: Pet,
+                            model: db.Pet,
                             as: 'Pet',
                             where: {
-                              UserId: user.id,
+                              UserId: userID,
                             },
                           },
                     })
                     .then(function(user) {
                         req.session.user = user;
-                        res.json('Email Confirmation Complete');
+                        res.json(req.session.user);
                     })
                     .catch(function(err) {
                         res.json(err);

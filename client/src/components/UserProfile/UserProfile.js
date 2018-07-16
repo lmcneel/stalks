@@ -137,11 +137,12 @@ class UserProfile extends Component {
                 console.log(confirmationLinkData);
                 API.confirmEmailVerification(confirmationLinkData)
                 .then((res) => {
-                    console.log(res);
-                    if (res.data === 'Email Confirmation Complete') {
+                    console.log(res.data);
+                    if (res.data.emailVerified) {
+                        this.props.history.push('/settings/account');
                         this.getUser();
                     } else {
-                        this.props.history.push('/');
+                        console.log('There was an error verifying the account');
                     };
                 })
                 .catch((err) => {
@@ -152,7 +153,7 @@ class UserProfile extends Component {
             }
         } else {
             this.getUser();
-        }
+        };
     };
     /**
      * Function that gets called to retrieve user from session storage and sets component's state
@@ -199,6 +200,8 @@ class UserProfile extends Component {
      * @return {*} Container
      */
     render() {
+        const user = this.state.user;
+        console.log(user);
         return (
             <div className='container user-profile-main-container'>
                 <div className='row'>
@@ -231,10 +234,10 @@ class UserProfile extends Component {
                                         render={(props) => <Account {...props} user={this.state.user} />} />
                                     <Route
                                         exact path="/settings/game"
-                                        render={(props) => <GameTips {...props} user={this.state.user} />} />
+                                        render={(props) => <GameTips {...props} user={user} />} />
                                     <Route
                                         exact path="/settings/contact"
-                                        render={(props) => <Contact {...props} user={this.state.user} />} />
+                                        render={(props) => <Contact {...props} user={user} />} />
                                 </Switch>
                         </div>
                     </div>

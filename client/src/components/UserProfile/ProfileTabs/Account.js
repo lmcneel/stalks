@@ -5,7 +5,7 @@ import {withRouter} from 'react-router-dom';
 import {ChangeEmail, ChangeUsername, ChangePassword, DeleteAcc, Verification} from './Forms';
 const propTypes = {
     checkForm: PropTypes.func,
-    user: PropTypes.object,
+    user: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
@@ -21,6 +21,7 @@ class Account extends Component {
     constructor(props) {
         super(props);
         console.log(props);
+        console.log(props.user);
         this.state = {
             user: props.user,
             showList: true,
@@ -30,6 +31,11 @@ class Account extends Component {
         this.toggleBody = this.toggleBody.bind(this);
     };
 
+    componentDidMount() {
+        console.log(this.props.user);
+        const user = this.props.user;
+        this.setState({user: user});
+    };
     /**
      * Function that toggles body
      * @param {string} body Uses string to deteremine which body to show
@@ -44,10 +50,6 @@ class Account extends Component {
      */
     render() {
         const user = this.props.user;
-        if (user.username.length === 0) {
-            // this.props.history.push('/login');
-        }
-        console.log(user);
         return (
             <div className="row account-page-holder">
                 <div className='col-md-12'>

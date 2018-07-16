@@ -16,7 +16,6 @@ import Forum from './components/FriendsBoard/Forum';
 // import Settings from './components/pages/Settings';
 import SigninForm from './components/SigninForm';
 import SignoutForm from './components/SignoutForm';
-import SignupForm from './components/SignupForm';
 // import Logout from './components/pages/Logout';
 import SignUp from './pages/SignUp';
 // import Achievements from './components/pages/Achievements';

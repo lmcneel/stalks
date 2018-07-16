@@ -1,9 +1,10 @@
-const router = require('express').Router();
-
+const {Router} = require('express');
+const router = new Router();
 const passport = require('../../config/passport.js');
 
 router.post('/signup', function(req, res, next) {
     passport.authenticate('local-signup', function(err, user, info) {
+        console.log(info);
         console.log(`err: ${err} data: ${user} info: ${info}`);
         if (err) {
             res.json(err);

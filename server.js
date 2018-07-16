@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
 const seedDB = require('./seeds');
-require('dotenv').config();
+
 const db = require('./models/mysql');
 
 // Configure SequilizeSessions
@@ -22,7 +22,7 @@ app.use(session({
     table: 'Sessions',
     extendDefaultFields: extendDefaultFields,
   }),
-  resave: false,
+  resave: true,
   saveUninitialized: false,
   proxy: true,
   unset: 'keep',
@@ -33,12 +33,15 @@ app.use(bodyParser.json());
 
 // Define middleware here
 app.use(express.json());
-//app.use(acheivements);
 
+// app.use(acheivements);
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config();
+};
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
-}
+};
 
 // Define API routes here
 
@@ -64,7 +67,7 @@ app.get('*', (req, res) => {
 });
 
 // change to true to drop tables
-db.sequelize.sync({force: true}).then(function() {
+db.sequelize.sync({force: false}).then(function() {
   app.listen(PORT, () => {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
