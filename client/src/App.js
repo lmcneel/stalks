@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Splash from './components/Splash';
 import TopNav from './components/TopNav';
 import Wrapper from './components/Wrapper';
@@ -6,7 +6,7 @@ import SideNav from './components/SideNav';
 import MainContentWrapper from './components/MainContentWrapper';
 import PortfolioStatus from './components/PortfolioStatus';
 import Content from './components/Content';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
 // import PetCenter from './components/pages/PetCenter';
 import Forum from './components/FriendsBoard/Forum';
@@ -63,14 +63,14 @@ class App extends Component {
    * openModal function
    */
   openModal() {
-    this.setState({ modalIsOpen: true });
+    this.setState({modalIsOpen: true});
   }
 
   /**
    * closeModal function
    */
   closeModal() {
-    this.setState({ modalIsOpen: false });
+    this.setState({modalIsOpen: false});
   }
 
   /**
@@ -94,7 +94,7 @@ class App extends Component {
     const {joyride} = this.props;
 
     if (result.action == 'close') {
-      this.setState({ run: false });
+      this.setState({run: false});
     }
   }
 
@@ -104,7 +104,7 @@ class App extends Component {
   resetTour() {
     console.dir(this);
     this.joyride.reset(true);
-    this.setState({ run: true });
+    this.setState({run: true});
   }
 
   /**
@@ -112,7 +112,7 @@ class App extends Component {
    */
   yes() {
     this.closeModal();
-    this.setState({ run: true });
+    this.setState({run: true});
   }
 
   /**

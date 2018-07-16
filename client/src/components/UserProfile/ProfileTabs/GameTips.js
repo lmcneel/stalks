@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
-import { Col } from 'reactstrap';
-class GameTips extends Component{
-    constructor(props){
+import React, {Component} from 'react';
+import {Col} from 'reactstrap';
+class GameTips extends Component {
+    constructor(props) {
         super(props);
         this.state = {
-            tips: null
-        }
+            tips: null,
+        };
     }
 
-    componentWillMount(){
+    componentWillMount() {
         this.getTips();
     }
 
-    getTips(){
+    getTips() {
         // Will change to api
-        this.setState({ tips : true});
+        this.setState({tips: true});
     }
 
-    toggleTip(){
-        this.setState({ tips : !this.state.tips});
+    toggleTip() {
+        this.setState({tips: !this.state.tips});
     }
-    render(){
-        return(
-          
+    render() {
+        return (
+
                 <Col className="userProfile-game-tips">
                     Press to toggle on/off game tips
                     <div className="userProfile-switch-container">
@@ -42,8 +42,8 @@ class GameTips extends Component{
                     </label>
                     </div>
                 </Col>
-          
-        )
+
+        );
     }
 };
 
