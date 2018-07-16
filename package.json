@@ -37,7 +37,7 @@
   "dependencies": {
     "availity-reactstrap-validation": "^2.0.2",
     "axios": "^0.18.0",
-    "bcrypt-nodejs": "^0.0.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "connect-session-sequelize": "^5.2.2",
     "cookie-parser": "^1.4.3",
@@ -50,12 +50,22 @@
     "morgan": "^1.9.0",
     "mysql2": "^1.5.3",
     "node-sass-chokidar": "^1.3.0",
+<<<<<<< HEAD
+=======
+    "nodemailer": "^4.6.7",
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "react-router-dom": "^4.3.1",
     "sequelize": "^4.38.0",
+<<<<<<< HEAD
     "sequelize-session-store": "^0.1.0",
     "underscore": "^1.9.1",
+=======
+    "underscore": "^1.9.1",
+    "sequelize-session-store": "^0.1.0",
+    "uniqid": "^5.0.3",
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
     "victory": "^0.27.2"
   },
   "devDependencies": {

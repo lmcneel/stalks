@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+<<<<<<< HEAD
 import SigninForm from './components/SigninForm';
 import SignupForm from './components/SignupForm';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -11,6 +12,8 @@ library.add(faFacebookF | faGoogle | faAt | faKey);
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
 import Trading from './pages/Trading';
+=======
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
 import Splash from './components/Splash';
 import TopNav from './components/TopNav';
 import Wrapper from './components/Wrapper';
@@ -26,6 +29,9 @@ import Forum from './components/FriendsBoard/Forum';
 // import Home from './pages/Home';
 // import About from './pages/About';
 // import Settings from './components/pages/Settings';
+import SigninForm from './components/SigninForm';
+import SignoutForm from './components/SignoutForm';
+import SignupForm from './components/SignupForm';
 // import Logout from './components/pages/Logout';
 import SignUp from './pages/SignUp';
 // import Achievements from './components/pages/Achievements';
@@ -37,6 +43,8 @@ import StockTicker from './components/StockTicker/StockTicker';
 import ViewStocks from './pages/ViewStocks/ViewStocks';
 import TradingCenter from './components/TradingCenter';
 import Friends from './pages/Social/Friends';
+import UserSettings from './pages/Settings';
+import Login from './pages/Login';
 
 /**
 <<<<<<< HEAD
@@ -131,7 +139,7 @@ navToggleHandler(e) {
                   </Switch>
 =======
                 <Switch>
-                <Route exact path="/petfolio" component={Petfolio} />
+                      <Route exact path="/petfolio" component={Petfolio} />
                       <Route exact path='/splash' component={Splash} />
                       <Route exact path='/forum' component={Forum} />
                       {/* <Route exact path='/petcenter' component={PetCenter} />
@@ -140,8 +148,12 @@ navToggleHandler(e) {
                       <Route exact path='/' component={Home} />
                       <Route exact path='/about' component={About} />
                       {/* <Route exact path='/settings' component={Settings} /> */}
+                      <Route exact path='/signin' component={SigninForm} />
+                      <Route exact path='/logout' component={SignoutForm} />
+                       {/*<Route exact path='/achievements' component={Achievements} /> */}
                       {/* <Route exact path='/logout' component={Logout} /> */}
                       <Route exact path='/signup' component={SignUp} />
+                      <Route exact path='/login' component={Login} />
                       {/* <Route exact path='/achievements' component={Achievements} /> */}
                       <Route exact path='/friends' component={Friends} />
                       <Route exact path='/viewstocks' component={ViewStocks} />
@@ -150,6 +162,7 @@ navToggleHandler(e) {
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/trading' component={TradingCenter} />
                       <Route exact path='/trading/:ticker' component={TradingCenter} />
+<<<<<<< HEAD
                       </Switch>
 >>>>>>> 93f713b1f603283e46adf96f25ee0d8ab01638c8
                 </Content>
@@ -157,9 +170,18 @@ navToggleHandler(e) {
             </Wrapper>
           </div>
         </Router>
+=======
+                      <Route path='/settings' component={UserSettings} />
+                    </Switch>
+                </Content>
+                </MainContentWrapper>
+              </Wrapper>
+        </div>
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
       </Router>
     );
   };
-}
+};
+
 
 export default App;

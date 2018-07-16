@@ -1,19 +1,31 @@
 Arguments: 
+<<<<<<< HEAD
   C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add sequeilize
 
 PATH: 
   C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\MySQL\MySQL Server 5.7\bin;C:\Program Files\MongoDB\Server\3.6\bin;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Yarn\bin\;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Users\wcott\AppData\Local\Microsoft\WindowsApps;C:\Users\wcott\AppData\Local\GitHubDesktop\bin;C:\Program Files\Heroku\bin;C:\Users\wcott\AppData\Roaming\npm;C:\Users\wcott\AppData\Local\Microsoft\WindowsApps;C:\Users\wcott\AppData\Local\Yarn\bin;C:\Users\wcott\AppData\Roaming\Composer\vendor\bin
+=======
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js install
+
+PATH: 
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\kkennedy\bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Common Files\Roxio Shared\DLLShared;C:\Program Files (x86)\Common Files\Roxio Shared\10.0\DLLShared;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files\Microsoft SQL Server\130\DTS\Binn;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\130\DTS\Binn;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\ManagementStudio;C:\Program Files (x86)\Skype\Phone;C:\Program Files\dotnet;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\Program Files (x86)\Yarn\bin;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Users\kkennedy\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Heroku\bin;C:\Users\kkennedy\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\Users\kkennedy\AppData\Local\GitHubDesktop\bin;C:\Program Files\MongoDB\Server\3.6\bin;C:\Users\kkennedy\AppData\Local\Yarn\bin;C:\xampp\php;C:\Users\kkennedy\AppData\Roaming\Composer\vendor\bin
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
 
 Yarn version: 
   1.7.0
 
 Node version: 
+<<<<<<< HEAD
   9.3.0
+=======
+  8.9.1
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
 
 Platform: 
   win32 x64
 
 Trace: 
+<<<<<<< HEAD
   Error: https://registry.yarnpkg.com/sequeilize: Not found
       at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:65656:18)
       at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:134675:22)
@@ -25,6 +37,15 @@ Trace:
       at IncomingMessage.emit (events.js:164:20)
       at endReadableNT (_stream_readable.js:1062:12)
       at process._tickCallback (internal/process/next_tick.js:152:19)
+=======
+  SyntaxError: C:\Users\kkennedy\Documents\Bootcamp\Repos\stalks\package.json: Unexpected token < in JSON at position 2141
+      at JSON.parse (<anonymous>)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:1130:59
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:98:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:109:13
+      at <anonymous>
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
 
 npm manifest: 
   {
@@ -66,22 +87,45 @@ npm manifest:
     "dependencies": {
       "availity-reactstrap-validation": "^2.0.2",
       "axios": "^0.18.0",
+<<<<<<< HEAD
+=======
+  <<<<<<< HEAD
+      "bcrypt-nodejs": "^0.0.3",
+  =======
+      "bcryptjs": "^2.4.3",
+  >>>>>>> origin/profile-issues#6
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
       "body-parser": "^1.18.3",
       "connect-session-sequelize": "^5.2.2",
       "cookie-parser": "^1.4.3",
       "dotenv": "^6.0.0",
       "express": "^4.16.3",
       "express-session": "^1.15.6",
+<<<<<<< HEAD
+=======
+      "i": "^0.3.6",
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
       "mongoose": "^5.2.1",
       "mongoose-seed": "^0.5.0",
       "morgan": "^1.9.0",
       "mysql2": "^1.5.3",
       "node-sass-chokidar": "^1.3.0",
+<<<<<<< HEAD
+=======
+  <<<<<<< HEAD
+  =======
+      "nodemailer": "^4.6.7",
+  >>>>>>> origin/profile-issues#6
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
       "passport": "^0.4.0",
       "passport-local": "^1.0.0",
       "react-router-dom": "^4.3.1",
       "sequelize": "^4.38.0",
       "sequelize-session-store": "^0.1.0",
+<<<<<<< HEAD
+=======
+      "uniqid": "^5.0.3",
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
       "victory": "^0.27.2"
     },
     "devDependencies": {
@@ -91,6 +135,7 @@ npm manifest:
       "eslint-plugin-react": "^7.8.2",
       "eslint-watch": "^3.1.4",
       "nodemon": "^1.17.5"
+<<<<<<< HEAD
     },
     "rules": {
       "linebreak-style": 0,
@@ -100,6 +145,8 @@ npm manifest:
         "error",
         "windows"
       ]
+=======
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
     }
   }
 
@@ -406,12 +453,26 @@ Lockfile:
     dependencies:
       safe-buffer "5.1.1"
   
+<<<<<<< HEAD
+=======
+  bcrypt-nodejs@^0.0.3:
+    version "0.0.3"
+    resolved "https://registry.yarnpkg.com/bcrypt-nodejs/-/bcrypt-nodejs-0.0.3.tgz#c60917f26dc235661566c681061c303c2b28842b"
+  
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
   bcrypt-pbkdf@^1.0.0:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.2.tgz#a4301d389b6a43f9b67ff3ca11a3f6637e360e9e"
     dependencies:
       tweetnacl "^0.14.3"
   
+<<<<<<< HEAD
+=======
+  bcryptjs@^2.4.3:
+    version "2.4.3"
+    resolved "https://registry.yarnpkg.com/bcryptjs/-/bcryptjs-2.4.3.tgz#9ab5627b93e60621ff7cdac5da9733027df1d0cb"
+  
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
   binary-extensions@^1.0.0:
     version "1.11.0"
     resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.11.0.tgz#46aa1751fb6a2f93ee5e689bb1087d4b14c6c205"
@@ -1128,8 +1189,13 @@ Lockfile:
       prop-types "^15.6.2"
   
   eslint-scope@^3.7.1:
+<<<<<<< HEAD
     version "3.7.1"
     resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-3.7.1.tgz#3d63c3edfda02e06e01a452ad88caacc7cdcb6e8"
+=======
+    version "3.7.3"
+    resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-3.7.3.tgz#bb507200d3d17f60247636160b4826284b108535"
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
     dependencies:
       esrecurse "^4.1.0"
       estraverse "^4.1.1"
@@ -1206,8 +1272,13 @@ Lockfile:
       acorn-jsx "^3.0.0"
   
   esprima@^4.0.0:
+<<<<<<< HEAD
     version "4.0.0"
     resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.0.tgz#4499eddcd1110e0b218bacf2fa7f7f59f55ca804"
+=======
+    version "4.0.1"
+    resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
   
   esprima@~3.0.0:
     version "3.0.0"
@@ -1582,8 +1653,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/generic-pool/-/generic-pool-3.4.2.tgz#92ff7196520d670839a67308092a12aadf2f6a59"
   
   get-caller-file@^1.0.1:
+<<<<<<< HEAD
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
+=======
+    version "1.0.3"
+    resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
   
   get-stdin@^4.0.1:
     version "4.0.1"
@@ -1838,6 +1914,13 @@ Lockfile:
       jsprim "^1.2.2"
       sshpk "^1.7.0"
   
+<<<<<<< HEAD
+=======
+  i@^0.3.6:
+    version "0.3.6"
+    resolved "https://registry.yarnpkg.com/i/-/i-0.3.6.tgz#d96c92732076f072711b6b10fd7d4f65ad8ee23d"
+  
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
   iconv-lite@0.4.19:
     version "0.4.19"
     resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
@@ -2202,6 +2285,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   
   js-base64@^2.1.8:
+<<<<<<< HEAD
     version "2.4.5"
     resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.5.tgz#e293cd3c7c82f070d700fc7a1ca0a2e69f101f92"
   
@@ -2209,6 +2293,23 @@ Lockfile:
     version "3.0.2"
     resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
   
+=======
+    version "2.4.6"
+    resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.6.tgz#1d49f618bef43630cd191f4e122447acfdb947d8"
+  
+  "js-tokens@^3.0.0 || ^4.0.0":
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
+  
+  js-tokens@^3.0.2:
+    version "3.0.2"
+    resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
+  
+  "js-tokens@^3.0.0 || ^4.0.0":
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
+  
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
   js-yaml@^3.9.1:
     version "3.12.0"
     resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.12.0.tgz#eaed656ec8344f10f527c6bfa1b6e2244de167d1"
@@ -2363,11 +2464,31 @@ Lockfile:
     version "4.0.0"
     resolved "https://registry.yarnpkg.com/long/-/long-4.0.0.tgz#9a7b71cfb7d361a194ea555241c92f7468d5bf28"
   
+<<<<<<< HEAD
   loose-envify@^1.0.0, loose-envify@^1.2.0, loose-envify@^1.3.1:
     version "1.3.1"
     resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.3.1.tgz#d1a8ad33fa9ce0e713d65fdd0ac8b748d478c848"
     dependencies:
       js-tokens "^3.0.0"
+=======
+  <<<<<<< HEAD
+  loose-envify@^1.0.0, loose-envify@^1.2.0, loose-envify@^1.3.1:
+    version "1.4.0"
+    resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
+  =======
+  loose-envify@^1.0.0, loose-envify@^1.2.0:
+    version "1.4.0"
+    resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
+    dependencies:
+      js-tokens "^3.0.0 || ^4.0.0"
+  
+  loose-envify@^1.3.1:
+    version "1.3.1"
+    resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.3.1.tgz#d1a8ad33fa9ce0e713d65fdd0ac8b748d478c848"
+  >>>>>>> origin/profile-issues#6
+    dependencies:
+      js-tokens "^3.0.0 || ^4.0.0"
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
   
   loud-rejection@^1.0.0:
     version "1.6.0"
@@ -2586,8 +2707,13 @@ Lockfile:
       path "~0.11.14"
   
   mongoose@^5.2.1:
+<<<<<<< HEAD
     version "5.2.2"
     resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.2.2.tgz#3310e71e7e271c1134915c2d7fdf815eb2fa7072"
+=======
+    version "5.2.3"
+    resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.2.3.tgz#667b92c394a6aa81c3c9f2f45f3a8f28cea28e9c"
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
     dependencies:
       async "2.6.1"
       bson "~1.0.5"
@@ -2761,9 +2887,19 @@ Lockfile:
       stdout-stream "^1.4.0"
       "true-case-path" "^1.0.2"
   
+<<<<<<< HEAD
   nodemon@^1.17.5:
     version "1.17.5"
     resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.17.5.tgz#e6a665c872fdf09d48bf2a81f3e85f8cfb39322a"
+=======
+  nodemailer@^4.6.7:
+    version "4.6.7"
+    resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-4.6.7.tgz#b68de7f36d65618bdeeeb76234e3547d51266373"
+  
+  nodemon@^1.17.5:
+    version "1.18.2"
+    resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.18.2.tgz#36b89c790da70c4f270e2cc0718723131bc04abb"
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
     dependencies:
       chokidar "^2.0.2"
       debug "^3.1.0"
@@ -4088,6 +4224,13 @@ Lockfile:
       is-extendable "^0.1.1"
       set-value "^0.4.3"
   
+<<<<<<< HEAD
+=======
+  uniqid@^5.0.3:
+    version "5.0.3"
+    resolved "https://registry.yarnpkg.com/uniqid/-/uniqid-5.0.3.tgz#917968310edc868d50df6c44f783f32c7d80fac1"
+  
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
   unique-string@^1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/unique-string/-/unique-string-1.0.0.tgz#9e1057cca851abb93398f8b33ae187b99caec11a"
@@ -4139,10 +4282,15 @@ Lockfile:
       prepend-http "^1.0.1"
   
   use@^3.1.0:
+<<<<<<< HEAD
     version "3.1.0"
     resolved "https://registry.yarnpkg.com/use/-/use-3.1.0.tgz#14716bf03fdfefd03040aef58d8b4b85f3a7c544"
     dependencies:
       kind-of "^6.0.2"
+=======
+    version "3.1.1"
+    resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
+>>>>>>> b0d6f6f6817ce01a9c84a7c51393c424c19dd240
   
   util-deprecate@~1.0.1:
     version "1.0.2"
