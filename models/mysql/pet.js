@@ -7,7 +7,6 @@ module.exports = function(sequelize, Sequelize) {
         },
         petName: {
             type: Sequelize.STRING,
-            allowNull: false,
         },
         health: {
             type: Sequelize.DOUBLE,
