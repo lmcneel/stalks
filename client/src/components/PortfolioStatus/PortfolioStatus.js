@@ -1,9 +1,9 @@
 import React from 'react';
 import {Row, Col} from 'reactstrap';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faBriefcase, faPiggyBank} from '@fortawesome/fontawesome-free-solid';
 import PetfolioValue from '../PetfolioValue/PetfolioValue';
 import BankValue from '../BankValue/BankValue';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPiggyBank, faBriefcase} from '@fortawesome/fontawesome-free-solid';
 
 const PortfolioStatus = (props) => (
     <div id="portfolio-stats" className="bg-light pt-3 px-4">
@@ -14,14 +14,13 @@ const PortfolioStatus = (props) => (
             <Col sm="12" md="8">
                 <ul className="d-flex justify-content-sm-center justify-content-md-end">
                     <li className="portfolioValue">
-                        <FontAwesomeIcon icon={faBriefcase} />
-                        <span className="pad"><PetfolioValue /></span>
-                </li>
-                    <li className="ml-5 bankValue bank">
-                        <FontAwesomeIcon icon={faPiggyBank} />
-                        <span className="pad"><BankValue /></span>
-                </li>
-
+                        <FontAwesomeIcon icon={faBriefcase} className="pad"/>
+                        <PetfolioValue />
+                    </li>
+                    <li className="bankValue bank">
+                        <FontAwesomeIcon icon={faPiggyBank} className="pad"/>
+                        <BankValue />
+                    </li>
                 </ul>
             </Col>
         </Row>

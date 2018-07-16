@@ -35,7 +35,7 @@ class StockTicker extends Component {
               this.setState({tickerText: ticker});
               this.setState({tickerForApi: tempTicker});
               // console.log(r.data);
-              console.log(tempTicker);
+              // console.log(tempTicker);
             };
           }));
       };
