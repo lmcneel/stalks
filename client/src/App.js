@@ -11,8 +11,8 @@ import Petfolio from './pages/Petfolio';
 // import PetCenter from './components/pages/PetCenter';
 import Forum from './components/FriendsBoard/Forum';
 // import Friends from './components/pages/Friends';
-import Home from './pages/Home';
-import About from './components/pages/About';
+// import Home from './pages/Home';
+// import About from './components/pages/About';
 // import Settings from './components/pages/Settings';
 // import Logout from './components/pages/Logout';
 import SignUp from './pages/SignUp';
@@ -24,6 +24,7 @@ import HelpLanding from './components/HelpLanding/HelpLanding';
 import StockTicker from './components/StockTicker/StockTicker';
 import ViewStocks from './pages/ViewStocks/ViewStocks';
 import TradingCenter from './components/TradingCenter';
+import Friends from './pages/Social/Friends';
 import Footer from './components/Footer';
 
 /**
