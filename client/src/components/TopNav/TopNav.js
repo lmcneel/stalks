@@ -4,6 +4,7 @@ import mainLogo from './../../assets/images/smp-logo.svg';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faBars, faQuestionCircle, faCog, faInfo, faSignOutAlt} from '@fortawesome/fontawesome-free-solid';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 const propTypes = {
     navToggleHandler: PropTypes.func,
@@ -16,33 +17,26 @@ const TopNav = (props) => {
         <Row className="top-nav px-3 pt-4 pb-3">
             <Col xs="12" md="8" className="d-flex justify-content-sm-center justify-content-md-start">
                 <a href="">
-                    <img src={mainLogo} className="main-logo"/>
+                <img src={mainLogo} className="main-logo"
+                alt="Text Logo for Stock Market Pets in a pixel looking fontface, logo is white on green bg"/>
                 </a>
             <Button id="sidebarCollapse" className="btn btn-info ml-4" onClick={props.navToggleHandler}>
-            <FontAwesomeIcon icon={faBars} />
+            <FontAwesomeIcon icon={faBars} className="iconsize" />
             </Button>
             </Col>
-            <Col xs="12" md="4">
+            <Col xs="12" md="4" className="pr-0">
                 <ul id="topNavIcons" className="nav justify-content-sm-center justify-content-md-end">
                     <li className="nav-item">
-                        <a className="nav-link" href="">
-                        <FontAwesomeIcon className="iconsize" icon={faQuestionCircle} />
-                        </a>
+                        <Link to={'/help'}><FontAwesomeIcon className="iconsize" icon={faQuestionCircle} /></Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="">
-                        <FontAwesomeIcon className="iconsize" icon={faCog} />
-                        </a>
+                        <Link to={'/settings/account'}><FontAwesomeIcon className="iconsize" icon={faCog} /></Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="">
-                        <FontAwesomeIcon className="iconsize" icon={faInfo} />
-                        </a>
+                        <Link to={'/about'}><FontAwesomeIcon className="iconsize" icon={faInfo} /></Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="">
-                        <FontAwesomeIcon className="iconsize" icon={faSignOutAlt} />
-                        </a>
+                        <Link to={'/signout'}><FontAwesomeIcon className="iconsize" icon={faSignOutAlt} /></Link>
                     </li>
                 </ul>
             </Col>
