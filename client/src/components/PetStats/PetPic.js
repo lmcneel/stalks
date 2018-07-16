@@ -37,24 +37,23 @@ class PetPic extends Component {
      */
     componentDidMount() {
         API.getUserPic().then(((r) => {
-            console.log(r.data);
+            // get the url from the db
             let url = r.data.urlImage;
             let accessory;
             let type;
+            // if there's no accessory (undefine), assign a false value
             if (r.data.Accessories[0] !== undefined) {
-                console.log(r.data.Accessories[0].equipped);
                 accessory = r.data.Accessories[0].equipped;
             } else {
                 accessory = false;
             }
+            // if there's no type (aka undefined), assign a false value
             if (r.data.Accessories[0] !== undefined) {
                 type = r.data.Accessories[0].name;
             } else {
                 type = false;
             }
-            // let type = r.data.Accessories[0].name;
-            console.log(type, accessory);
-            console.log(url);
+            // compare the image, accessory and type to find the right image
             if (url === './client/src/assets/images/Ostrich1.svg' && accessory === true && type === 'red collar') {
                 this.setState({petPic: ostrichrc});
             } else if (url === './client/src/assets/images/Ostrich1.svg' && accessory === true && type === 'blue collar') {
@@ -88,7 +87,6 @@ class PetPic extends Component {
             } else {
                 this.setState({petPic: ostrich});
             };
-              console.log(r.data.urlImage);
           }));
       };
 
