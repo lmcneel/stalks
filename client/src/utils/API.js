@@ -12,20 +12,30 @@ export default {
         return axios.post(`/api/trading/sell/`, sellData);
     },
     findQuotes: function(data) {
-        console.log(data);
+        // console.log(data);
         return axios.get(`/api/trading/quote/${data.ticker}`);
     },
-    // getPortfolioValue: function() {
-    //     return axios.get('api/petfolio/portfolio');
+
+    userQuotes: function(data) {
+        // console.log(data);
+        return axios.get(`/api/trading/slimquote/${data.ticker}`);
+    },
+    // getInitialCash: function() {
+    //     return axios.get('api/ptfolio/initialcash');
     // },
-    // getBankValue: function() {
-    //     return axios.get('api/petfolio/bank');
-    // },
+<<<<<<< HEAD
     updatePetInfo: function(pet) {
         return axios.post('/api/pets/' + pet.petId, pet);
     },
     getPetInfo: function(petId) {
         return axios.get('/api/pets/' + petId);
+=======
+    getMyPortfolio: function(portfolio) {
+        return axios.get(`/api/trading/myportfolio/${portfolio}`);
+    },
+    getPetInfo: function() {
+        return axios.get('/api/petfolio/pets');
+>>>>>>> 93f713b1f603283e46adf96f25ee0d8ab01638c8
     },
     getTickerText: function() {
         return axios.get('/api/petfolio/ticker');
@@ -34,7 +44,17 @@ export default {
         return axios.get('/api/docs');
     },
     getMyStocks: function(portfolio) {
-        return axios.get(`api/trading/mystocks/${portfolio}`);
+        return axios.get(`/api/trading/mystocks/${portfolio}`);
+    },
+    addNewTicker: function() {
+        return axios.post('/api/petfolio/addTicker');
+    },
+    removeExistingTicker: function() {
+        return axios.delete('/api/petfolio/removeTicker');
+    },
+    getComments: function() {
+        console.log('hit API.js');
+        return axios.get('/api/forum/');
     },
     getPurchasedAccessories: () => {
         return axios.get('/api/pets/useraccessories/12')
