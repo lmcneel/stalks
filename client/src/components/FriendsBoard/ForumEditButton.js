@@ -23,8 +23,8 @@ render() {
 return (
 
 
-    <Button><FontAwesomeIcon
-    icon={faEdit} /></Button>
+    <FontAwesomeIcon
+    icon={faEdit} />
 
 );
 }

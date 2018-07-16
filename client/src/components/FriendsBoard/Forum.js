@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     Card, CardBody,
-    CardTitle, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Label, FormGroup,
+    CardTitle, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Label, FormGroup,Table, 
 } from 'reactstrap';
-import {ForumPostButton, ForumDeleteButton, ForumEditButton} from '../../components/FriendsBoard';
+import { ForumPostButton, ForumDeleteButton, ForumEditButton } from '../../components/FriendsBoard';
 import API from '../../utils/API';
 
 
@@ -16,7 +16,8 @@ export class Forum extends Component {
         this.state = {
             dropdownOpen: false,
             forum: {
-                data: [{subject: '', comments: ''}],
+                data: [{ subject: '', comments: '', }]
+
             },
         };
         this.loadComments = this.loadComments.bind(this);
@@ -29,13 +30,13 @@ export class Forum extends Component {
     // Functions will go here
     loadComments() {
         API.getComments()
-        // console.log("loadComments, Forum.js, res.data" + res.data)
-        .then((res) =>
-        this.setState({
-            forum: res.data,
+            // console.log("loadComments, Forum.js, res.data" + res.data)
+            .then((res) =>
+                this.setState({
+                    forum: res.data,
 
-        }),
-        // console.log(res.data)
+                }),
+            // console.log(res.data)   
         )
             .catch((err) => console.log(err));
     };
@@ -58,7 +59,7 @@ export class Forum extends Component {
 
             <Container fluid id="Forum">
                 <Row>
-                    <Col sm="8" md={{size: 11, offset: 0}}>
+                    <Col sm="8" md={{ size: 11, offset: 0 }}>
                         <Card>
                             <CardTitle>
                                 FORUM
@@ -88,6 +89,7 @@ export class Forum extends Component {
                                     <CardBody>
 
 
+
     <div> {this.state.forum.data.map((data, i) =>{
     return (<div key={`data${i}`}>
             <h2>{data.subject}<ForumEditButton/><ForumDeleteButton/></h2>
@@ -98,10 +100,11 @@ export class Forum extends Component {
     </div>
 
 
+
                                     </CardBody>
                                 </Card>
                             </div>
-                       <ForumPostButton/>
+                            <ForumPostButton />
                         </Card>
                     </Col>
                 </Row>
