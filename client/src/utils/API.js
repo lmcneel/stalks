@@ -53,4 +53,8 @@ export default {
     getUserPic: function() {
         return axios.get('/api/petfolio/userpic');
     },
+    getComments: function() {
+        console.log('hit API.js');
+        return axios.get('/api/forum/');
+    },
 };
