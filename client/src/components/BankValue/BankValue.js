@@ -19,9 +19,9 @@ class BankValue extends Component {
    */
   render() {
     return (
-      <div>
+      <span>
         ${this.state.bankValue}
-      </div>
+      </span>
   );
  }
 };
