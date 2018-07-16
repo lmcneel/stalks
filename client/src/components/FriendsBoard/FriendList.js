@@ -5,18 +5,15 @@ import {faWindowClose} from '@fortawesome/fontawesome-free-solid';
 // import API from '../../utils/API';
 
 // component to list current user friends on render
-export class FriendList extends Component {
+export class FriendList extends React.Component {
     constructor(props) {
-        super(props);         
-        this.state = { nav1: false, nav2: false, nav3: false};
+        console.log(props);
+        super(props);
+        console.log(props);         
+        
     };   
 
-// // Function to toggle this.state.nav1 for displaying FriendList component
-// toggleNav1 = () =>{
-//     this.setState({
-//         nav1: !this.state.nav1
-//     });
-// };
+
     // // Query for user friends will go here!!! from mysql
     // showFriends = () => {
     //     API.whatgoeshere()
@@ -28,8 +25,10 @@ export class FriendList extends Component {
         return (
 
             <Card>
+                <div onClick={this.props.toggleNav1}>           
                 <FontAwesomeIcon
-    icon={faWindowClose} onClick={this.props.toggleNav1} nav1={this.props.false} />
+    icon={faWindowClose}  />
+                </div>              
                 <CardBody>
                     <div>
 

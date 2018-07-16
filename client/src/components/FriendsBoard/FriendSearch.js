@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Card, CardText, CardBody, CardTitle, Col, Row, Button} from 'reactstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faWindowClose} from '@fortawesome/fontawesome-free-solid';
 // import API from '../../utils/API';
 
 // Component to serch for friends by name
@@ -20,6 +22,10 @@ export class FriendSearch extends Component {
         return (
 
             <Card>
+                <div onClick={this.props.toggleNav3}>           
+                <FontAwesomeIcon
+    icon={faWindowClose}  />
+                </div>  
                 <CardBody>
                     <div>
                         <Row>
