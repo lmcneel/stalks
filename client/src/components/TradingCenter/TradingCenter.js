@@ -91,8 +91,6 @@ class TradingCenter extends Component {
         this.dbStocks(this.state.portfolio_id);
         this.myStocksValue();
         this.getBankValue(this.state.portfolio_id);
-        // this.updatePortfolioValue(this.state.portfolio_id, this.state.portfolioValue);
-        // this.updateBankValue(this.state.id);
         this.myWatchlist(this.state.watchedArray);
         this.cashCalculator(this.state.portfolio_id);
         this.checkWatchList();
@@ -343,7 +341,7 @@ removeFromWatchlist() {
                     PV += (stocks[key] * lastPrice[j].price * 100)/100;
                 };
             }
-            console.log(PV);   
+            console.log(PV);
             return this.setState({portfolioValue: PV});
         });
         this.updatePortfolioValue(this.state.portfolio_id, this.state.portfolioValue);
@@ -364,7 +362,6 @@ removeFromWatchlist() {
 */
 updatePortfolioValue() {
     console.log(this.state.portfolioValue);
-    
     API.updateCurrentValue(this.state.portfolio_id, this.state.portfolioValue)
     .catch((err) => console.log(err));
 };
@@ -419,8 +416,9 @@ updatePortfolioValue() {
         let bank = 0;
         return API.getMyPortfolio(portfolio)
             .then((res) => {
-                console.log(res.data);
-                bank = res.data.cash;
+                let data = res.data;
+                bank = ((data[0].cash)/100).toFixed(2);
+                console.log(bank);
                 return this.setState({initialCash: bank});
                })
             .catch((err) => console.log(err));
@@ -533,7 +531,7 @@ updatePortfolioValue() {
  * @param {*} event
  */
     buyShares() {
-        if ((this.state.cashBalance - (this.state.shares * this.state.price)) >= 0) {
+        if ((this.state.initialCash - (this.state.shares * this.state.price)) >= 0) {
             
                 let cashBalanceTemp = this.state.initialCash - (this.state.shares * this.state.price);
                 this.setState({cashBalance: cashBalanceTemp});
@@ -583,6 +581,8 @@ updatePortfolioValue() {
         if (this.state.shares <= this.state.totalShares) {
 
             let cashBalanceTemp = this.state.initialCash - (this.state.shares * this.state.price);
+            console.log(cashBalanceTemp);
+            
             this.setState({cashBalance: cashBalanceTemp});
             this.updateBankValue();
             this.updatePortfolioValue();
@@ -791,15 +791,10 @@ updatePortfolioValue() {
                             </div>
                             <div className='col-sm-6 col-md-6 totalCalc'>
                                 {this.state.transaction === 'buy' ?
-                                (<h4>${(((this.state.cashBalance) -
-                                    (this.state.shares * this.state.price)) / 100).toFixed(2)}</h4>
-                                ) : (<h4>${(((this.state.cashBalance) -
-                                (-(this.state.shares) * this.state.price)) / 100).toFixed(2)}</h4>)}
-
-                                {/* (<h4>${(((this.state.cashBalance * 100) -
-                                   (this.state.shares * this.state.price * 100)) / 100).toFixed(2)}</h4>
-                                 ) : (<h4>${(((this.state.cashBalance * 100) -
-                                 (-(this.state.shares) * this.state.price * 100)) / 100).toFixed(2)}</h4>) */}
+                                (<h4>${(((this.state.initialCash * 100) -
+                                    (this.state.shares * this.state.price * 100)) / 100).toFixed(2)}</h4>
+                                ) : (<h4>${(((this.state.initialCash * 100) -
+                                (-(this.state.shares) * this.state.price * 100)) / 100).toFixed(2)}</h4>)}
                             </div>
                         </div>
                         <div>
