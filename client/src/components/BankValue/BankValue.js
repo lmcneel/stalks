@@ -37,7 +37,6 @@ class BankValue extends Component {
       return API.getMyPortfolio(portfolio)
           .then((res) => {
             console.log(res.data);
-            
               let data = res.data;
               bank = (data[0].cash).toFixed(2);
               // return bank;
