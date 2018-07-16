@@ -8,6 +8,8 @@ import API from '../../utils/API';
 import Promise from 'bluebird';
 import _ from 'underscore';
 import PropTypes from 'prop-types';
+import Joyride from 'react-joyride';
+import '../../assets/react-joyride-compiled.css';
 
 const propTypes = {
         match: PropTypes.shape({
@@ -16,6 +18,14 @@ const propTypes = {
             }).isRequired,
         }).isRequired,
         modalName: PropTypes.string,
+    }
+
+let watched = false; // This watchlist flag
+let eyeWatched = 'faEye'; // class variable for watchlist condition
+
+const checkWatchList = () => {
+    // If in watchlist set [watched] to true
+    return watched = false;
 };
 
 /**
@@ -77,7 +87,13 @@ class TradingCenter extends Component {
             modal: false,
             watched: false,
             eyeWatched: 'faEye',
+            modalIsOpen: true,
+            run: false,
+            showModal: true,
         };
+        this.toggle = this.toggle.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
+        this.resetTour = this.resetTour.bind(this);
     }
 
 /**
@@ -582,47 +598,161 @@ removeFromWatchlist( SQL_ID, Ticker) {
             this.toggle();
         }
     };
-/**
- * @return {*} Will render trade center component
- */
+    /**
+    * handleSelect function
+    * @param {number} index
+    * @param {number} last
+    */
+    handleSelect(index, last) {
+        if (this.joyride.getProgress().index === 2) {
+            setTimeout(() => {
+                this.joyride.next();
+            }, 1);
+        }
+    }
+    /**
+     * resetTour function
+     */
+    resetTour() {
+        console.dir(this);
+        this.joyride.reset(true);
+        this.setState({run: true});
+    }
     render() {
         return (
-            <div className='trading'>
+            <div>
+                <Joyride
+                    ref={(c) => (this.joyride = c)}
+                    steps={[
+                        {
+                            title: 'Bank Value',
+                            text: 'This is the amount of liquid assets, money, that you can use to invest in stocks or spend on your pet for fun items in the shop. You can increase your liquid assets by selling your stocks as well as login bonuses.',
+                            selector: '.bankValue',
+                        },
+                        {
+                            title: 'Petfolio Value',
+                            text: 'This is the sum of all stocks you own multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets.',
+                            selector: '.portfolioValue',
+                        },
+                        {
+                            title: 'Stock Overview',
+                            text: 'This is the overview of a stocks stats. There is plenty of useful information here!',
+                            selector: '.stockStats',
+                        },
+                        {
+                            title: 'Stock Name',
+                            text: 'This is the ticker symbol or stock symbol of this stock. It\'s an abbreviation used to uniquely identify publicly traded shares of a particular stock on a particular stock market. A stock symbol may consist of letters, numbers or a combination of both.',
+                            selector: '.stockName',
+                        },
+                        {
+                            title: 'Stock Price',
+                            text: 'The is the current price of a single stock from this company. This will update, so keep an eye on it for changes!',
+                            selector: '.stockPrice',
+                        },
+                        {
+                            title: 'Percent Change',
+                            text: 'This is is percentage that shows negative or positive preformance, compared to the price at the opening of the trading day. Green is positive, red is negative.',
+                            selector: '.stockChange',
+                        },
+                        {
+                            title: 'Add to Your Watchlist',
+                            text: 'Using the eye icon you can add stocks you own or just ones that you are interested in to your watchlist. You can view Watchlist in the Stock Chart.',
+                            selector: '.stockWatch',
+                        },
+                        {
+                            title: 'View Your Watchlist',
+                            text: 'The stocks added to your Watchlist scroll here so you can keep an eye on the price per share and the percentage change. You can use this tool to decide when to buy new stocks or sell the ones you have.',
+                            selector: '.stockticker',
+                        },
+                        {
+                            title: 'Stock Chart',
+                            text: 'This chart tracks the preformance of this stock over the last 30 days. You can easily see how a stock is doing with this helpful chart!',
+                            selector: '.chartSection',
+                        },
+                        {
+                            title: 'Shares Owned',
+                            text: 'This number is the amount of shares you currently own of this stock.',
+                            selector: '.sharesOwned',
+                        },
+                        {
+                            title: 'ROI',
+                            text: 'ROI, Return on Investment, is the ratio between the net profit and cost of investment resulting from an investment of a stock. This is a helpful metric to determine if your investment in a stock is performing well. The higher this number, the better that stock is doing. You can also use this simple metric to compare different stocks in your portfolio.',
+                            selector: '.roiRow',
+                        },
+                        {
+                            title: 'Price and Date Purchased',
+                            text: 'This shows the price of the stock on date you purchased it. This is a good inicator of how your investment has done since you initially purchased it.',
+                            selector: '.priceAndDateRow',
+                        },
+                        {
+                            title: 'Making a Transaction',
+                            text: 'This form allows you to buy and sell stocks.',
+                            selector: '.buySell',
+                        },
+                        {
+                            title: 'Buying and Selling Stocks',
+                            text: 'Here you select whether you want to buy or sell your stock.',
+                            selector: '.tradeInputs',
+                        },
+                        {
+                            title: 'Number of Shares',
+                            text: 'Here you input how many shares you would like to buy or sell.',
+                            selector: '.numOfShares',
+                        },
+                        {
+                            title: 'Subtotal and New Bank Value',
+                            text: 'The suntotal shows informs you how much money you will make or spend with this transaction. The new bank value informs you what your bank value will be after the transaction is complete.',
+                            selector: '.bottomTwoRows',
+                        },
+                    ]}
+                    run={this.state.run} // or some other boolean for when you want to start it
+                    type={'continuous'}
+                    showOverlay={true}
+                    allowClicksThruHole={true}
+                    autoStart={this.state.run}
+                    disableOverlay={true}
+                    showSkipButton={true}
+                    callback={this.handleJoyrideCallback}
+                />
+                <Button type='button' onClick={this.resetTour}>Take a Tour</Button>
                 <div className='stockStats container'>
                     <h1>Stock Stats</h1>
-
                     <div className='row stockTickerBar'>
                         <div className='col-sm-6 col-md-6'>
                             <div className='row'>
-                                <div className='col-sm-6 col-md-6'>
+                                <div className='col-sm-6 col-md-6 stockName'>
                                     <h1>{this.state.ticker}</h1>
                                 </div>
-                                <div className='col-sm-3'>
-                                    <h2>PRICE</h2>
-                                </div>
-                                <div className='col-sm-3'>
-                                    <h2>${this.state.price}</h2>
+                                <div className="stockPrice">
+                                    <div className='col-sm-3'>
+                                        <h2>PRICE</h2>
+                                    </div>
+                                    <div className='col-sm-3'>
+                                        <h2>${this.state.price}</h2>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div className='col-sm-6 col-md-6'>
                             <div className='row'>
-                                <div className='col-sm-4 changeValue'>
-                                    <h2>CHANGE</h2>
-                                </div>
-                                <div className='col-sm-4'>
-                                    {this.state.change >= 0 ? (
-                                        <div id='changeValuePositive'>
-                                            <h2>+{this.state.change.toFixed(2)}%</h2>
-                                        </div>
-                                    ) : (
-                                            <div id='changeValueNegative'>
-                                                <h2>{this.state.change.toFixed(2)}%</h2>
+                                <div className='stockChange'>
+                                    <div className='col-sm-4 changeValue'>
+                                        <h2>CHANGE</h2>
+                                    </div>
+                                    {/* <div className='col-sm-4'>
+                                        {this.state.change >= 0 ? (
+                                            <div id='changeValuePositive'>
+                                                <h2>+{this.state.change.toFixed(2)}%</h2>
                                             </div>
-                                        )
-                                    }
+                                        ) : (
+                                                <div id='changeValueNegative'>
+                                                    <h2>{this.state.change.toFixed(2)}%</h2>
+                                                </div>
+                                            )
+                                        }
+                                    </div> */}
                                 </div>
-                                <div className='col-sm-2'>
+                                <div className='col-sm-2 stockWatch'>
                                     <FontAwesomeIcon
                                         className={(this.state.watched ? `faEyeWatched`:`faEye`)}
                                         onClick={this.state.watched ?
@@ -641,7 +771,7 @@ removeFromWatchlist( SQL_ID, Ticker) {
                             </div>
                         </div>
                         <div className='col-sm-12 col-md-4 dataSection'>
-                            <div className='row'>
+                            <div className='row sharesOwned'>
                                 <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>SHARES OWNED</h4>
                                 </div>
@@ -650,7 +780,7 @@ removeFromWatchlist( SQL_ID, Ticker) {
                                     {/* Placeholder */}
                                 </div>
                             </div>
-                            <div className='row'>
+                            <div className='row roiRow'>
                                 <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>ROI</h4>
                                 </div>
@@ -659,20 +789,23 @@ removeFromWatchlist( SQL_ID, Ticker) {
                                     {/* Placeholder */}
                                 </div>
                             </div>
-                            <div className='row'>
-                                <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>PRICE PURCHASED</h4>
+
+                            <div className="priceAndDateRow">
+                                <div className='row'>
+                                    <div className='col-sm-6 col-md-6 stockData'>
+                                        <h4>PRICE PURCHASED</h4>
+                                    </div>
+                                    <div className='col-sm-6 col-md-6 stockData'>
+                                        <h4>${this.state.cost.toFixed(2)}</h4>
+                                    </div>
                                 </div>
-                                <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>${this.state.cost}</h4>
-                                </div>
-                            </div>
-                            <div className='row'>
-                                <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>DATE PURCHASED</h4>
-                                </div>
-                                <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>{this.state.datePurchased}</h4>
+                                <div className='row'>
+                                    <div className='col-sm-6 col-md-6 stockData'>
+                                        <h4>DATE PURCHASED</h4>
+                                    </div>
+                                    <div className='col-sm-6 col-md-6 stockData'>
+                                        <h4>{this.state.datePurchased}</h4>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -723,7 +856,7 @@ removeFromWatchlist( SQL_ID, Ticker) {
                                     </div>
                                 </Label>
                             </div>
-                            <div className='col-sm-12 col-md-6'>
+                            <div className='col-sm-12 col-md-6 numOfShares'>
                                 <Label
                                     for='numberOfShares'>
                                     <h2>Number of Shares</h2>
@@ -739,24 +872,26 @@ removeFromWatchlist( SQL_ID, Ticker) {
                                 />
                             </div>
                         </div>
-                        <div className='row'>
-                            <div className='col-sm-6 col-md-6 totalCalcLabel'>
-                                <h4>SUBTOTAL:</h4>
+                        <div className="bottomTwoRows">
+                            <div className='row'>
+                                <div className='col-sm-6 col-md-6 totalCalcLabel'>
+                                    <h4>SUBTOTAL:</h4>
+                                </div>
+                                <div className='col-sm-6 col-md-6 totalCalc'>
+                                    <h4>${this.state.shares * this.state.price}</h4>
+                                </div>
                             </div>
-                            <div className='col-sm-6 col-md-6 totalCalc'>
-                                <h4>${(this.state.shares * this.state.price).toFixed(2)}</h4>
-                            </div>
-                        </div>
-                        <div className='row totalCalc'>
-                            <div className='col-sm-6 col-md-6 totalCalcLabel'>
-                                <h4>New Bank Value:</h4>
-                            </div>
-                            <div className='col-sm-6 col-md-6 totalCalc'>
-                                {this.state.transaction === 'buy' ?
-                                (<h4>${(((this.state.cashBalance * 100) -
-                                    (this.state.shares * this.state.price * 100)) / 100).toFixed(2)}</h4>
-                                ) : (<h4>${(((this.state.cashBalance * 100) -
-                                (-(this.state.shares) * this.state.price * 100)) / 100).toFixed(2)}</h4>)}
+                            <div className='row totalCalc'>
+                                <div className='col-sm-6 col-md-6 totalCalcLabel'>
+                                    <h4>New Bank Value:</h4>
+                                </div>
+                                <div className='col-sm-6 col-md-6 totalCalc'>
+                                    {this.state.transaction === 'buy' ?
+                                    (<h4>${(this.state.cashBalance -
+                                        (this.state.shares * this.state.price)).toFixed(2)}</h4>
+                                    ) : (<h4>${((this.state.cashBalance) -
+                                    (-(this.state.shares) * this.state.price)).toFixed(2)}</h4>)}
+                                </div>
                             </div>
                         </div>
                         <div>
