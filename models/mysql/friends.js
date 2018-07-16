@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allownull: false,
         },
-        valuation: {
+        score: {
             type: DataTypes.INTEGER,
             allownull: false,
         },
@@ -24,26 +24,5 @@ module.exports = function(sequelize, DataTypes) {
 
     return Friends;
 
-// const usersModel = require('./user');
 
-// module.exports = function(sequelize, Sequelize){
-//     const Friendship = db.define('friendship', {
-//         user: {
-//             type: Sequelize.INTEGER,
-//             allowNull: false,
-//             references: {
-//                 model: usersModel,
-//                 key: 'user_id'
-//             }
-//         },
-//         friend: {
-//             type: Sequelize.INTEGER,
-//             allowNull: false,
-//             references: {
-//                 model: usersModel,
-//                 key: 'user_id'
-//             }
-//         }
-//     });
-// return Friendship;
 };
