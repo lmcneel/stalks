@@ -532,13 +532,10 @@ updatePortfolioValue() {
  */
     buyShares() {
         if ((this.state.initialCash - (this.state.shares * this.state.price)) >= 0) {
-            
                 let cashBalanceTemp = this.state.initialCash - (this.state.shares * this.state.price);
                 this.setState({cashBalance: cashBalanceTemp});
                 this.updateBankValue();
                 this.updatePortfolioValue();
-
-                
             API.findQuotes(
                 {ticker: this.state.ticker}
             ).then((res) => {
@@ -579,10 +576,8 @@ updatePortfolioValue() {
  */
     sellShares() {
         if (this.state.shares <= this.state.totalShares) {
-
             let cashBalanceTemp = this.state.initialCash - (this.state.shares * this.state.price);
             console.log(cashBalanceTemp);
-            
             this.setState({cashBalance: cashBalanceTemp});
             this.updateBankValue();
             this.updatePortfolioValue();
