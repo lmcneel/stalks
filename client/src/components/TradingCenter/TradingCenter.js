@@ -643,9 +643,10 @@ updatePortfolioValue() {
         this.joyride.reset(true);
         this.setState({run: true});
     }
-/**
- * @return {*} returns the component
-*/
+    /**
+     * Render function
+     * @return {JSX}
+     */
     render() {
         return (
             <div>
@@ -817,7 +818,10 @@ updatePortfolioValue() {
                                     {/* Placeholder */}
                                 </div>
                             </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> ef872be2762115c45b8bd1e7140ac1950afbae24
                             <div className="priceAndDateRow">
                                 <div className='row'>
                                     <div className='col-sm-6 col-md-6 stockData'>
@@ -905,7 +909,7 @@ updatePortfolioValue() {
                                     <h4>SUBTOTAL:</h4>
                                 </div>
                                 <div className='col-sm-6 col-md-6 totalCalc'>
-                                    <h4>${this.state.shares * this.state.price}</h4>
+                                    <h4>${(this.state.shares * this.state.price).toFixed(2)}</h4>
                                 </div>
                             </div>
                             <div className='row totalCalc'>
@@ -914,10 +918,10 @@ updatePortfolioValue() {
                                 </div>
                                 <div className='col-sm-6 col-md-6 totalCalc'>
                                     {this.state.transaction === 'buy' ?
-                                    (<h4>${(this.state.cashBalance -
-                                        (this.state.shares * this.state.price)).toFixed(2)}</h4>
-                                    ) : (<h4>${((this.state.cashBalance) -
-                                    (-(this.state.shares) * this.state.price)).toFixed(2)}</h4>)}
+                                    (<h4>${(((this.state.initialCash * 100) -
+                                        (this.state.shares * this.state.price * 100)) / 100).toFixed(2)}</h4>
+                                    ) : (<h4>${(((this.state.initialCash * 100) -
+                                    (-(this.state.shares) * this.state.price * 100)) / 100).toFixed(2)}</h4>)}
                                 </div>
                             </div>
                         </div>

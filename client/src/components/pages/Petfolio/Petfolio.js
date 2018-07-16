@@ -242,14 +242,9 @@ class Petfolio extends Component {
               </Row>
             </Col>
           </Row>
-<<<<<<< HEAD
-          {this.state.Watchlist.map(List => <OwnedStock ticker={List} />)}
-    </Container>
-=======
 
         </Container>
       </div>
->>>>>>> 59f0fb57f1c32c30c69320b5a630fee6865e8753
     );
   }
 };
