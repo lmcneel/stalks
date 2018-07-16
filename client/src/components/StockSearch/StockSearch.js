@@ -7,6 +7,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faEye, faChevronCircleDown} from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
 import ListStock from '../ListStock';
+// import OwnedStock from '../OwnedStock';
 
 
 /**
@@ -421,7 +422,7 @@ class StockSearch extends Component {
                             </div>
                         </div>
                         <this.ListComponent listFlag={this.state.showList} />
-                        {/* {this.state.Watchlist.map(List => <OwnedStock ticker={List} />)} */}
+                       {/* <OwnedStock ticker={this.state.ticker}/> */}
                     </div>
                 </div>
             </div >
