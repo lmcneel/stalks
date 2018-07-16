@@ -34,7 +34,7 @@ class StockSearch extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.charting = this.charting.bind(this);
         this.state = {
-            ticker: 'SLB',
+            ticker: 'FB',
             price: 0,
             change: 0,
             value: '',
