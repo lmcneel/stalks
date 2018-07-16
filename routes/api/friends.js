@@ -6,23 +6,37 @@ const router = require('express').Router();
 const User = require('../../models/mysql/user');
 const Friends = require('../../models/mysql/friends');
 
-// The url to get this route is /api/friends/view/:id
-router.get('/user/1/friends/2', (req, res) => {
+// The url to get this route is /api/friends/view
+router.get('/view', (req, res) => {
     Friends.belongsToMany({
-        // where: {user: id},
-        // include: [{
-        //     model: User,
-        //     as: 'info',
-        // }],
+        where: {user: id},
+        include: [{
+            model: User,
+            as: 'info',
+        }],
     });
 });
 
-router.post('/create/friend', (req, res) => {
-
+// The url to get this route is /api/friends/add
+router.post('/add', (req, res) => {
+    Friends.belongsTo({
+        where: {user: id},
+        include: [{
+            model: User,
+            as: 'info',
+        }],
+    });
 });
 
-router.delete('/delete/friend ', (req, res) => {
-
+// The url to get this route is /api/friends/remove
+router.delete('/remove ', (req, res) => {
+    Friends.belongsTo({
+        where: {user: id},
+        include: [{
+            model: User,
+            as: 'info',
+        }],
+    });
 });
 
 
