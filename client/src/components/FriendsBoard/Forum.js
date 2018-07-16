@@ -17,6 +17,7 @@ export class Forum extends Component {
             dropdownOpen: false,
             forum: {
                 data: [{ subject: '', comments: '', }]
+
             },
         };
         this.loadComments = this.loadComments.bind(this);
@@ -24,7 +25,6 @@ export class Forum extends Component {
 
     componentDidMount() {
         this.loadComments();
-
     };
 
     // Functions will go here
@@ -87,20 +87,17 @@ export class Forum extends Component {
                             <div>
                                 <Card>
                                     <CardBody>
-                                       
 
-                                                                                                                            {this.state.forum.data.map((data, i) => {
-                                            return (<Card key={`data${i}`}>
-                                            <div ClassName= 'EditDelete'><ForumDeleteButton/><ForumEditButton/></div>
-                                            <CardBody>
-                                                <th>{data.subject}   </th>
-                                                <tr>{data.comments}</tr>
-                                                <br/>
-                                            </CardBody>    
-                                            </Card>);
-                                        })}
-                                      
-                                  
+
+
+    <div> {this.state.forum.data.map((data, i) =>{
+    return (<div key={`data${i}`}>
+            <h2>{data.subject}<ForumEditButton/><ForumDeleteButton/></h2>
+            <p>{data.comments}<ForumEditButton/><ForumDeleteButton/></p>
+        </div>);
+})}
+
+    </div>
 
 
 

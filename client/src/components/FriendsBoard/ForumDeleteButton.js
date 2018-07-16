@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Input, Label, FormGroup,Button,
+    Input, Label, FormGroup, Button,
 } from 'reactstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faWindowClose} from '@fortawesome/fontawesome-free-solid';
@@ -21,11 +21,10 @@ componentDidMount() {
 
 render() {
 return (
-
     
      <FontAwesomeIcon
     icon={faWindowClose} />
 
-)
+);
 }
 };

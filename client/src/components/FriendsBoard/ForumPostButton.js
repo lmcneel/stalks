@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Input, Label, FormGroup,Button,
+    Input, Label, FormGroup, Button,
 } from 'reactstrap';
 import API from '../../utils/API';
 
@@ -21,7 +21,6 @@ render() {
 return (
 
 
-
 <div>
      <FormGroup>
          <Label for="exampleText">Text Area</Label>
@@ -30,7 +29,7 @@ return (
      <Button type= 'submit'>POST</Button>
  </div>
 
-)
+);
 }
 };
 

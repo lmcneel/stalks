@@ -40,6 +40,7 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "i": "^0.3.6",
+    "koa-restql": "^1.0.8",
     "mongoose": "^5.2.1",
     "mongoose-seed": "^0.5.0",
     "morgan": "^1.9.0",

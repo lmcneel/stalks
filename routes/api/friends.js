@@ -4,16 +4,16 @@ const router = require('express').Router();
 
 // Models
 const User = require('../../models/mysql/user');
-const Friendship = require('../../models/mysql/friends');
+const Friends = require('../../models/mysql/friends');
 
 // The url to get this route is /api/friends/view/:id
-router.get('/view', (req, res) => {
-    Friendship.findAll({
-        where: {user: id},
-        include: [{
-            model: User,
-            as: 'info',
-        }],
+router.get('/user/1/friends/2', (req, res) => {
+    Friends.belongsToMany({
+        // where: {user: id},
+        // include: [{
+        //     model: User,
+        //     as: 'info',
+        // }],
     });
 });
 
