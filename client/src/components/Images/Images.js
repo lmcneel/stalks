@@ -1,32 +1,20 @@
 import React from 'react';
 // import './Images.css';
 import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  Card, CardImg, CardBody,
+  CardTitle, CardSubtitle, Button,
 } from 'reactstrap';
 // import LinkButton from '/components/LinkButton'
 
-// const Images = props => (
-//   <div className="card" >
-//     <div className="img-container">
-//       <img alt={props.name} src={props.img} />
-//       <p name={props.name}
-//       />
-//       <p title={props.title}
-//       />
-//       <p portfolio={props.portfolio}
-//       />
 
-//     </div>
-//   </div>
-// );
-
-// export default Images;
-
-// import React from 'react';
-
-
-const Images = (props) => {
+const Images =  React.createClass({
+  proptypes:{
+    name: PropTypes.string,
+    title: PropTypes.string,
+    img: PropTypes.string,
+    portfolio: PropTypes.string,
+  },
+render(){
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 pb-4 ">
       <div className="bg-light border rounded">
@@ -34,12 +22,12 @@ const Images = (props) => {
           <Card >
             <CardImg onClick={(event) => {
               console.log('Working');
-            }} src={props.img} alt={props.name} />
+            }} src={this.props.img} alt={this.props.name} />
             <CardBody>
-              <CardTitle>{props.name}</CardTitle>
-              <CardSubtitle>{props.title}</CardSubtitle>
+              <CardTitle>{this.props.name}</CardTitle>
+              <CardSubtitle>{this.props.title}</CardSubtitle>
               <Button>
-                <a href={props.portfolio} target="_blank">Portfolio Link</a>
+                <a href={this.props.portfolio} target="_blank">Portfolio Link</a>
               </Button>
             </CardBody>
           </Card>
@@ -47,6 +35,8 @@ const Images = (props) => {
       </div>
     </div>
         );
-      };
+        }
+    });
+);
       export default Images;
 
