@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 const passport = require('../../config/passport.js');
 
 router.post('/signup', function(req, res, next) {
@@ -10,11 +11,7 @@ router.post('/signup', function(req, res, next) {
             console.log(user);
             // Creating data for put into session
             req.session.user = user;
-
-            console.log(req.session.user);
-            console.log(info);
-            console.log('Finished');
-            res.redirect('/home');
+            res.json(req.session.user);
         }
     })(req, res, next);
 });
@@ -25,9 +22,7 @@ router.post('/login', function(req, res, next) {
             res.json(err);
         } else {
             req.session.user = user;
-            console.log(info);
-            console.log('Finished');
-            res.redirect('/home');
+            res.json(req.session.user);
         }
     })(req, res, next);
 });

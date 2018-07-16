@@ -1,6 +1,5 @@
 const uniqid = require('uniqid');
 const db = require('../models/mysql');
-const passport = require('../config/passport');
 // const User = db.User;
 // Nodemailer config
 const nodemailer = require('nodemailer');
@@ -27,37 +26,48 @@ const transporter = nodemailer.createTransport(transport);
    * This is a function
    * @return {string} 6 character code
    */
-function generateCode() {
-    const text = '';
-    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+// function generateCode() {
+//     const text = '';
+//     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-    for (let i = 0; i < 6; i++) {
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    };
+//     for (let i = 0; i < 6; i++) {
+//         text += possible.charAt(Math.floor(Math.random() * possible.length));
+//     };
 
-    return text;
-}
+//     return text;
+// }
 module.exports = {
+    // In progress
     sendEmailForUpdate: function(req, res) {
-        console.log(req.body);
-        const {userEmail, updateType} = req.body;
-        const codeToInput = generateCode();
-        db.User.findOne({
-            where: {
-                email: userEmail,
-            },
-        }).then(function(dbUser) {
-            res.json('Send Email Update');
-        });
+        // console.log(req.body);
+        // const {userEmail, updateType} = req.body;
+        // const codeToInput = generateCode();
+        // db.User.findOne({
+        //     where: {
+        //         email: userEmail,
+        //     },
+        //     include: {
+        //        model: db.UserValidation,
+        //        as: 'Validations',
+        //        where: {
+        //            resolved: false,
+        //        },
+        //     },
+        // }).then(function(dbUser) {
+        //     // Now that I have the users information in the database
+        //     res.json('Send Email Update');
+        // });
     },
     testCodeForUpdate: function(req, res) {
         console.log(req.body);
         res.json('Send Email Update');
     },
+    // Complete but may update to condense (I dont think i need all of it anymore)
     sendEmailForLink: function(req, res) {
         console.log('hello');
         console.log(req.body);
         const EmailtoVerify = req.body.emailToVerify;
+        const host = req.body.host;
         if (req.body.current_email) {
             const currentEmail = req.body.current_email;
             db.User.findOne({
@@ -69,7 +79,7 @@ module.exports = {
                 console.log(dbUser);
                 console.log(dbUser.id);
                 const usersID = dbUser.id;
-                const verificationType = 'email change';
+                const verificationType = 'email';
                 const uniqueValidationCode = uniqid();
 
                 db.UserValidation.create({
@@ -79,9 +89,7 @@ module.exports = {
                     emailToValidate: EmailtoVerify})
                     .then(function(validation) {
                         console.log(validation.id);
-                        const validationID = validation.id;
-                        const host = req.get('host');
-                        const link = `http://${host}/userProfile/account/verify?userId=${dbUser.id}&validatorId=${validationID}&type=${verificationType}&code=${uniqueValidationCode}`;
+                        const link = `http://${host}/settings/account/verify?userId=${dbUser.id}&validatorId=${validation.id}&type=${validation.validationType}&code=${validation.validationCode}`;
                         const verificationEmail = {
                             from: creds.USER,
                             to: EmailtoVerify,
@@ -142,6 +150,7 @@ module.exports = {
             res.json('Send Email Update');
         };
     },
+    // Complete but may update to try and integrate passport for this
     confirmViaLink: function(req, res) {
         console.log(req.body);
         /**
@@ -170,27 +179,44 @@ module.exports = {
             const {emailToValidate} = dbvalidation;
             db.User.update({
                 email: emailToValidate,
+                emailVerified: true,
             }, {
                 where: {
                     id: userID,
                 },
             }).then(function(dbUser) {
                 if (dbUser.email === emailToValidate) {
-                    res.json({
-                        msg: `Email Successfully changed to ${emailToValidate}`, 
+                    db.User.findOne({
+                        where: {
+                            id: db.User.id,
+                        },
+                        include: {
+                            model: Pet,
+                            as: 'Pet',
+                            where: {
+                              UserId: user.id,
+                            },
+                          },
+                    })
+                    .then(function(user) {
+                        req.session.user = user;
+                        res.json('Email Confirmation Complete');
+                    })
+                    .catch(function(err) {
+                        res.json(err);
                     });
                 } else {
-                    res.json({
-                        msg: `There has been an error changing your email. Please contact support`,
-                    });
+                    res.json(`There has been an error changing your email. Please contact support`);
                 };
             });
         });
     },
+    // In Progress
     sendMessageFromUser: function(req, res) {
         console.log(req.body);
         res.json('Send Email Update');
     },
+    // In progress
     deleteAccount: function(req, res) {
         console.log(req.body);
         res.json('Send Email Update');

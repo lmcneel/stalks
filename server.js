@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
 const seedDB = require('./seeds');
-
+require('dotenv').config();
 const db = require('./models/mysql');
 
 // Configure SequilizeSessions
