@@ -57,7 +57,7 @@ class ItemShop extends Component {
                         <div style={{'display': 'contents'}}>
                             {this.state.results.map((result, index) => {
                                 return (
-                                  <Card name={result.itemName}  buyingItem={() => this.buyItem(result.id)} image={result.imageURL} buttonName={'buy'} style={{'margin':'50px'}}  />
+                                  <Card name={result.itemName}  buyingItem={() => this.buyItem(index)} image={result.imageURL} buttonName={'buy'} style={{'margin':'50px'}}  />
                                  
                                 );
                             })}
