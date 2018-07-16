@@ -20,7 +20,7 @@ class PetName extends Component {
      */
     componentDidMount() {
         API.getUserPic().then(((r) => {
-            if (r.data.petName !== null) {
+            if (r.data !== null) {
                 let stockpetname = r.data.petName;
                 this.setState({petName: stockpetname});
             }
