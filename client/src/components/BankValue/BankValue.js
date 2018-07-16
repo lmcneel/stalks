@@ -16,7 +16,9 @@ class BankValue extends Component {
     this.bankValue = this.bankValue.bind(this);
     this.state = {
       bankValue: 3500,
-      portfolio_id: '5b4bc46134b6a866d293bcb5',
+
+      portfolio_id: '5b4cdce882dae09a12f3fb79',
+
     };
   }
     /**
@@ -39,7 +41,9 @@ class BankValue extends Component {
           .then((res) => {
             console.log(res.data);
               let data = res.data;
+
               bank = (data[0].cash).toFixed(2);
+
               return this.setState({bankValue: bank});
           })
           .catch((err) => console.log(err));
