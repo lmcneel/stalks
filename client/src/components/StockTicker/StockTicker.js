@@ -14,7 +14,7 @@ class StockTicker extends Component {
       super(props);
       this.state = {
         tickerText: 'Watchlist...StockA 2.35...StockB 4.15...StockC 1.28',
-      tickerForApi: [],
+        tickerForApi: ['AAPL', 'AXP', 'CSCO'],
       };
     }
     /**
@@ -23,19 +23,27 @@ class StockTicker extends Component {
       componentDidMount() {
         API.getTickerText().then(((r) => {
             if (r.data.length !== 0) {
-              let ticker = 'Watchlist...';
-              let tempTicker = [];
+              let ticker = 'Watchlist ... ';
+              let tickerForApi = [];
+              // lopp through user's data and pull out watched stock symbols to put into arr for next api call
               for (let i=0; i<r.data.length; i++) {
-                // API.findQuotes(r.data[i]).then(((r2) => {
-                //   console.log(r2);
-                // }));
-                ticker += r.data[i].uniqueStockSymbol + '...';
-                tempTicker.push((r.data[i]).uniqueStockSymbol);
+                tickerForApi.push((r.data[i]).uniqueStockSymbol);
               }
-              this.setState({tickerText: ticker});
-              this.setState({tickerForApi: tempTicker});
-              // console.log(r.data);
-              // console.log(tempTicker);
+              this.setState({tickerForApi: tickerForApi});
+
+              // if the user has watched stocks, get their prices
+              if (tickerForApi !== []) {
+                API.getWatchPrices(tickerForApi)
+                  .then((r) => {
+                    // loop through the nested obj and pull out stock symbol and price
+                    for (let p in r.data) {
+                      if (p !== undefined) {
+                        ticker += p + ' ' + r.data[p].price + ' ... ';
+                      }
+                    }
+                    this.setState({tickerText: ticker});
+                  });
+              };
             };
           }));
       };

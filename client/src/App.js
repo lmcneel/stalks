@@ -65,6 +65,7 @@ class App extends Component {
                 <Inventory />
                 <Content>
                 <Switch>
+                      <Route exact path="/petfolio" component={Petfolio} />
                 <Route exact path="/petfolio" component={Petfolio} />
                       <Route exact path='/splash' component={Splash} />
                       {/* <Route exact path='/petcenter' component={PetCenter} />
@@ -76,6 +77,9 @@ class App extends Component {
                       {/* <Route exact path='/logout' component={Logout} /> */}
                       <Route exact path='/signup' component={SignUp} />
                       {/* <Route exact path='/achievements' component={Achievements} /> */}
+                      <Route exact path='/trading' component={TradingCenter} />
+                      <Route exact path='/trading/:ticker' component={TradingCenter} />
+                      <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />
                       <Route exact path='/viewstocks' component={ViewStocks} />
