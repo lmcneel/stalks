@@ -3,7 +3,7 @@ import {
     Input, Label, FormGroup,Button,
 } from 'reactstrap';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faMinus} from '@fortawesome/fontawesome-free-solid';
+import {faWindowClose} from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
 
 
@@ -23,8 +23,8 @@ render() {
 return (
 
     
-    <Button> <FontAwesomeIcon
-    icon={faMinus} /></Button>
+     <FontAwesomeIcon
+    icon={faWindowClose} />
 
 )
 }
