@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import API from '../../utils/API';
+
 /**
  * @class PetfolioValue
  */
@@ -41,7 +43,6 @@ class PetfolioValue extends Component {
             return this.setState({petfolioValue: PV});
         })
         .catch((err) => console.log(err));
-
     };
 
   /**

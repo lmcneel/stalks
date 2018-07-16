@@ -18,15 +18,7 @@ const propTypes = {
             }).isRequired,
         }).isRequired,
         modalName: PropTypes.string,
-    }
-
-let watched = false; // This watchlist flag
-let eyeWatched = 'faEye'; // class variable for watchlist condition
-
-const checkWatchList = () => {
-    // If in watchlist set [watched] to true
-    return watched = false;
-};
+    };
 
 /**
  * This component generates a stock buy or sell transaction component
@@ -651,6 +643,9 @@ updatePortfolioValue() {
         this.joyride.reset(true);
         this.setState({run: true});
     }
+/**
+ * @return {*} returns the component
+*/
     render() {
         return (
             <div>
@@ -822,19 +817,6 @@ updatePortfolioValue() {
                                     {/* Placeholder */}
                                 </div>
                             </div>
-<<<<<<< HEAD
-                            <div className='row'>
-                                <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>PRICE PURCHASED</h4>
-                                </div>
-                                <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>${this.state.cost}</h4>
-                                </div>
-                            </div>
-                            <div className='row'>
-                                <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>DATE PURCHASED</h4>
-=======
 
                             <div className="priceAndDateRow">
                                 <div className='row'>
@@ -844,7 +826,6 @@ updatePortfolioValue() {
                                     <div className='col-sm-6 col-md-6 stockData'>
                                         <h4>${this.state.cost.toFixed(2)}</h4>
                                     </div>
->>>>>>> 59f0fb57f1c32c30c69320b5a630fee6865e8753
                                 </div>
                                 <div className='row'>
                                     <div className='col-sm-6 col-md-6 stockData'>
@@ -915,30 +896,9 @@ updatePortfolioValue() {
                                     value={this.state.shares}
                                     onChange={this.handleInputChange}
                                     id='numberOfShares'
-
                                 />
                             </div>
                         </div>
-<<<<<<< HEAD
-                        <div className='row'>
-                            <div className='col-sm-6 col-md-6 totalCalcLabel'>
-                                <h4>SUBTOTAL:</h4>
-                            </div>
-                            <div className='col-sm-6 col-md-6 totalCalc'>
-                                <h4>${(this.state.shares * this.state.price).toFixed(2)}</h4>
-                            </div>
-                        </div>
-                        <div className='row totalCalc'>
-                            <div className='col-sm-6 col-md-6 totalCalcLabel'>
-                                <h4>New Bank Value:</h4>
-                            </div>
-                            <div className='col-sm-6 col-md-6 totalCalc'>
-                                {this.state.transaction === 'buy' ?
-                                (<h4>${(((this.state.initialCash * 100) -
-                                    (this.state.shares * this.state.price * 100)) / 100).toFixed(2)}</h4>
-                                ) : (<h4>${(((this.state.initialCash * 100) -
-                                (-(this.state.shares) * this.state.price * 100)) / 100).toFixed(2)}</h4>)}
-=======
                         <div className="bottomTwoRows">
                             <div className='row'>
                                 <div className='col-sm-6 col-md-6 totalCalcLabel'>
@@ -959,7 +919,6 @@ updatePortfolioValue() {
                                     ) : (<h4>${((this.state.cashBalance) -
                                     (-(this.state.shares) * this.state.price)).toFixed(2)}</h4>)}
                                 </div>
->>>>>>> 59f0fb57f1c32c30c69320b5a630fee6865e8753
                             </div>
                         </div>
                         <div>
