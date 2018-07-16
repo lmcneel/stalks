@@ -13,8 +13,8 @@ import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 import Inventory from './components/userTabs';
 import Trading from './components/pages/Trading';
-import ItemsShopPage from './components/pages/PetCenter/ItemShopPage'
-import PurchasedItemsPage from './components/pages/PetCenter/PurchasedItemsPage'
+import ItemsShopPage from './components/pages/PetCenter/ItemShopPage';
+import PurchasedItemsPage from './components/pages/PetCenter/PurchasedItemsPage';
 /**
  * Class App
  */

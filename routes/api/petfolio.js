@@ -11,6 +11,9 @@ const petfolioController = require('../../controllers/petfolioController');
 // router.route('petfolio/pets')
 //   .get(petfolioController.getPetInfo);
 
+router.route('/pets/:id')
+.get(petfolioController.getPetInfo);
+
 router.route('/ticker')
 .get(petfolioController.getTickerText);
 

@@ -9,7 +9,7 @@ module.exports = {
   },
   findById: function (req, res) {
     db.Pet
-      .findOne({ id: req.params.id })
+      .findOne({id: req.params.id, include: [db.Accessory]})
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },

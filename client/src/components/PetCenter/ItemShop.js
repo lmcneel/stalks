@@ -11,7 +11,10 @@ class ItemShop extends Component {
         results: []
     };
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 4346978f6c078d0311c2de3bf4a96a748918107e
     displayAccessories = ()=> {
       API.getStoreAccessories()
       .then(res => this.setState({ results: res.data }))
