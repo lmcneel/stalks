@@ -1,14 +1,6 @@
 const router = require('express').Router();
 const petsController = require('../../controllers/pets_controller.js');
 
-// router.get('/oz', (req,res)=> res.send('hi oz'))
-// router.route('ozair')
-// .get(petsController.findAll)
-
-
-router.get('/ozairishere', (req,res) => res.send('hi buddy'))
-
-
 
 //matches with /api/pets/foodandtoys
 //gets all the food and toys in the store
