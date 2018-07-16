@@ -14,6 +14,8 @@ import Forum from './components/FriendsBoard/Forum';
 // import Home from './pages/Home';
 // import About from './pages/About';
 // import Settings from './components/pages/Settings';
+import SigninForm from './components/SigninForm';
+import SignoutForm from './components/SignoutForm';
 // import Logout from './components/pages/Logout';
 import SignUp from './pages/SignUp';
 // import Achievements from './components/pages/Achievements';
@@ -27,6 +29,8 @@ import StockTicker from './components/StockTicker/StockTicker';
 import ViewStocks from './pages/ViewStocks/ViewStocks';
 import TradingCenter from './components/TradingCenter';
 import Friends from './pages/Social/Friends';
+import UserSettings from './pages/Settings';
+import Login from './pages/Login';
 
 /**
 * Class App
@@ -87,7 +91,7 @@ class App extends Component {
    * @param {number} result
    */
   handleJoyrideCallback(result) {
-    const { joyride } = this.props;
+    const {joyride} = this.props;
 
     if (result.action == 'close') {
       this.setState({ run: false });
@@ -123,7 +127,7 @@ class App extends Component {
    * close function
    */
   close() {
-    this.setState({ showModal: false });
+    this.setState({showModal: false});
   }
 
   /**
@@ -175,25 +179,28 @@ class App extends Component {
                     // <Route exact path='/forum' component={Forum} />}
                     <Route exact path='/' component={Home} />
                     <Route exact path='/about' component={About} />
-                    {/* <Route exact path='/settings' component={Settings} /> */}
                     {/* <Route exact path='/logout' component={Logout} /> */}
+                    <Route exact path='/signin' component={SigninForm} />
+                    <Route exact path='/logout' component={SignoutForm} />
                     <Route exact path='/signup' component={SignUp} />
+                    <Route exact path='/login' component={Login} />
+                    <Route path='/settings' component={UserSettings} />
                     {/* <Route exact path='/achievements' component={Achievements} /> */}
                     <Route exact path='/friends' component={Friends} />
                     <Route exact path='/viewstocks' component={ViewStocks} />
                     <Route exact path='/help' component={HelpLanding} />
                     <Route exact path='/docs' component={DocsList} />
-                    <Route exact path='/viewstocks' component={ViewStocks} />
                     <Route exact path='/trading' component={TradingCenter} />
                     <Route exact path='/trading/:ticker' component={TradingCenter} />
                   </Switch>
                 </Content>
-                </MainContentWrapper>
-              </Wrapper>
+              </MainContentWrapper>
+            </Wrapper>
         </div>
       </Router>
     );
-  }
-}
+  };
+};
+
 
 export default App;
