@@ -42,7 +42,7 @@ class TradingCenter extends Component {
         this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
         this.transactionExec = this.transactionExec.bind(this);
         this.myStocks = this.myStocks.bind(this);
-        this.cashCalculator = this.cashCalculator.bind(this);
+        // this.cashCalculator = this.cashCalculator.bind(this);
         this.dbStocks = this.dbStocks.bind(this);
         this.myStocksValue = this.myStocksValue.bind(this);
         this.portfolioValue = this.portfolioValue.bind(this);
@@ -63,17 +63,18 @@ class TradingCenter extends Component {
             primaryExchange: '',
             sector: '',
             response: '',
-            portfolio_id: '5b4cdce882dae09a12f3fb79',
+            portfolio_id: '5b4cf8a4f387eda4bd04e253',
             portfolioValue: 0,
             transaction: 'buy',
             ROI: 0,
-            id: '5b4cdce882dae09a12f3fb79',
+            id: '5b4cf8a4f387eda4bd04e253',
             sqlId: 1,
+
             cost: 0,
             datePurchased: '',
             value: 0,
             totalShares: 0,
-            initialCash: 0,
+            initialCash: 20000,
             cashBalance: 0,
             watchedArray: ['AAPL', 'XPP'],
             modal: false,
@@ -92,7 +93,7 @@ class TradingCenter extends Component {
         this.myStocksValue();
         this.getBankValue(this.state.portfolio_id);
         this.myWatchlist(this.state.watchedArray);
-        this.cashCalculator(this.state.portfolio_id);
+        // this.cashCalculator(this.state.portfolio_id);
         this.checkWatchList();
     };
 /**
@@ -222,17 +223,17 @@ removeFromWatchlist() {
  * @param {*} portfolio
  * @return {*} returns users cash
 */
-    cashCalculator(portfolio) {
-        return API.getMyStocks(portfolio)
-            .then((res) => {
-                let cashTotal = 200000;
-                for (let i = 0; i < res.data.length; i++) {
-                    cashTotal -= (res.data[i].sharePrice * 100 * res.data[i].shares)/100;
-                }
-                this.setState({cashBalance: (cashTotal).toFixed(2)});
-            })
-            .catch((err) => console.log(err));
-    }
+    // cashCalculator(portfolio) {
+    //     return API.getMyStocks(portfolio)
+    //         .then((res) => {
+    //             let cashTotal = 200000;
+    //             for (let i = 0; i < res.data.length; i++) {
+    //                 cashTotal -= (res.data[i].sharePrice * 100 * res.data[i].shares)/100;
+    //             }
+    //             this.setState({cashBalance: (cashTotal).toFixed(2)});
+    //         })
+    //         .catch((err) => console.log(err));
+    // }
 
 /**
  * @public dbStocks function, It makes a call to Mongo Database (Trades Collection),
@@ -417,7 +418,7 @@ updatePortfolioValue() {
         return API.getMyPortfolio(portfolio)
             .then((res) => {
                 let data = res.data;
-                bank = ((data[0].cash)/100).toFixed(2);
+                bank = data[0].cash;
                 console.log(bank);
                 return this.setState({initialCash: bank});
                })
@@ -532,13 +533,10 @@ updatePortfolioValue() {
  */
     buyShares() {
         if ((this.state.initialCash - (this.state.shares * this.state.price)) >= 0) {
-            
                 let cashBalanceTemp = this.state.initialCash - (this.state.shares * this.state.price);
                 this.setState({cashBalance: cashBalanceTemp});
                 this.updateBankValue();
                 this.updatePortfolioValue();
-
-                
             API.findQuotes(
                 {ticker: this.state.ticker}
             ).then((res) => {
@@ -579,10 +577,8 @@ updatePortfolioValue() {
  */
     sellShares() {
         if (this.state.shares <= this.state.totalShares) {
-
             let cashBalanceTemp = this.state.initialCash - (this.state.shares * this.state.price);
             console.log(cashBalanceTemp);
-            
             this.setState({cashBalance: cashBalanceTemp});
             this.updateBankValue();
             this.updatePortfolioValue();
