@@ -33,6 +33,26 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
+    findQuotes: function(data) {
+        // console.log(data);
+        return axios.get(`/api/trading/quote/${data.ticker}`);
+    },
+
+    userQuotes: function(data) {
+        // console.log(data);
+        return axios.get(`/api/trading/slimquote/${data.ticker}`);
+    },
+    // getInitialCash: function() {
+    //     return axios.get('api/ptfolio/initialcash');
+    // },
+    getMyPortfolio: function(portfolio) {
+        return axios.get(`/api/trading/myportfolio/${portfolio}`);
+    },
+    getPetInfo: function() {
+        return axios.get('/api/petfolio/pets');
+    },
+    getTickerText: function() {
+        return axios.get('/api/petfolio/ticker');
     },
 
     // Saves an article to the database
@@ -62,5 +82,15 @@ export default {
         }
         getMyStocks: function(portfolio) {
             return axios.get(`api/trading/mystocks/${portfolio}`);
+        }
+        addNewTicker: function() {
+            return axios.post('/api/petfolio/addTicker');
+        }
+        removeExistingTicker: function() {
+            return axios.delete('/api/petfolio/removeTicker');
+        }
+        getComments: function() {
+            console.log('hit API.js');
+            return axios.get('/api/forum/');
         }
     };
