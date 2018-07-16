@@ -60,6 +60,12 @@ module.exports = {
           res.send(foodandtoy);
         })
     })
+  },
+
+  ozair: (req,res) => {
+    db.ItemStore
+    .findById('1')
+    .then(response => res.send('hi ozair'))
   }
 };
 
