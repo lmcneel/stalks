@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     Card, CardBody,
-    CardTitle, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Label, FormGroup,
+    CardTitle, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Label, FormGroup,Table, 
 } from 'reactstrap';
-import {ForumPostButton, ForumDeleteButton, ForumEditButton} from '../../components/FriendsBoard';
+import { ForumPostButton, ForumDeleteButton, ForumEditButton } from '../../components/FriendsBoard';
 import API from '../../utils/API';
 
 
@@ -16,7 +16,7 @@ export class Forum extends Component {
         this.state = {
             dropdownOpen: false,
             forum: {
-                data: [{subject: '', comments: '',}]
+                data: [{ subject: '', comments: '', }]
             },
         };
         this.loadComments = this.loadComments.bind(this);
@@ -24,19 +24,19 @@ export class Forum extends Component {
 
     componentDidMount() {
         this.loadComments();
-       
+
     };
 
     // Functions will go here
     loadComments() {
         API.getComments()
-        // console.log("loadComments, Forum.js, res.data" + res.data)
-        .then((res) =>
-        this.setState({
-            forum: res.data,
+            // console.log("loadComments, Forum.js, res.data" + res.data)
+            .then((res) =>
+                this.setState({
+                    forum: res.data,
 
-        }),
-        // console.log(res.data)   
+                }),
+            // console.log(res.data)   
         )
             .catch((err) => console.log(err));
     };
@@ -59,13 +59,13 @@ export class Forum extends Component {
 
             <Container fluid id="Forum">
                 <Row>
-                    <Col sm="8" md={{size: 11, offset: 0}}>
+                    <Col sm="8" md={{ size: 11, offset: 0 }}>
                         <Card>
                             <CardTitle>
                                 FORUM
                 </CardTitle>
                             <div>
-                                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}> 
+                                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                                     <DropdownToggle caret>
                                         Choose a Topic . . .
                             </DropdownToggle>
@@ -82,28 +82,32 @@ export class Forum extends Component {
                                             HELP!
                                     </DropdownItem>
                                     </DropdownMenu>
-                                </Dropdown> 
+                                </Dropdown>
                             </div>
                             <div>
                                 <Card>
                                     <CardBody>
                                        
-                                                        
-                                                        <div>                                                                                      {this.state.forum.data.map((data, i) =>{
-    return(<div key={`data${i}`}>
-            <h2>{data.subject}<ForumEditButton/><ForumDeleteButton/></h2>
-            <p>{data.comments}<ForumEditButton/><ForumDeleteButton/></p>
-        </div>);
-})}
 
-                                                            </div>
-                                        
-                                     
+                                                                                                                            {this.state.forum.data.map((data, i) => {
+                                            return (<Card key={`data${i}`}>
+                                            <div ClassName= 'EditDelete'><ForumDeleteButton/><ForumEditButton/></div>
+                                            <CardBody>
+                                                <th>{data.subject}   </th>
+                                                <tr>{data.comments}</tr>
+                                                <br/>
+                                            </CardBody>    
+                                            </Card>);
+                                        })}
+                                      
+                                  
+
+
 
                                     </CardBody>
                                 </Card>
                             </div>
-                       <ForumPostButton/>
+                            <ForumPostButton />
                         </Card>
                     </Col>
                 </Row>
