@@ -23,19 +23,17 @@ export default {
     // getInitialCash: function() {
     //     return axios.get('api/ptfolio/initialcash');
     // },
-<<<<<<< HEAD
     updatePetInfo: function(pet) {
         return axios.post('/api/pets/' + pet.petId, pet);
     },
     getPetInfo: function(petId) {
         return axios.get('/api/pets/' + petId);
-=======
+    },
     getMyPortfolio: function(portfolio) {
         return axios.get(`/api/trading/myportfolio/${portfolio}`);
     },
     getPetInfo: function() {
         return axios.get('/api/petfolio/pets');
->>>>>>> 93f713b1f603283e46adf96f25ee0d8ab01638c8
     },
     getTickerText: function() {
         return axios.get('/api/petfolio/ticker');

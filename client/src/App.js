@@ -7,17 +7,10 @@ import MainContentWrapper from './components/MainContentWrapper';
 import PortfolioStatus from './components/PortfolioStatus';
 import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-<<<<<<< HEAD
 import Petfolio from './components/pages/Petfolio';
 import ViewStocks from './components/pages/ViewStocks';
-import DocsList from './components/DocsList/DocsList';
-import HelpLanding from './components/HelpLanding/HelpLanding';
-import Inventory from './components/userTabs';
-import Trading from './components/pages/Trading';
 import ItemsShopPage from './components/pages/PetCenter/ItemShopPage';
 import PurchasedItemsPage from './components/pages/PetCenter/PurchasedItemsPage';
-=======
-import Petfolio from './pages/Petfolio';
 // import PetCenter from './components/pages/PetCenter';
 import Forum from './components/FriendsBoard/Forum';
 // import Friends from './components/pages/Friends';
@@ -25,18 +18,15 @@ import Forum from './components/FriendsBoard/Forum';
 // import About from './pages/About';
 // import Settings from './components/pages/Settings';
 // import Logout from './components/pages/Logout';
-import SignUp from './pages/SignUp';
 // import Achievements from './components/pages/Achievements';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 // import Inventory from './components/userTabs';
 // import Trading from './components/pages/Trading';
 import StockTicker from './components/StockTicker/StockTicker';
-import ViewStocks from './pages/ViewStocks/ViewStocks';
 import TradingCenter from './components/TradingCenter';
 import Friends from './pages/Social/Friends';
 
->>>>>>> 93f713b1f603283e46adf96f25ee0d8ab01638c8
 /**
 * Class App
 */
@@ -80,36 +70,24 @@ navToggleHandler(e) {
                       <Route exact path='/forum' component={Forum} />
                       {/* <Route exact path='/petcenter' component={PetCenter} />
                       <Route exact path='/friends' component={Friends} />
-<<<<<<< HEAD
                       <Route exact path='/forum' component={Forum} /> */}
                       {/* <Route exact path='/' component={Home} />
                       <Route exact path='/about' component={About} /> */}
                       {/* <Route exact path='/settings' component={Settings} />
                       <Route exact path='/login' component={Login} />
                       <Route exact path='/logout' component={Logout} />
-=======
-                      // <Route exact path='/forum' component={Forum} />}
-                      <Route exact path='/' component={Home} />
-                      <Route exact path='/about' component={About} />
-                      {/* <Route exact path='/settings' component={Settings} /> */}
-                      {/* <Route exact path='/logout' component={Logout} /> */}
->>>>>>> 93f713b1f603283e46adf96f25ee0d8ab01638c8
                       <Route exact path='/signup' component={SignUp} />
                       {/* <Route exact path='/achievements' component={Achievements} /> */}
                       <Route exact path='/friends' component={Friends} />
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />
-<<<<<<< HEAD
                       <Route exact path='/petcenter' component={PurchasedItemsPage} />
                       <Route exact path='/petshop' component={ItemsShopPage} />
-                    </Switch>
-=======
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/trading' component={TradingCenter} />
                       <Route exact path='/trading/:ticker' component={TradingCenter} />
-                      </Switch>
->>>>>>> 93f713b1f603283e46adf96f25ee0d8ab01638c8
+                  </Switch>
                 </Content>
                 </MainContentWrapper>
               </Wrapper>

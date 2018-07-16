@@ -16,7 +16,7 @@ module.exports = {
     db.Pet.findById(req.params.id).then((data) => {
       res.json(data);
     });
-  }
+  },
 
   addTicker: function(req, res) {
     db.UserWatchlist.create(req.body).then(function(dbUserWl) {
