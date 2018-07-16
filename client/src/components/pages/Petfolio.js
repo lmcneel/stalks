@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
 import {PetStatsVert} from '../PetStats';
-// import ListStock from '../ListStock/ListStock';
+import OwnedStock from '../OwnedStock/OwnedStock';
 import BankValue from '../BankValue/BankValue';
 import PetfolioValue from '../PetfolioValue/PetfolioValue';
 import PieChart from '../PieChart/PieChart';
@@ -99,12 +99,16 @@ class Petfolio extends Component {
           </Row>
 
           {/* This row contains the owned stock details -- trading component*/}
-          {/* <i class="fas fa-chevron-circle-down"></i>  or     f13a*/}
-
-          <Row>
-            <Col>
-            </Col>
+         <Row>
+           <Col>
+           <h3>Owned Stocks</h3>
+            <OwnedStock />
+           </Col>
           </Row>
+          {/* <Row>
+            <Col>{this.state.Watchlist.map((List) => <OwnedStock ticker={List} n/>)}
+            </Col>
+          </Row> */}
 
       </Container>
     );
