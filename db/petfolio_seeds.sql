@@ -258,7 +258,7 @@ Values ('ABBV', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 1),
 ('DX-A', '2018-07-12 10:00:00', '2018-07-12 10:00:00', 24),
 ('DX-B', '2018-07-12 10:00:00', '2018-07-12 10:00:00', 25);
 
-Insert Into Pets (petType, petName, urlImage, createdAt, updatedAt, UserId) Values
+Insert Into Pets (petType, petName, lastPet, urlImage, createdAt, updatedAt, UserId) Values
 ('ostrich', 'Bridgette', './client/src/assets/images/Ostrich1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 1),
 ('bull', 'Alf', './client/src/assets/images/Bull1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 2),
 ('bear', 'Bearmanpig', './client/src/assets/images/Bear1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 3),
