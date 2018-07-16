@@ -16,7 +16,7 @@ module.exports = {
     db.Pet.findOne({
       where: {UserId: 1},
       include: [{
-        model: Accessory,
+        model: db.Accessory,
         where: {equipped: 1}, //
       }],
     }).then(function(dbUserPic) {
