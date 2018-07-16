@@ -14,6 +14,9 @@ import Forum from './components/FriendsBoard/Forum';
 // import Home from './pages/Home';
 // import About from './pages/About';
 // import Settings from './components/pages/Settings';
+import SigninForm from './components/SigninForm';
+import SignoutForm from './components/SignoutForm';
+import SignupForm from './components/SignupForm';
 // import Logout from './components/pages/Logout';
 import SignUp from './pages/SignUp';
 // import Achievements from './components/pages/Achievements';
@@ -74,6 +77,10 @@ navToggleHandler(e) {
                       // <Route exact path='/forum' component={Forum} />}
                       <Route exact path='/' component={Home} />
                       <Route exact path='/about' component={About} />
+                      {/* <Route exact path='/settings' component={Settings} /> */}
+                      <Route exact path='/signin' component={SigninForm} />
+                      <Route exact path='/logout' component={SignoutForm} />
+                       {/*<Route exact path='/achievements' component={Achievements} /> */}
                       {/* <Route exact path='/logout' component={Logout} /> */}
                       <Route exact path='/signup' component={SignUp} />
                       <Route exact path='/login' component={Login} />
@@ -94,6 +101,7 @@ navToggleHandler(e) {
       </Router>
     );
   };
-}
+};
+
 
 export default App;
