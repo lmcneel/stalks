@@ -19,9 +19,9 @@ class PetName extends Component {
      */
     render() {
         return (
-                <div>
+                <span>
                    <h3>{this.state.petName}</h3>
-                </div>
+                </span>
         );
     }
 };

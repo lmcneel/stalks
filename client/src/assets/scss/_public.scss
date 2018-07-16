@@ -3,7 +3,7 @@
 ----------------------------------------------------- */
 
 body {
-    background: $gray-100;
+    background: $gray-200;
     color: $gray-700;
 
 }
@@ -16,6 +16,10 @@ h1 {
 
 .nav-item {
     padding:0 15px;
+}
+
+.description {
+    font-size: $font-size-lg;
 }
 
 

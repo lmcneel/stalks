@@ -1,21 +1,43 @@
 .main {
     margin: 25px;
 }
-.statusbars {
-    width: 300px;
-}
+
 .colorPositive {
     background-image: url('/images/pixelbg-green_160.jpg');
     // background-color: green;
+    font-size: 1.8rem;
 }
 .colorNeutral {
     background-image: url('/images/pixelbg-yellow_160.jpg');
     background-color: $yellow;
+    font-size: 1.8rem;
 }
 .colorNegative {
     background-image: url('/images/pixelbg-red_160.jpg');
     background-color:$red;
+    font-size: 1.8rem;
 }
+
+.petfolioPortfolioText {
+    color: lighten($yellow, 35);
+}
+
+.petfolioBankText {
+    color: lighten($green, 35);
+}
+
+.barstatlabel {
+    text-transform: uppercase;
+    font-size: $font-size-sm;
+    letter-spacing: .06rem;
+}
+
+.barStyle {
+    border-radius: 50px;
+    border-style: solid;
+    border-width: 2px;
+}
+
 
 /* ---------------------------------------------------
     HORIZONTAL WATCHLIST TICKER
