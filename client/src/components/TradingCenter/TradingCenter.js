@@ -69,6 +69,7 @@ class TradingCenter extends Component {
             ROI: 0,
             id: '5b4cdce882dae09a12f3fb79',
             sqlId: 1,
+
             cost: 0,
             datePurchased: '',
             value: 0,

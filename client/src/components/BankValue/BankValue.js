@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import API from '../../utils/API';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPiggyBank} from '@fortawesome/fontawesome-free-solid';
+
 /**
  * @class BankValue
  */
@@ -13,7 +16,9 @@ class BankValue extends Component {
     this.bankValue = this.bankValue.bind(this);
     this.state = {
       bankValue: 3500,
+
       portfolio_id: '5b4cdce882dae09a12f3fb79',
+
     };
   }
     /**
@@ -36,7 +41,9 @@ class BankValue extends Component {
           .then((res) => {
             console.log(res.data);
               let data = res.data;
-              bank = ((data[0].cash)/100).toFixed(2);
+
+              bank = (data[0].cash).toFixed(2);
+
               return this.setState({bankValue: bank});
           })
           .catch((err) => console.log(err));
@@ -49,6 +56,7 @@ class BankValue extends Component {
   render() {
     return (
       <div>
+        <FontAwesomeIcon icon={faPiggyBank} className="pad"/>
         ${this.state.bankValue}
       </div>
   );

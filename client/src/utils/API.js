@@ -50,4 +50,8 @@ export default {
     removeExistingTicker: function(SQL_ID, Ticker) {
         return axios.delete(`/api/petfolio/removeTicker/${SQL_ID}/${Ticker}`);
     },
+    getComments: function() {
+        console.log('hit API.js');
+        return axios.get('/api/forum/');
+    },
 };
