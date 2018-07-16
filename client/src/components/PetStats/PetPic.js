@@ -39,39 +39,51 @@ class PetPic extends Component {
         API.getUserPic().then(((r) => {
             console.log(r.data);
             let url = r.data.urlImage;
-            console.log(r.data.Accessories[0].equipped);
-            let accessory = r.data.Accessories[0].equipped;
-            let type = r.data.Accessories[0].name;
-            console.log(type);
-            if (url = './client/src/assets/images/Ostrich1.svg' && accessory == true && type === 'red collar') {
+            let accessory;
+            let type;
+            if (r.data.Accessories[0] !== undefined) {
+                console.log(r.data.Accessories[0].equipped);
+                accessory = r.data.Accessories[0].equipped;
+            } else {
+                accessory = false;
+            }
+            if (r.data.Accessories[0] !== undefined) {
+                type = r.data.Accessories[0].name;
+            } else {
+                type = false;
+            }
+            // let type = r.data.Accessories[0].name;
+            console.log(type, accessory);
+            console.log(url);
+            if (url === './client/src/assets/images/Ostrich1.svg' && accessory === true && type === 'red collar') {
                 this.setState({petPic: ostrichrc});
-            } else if (url = './client/src/assets/images/Ostrich1.svg' && accessory == true && type === 'blue collar') {
+            } else if (url === './client/src/assets/images/Ostrich1.svg' && accessory === true && type === 'blue collar') {
                 this.setState({petPic: ostrichbc});
-            } else if (url = './client/src/assets/images/Ostrich1.svg' && accessory == true && type === 'bow tie') {
+            } else if (url === './client/src/assets/images/Ostrich1.svg' && accessory === true && type === 'bow tie') {
                 this.setState({petPic: ostrichbt});
-            } else if (url = './client/src/assets/images/Bull1.svg' && accessory == true && type === 'red collar') {
+            } else if (url === './client/src/assets/images/Bull1.svg' && accessory === true && type === 'red collar') {
                 this.setState({petPic: bullrc});
-            } else if (url = './client/src/assets/images/Bull1.svg' && accessory == true && type === 'blue collar') {
+            } else if (url === './client/src/assets/images/Bull1.svg' && accessory === true && type === 'blue collar') {
                 this.setState({petPic: bullbc});
-            } else if (url = './client/src/assets/images/Bull1.svg' && accessory == true && type === 'bow tie') {
+            } else if (url === './client/src/assets/images/Bull1.svg' && accessory === true && type === 'bow tie') {
                 this.setState({petPic: bullbt});
-            } else if (url = './client/src/assets/images/Bear1.svg' && accessory == true && type === 'red collar') {
+            } else if (url === './client/src/assets/images/Bear1.svg' && accessory === true && type === 'red collar') {
                 this.setState({petPic: bearrc});
-            } else if (url = './client/src/assets/images/Bear1.svg' && accessory == true && type === 'blue collar') {
+            } else if (url === './client/src/assets/images/Bear1.svg' && accessory === true && type === 'blue collar') {
                 this.setState({petPic: bearbc});
-            } else if (url = './client/src/assets/images/Bear1.svg' && accessory == true && type === 'bow tie') {
+            } else if (url === './client/src/assets/images/Bear1.svg' && accessory === true && type === 'bow tie') {
                 this.setState({petPic: bearbt});
-            } else if (url = './client/src/assets/images/Wolf1.svg' && accessory == true && type === 'red collar') {
+            } else if (url === './client/src/assets/images/Wolf1.svg' && accessory === true && type === 'red collar') {
                 this.setState({petPic: wolfyrc});
-            } else if (url = './client/src/assets/images/Wolf1.svg' && accessory == true && type === 'blue collar') {
+            } else if (url === './client/src/assets/images/Wolf1.svg' && accessory === true && type === 'blue collar') {
                 this.setState({petPic: wolfybc});
-            } else if (url = './client/src/assets/images/Wolf1.svg' && accessory == true && type === 'bow tie') {
+            } else if (url === './client/src/assets/images/Wolf1.svg' && accessory === true && type === 'bow tie') {
                 this.setState({petPic: wolfybt});
-            } else if (url = './client/src/assets/images/Bull1.svg') {
+            } else if (url === './client/src/assets/images/Bull1.svg') {
                 this.setState({petPic: bull});
-            } else if (url = './client/src/assets/images/Bear1.svg') {
+            } else if (url === './client/src/assets/images/Bear1.svg') {
                 this.setState({petPic: bear});
-            } else if (url = './client/src/assets/images/Wolf1.svg') {
+            } else if (url === './client/src/assets/images/Wolf1.svg') {
                 this.setState({petPic: wolfy});
             } else {
                 this.setState({petPic: ostrich});
