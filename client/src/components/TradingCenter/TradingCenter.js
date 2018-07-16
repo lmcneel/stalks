@@ -41,16 +41,13 @@ class Transaction extends Component {
             totalShares: 0,
             cashBalance: 0,
             modal: false,
+            modalIsOpen: true,
+            run: false,
+            showModal: true,
         }
         this.toggle = this.toggle.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
         this.resetTour = this.resetTour.bind(this);
-        this.state = {
-            sideNav: false,
-            modalIsOpen: true,
-            run: false,
-            showModal: true,
-        };
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.yes = this.yes.bind(this);
@@ -76,7 +73,6 @@ class Transaction extends Component {
             [name]: value
         });
     };
-
 
     transactionExec = () => {
         if (this.state.transaction === 'buy') {

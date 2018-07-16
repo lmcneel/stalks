@@ -19,7 +19,7 @@ class HelpLanding extends Component {
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
                      minim veniam, quis nostrud exercitation ullamco laboris
                      nisi ut aliquip ex ea commodo consequat. "
-                    buttonLink="/trading"
+                    buttonLink="/docs"
                     buttonText="Read the Docs"
                 />
             </div>
@@ -30,7 +30,7 @@ class HelpLanding extends Component {
                     incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
                     ut aliquip ex ea commodo consequat. "
-                    buttonLink="/petfolio"
+                    buttonLink="/forum"
                     buttonText="Ask a Question"
                 />
             </div>
@@ -41,7 +41,7 @@ class HelpLanding extends Component {
                      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
                      nisi ut aliquip ex ea commodo consequat."
-                    buttonLink="/petfolio"
+                    buttonLink="/trading"
                     buttonText="Start the Tutorial"
                 />
             </div>
