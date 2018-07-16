@@ -34,10 +34,7 @@ app.use(bodyParser.json());
 
 // Define middleware here
 app.use(express.json());
-<<<<<<< HEAD
 app.use(achievements);
-=======
->>>>>>> 59f0fb57f1c32c30c69320b5a630fee6865e8753
 
 // app.use(acheivements);
 if (process.env.NODE_ENV === 'development') {

@@ -1,13 +1,10 @@
 const router = require('express').Router();
-const request = require('request');
-
+// const User = require('../../models/mysql/user')
 router.route('/achievements')
 .get(function(req, res) {
-  //code here
-  console.log('Testing for achievements')
-  res.send('Hello')
-
+  // code here
+  console.log('Testing for achievements');
+  res.send('Hello');
 });
-
 
 module.exports = router;
