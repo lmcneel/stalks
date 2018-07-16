@@ -5,10 +5,11 @@ import Highcharts from 'highcharts';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faEye} from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
-<<<<<<< HEAD
 import Promise from 'bluebird';
 import _ from 'underscore';
 import PropTypes from 'prop-types';
+import Joyride from 'react-joyride';
+import '../../assets/react-joyride-compiled.css';
 
 const propTypes = {
         match: PropTypes.shape({
@@ -17,9 +18,7 @@ const propTypes = {
             }).isRequired,
         }).isRequired,
         modalName: PropTypes.string,
-=======
-import Joyride from 'react-joyride';
-import '../../assets/react-joyride-compiled.css';
+    }
 
 let watched = false; // This watchlist flag
 let eyeWatched = 'faEye'; // class variable for watchlist condition
@@ -27,7 +26,6 @@ let eyeWatched = 'faEye'; // class variable for watchlist condition
 const checkWatchList = () => {
     // If in watchlist set [watched] to true
     return watched = false;
->>>>>>> origin/help
 };
 
 /**
@@ -81,19 +79,15 @@ class TradingCenter extends Component {
             cashBalance: 0,
             watchedArray: ['AAPL', 'XPP'],
             modal: false,
-<<<<<<< HEAD
             watched: false,
             eyeWatched: 'faEye',
-        };
-=======
             modalIsOpen: true,
             run: false,
             showModal: true,
-        }
+        };
         this.toggle = this.toggle.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
         this.resetTour = this.resetTour.bind(this);
->>>>>>> origin/help
     }
 
 /**
@@ -171,14 +165,10 @@ class TradingCenter extends Component {
         });
     };
 
-<<<<<<< HEAD
 /**
  * @public transactionExec function for processing the transaction
  */
     transactionExec() {
-=======
-    transactionExec = () => {
->>>>>>> origin/help
         if (this.state.transaction === 'buy') {
             this.buyShares();
         } else {
