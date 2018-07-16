@@ -15,36 +15,30 @@ class HelpLanding extends Component {
             <div className="HelpLanding">
                 <HelpCard
                     title="Documentation"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                     minim veniam, quis nostrud exercitation ullamco laboris
-                     nisi ut aliquip ex ea commodo consequat. "
-                    buttonLink="/trading"
+                    text="Find all the small details here. Read our documentation to get detailed coverage on each aspect of the game, grouped by page, and organized by importance."
+                    buttonLink="/docs"
                     buttonText="Read the Docs"
                 />
             </div>
             <div className="HelpLanding">
                 <HelpCard
                     title="Forum"
-                    text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat. "
-                    buttonLink="/petfolio"
+                    text="The forum is a great place to ask questions, seek advice, and connect with other players. Use categories to filter your results."
+                    buttonLink="/forum"
                     buttonText="Ask a Question"
                 />
             </div>
-            <div className="HelpLanding">
+            {/* <div className="HelpLanding">
                 <HelpCard
                     title="Tutorial"
                     text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
                      nisi ut aliquip ex ea commodo consequat."
-                    buttonLink="/petfolio"
+                    buttonLink="/trading"
                     buttonText="Start the Tutorial"
                 />
-            </div>
+            </div> */}
             </Container>
     );
     }
