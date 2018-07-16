@@ -14,7 +14,7 @@ router.post('/signup', function(req, res, next) {
             console.log(req.session.user);
             console.log(info);
             console.log('Finished');
-            res.redirect('/home');
+            res.redirect('/petfolio');
         }
     })(req, res, next);
 });
@@ -27,7 +27,7 @@ router.post('/login', function(req, res, next) {
             req.session.user = user;
             console.log(info);
             console.log('Finished');
-            res.redirect('/home');
+            res.redirect('/petfolio');
         }
     })(req, res, next);
 });

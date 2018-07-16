@@ -23,6 +23,10 @@ h1 {
     TOP NAV STYLES
 ----------------------------------------------------- */
 
+#topNavIcons {
+    padding-top: 5px;
+}
+
 .top-nav {
     background-color:$green;
 
@@ -31,8 +35,8 @@ h1 {
 
         .main-logo{
 
-            width: 350px; 
-            padding-top: 15px;
+            width: 375px; 
+            padding-top: 5px;
 
             @include media-breakpoint-down(md){
                 width: 260px; 
@@ -47,12 +51,15 @@ h1 {
     }
 
     .iconsize {
-        font-size: 1.5em;
+        font-size: 1.5rem;
+        padding:0
     }
 
     .btn-info {
         background-color: lighten($primary, 10);
         border-color: lighten($primary, 10);
+        padding:.2rem .5rem;
+        font-size: .8rem;
     }
 }
 
@@ -221,10 +228,10 @@ a[data-toggle="collapse"] {
 }
 
 .pad {
-    padding-left: 10px;
+    margin-right: 10px;
 
     @include media-breakpoint-down(xs){
         display: block;
-        padding-left: 0;
+        margin-right: 0;
     } 
 }
