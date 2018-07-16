@@ -12,7 +12,7 @@ const UserCard = (props) => {
         </div>
         <CardBody>
           <CardTitle>{props.name}</CardTitle>
-          <Button>{props.buttonName}</Button>
+          <Button onClick ={props.buyingItem}>{props.buttonName}</Button>
         </CardBody>
       </Card>
     </div>

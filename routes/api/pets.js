@@ -2,6 +2,9 @@ const router = require('express').Router();
 const petsController = require('../../controllers/pets_controller.js');
 
 
+router.route('/createaccessory')
+.post(petsController.ozair)
+
 //matches with /api/pets/foodandtoys
 //gets all the food and toys in the store
 router.route('/storefoodandtoys')

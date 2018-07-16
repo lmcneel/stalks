@@ -49,5 +49,9 @@ export default {
     
     displayStoreFoodAndToys: () => {
         return axios.get('/api/pets/storefoodandtoys')
+    },
+
+    createAccessory: (accdata) => {
+        return axios.post('/api/pets/createaccessory', accdata)
     }
 };

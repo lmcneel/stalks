@@ -23,8 +23,16 @@ class ItemShop extends Component {
     }
 
     buyItem = (id) => {
-        console.log('hi ozair')
-       }
+        
+        API.createAccessory({
+           name: this.state.results[id].itemName,
+           category: this.state.results[id].category,
+           imaageURL: this.state.results[id].imageURL,
+           quantity: 1,
+           PetId: 12  
+        })
+        .then(res => console.log(res));   
+    }
 
     componentDidMount() {
         this.displayAccessories()
@@ -49,7 +57,7 @@ class ItemShop extends Component {
                         <div style={{'display': 'contents'}}>
                             {this.state.results.map((result, index) => {
                                 return (
-                                  <Card name={result.itemName}  onClick={() => this.buyItem(result.id)} image={result.imageURL} buttonName={'buy'} style={{'margin':'50px'}}  />
+                                  <Card name={result.itemName}  buyingItem={() => this.buyItem(result.id)} image={result.imageURL} buttonName={'buy'} style={{'margin':'50px'}}  />
                                  
                                 );
                             })}

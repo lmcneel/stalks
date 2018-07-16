@@ -60,6 +60,15 @@ module.exports = {
           res.send(foodandtoy);
         })
     })
-  }
+  },
+  ozair: (req,res) => {
+    db.Accessory
+    .create(req.body)
+    .then((newAccessory) => res.json(newAccessory))
+    .catch((err) => res.status(422).json(err));
+
+  },
+
+  
 };
 
