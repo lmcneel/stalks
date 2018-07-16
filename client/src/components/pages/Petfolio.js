@@ -149,32 +149,32 @@ class Petfolio extends Component {
           steps={[
             {
               title: 'Your Pet Overview',
-              text: 'This is the amount of liquid assets, money, that you can use to invest in stocks or spend on your pet for fun items in the shop. You can increase your liquid assets by selling your stocks as well as login bonuses.',
+              text: 'This is the overview of a pet. There is plenty of useful information here!',
               selector: '.statusbarwidth',
             },
             {
               title: 'Fondness',
-              text: 'This is the sum of all stocks you own multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets.',
+              text: 'This bar represents your pets pondness. The more you check in on your pet, the more fond your pet will be of you. If you plan on going on a long vacation, you might want to checkout the toys and treats in the shop to maintain your pets fondness while you are away.',
               selector: '.fondness',
             },
             {
               title: 'Happiness',
-              text: 'This is the overview of a stocks stats. There is plenty of useful information here!',
+              text: 'This bar represents your pets pondness. The happiness level of your pet is a direct reflection of your return on investment, ROI, which is the ratio between the net profit and cost of investment resulting from an investment of a stock. In simpler terms, the better your stocks do, the happy your pet will be. There are also toys and treats in the shop which will make your pet very happy.',
               selector: '.happiness',
             }, 
             {
               title: 'Hunger',
-              text: 'This is is percentage that shows negative or positive preformance, compared to the price at the opening of the trading day. Green is positive, red is negative.',
+              text: 'This bar represents your pets hunger. Just like a real pet, your little fluff ball needs to eat too. A complete bar means they are full but that will slowly drop. The shop has all the meals you need for your pet, just make sure you stop by before they get too hungry and start munching on your money instead!',
               selector: '.hunger',
             },
             {
               title: 'Overall Health',
-              text: 'This is is percentage that shows negative or positive preformance, compared to the price at the opening of the trading day. Green is positive, red is negative.',
+              text: 'This bar represents the overall happiness, fondness, and hunger of your pet. If this bar is getting low, you may want to look at the sub categories and see if your pet is sad, lonely, or hungry. Buying and trading stocks will help you take care of your pet but you can also use items in the shop for extra help.',
               selector: '.overall',
             },
             {
-              title: 'Overall Health',
-              text: 'This is is percentage that shows negative or positive preformance, compared to the price at the opening of the trading day. Green is positive, red is negative.',
+              title: 'Stocks Pie Chart',
+              text: 'This chart shows the distribution of total stocks you hold. Each piece represents an individual company in which you own stocks and the entire chart represents your entire petfolio. Use this as a tool to diversify your petfolio.',
               selector: '.pieChart',
             },
           ]}
