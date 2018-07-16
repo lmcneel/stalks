@@ -99,7 +99,7 @@ class RadioYesNo extends React.Component {
             Please visit our forum to get more customized assitance with your problems.
           </ModalBody>
           <ModalFooter>
-            <Link to={'/petfolio'}><Button color="primary" onClick={this.toggle}>Visit the Forum</Button></Link>
+            <Link to={'/forum'}><Button color="primary" onClick={this.toggle}>Visit the Forum</Button></Link>
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
