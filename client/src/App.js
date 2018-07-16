@@ -12,7 +12,7 @@ import Petfolio from './pages/Petfolio';
 // import Forum from './components/pages/Forum';
 // import Friends from './components/pages/Friends';
 import Home from './pages/Home';
-import About from './pages/About';
+import About from './components/pages/About';
 // import Settings from './components/pages/Settings';
 // import Logout from './components/pages/Logout';
 import SignUp from './pages/SignUp';
