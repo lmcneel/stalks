@@ -28,12 +28,15 @@ class TradingCenter extends Component {
  */
     constructor(props) {
         super(props);
-        // These are triggerd from opClick
+        // ---These are triggerd from onClick---
+        // -------------------------------------
         this.toggle = this.toggle.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.componentDidMount = this.componentDidMount.bind(this);
         // -------------------------------------
-        // The function below are used in transactions and render
+        // this.componentDidMount = this.componentDidMount.bind(this);
+        // -------------------------------------
+        // ---The function below are used in transactions and render---
+        // ------------------------------------------------------------
         this.checkWatchList = this.checkWatchList.bind(this);
         // this.addToWatchlist = this.addToWatchlist.bind(this);
         // this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
@@ -58,10 +61,13 @@ class TradingCenter extends Component {
             primaryExchange: '',
             sector: '',
             response: '',
-            portfolio_id: '5b4b7308fa4a6953ea654561',
+            portfolio_id: '5b40fb129adc85a410f488bd',
             transaction: 'buy',
             ROI: 0,
-            id: '5b4b7308fa4a6953ea654561',
+            id: '5b4b9d856acd8b08c04ca749',
+            UserId: 12,
+            // sqlId: 18,
+            // ticker:'TTT',
             cost: 0,
             datePurchased: '',
             value: 0,
@@ -84,9 +90,10 @@ class TradingCenter extends Component {
         this.myStocksValue();
         this.bankValue(this.state.id);
         this.myWatchlist(this.state.watchedArray);
-        // this.lastPurchase(this.state.portfolio_id);
         this.cashCalculator(this.state.portfolio_id);
         this.checkWatchList();
+        // this.addToWatchlist(this.state.sqlId, this.state.ticker);
+        // this.removeFromWatchlist(this.state.sqlId, this.state.ticker);
     };
 /**
  * @public toggle function for reactstap <Modal> onClick trigger
@@ -100,43 +107,51 @@ class TradingCenter extends Component {
  * @public checkWatchList function will check if the current 'ticker' is listed in user watchlist
  * @param {*} ticker
  */
-    checkWatchList(ticker) {
+    checkWatchList() {
         // If in watchlist set [watched] to true
-        API.getTickerText(ticker).then(((r) => {
+        API.getTickerText().then(((r) => {
             if (r.data.length !== 0) {
             let tempTicker = [];
             for (let i=0; i<r.data.length; i++) {
                 tempTicker.push((r.data[i]).uniqueStockSymbol);
             }
-            // console.log(tempTicker);
             if (tempTicker.includes(this.state.ticker)) {
                 return this.setState({watched: true});
               } else {
                 return this.setState({watched: false});
-              };
+              }
             };
         }));
     };
 
 /**
  * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
- * @param {*} ticker
+ * @param {*} SQL_ID
+ * @param {*} Ticker
  */
-    addToWatchlist(ticker) {
-        // API.addNewTicker(ticker)
+    addToWatchlist( SQL_ID, Ticker) {
+        API.addNewTicker(SQL_ID, Ticker)
+        .then((res) => {
+            console.log('Ticker Added to Watchlist');
+            this.checkWatchList();
+        })
+        .catch((err) => console.log(err));
+    };
 
-        // Need to add to MySQL Watchlist
-    }
 /**
 * @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
-* @param {*} ticker
+* @param {*} SQL_ID
+* @param {*} Ticker
+
 */
-    removeFromWatchlist() {
-        // API.removeExistingTicer(ticker)
-
-        // Need to remove from MySQL Watchlist
-
-    }
+removeFromWatchlist( SQL_ID, Ticker) {
+    API.removeExistingTicker(SQL_ID, Ticker)
+    .then((res) => {
+        console.log('done');
+        this.checkWatchList();
+    })
+    .catch((err) => console.log(err));
+};
 
 /**
  * @public handleInputChange function for number of shares
@@ -148,7 +163,6 @@ class TradingCenter extends Component {
             [name]: value,
         });
     };
-
 /**
  * @public transactionExec function for processing the transaction
  */
@@ -159,7 +173,6 @@ class TradingCenter extends Component {
             this.sellShares();
         };
     };
-
 /**
  * @public myStocks function that gets users stocks from mongo database
  * @param {*} portfolio
@@ -168,7 +181,6 @@ class TradingCenter extends Component {
     myStocks(portfolio) {
         return API.getMyStocks(portfolio)
             .then((res) => {
-                // console.log(res.data);
                 let userStocks = {};
                 let userShares = {};
                 for (let i = 0; i < res.data.length; i++) {
@@ -185,19 +197,15 @@ class TradingCenter extends Component {
                         userShares[res.data[i].ticker] += res.data[i].shares;
                     }
                 }
-
                 for (let i = 0; i < Object.keys(userShares).length; i++) {
                     let company = Object.entries(userShares)[i];
                     let spent = Object.entries(userStocks)[i];
-                    // console.log(userShares);
-
                     if (company[0] === this.state.ticker && company.length > 0) {
                         this.setState({
                             totalShares: company[1],
                             cost: spent[1] / company[1],
                             datePurchased: res.data[res.data.length - 1].date.slice(0, 10),
                         });
-                        // console.log(spent[i] / company[i]);
                     } else {
                         this.setState({
                             totalShares: 0,
@@ -206,12 +214,9 @@ class TradingCenter extends Component {
                         });
                     }
                 };
-
-                // console.log(userStocks);
                 return userShares;
             });
     }
-
 /**
  * @public cashCalculator function that gets users remainig cash value
  * @param {*} portfolio
@@ -220,22 +225,26 @@ class TradingCenter extends Component {
     cashCalculator(portfolio) {
         return API.getMyStocks(portfolio)
             .then((res) => {
-                // console.log(res.data);
-                let cashTotal = 20000;
+                let cashTotal = 200000;
                 for (let i = 0; i < res.data.length; i++) {
-                    cashTotal -= res.data[i].sharePrice * res.data[i].shares;
+                    cashTotal -= (res.data[i].sharePrice * 100 * res.data[i].shares)/100;
                 }
-                // console.log(cashTotal);
                 this.setState({
-                    cashBalance: cashTotal.toFixed(2),
-
+                    cashBalance: (cashTotal).toFixed(2),
                 });
             })
             .catch((err) => console.log(err));
     }
 
 /**
- * @public dbStocks function that gets users stocks from mongo database
+ * @public dbStocks function, It makes a call to Mongo Database (Trades Collection),
+ * gets all the transactions
+ * based on the portfolio_id of each user, => all transactions are iterated through
+ * and reduced to just ShareNames(Ticker) &
+ * the total share quantities the user currently ownes.
+ * At the last Stage this function calls the returnOnInvestment function, the output of
+ * which are : The ROI for each of the Stocks the
+ * user owns.
  * @param {*} portfolio
  * @return {*} returns users stocks
  */
@@ -246,9 +255,7 @@ class TradingCenter extends Component {
         let userStocks = {};
         return API.getMyStocks(portfolio)
             .then((res) => {
-                // console.log(res.data);
                 allUserStocks = res.data;
-                // console.log(allUserStocks);
                 for (let i = 0; i < res.data.length; i++) {
                     if (!userStocks[res.data[i].ticker]) {
                         userStocks[res.data[i].ticker] = res.data[i].shares;
@@ -256,20 +263,15 @@ class TradingCenter extends Component {
                         userStocks[res.data[i].ticker] += res.data[i].shares;
                     }
                 }
-                // console.log(userStocks);
-
+                console.log(userStocks);
                 let current = Promise.resolve();
-
                 Object.keys(userStocks).forEach((key) => {
                     current = current.then(() => {
-                        // console.log(key);
                         return API.userQuotes({
                             ticker: key,
                         })
                             .then((res) => {
-                                // console.log(res.data);
                                 lastPrice.push(res.data[0]);
-                                // console.log(lastPrice);
                                 const myROI = self.returnOnInvestment(userStocks, lastPrice, allUserStocks);
                                 if (key === this.state.ticker) {
                                     for (let i = 0; i < myROI.length; i++) {
@@ -287,38 +289,33 @@ class TradingCenter extends Component {
                             });
                     });
                 });
-                // console.log(current);
                 return current;
             });
     };
 
 /**
- * @public myStocksValue function that gets users stocks value from mongo database
+ * @public myStocksCalue function, It call myStocks function the output of which is an object
+ * with the ShareNames(Tickers), and the quantity of those shares the users currently owns.
+ * Then a call is made to Exchange center to get the latest price for these tickers which are
+ * saved in lastPrice variable.
+ * At the last Stage this function calls the portfolioValue function, the output of
+ * which are :  1- The Portfolio ROI & 2- The Portfolio Value for Each User.
  * @param {*} portfolio
  */
     myStocksValue() {
         let self = this;
-
         this.myStocks(this.state.portfolio_id)
             .then((result) => {
-                // console.log(result);
                 let stocks = result;
                 let lastPrice = [];
-
-                // console.log(stocks);
-
                 let current = Promise.resolve();
-
                 Object.keys(stocks).forEach(function(key) {
                     current = current.then(() => {
-                        // console.log(key);
                         return API.userQuotes({
                             ticker: key,
                         })
                             .then((res) => {
-                                // console.log(res.data);
                                 lastPrice.push(res.data[0]);
-                                // console.log(lastPrice);
                                 self.portfolioValue(stocks, lastPrice);
                             });
                     });
@@ -328,7 +325,7 @@ class TradingCenter extends Component {
     };
 
 /**
- * @public portfolioValue function that gets users portfolio value from mongo database
+ * @public This fucntion is called by the myStocksValue function and the output is explained there.
  * @param {*} stocks
  * @param {*} lastPrice
  * @return {*} returns users cash
@@ -336,31 +333,20 @@ class TradingCenter extends Component {
  * The inputs to this function  are The list of Shares the user has and the latest Rpice of those shares
 */
     portfolioValue(stocks, lastPrice) {
-        // console.log(stocks);
         // Since the Game starts the user with a set starting value it's used as a variable
-        let initCash = 20000.00;
+        let initCash = 200000.00;
         let PV = 0;
         let pvROI = 0;
-
-        // console.log(lastPrice[0]);
         Object.keys(stocks).forEach((key) => {
             for (let j = 0, len2 = lastPrice.length; j < len2; j++) {
                 if (key === lastPrice[j].symbol) {
-                    // console.log(stocks[key]);
-                    PV += (stocks[key] * lastPrice[j].price);
+                    PV += (stocks[key] * lastPrice[j].price * 100)/100;
                 };
             };
         });
-        // Portfolio Value is Equal to
-        // console.log(PV);
-        // console.log(this.state.cashBalance);
         let userPortfolioValue = PV + Number(this.state.cashBalance);
-        // console.log('The Portfolio Value is: $' + userPortfolioValue);
-        // console.log(initCash);
         let a = userPortfolioValue - initCash;
-        // Portfolio ROI is Callculated Below
         pvROI = ((a / initCash) * 100).toFixed(2);
-        // console.log('The Portfolio ROI is:  ' + pvROI);
         return {
             userPortfolioValue,
             pvROI,
@@ -368,28 +354,24 @@ class TradingCenter extends Component {
     };
 
 /**
- * @public ROI function that gets users retrun on investment value from mongo database
- * @param {*} allUserStocks
- * @param {*} lastPrice
- * @param {*} userStocks
- * @return {*} returns users ROI
+ * @public The returnOnInvestment function is called by the dbStocks Function
+ * it takes in 3 parameters that are listed below and the return is the ROI for each of the
+ * stocks the user ownes.
+ * @param {*} allUserStocks // The Shares the User ownes and it's Quantity
+ * @param {*} lastPrice // The Current price of each of the Tickers (retrieved from the Exchange API)
+ * @param {*} userStocks // an array of all the transactions made by the User
+ * @return {*} The ROI for each of the stocks the user owns.
 */
     returnOnInvestment(allUserStocks, lastPrice, userStocks) {
-        // console.log(allUserStocks);
-        // console.log(lastPrice);
         let eachROI = [];
-
         for (let i = 0; i < userStocks.length; i++) {
             if (userStocks[i].type === 'Sell') {
                 userStocks.splice(i, 1);
             };
         };
-        // console.log(userStocks);
         let boughtStocks = _.uniq(userStocks, function(p) {
             return p.ticker;
         });
-        // console.log(boughtStocks);
-
         Object.keys(allUserStocks).forEach((key) => {
             for (let j = 0, len1 = lastPrice.length; j < len1; j++) {
                 for (let i = 0, len2 = boughtStocks.length; i < len2; i++) {
@@ -397,11 +379,10 @@ class TradingCenter extends Component {
                         ticker: '',
                         roi: '',
                     };
-
                     if (key === lastPrice[j].symbol && key === boughtStocks[i].ticker) {
                         obj.ticker = key;
-                        let a = (lastPrice[j].price * allUserStocks[key]);
-                        let b = (allUserStocks[key] * boughtStocks[i].sharePrice);
+                        let a = (lastPrice[j].price * 100 * allUserStocks[key]);
+                        let b = (allUserStocks[key] * boughtStocks[i].sharePrice * 100);
                         let c = ((a - b) / b) * 100;
                         obj.roi = (c).toFixed(2);
                         eachROI.push(obj);
@@ -409,12 +390,8 @@ class TradingCenter extends Component {
                 };
             };
         });
-        console.log('The individual Stocks ROI is:');
-        console.log(eachROI);
-
         return eachROI;
     };
-
 /**
  * @public bankValue function that gets users bank value from mongo database
  * @param {*} portfolio
@@ -426,11 +403,8 @@ class TradingCenter extends Component {
         let bank = 0;
         return API.getMyPortfolio(portfolio)
             .then((res) => {
-                // console.log(res.data);
                 let data = res.data;
-                // console.log(data);
                 bank = (data[0].cash).toFixed(2);
-                // console.log(bank);
                 return bank;
             })
             .catch((err) => console.log(err));
@@ -438,24 +412,18 @@ class TradingCenter extends Component {
 
 /**
  * @public myWatchlist function gives the latest price for the Watch List
- * that in retrieved from MySQL and fed to this function
- * @param {*} watchedArray
- * @return {*} returns users latest price
+ * @param {*} watchedArray // This array is retrieved from MySQL Database
+ * @return {*} returns An array with the Tickers on the Watchlist and their lates Price.
 */
     myWatchlist(watchedArray) {
-        // console.log(watchedArray);
-        // let self = this;
         let watchPrice = [];
         let current = Promise.resolve();
-
         for (let i = 0; i < watchedArray.length; i++) {
             current = current.then(() => {
-                // console.log(watchedArray[i]);
                 return API.userQuotes({
                     ticker: watchedArray[i],
                 })
                     .then((res) => {
-                        // console.log(res.data);
                         let watch = {
                             ticker: '',
                             price: '',
@@ -464,7 +432,6 @@ class TradingCenter extends Component {
                         watch.ticker = data[0].symbol;
                         watch.price = data[0].price;
                         watchPrice.push(watch);
-                        // console.log(watchPrice);
                     });
             });
         };
@@ -477,7 +444,6 @@ class TradingCenter extends Component {
     charting(ticker) {
         API.findQuotes(ticker)
             .then((res) => {
-                // console.log(res.data);
                 this.setState({
                     price: res.data.quote.latestPrice,
                     change: res.data.quote.changePercent,
@@ -494,7 +460,6 @@ class TradingCenter extends Component {
                 //     dateArray.push(day.date);
                 //     return dateArray;
                 // });
-
                 Highcharts.chart('stockChart', {
                     chart: {
                         spacingBottom: 20,
@@ -547,7 +512,6 @@ class TradingCenter extends Component {
             API.findQuotes(
                 {ticker: this.state.ticker}
             ).then((res) => {
-                // console.log(res.data);
                 this.setState({price: res.data.quote.latestPrice});
                 if (this.state.ticker && this.state.price && this.state.shares) {
                     API.buyShares({
@@ -562,7 +526,6 @@ class TradingCenter extends Component {
                                 shares: 0,
                                 response: 'Your order was submitted and processed!',
                             });
-                            // console.log(this.state.response);
                             this.myStocks(this.state.portfolio_id);
                             this.dbStocks(this.state.portfolio_id);
                             this.myStocksValue();
@@ -603,7 +566,6 @@ class TradingCenter extends Component {
                                 shares: 0,
                                 response: 'Transaction successfully completed',
                             });
-                            // console.log(this.state.response);
                             this.myStocks(this.state.portfolio_id);
                             this.dbStocks(this.state.portfolio_id);
                             this.myStocksValue();
@@ -702,7 +664,7 @@ class TradingCenter extends Component {
                                     <h4>PRICE PURCHASED</h4>
                                 </div>
                                 <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>${this.state.cost.toFixed(2)}</h4>
+                                    <h4>${this.state.cost}</h4>
                                 </div>
                             </div>
                             <div className='row'>
@@ -782,7 +744,7 @@ class TradingCenter extends Component {
                                 <h4>SUBTOTAL:</h4>
                             </div>
                             <div className='col-sm-6 col-md-6 totalCalc'>
-                                <h4>${this.state.shares * this.state.price}</h4>
+                                <h4>${(this.state.shares * this.state.price).toFixed(2)}</h4>
                             </div>
                         </div>
                         <div className='row totalCalc'>
@@ -791,10 +753,10 @@ class TradingCenter extends Component {
                             </div>
                             <div className='col-sm-6 col-md-6 totalCalc'>
                                 {this.state.transaction === 'buy' ?
-                                (<h4>${(this.state.cashBalance -
-                                    (this.state.shares * this.state.price)).toFixed(2)}</h4>
-                                ) : (<h4>${((this.state.cashBalance) -
-                                (-(this.state.shares) * this.state.price)).toFixed(2)}</h4>)}
+                                (<h4>${(((this.state.cashBalance * 100) -
+                                    (this.state.shares * this.state.price * 100)) / 100).toFixed(2)}</h4>
+                                ) : (<h4>${(((this.state.cashBalance * 100) -
+                                (-(this.state.shares) * this.state.price * 100)) / 100).toFixed(2)}</h4>)}
                             </div>
                         </div>
                         <div>

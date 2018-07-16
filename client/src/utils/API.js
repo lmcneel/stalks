@@ -44,11 +44,11 @@ export default {
     getMyStocks: function(portfolio) {
         return axios.get(`/api/trading/mystocks/${portfolio}`);
     },
-    addNewTicker: function() {
-        return axios.post('/api/petfolio/addTicker');
+    addNewTicker: function(SQL_ID, Ticker) {
+        return axios.post(`/api/petfolio/addTicker/${SQL_ID}/${Ticker}`);
     },
-    removeExistingTicker: function() {
-        return axios.delete('/api/petfolio/removeTicker');
+    removeExistingTicker: function(SQL_ID, Ticker) {
+        return axios.delete(`/api/petfolio/removeTicker/${SQL_ID}/${Ticker}`);
     },
     getUserPic: function() {
         return axios.get('/api/petfolio/userpic');
