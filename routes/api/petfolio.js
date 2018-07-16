@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const petfolioController = require('../../controllers/petfolioController');
-// const db = require('../models/mysql');
 
 // these might be tradingController.getBankValue?????????
 // router.route('/petfolio/portfolio')
@@ -12,14 +11,13 @@ const petfolioController = require('../../controllers/petfolioController');
 // router.route('petfolio/pets')
 //   .get(petfolioController.getPetInfo);
 
-// is it /api/petfolio/ticker or just /ticker?
 router.route('/ticker')
 .get(petfolioController.getTickerText);
-// router.route('petfolio/ticker')
-//   .get(function(req, res) {
-//     db.UserWatchList.findAll({}).then(function(dbWL){
-//       console.log(dbWL);
-//     });
-//   });
+
+router.route('/addTicker')
+.post(petfolioController.addTicker);
+
+router.route('/removeTicker')
+.delete(petfolioController.removeTicker);
 
 module.exports = router;
