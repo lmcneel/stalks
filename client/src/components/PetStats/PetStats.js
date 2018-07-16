@@ -12,18 +12,12 @@ class PetStats extends React.Component {
   constructor(props) {
     super(props);
     this.petAnimal = this.petAnimal.bind(this);
-    this.feed = this.feed.bind(this);
     this.state = {};
   }
   
   componentDidMount() {
     API.getPetInfo(1).then((res) => {
       console.log(res);
-      res.data.Accessories.forEach((accessory) => {
-        if(accessory.equipped) {
-          this.setState({equippedAccessory: accessory});
-        }
-      });
       this.setState( {
         name: res.data.petName,
         pic: res.data.urlImage,
@@ -31,7 +25,6 @@ class PetStats extends React.Component {
         lastPet: res.data.lastPet,
         lastFondness: res.data.lastFondness,
         petId: res.data.id,
-        Accessories: res.data.Accessories,
       });
       this.getOverallHealth();
     })
@@ -41,7 +34,7 @@ class PetStats extends React.Component {
     this.getFondness();
     this.getHappiness();
     this.getHunger();
-    this.setState({overallHealth: (this.state.fondness + this.state.happiness + this.state.hunger) / 3});
+    this.setState({overallHealth: (this.state.fondness + this.state.happiness + this.state.hungerLeft) / 3});
   }
 
   getFondness() {
@@ -53,24 +46,11 @@ class PetStats extends React.Component {
     const timeSincePet = Date.now() - new Date(this.state.lastPet);
     const fondnessDrained = (timeSincePet / 172800000) * 100;
     let fondness = this.state.lastFondness - fondnessDrained;
-    if(this.state.equippedAccessory && this.state.equippedAccessory.name === 'red collar') {
-      fondness += 20;
-    }
-    fondness = Math.min(fondness, 100);
-    fondness = Math.max(fondness, 0);
     this.setState({fondness: fondness});
   }
 
-  // TODO Calculate Happiness blocked by ROI API.
   getHappiness() {
-    // Dummy value
-    let happiness = 75;
-    if(this.state.equippedAccessory && this.state.equippedAccessory.name === 'blue collar') {
-      happiness += 20;
-    }
-    happiness = Math.min(happiness, 100);
-    happiness = Math.max(happiness, 0);
-    this.setState({happiness: happiness});
+    this.state.happiness = 75;
   }
 
   getHunger() {
@@ -82,22 +62,13 @@ class PetStats extends React.Component {
     // (Last login timestamp) - (Current login timestamp) = (Hunger drain)
     const now = Date.now();
     const timeSinceFed = now - new Date(this.state.lastFed);
-    const hunger = Math.max(((1 - (timeSinceFed / 86400000)) * 100), 0);
-    this.setState({hunger: hunger});
+    const hungerLeft = Math.max(((1 - (timeSinceFed / 86400000)) * 100), 0);
+    this.setState({hungerLeft: hungerLeft});
   }
 
-  // TODO: Decrease food inventory by one. Blocker-User login/Inventory.
   feed() {
     // Feeding your pet is how you will increase the hunger bar (meaning it will not need food for a while)
     // You can buy the food using in game currency in the shop, you can only own so much food at a time.
-    let newState = {hunger: 100, lastFed: Date.now()};
-    if(this.state.equippedAccessory && this.state.equippedAccessory.name === 'bow tie') {
-      newState.lastFondness = this.state.lastFondness + 20;
-    }
-    this.setState(newState,
-    () => {
-      API.updatePetInfo(this.state);
-    });
   }
 
   petAnimal() {
@@ -105,19 +76,12 @@ class PetStats extends React.Component {
     lastPet: Date.now(),
     lastFondness: this.state.fondness + 20,
     }, () => {
-      API.updatePetInfo(this.state);
+      API.updatePetInfo(this.state)
     });
-    console.log(this.state.lastPet);
+    console.log(this.state.lastPet)
   }
 
   render() {
-    let petButton, feedButton;
-    feedButton = <button className='feedButton' onClick={this.feed}>Feed</button>;
-    if(Date.now() - new Date(this.state.lastPet) < 10800000) {
-      petButton = <button className='petButton' onClick={this.petAnimal} disabled>Pet</button>;
-    }else {
-      petButton = <button className='petButton' onClick={this.petAnimal}>Pet</button>;
-    }
     if(this.state.name)
     return (
       <div>
@@ -136,12 +100,11 @@ class PetStats extends React.Component {
             </div>
             <div>
               <PetStatusBars
-              hunger={this.state.hunger}
+              hunger={this.state.hungerLeft}
               overallHealth={this.state.overallHealth}
               fondness={this.state.fondness}
               happiness={this.state.happiness}
-              petButton={petButton}
-              feedButton={feedButton}
+              petHandler={this.petAnimal}
               />
             </div>
             </Col>

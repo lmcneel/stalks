@@ -32,8 +32,7 @@ class PetStatusBars extends Component {
                     petStatColor="warning"
                     petStatValue={this.props.fondness}
                 />
-                {this.props.petButton}
-                {this.props.feedButton}
+                <button className='petButton' onClick={this.props.petHandler}>Pet</button>
             </div>
         );
     }
