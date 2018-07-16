@@ -20,14 +20,14 @@ class MainApp extends Component {
     
     }
     displayFoodAndToys = ()=> {
-        API.getPurchasedAccessories()
-        .then(res => this.setState({results: res.data}))
-    }
-    displayEnviornments = ()=> {
-        API.getPurchasedAccessories()
+        API.displayPurchasedFoodAndToys()
         .then(res => this.setState({results: res.data}))
     }
 
+    componentDidMount() {
+        this.displayAccessories()
+    };
+  
 
 
     render() {
@@ -39,15 +39,15 @@ class MainApp extends Component {
           
           <Button onClick={this.displayFoodAndToys} style={{'margin-right': '2px'}}> Food and Toys</Button>
           <Button onClick={this.displayAccessories}style={{'margin-right': '2px'}}> Accessories </Button>
-          <Button onClick={this.displayEnviornments}style={{'margin-right': '2px'}}> Enviornment </Button>
+         
           <Col></Col>
           <Container>
           <Row>
                     {(this.state.results.length) ? (
-                        <div style={{'display': 'flex'}}>
+                        <div style={{'display': 'contents'}}>
                             {this.state.results.map((result, index) => {
                                 return (
-                                  <Card name={result.Petname} image={result.urlImage} buttonName={'Use'} style={{'margin':'50px'}}/>
+                                  <Card name={result.name} image={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStE88QZWx1eLEsnCSjvXBQHjxiXJ1nY0PlNkf7H6twi9ru_NBU3g'} buttonName={'Use'} style={{'margin':'50px'}}/>
                                 );
                             })}
                         </div>
