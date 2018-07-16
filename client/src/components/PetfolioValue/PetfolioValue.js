@@ -15,33 +15,36 @@ class PetfolioValue extends Component {
     this.portfolioValue = this.portfolioValue.bind(this);
     this.state = {
       petfolioValue: 500,
-      portfolio_id: '5b4bc46134b6a866d293bcb5',
+
+      portfolio_id: '5b4cf8a4f387eda4bd04e253',
     };
   }
-/**
- * @public componentDidMount function will render elements
-*/
-  componentDidMount() {
-    this.portfolioValue(this.state.portfolio_id);
-  };
+    /**
+     * @public componentDidMount function will render elements
+     */
+    componentDidMount() {
+      this.portfolioValue(this.state.portfolio_id);
+    };
 
-/**
- * @public portfolioerValue function that gets users current portfoli value from mongo database
- * @param {*} portfolio
- * @return {*} returna users currentValue
- * This function wil give the Current user portfoli value
- * The input needs to be teh User Portfolio ID.
-*/
-portfolioValue(portfolio) {
+
+    /**
+     * @public portfolioValue function that gets users currentValue from mongo database
+     * @param {*} portfolio
+     * @return {*} returns users bank value
+     * This function will give the Current user Cash
+     * The input needs to be the User Portfolio ID.
+    */
+   portfolioValue(portfolio) {
     let PV = 0;
     return API.getMyPortfolio(portfolio)
-          .then((res) => {
-            console.log(res.data);
-              let data = res.data;
-              PV = (data[0].currentValue).toFixed(2);
-              return this.setState({petfolioValue: PV});
-          })
-          .catch((err) => console.log(err));
+        .then((res) => {
+          console.log(res.data);
+            let data = res.data;
+            PV = (data[0].currentValue.toFixed(2));
+            return this.setState({petfolioValue: PV});
+        })
+        .catch((err) => console.log(err));
+
     };
 
   /**
