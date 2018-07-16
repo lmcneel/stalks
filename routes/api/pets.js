@@ -5,12 +5,9 @@ const petsController = require('../../controllers/pets_controller.js');
 // router.route('ozair')
 // .get(petsController.findAll)
 
-router.route('/:id')
-.post(petsController.update)
-.get(petsController.findById)
 
-router.route('/ozairishere')
-.get(petsController.findAll)
+router.get('/ozairishere', (req,res) => res.send('hi buddy'))
+
 
 
 //matches with /api/pets/foodandtoys
@@ -33,5 +30,8 @@ router.route('/useraccessories/:id')
 router.route('/userfoodandtoys/:id')
 .get(petsController.getuserfoodandtoys)
 
+router.route('/:id')
+.post(petsController.update)
+.get(petsController.findById)
 
 module.exports = router;
