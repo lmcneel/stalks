@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
-<<<<<<< HEAD
 import {PetStats} from '../PetStats';
-=======
 import {PetStatsVert} from '../PetStats';
 // import ListStock from '../ListStock/ListStock';
->>>>>>> 93f713b1f603283e46adf96f25ee0d8ab01638c8
 import BankValue from '../BankValue/BankValue';
 import PetfolioValue from '../PetfolioValue/PetfolioValue';
 import PieChart from '../PieChart/PieChart';
