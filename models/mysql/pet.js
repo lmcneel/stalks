@@ -31,5 +31,9 @@ module.exports = function(sequelize, Sequelize) {
         Pet.hasMany(models.Accessory);
     };
 
+    Pet.associate = function(models) {
+        Pet.belongsTo(models.User);
+    };
+
     return Pet;
 };

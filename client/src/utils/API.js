@@ -51,6 +51,7 @@ export default {
         return axios.delete('/api/petfolio/removeTicker');
     },
     getUserPic: function() {
-        return axios.get('api/petfolio/userpic');
+        console.log("here")
+        return axios.get('/api/petfolio/userpic');
     },
 };
