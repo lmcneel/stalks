@@ -64,7 +64,14 @@ class TradingCenter extends Component {
             portfolio_id: '5b4bc46134b6a866d293bcb5',
             transaction: 'buy',
             ROI: 0,
+<<<<<<< HEAD
             id: '5b4bc46134b6a866d293bcb5',
+=======
+            id: '5b4b9d856acd8b08c04ca749',
+            UserId: 12,
+            // sqlId: 18,
+            // ticker:'TTT',
+>>>>>>> 2473e85bde72c80607a3d3a7f1e3f88e43c61f80
             cost: 0,
             datePurchased: '',
             value: 0,
@@ -89,6 +96,8 @@ class TradingCenter extends Component {
         this.myWatchlist(this.state.watchedArray);
         this.cashCalculator(this.state.portfolio_id);
         this.checkWatchList();
+        // this.addToWatchlist(this.state.sqlId, this.state.ticker);
+        // this.removeFromWatchlist(this.state.sqlId, this.state.ticker);
     };
 /**
  * @public toggle function for reactstap <Modal> onClick trigger
@@ -102,9 +111,9 @@ class TradingCenter extends Component {
  * @public checkWatchList function will check if the current 'ticker' is listed in user watchlist
  * @param {*} ticker
  */
-    checkWatchList(ticker) {
+    checkWatchList() {
         // If in watchlist set [watched] to true
-        API.getTickerText(ticker).then(((r) => {
+        API.getTickerText().then(((r) => {
             if (r.data.length !== 0) {
             let tempTicker = [];
             for (let i=0; i<r.data.length; i++) {
@@ -121,20 +130,32 @@ class TradingCenter extends Component {
 
 /**
  * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
- * @param {*} ticker
+ * @param {*} SQL_ID
+ * @param {*} Ticker
  */
-    addToWatchlist(ticker) {
-        // API.addNewTicker(ticker)
-        // Need to add to MySQL Watchlist
-    }
+    addToWatchlist( SQL_ID, Ticker) {
+        API.addNewTicker(SQL_ID, Ticker)
+        .then((res) => {
+            console.log('Ticker Added to Watchlist');
+            this.checkWatchList();
+        })
+        .catch((err) => console.log(err));
+    };
+
 /**
 * @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
-* @param {*} ticker
+* @param {*} SQL_ID
+* @param {*} Ticker
+
 */
-    removeFromWatchlist() {
-        // API.removeExistingTicer(ticker)
-        // Need to remove from MySQL Watchlist
-    }
+removeFromWatchlist( SQL_ID, Ticker) {
+    API.removeExistingTicker(SQL_ID, Ticker)
+    .then((res) => {
+        console.log('done');
+        this.checkWatchList();
+    })
+    .catch((err) => console.log(err));
+};
 
 /**
  * @public handleInputChange function for number of shares
@@ -208,12 +229,12 @@ class TradingCenter extends Component {
     cashCalculator(portfolio) {
         return API.getMyStocks(portfolio)
             .then((res) => {
-                let cashTotal = 20000;
+                let cashTotal = 200000;
                 for (let i = 0; i < res.data.length; i++) {
-                    cashTotal -= res.data[i].sharePrice * res.data[i].shares;
+                    cashTotal -= (res.data[i].sharePrice * 100 * res.data[i].shares)/100;
                 }
                 this.setState({
-                    cashBalance: cashTotal.toFixed(2),
+                    cashBalance: (cashTotal).toFixed(2),
                 });
             })
             .catch((err) => console.log(err));
@@ -246,6 +267,7 @@ class TradingCenter extends Component {
                         userStocks[res.data[i].ticker] += res.data[i].shares;
                     }
                 }
+                console.log(userStocks);
                 let current = Promise.resolve();
                 Object.keys(userStocks).forEach((key) => {
                     current = current.then(() => {
@@ -316,13 +338,13 @@ class TradingCenter extends Component {
 */
     portfolioValue(stocks, lastPrice) {
         // Since the Game starts the user with a set starting value it's used as a variable
-        let initCash = 20000.00;
+        let initCash = 200000.00;
         let PV = 0;
         let pvROI = 0;
         Object.keys(stocks).forEach((key) => {
             for (let j = 0, len2 = lastPrice.length; j < len2; j++) {
                 if (key === lastPrice[j].symbol) {
-                    PV += (stocks[key] * lastPrice[j].price);
+                    PV += (stocks[key] * lastPrice[j].price * 100)/100;
                 };
             };
         });
@@ -363,8 +385,8 @@ class TradingCenter extends Component {
                     };
                     if (key === lastPrice[j].symbol && key === boughtStocks[i].ticker) {
                         obj.ticker = key;
-                        let a = (lastPrice[j].price * allUserStocks[key]);
-                        let b = (allUserStocks[key] * boughtStocks[i].sharePrice);
+                        let a = (lastPrice[j].price * 100 * allUserStocks[key]);
+                        let b = (allUserStocks[key] * boughtStocks[i].sharePrice * 100);
                         let c = ((a - b) / b) * 100;
                         obj.roi = (c).toFixed(2);
                         eachROI.push(obj);
@@ -646,7 +668,7 @@ class TradingCenter extends Component {
                                     <h4>PRICE PURCHASED</h4>
                                 </div>
                                 <div className='col-sm-6 col-md-6 stockData'>
-                                    <h4>${this.state.cost.toFixed(2)}</h4>
+                                    <h4>${this.state.cost}</h4>
                                 </div>
                             </div>
                             <div className='row'>
@@ -735,10 +757,10 @@ class TradingCenter extends Component {
                             </div>
                             <div className='col-sm-6 col-md-6 totalCalc'>
                                 {this.state.transaction === 'buy' ?
-                                (<h4>${(this.state.cashBalance -
-                                    (this.state.shares * this.state.price)).toFixed(2)}</h4>
-                                ) : (<h4>${((this.state.cashBalance) -
-                                (-(this.state.shares) * this.state.price)).toFixed(2)}</h4>)}
+                                (<h4>${(((this.state.cashBalance * 100) -
+                                    (this.state.shares * this.state.price * 100)) / 100).toFixed(2)}</h4>
+                                ) : (<h4>${(((this.state.cashBalance * 100) -
+                                (-(this.state.shares) * this.state.price * 100)) / 100).toFixed(2)}</h4>)}
                             </div>
                         </div>
                         <div>
