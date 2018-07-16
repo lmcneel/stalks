@@ -16,7 +16,7 @@ export class Forum extends Component {
         this.state = {
             dropdownOpen: false,
             forum: {
-                data: [{ subject: '', comments: '', }]
+                data: [{subject: '', comments: '',}]
 
             },
         };
@@ -91,12 +91,14 @@ export class Forum extends Component {
 
 
     <div> {this.state.forum.data.map((data, i) =>{
-    return (<div key={`data${i}`}>
-            <h2>{data.subject}<ForumEditButton/><ForumDeleteButton/></h2>
-            <p>{data.comments}<ForumEditButton/><ForumDeleteButton/></p>
-        </div>);
+    return (<Card key={`data${i}`}>
+    <CardBody>
+    <ForumEditButton/><ForumDeleteButton/>
+            <th>{data.subject}</th>
+            <tr>{data.comments}</tr>
+    </CardBody>        
+        </Card>);
 })}
-
     </div>
 
 
