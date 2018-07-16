@@ -20,9 +20,15 @@ export default {
         // console.log(data);
         return axios.get(`/api/trading/slimquote/${data.ticker}`);
     },
-    // getInitialCash: function() {
-    //     return axios.get('api/ptfolio/initialcash');
-    // },
+    getInitialCash: function() {
+        return axios.get('api/portfolio/cash');
+    },
+    updatePortfolio: function(id, cash) {
+        return axios.patch(`/api/trading/myportfolio/${id}/${cash}`);
+    },
+    updateCurrentValue: function(id, currentvalue) {
+        return axios.patch(`/api/trading/portfolio/cv/${id}/${currentvalue}`);
+    },
     getMyPortfolio: function(portfolio) {
         return axios.get(`/api/trading/myportfolio/${portfolio}`);
     },
@@ -55,11 +61,11 @@ export default {
     getMyStocks: function(portfolio) {
         return axios.get(`/api/trading/mystocks/${portfolio}`);
     },
-    addNewTicker: function() {
-        return axios.post('/api/petfolio/addTicker');
+    addNewTicker: function(SQL_ID, Ticker) {
+        return axios.post(`/api/petfolio/addTicker/${SQL_ID}/${Ticker}`);
     },
-    removeExistingTicker: function() {
-        return axios.delete('/api/petfolio/removeTicker');
+    removeExistingTicker: function(SQL_ID, Ticker) {
+        return axios.delete(`/api/petfolio/removeTicker/${SQL_ID}/${Ticker}`);
     },
     getComments: function() {
         console.log('hit API.js');
