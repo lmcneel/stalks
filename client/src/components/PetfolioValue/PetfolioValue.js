@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import API from '../../utils/API';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faBriefcase} from '@fortawesome/fontawesome-free-solid';
+
 /**
  * @class PetfolioValue
  */
@@ -13,6 +16,7 @@ class PetfolioValue extends Component {
     this.portfolioValue = this.portfolioValue.bind(this);
     this.state = {
       petfolioValue: 500,
+
       portfolio_id: '5b4cdce882dae09a12f3fb79',
     };
   }
@@ -41,6 +45,7 @@ class PetfolioValue extends Component {
             return this.setState({petfolioValue: PV});
         })
         .catch((err) => console.log(err));
+
     };
 
   /**
@@ -49,6 +54,7 @@ class PetfolioValue extends Component {
   render() {
     return (
         <div>
+          <FontAwesomeIcon icon={faBriefcase} className="pad"/>
           ${this.state.petfolioValue}
         </div>
     );
