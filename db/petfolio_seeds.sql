@@ -118,7 +118,8 @@ Values ('ABBV', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 1),
 ('ABR-C', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 9),
 ('ABT', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 10);
 
-Insert Into Pets (petType, petName, health, fondness, happiness, hunger, urlImage, createdAt, updatedAt, UserId) Values ('ostrich', 'Bridgette', 100, 100, 100, 100, './client/src/assets/images/Ostrich1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 1),
+Insert Into Pets (petType, petName, health, fondness, happiness, hunger, urlImage, createdAt, updatedAt, UserId) 
+Values ('ostrich', 'Bridgette', 100, 100, 100, 100, './client/src/assets/images/Ostrich1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 1),
 ('bull', 'Alf', 100, 100, 100, 100, './client/src/assets/images/Bull1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 2),
 ('bear', 'Bearmanpig', 100, 100, 100, 100, './client/src/assets/images/Bear1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 3),
 ('wolf', 'Richard', 100, 100, 100, 100, './client/src/assets/images/Wolf1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 4),
