@@ -16,7 +16,7 @@ export class Forum extends Component {
         this.state = {
             dropdownOpen: false,
             forum: {
-                data: [{subject: '', comments: '',}]
+                data: [{subject: '', comments: ''}],
             },
         };
         this.loadComments = this.loadComments.bind(this);
@@ -24,7 +24,6 @@ export class Forum extends Component {
 
     componentDidMount() {
         this.loadComments();
-       
     };
 
     // Functions will go here
@@ -36,7 +35,7 @@ export class Forum extends Component {
             forum: res.data,
 
         }),
-        // console.log(res.data)   
+        // console.log(res.data)
         )
             .catch((err) => console.log(err));
     };
@@ -65,7 +64,7 @@ export class Forum extends Component {
                                 FORUM
                 </CardTitle>
                             <div>
-                                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}> 
+                                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                                     <DropdownToggle caret>
                                         Choose a Topic . . .
                             </DropdownToggle>
@@ -82,23 +81,22 @@ export class Forum extends Component {
                                             HELP!
                                     </DropdownItem>
                                     </DropdownMenu>
-                                </Dropdown> 
+                                </Dropdown>
                             </div>
                             <div>
                                 <Card>
                                     <CardBody>
-                                       
-                                                        
-                                                        <div>                                                                                      {this.state.forum.data.map((data, i) =>{
-    return(<div key={`data${i}`}>
+
+
+    <div> {this.state.forum.data.map((data, i) =>{
+    return (<div key={`data${i}`}>
             <h2>{data.subject}<ForumEditButton/><ForumDeleteButton/></h2>
             <p>{data.comments}<ForumEditButton/><ForumDeleteButton/></p>
         </div>);
 })}
 
-                                                            </div>
-                                        
-                                     
+    </div>
+
 
                                     </CardBody>
                                 </Card>
