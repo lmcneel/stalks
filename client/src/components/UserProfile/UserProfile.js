@@ -50,7 +50,7 @@ function ProfileInfo({info, tabname}) {
     );
 };
 ProfileInfo.propTypes = {
-    info: PropTypes.string.isRequired,
+    info: PropTypes.string,
     tabname: PropTypes.string.isRequired,
 };
 /**
@@ -106,7 +106,53 @@ class UserProfile extends Component {
      * user from session storage and rerenders due to setState
      */
     componentDidMount() {
-        this.getUser();
+        this.checkURL();
+    };
+
+    /**
+     * Function to check the url
+     */
+    checkURL() {
+        const url = this.props.location.search;
+        const pathname = this.props.location.pathname;
+        const pathArr = pathname.split('/');
+        console.log(pathArr);
+        if (pathArr[3] === 'verify') {
+            if (url.indexOf('userId') === 1) {
+                const searchArr = url.split('&');
+                const splitId = searchArr[0].split('=');
+                const userID = splitId[1];
+                const splitVId = searchArr[1].split('=');
+                const validationID = splitVId[1];
+                const splitType = searchArr[2].split('=');
+                const verificationType = splitType[1];
+                const splitCode = searchArr[3].split('=');
+                const verificationCode = splitCode[1];
+                const confirmationLinkData = {
+                    userID: userID,
+                    validationID: validationID,
+                    verificationType: verificationType,
+                    verificationCode: verificationCode,
+                };
+                console.log(confirmationLinkData);
+                API.confirmEmailVerification(confirmationLinkData)
+                .then((res) => {
+                    console.log(res);
+                    if (res.data === 'Email Confirmation Complete') {
+                        this.getUser();
+                    } else {
+                        this.props.history.push('/');
+                    };
+                })
+                .catch((err) => {
+                    if (err) {
+                        this.props.history.push('/');
+                    };
+                });
+            }
+        } else {
+            this.getUser();
+        }
     };
     /**
      * Function that gets called to retrieve user from session storage and sets component's state

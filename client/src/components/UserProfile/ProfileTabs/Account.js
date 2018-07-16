@@ -29,6 +29,7 @@ class Account extends Component {
 
         this.toggleBody = this.toggleBody.bind(this);
     };
+
     /**
      * Function that toggles body
      * @param {string} body Uses string to deteremine which body to show

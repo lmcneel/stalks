@@ -1,5 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const AuthTokenStrategy = require('passport-auth-token').Strategy;
 const db = require('../models/mysql');
 const User = db.User;
 const Pet = db.Pet;
@@ -88,40 +89,53 @@ passport.use('local-signup', new LocalStrategy(
 }));
 
 /**
- * I did not make log-in yet... but should be similar just
- * instead of checking if username/email avaiable check if theres a match with the password
- * I will start it off
+ * Not fully tested.
  */
 passport.use('local-signin', new LocalStrategy(
-  // Our user will sign in using an email, rather than a "username"
   {
-    usernameField: 'username',
+    usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true,
   },
-  function(req, username, password, done) {
-
-    // If you want to be able to use either username or email you can leave the stuff above the same
-    // make sure when you pass data into here it matches how it looks below, or change it.
-    const {email} = req.body;
-    // now you can use email instead of username just make sure you search for email instead of username
+  function(req, email, password, done) {
+    console.log('User is attempting to sign in');
+    console.log(req.body);
     // Check email/username match password
-    // (theres a prototype for user in the modal so use User.validPassword to check if the password matches the hash)
-    // If match log em in make sure you when findOne you include pet too
-    // incase err do   return done(err);
-    // if everything good return done(null, data, 'User logged in'); :D
+    User.findOne({
+        where: {email: email},
+        include: {
+          model: Pet,
+          as: 'Pet',
+        },
+    })
+    .then(function(user) {
+      if (user) {
+        // Since user has been found check if password matches our hash
+        if (user.validPassword(password)) {
+          // since true means user put in the right credentials so log the user in!
+
+          return done(null, user, 'User has logged in');
+        }
+      } else {
+        return done('That email is not in our system.');
+      };
+    })
+    .catch(function(err) {
+      if (err) {
+        return done(err);
+      };
+    });
 }));
 
 // In order to help keep authentication state across HTTP requests,
 // Sequelize needs to serialize and deserialize the user
 // Just consider this part boilerplate needed to make it all work
-
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-  User.findOne({_id: id}).then(function(user) {
+  User.findOne({where: {_id: id}}).then(function(user) {
       if (user) {
           done(null, user);
       } else {
@@ -161,8 +175,11 @@ function checkMultipleUsername(username, cb) {
 function checkMultipleEmail(email, cb) {
   console.log(email);
 
-  User.findOne({email: email})
+  User.findOne({
+    where: {email: email},
+  })
     .then(function(user) {
+      console.log(user);
       if (user) {
         cb(null, 'taken');
       } else {

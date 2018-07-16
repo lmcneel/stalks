@@ -6728,6 +6728,20 @@ input[type="checkbox"].userProfile-switch:checked + div > div {
 
 /* End of stockticker animation CSS */
 /* -------------------------------------- */
+.nav-item {
+  text-align: center; }
+
+.navbar {
+  text-align: left; }
+
+nav {
+  position: relative;
+  left: 2px; }
+
+#Forum {
+  color: red;
+  width: 100px; }
+
 body {
   background-color: #DDDFE1; }
 

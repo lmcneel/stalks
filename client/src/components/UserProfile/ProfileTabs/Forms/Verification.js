@@ -38,7 +38,9 @@ class Verification extends Component {
      * Function that sends email link
      */
     sendEmailVerification() {
+        const host = window.location.host;
         const data = {
+            host: host,
             current_email: this.state.email,
             emailToVerify: this.state.email,
         };
