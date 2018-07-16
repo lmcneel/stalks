@@ -68,6 +68,7 @@ class TradingCenter extends Component {
             UserId: 12,
             // sqlId: 18,
             // ticker:'TTT',
+            cost: 0,
             datePurchased: '',
             value: 0,
             totalShares: 0,
@@ -226,10 +227,10 @@ removeFromWatchlist( SQL_ID, Ticker) {
             .then((res) => {
                 let cashTotal = 200000;
                 for (let i = 0; i < res.data.length; i++) {
-                    cashTotal -= res.data[i].sharePrice * res.data[i].shares;
+                    cashTotal -= (res.data[i].sharePrice * 100 * res.data[i].shares)/100;
                 }
                 this.setState({
-                    cashBalance: cashTotal.toFixed(2),
+                    cashBalance: (cashTotal).toFixed(2),
                 });
             })
             .catch((err) => console.log(err));
@@ -262,6 +263,7 @@ removeFromWatchlist( SQL_ID, Ticker) {
                         userStocks[res.data[i].ticker] += res.data[i].shares;
                     }
                 }
+                console.log(userStocks);
                 let current = Promise.resolve();
                 Object.keys(userStocks).forEach((key) => {
                     current = current.then(() => {
@@ -338,7 +340,7 @@ removeFromWatchlist( SQL_ID, Ticker) {
         Object.keys(stocks).forEach((key) => {
             for (let j = 0, len2 = lastPrice.length; j < len2; j++) {
                 if (key === lastPrice[j].symbol) {
-                    PV += (stocks[key] * lastPrice[j].price);
+                    PV += (stocks[key] * lastPrice[j].price * 100)/100;
                 };
             };
         });
@@ -379,8 +381,8 @@ removeFromWatchlist( SQL_ID, Ticker) {
                     };
                     if (key === lastPrice[j].symbol && key === boughtStocks[i].ticker) {
                         obj.ticker = key;
-                        let a = (lastPrice[j].price * allUserStocks[key]);
-                        let b = (allUserStocks[key] * boughtStocks[i].sharePrice);
+                        let a = (lastPrice[j].price * 100 * allUserStocks[key]);
+                        let b = (allUserStocks[key] * boughtStocks[i].sharePrice * 100);
                         let c = ((a - b) / b) * 100;
                         obj.roi = (c).toFixed(2);
                         eachROI.push(obj);
@@ -751,10 +753,10 @@ removeFromWatchlist( SQL_ID, Ticker) {
                             </div>
                             <div className='col-sm-6 col-md-6 totalCalc'>
                                 {this.state.transaction === 'buy' ?
-                                (<h4>${(this.state.cashBalance -
-                                    (this.state.shares * this.state.price)).toFixed(2)}</h4>
-                                ) : (<h4>${((this.state.cashBalance) -
-                                (-(this.state.shares) * this.state.price)).toFixed(2)}</h4>)}
+                                (<h4>${(((this.state.cashBalance * 100) -
+                                    (this.state.shares * this.state.price * 100)) / 100).toFixed(2)}</h4>
+                                ) : (<h4>${(((this.state.cashBalance * 100) -
+                                (-(this.state.shares) * this.state.price * 100)) / 100).toFixed(2)}</h4>)}
                             </div>
                         </div>
                         <div>

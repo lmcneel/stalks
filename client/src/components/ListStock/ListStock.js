@@ -237,40 +237,6 @@ class ListStock extends Component {
 
                                     </div>
                                 </div>
-                                {/* <div className='col-sm-12 col-md-4 dataSection'>
-                                    <div className='row'>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>SHARES OWNED</h4>
-                                        </div>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>{this.state.totalShares}</h4>
-                                        </div>
-                                    </div>
-                                    <div className='row'>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>ROI</h4>
-                                        </div>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>${this.state.ROI}</h4>
-                                        </div>
-                                    </div>
-                                    <div className='row'>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>PRICE PURCHASED</h4>
-                                        </div>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>${this.state.cost}</h4>
-                                        </div>
-                                    </div>
-                                    <div className='row'>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>DATE PURCHASED</h4>
-                                        </div>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>{this.state.datePurchased}</h4>
-                                        </div>
-                                    </div>
-                                </div> */}
                             </div>
                         </Collapse>
                     </div>
