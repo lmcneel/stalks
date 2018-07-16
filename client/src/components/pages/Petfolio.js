@@ -28,85 +28,81 @@ class Petfolio extends Component {
     };
   }
 
-    /**
-     * Setting state of portfolio and bank values and all pet info(name, pic, stats) once component is mounted
-     * tempTicker only includes stock symbols from UserWatchList
-     * for the api call to get current prices for the ticker tape
-     */
-    componentDidMount() {
-      // calc.portfolioValue().then(((r) => {
-      //   this.setState({petfolioValue: r});
+  /**
+   * Setting state of portfolio and bank values and all pet info(name, pic, stats) once component is mounted
+   * tempTicker only includes stock symbols from UserWatchList
+   * for the api call to get current prices for the ticker tape
+   */
+  componentDidMount() {
+    // calc.portfolioValue().then(((r) => {
+    //   this.setState({petfolioValue: r});
 
-            if (this.state.petfolioValue >= 1000) {
-              this.setState({portfolioValueColor: 'colorPositive'});
-            } else if (this.state.petfolioValue >=500) {
-              this.setState({portfolioValueColor: 'colorNeutral'});
-            } else {
-              this.setState({petfolioValueColor: 'colorNegative'});
-            };
-      // }));
-      // calc.bankValue().then(((r) => {
-      //   this.setState({bankValue: r});
-      if (this.state.bankValue > 1000) {
-        this.setState({bankValueColor: 'colorPositive'});
-      } else if (this.state.bankValue >1) {
-        this.setState({bankValueColor: 'colorNeutral'});
-      } else {
-        this.setState({bankValueColor: 'colorNegative'});
-      };
-      // }));
+    if (this.state.petfolioValue >= 1000) {
+      this.setState({portfolioValueColor: 'colorPositive'});
+    } else if (this.state.petfolioValue >= 500) {
+      this.setState({portfolioValueColor: 'colorNeutral'});
+    } else {
+      this.setState({petfolioValueColor: 'colorNegative'});
     };
+    // }));
+    // calc.bankValue().then(((r) => {
+    //   this.setState({bankValue: r});
+    if (this.state.bankValue > 1000) {
+      this.setState({bankValueColor: 'colorPositive'});
+    } else if (this.state.bankValue > 1) {
+      this.setState({bankValueColor: 'colorNeutral'});
+    } else {
+      this.setState({bankValueColor: 'colorNegative'});
+    };
+    // }));
+  };
 
-    /**
-     * @return {*} Container
-     */
-    render() {
-      return (
+  /**
+   * @return {*} Container
+   */
+  render() {
+    return (
 
       <Container fluid>
         {/** global header with app name and right nav icons goes here above next row*/}
-
         <Row>
+          {/** Vertical PetStats and PieChart*/}
+          <Col>
+              <PetStatsVert />
+          </Col>
 
-            {/** Vertical PetStats and PieChart*/}
+          <Col>
+            <Row>
               <Col>
-                <div className="statusbarwidth">
-                <PetStatsVert />
-                </div>
-              </Col>
-
-            <Col>
-              <Row>
-              <Col>
-                <div className= {this.state.portfolioValueColor}>
-                Petfolio Value
+                <div className={`${this.state.portfolioValueColor} p-4`}>
+                  <h5 className="petfolioPortfolioText">Portfolio</h5>
                 <PetfolioValue />
                 </div>
               </Col>
               <Col>
-                <div className={this.state.bankValueColor}>
-                Bank Value
+                <div className={`${this.state.bankValueColor} p-4`}>
+                <h5 className="petfolioBankText">Bank</h5>
                 <BankValue />
                 </div>
               </Col>
-              </Row>
+            </Row>
 
-              <Row>
-                <Col>
-                 <PieChart />
-                </Col>
-              </Row>
-            </Col>
+            <Row>
+              <Col className="pt-4">
+                <PieChart />
+              </Col>
+            </Row>
+          </Col>
 
-          </Row>
+        </Row>
 
-          {/* This row contains the owned stock details -- trading component*/}
-          {/* <i class="fas fa-chevron-circle-down"></i>  or     f13a*/}
+        {/* This row contains the owned stock details -- trading component*/}
+        {/* <i class="fas fa-chevron-circle-down"></i>  or     f13a*/}
 
-          <Row>
-            <Col>
-            </Col>
-          </Row>
+        <Row>
+          <Col>
+          </Col>
+        </Row>
 
       </Container>
     );

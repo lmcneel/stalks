@@ -21,9 +21,9 @@ class PetPic extends Component {
      */
     render() {
         return (
-                <div>
-                   <img src={this.state.petPic} width="250px" alt="user's pet" />
-                </div>
+                <span>
+                   <img src={this.state.petPic} width="250px" alt="user's pet" className="mx-auto d-block"/>
+                </span>
         );
     }
 };

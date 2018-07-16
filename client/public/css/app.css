@@ -6287,7 +6287,7 @@ a.text-dark:hover, a.text-dark:focus {
     GLOBAL STYLES
 ----------------------------------------------------- */
 body {
-  background: #f8f9fa;
+  background: #e9ecef;
   color: #404850; }
 
 h1 {
@@ -6297,6 +6297,9 @@ h1 {
 
 .nav-item {
   padding: 0 15px; }
+
+.description {
+  font-size: 1.35rem; }
 
 /* ---------------------------------------------------
     TOP NAV STYLES
@@ -6447,19 +6450,35 @@ a[data-toggle="collapse"] {
 .main {
   margin: 25px; }
 
-.statusbars {
-  width: 300px; }
-
 .colorPositive {
-  background-image: url("/images/pixelbg-green_160.jpg"); }
+  background-image: url("/images/pixelbg-green_160.jpg");
+  font-size: 1.8rem; }
 
 .colorNeutral {
   background-image: url("/images/pixelbg-yellow_160.jpg");
-  background-color: #FBB424; }
+  background-color: #FBB424;
+  font-size: 1.8rem; }
 
 .colorNegative {
   background-image: url("/images/pixelbg-red_160.jpg");
-  background-color: #EE4A37; }
+  background-color: #EE4A37;
+  font-size: 1.8rem; }
+
+.petfolioPortfolioText {
+  color: #fef0d3; }
+
+.petfolioBankText {
+  color: #d1f2e3; }
+
+.barstatlabel {
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: .06rem; }
+
+.barStyle {
+  border-radius: 50px;
+  border-style: solid;
+  border-width: 2px; }
 
 /* ---------------------------------------------------
     HORIZONTAL WATCHLIST TICKER
@@ -6519,8 +6538,19 @@ a[data-toggle="collapse"] {
 
 /* End of stockticker animation CSS */
 /* -------------------------------------- */
-body {
-  background-color: #DDDFE1; }
+.nav-item {
+  text-align: center; }
+
+.navbar {
+  text-align: left; }
+
+nav {
+  position: relative;
+  left: 2px; }
+
+#Forum {
+  color: red;
+  width: 100px; }
 
 .stockStats {
   background-color: #fff;

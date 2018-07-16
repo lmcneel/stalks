@@ -44,4 +44,8 @@ export default {
     removeExistingTicker: function() {
         return axios.delete('/api/petfolio/removeTicker');
     },
+    getComments: function() {
+        console.log('hit API.js');
+        return axios.get('/api/forum/');
+    },
 };
