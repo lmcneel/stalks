@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "alexs1130",
+    "password": "Norman12",
     "database": "stalks_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
