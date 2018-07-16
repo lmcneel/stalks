@@ -1,5 +1,5 @@
 module.exports = function(sequelize, Sequelize) {
-    const Accessory = sequelize.define('Accessory', {
+  const Accessory = sequelize.define('Accessory', {
       name: Sequelize.STRING,
       quantity: Sequelize.DOUBLE,
       equipped: Sequelize.BOOLEAN,

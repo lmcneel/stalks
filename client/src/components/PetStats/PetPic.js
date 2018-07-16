@@ -25,25 +25,17 @@ class PetPic extends Component {
      */
     componentDidMount() {
         API.getUserPic().then(((r) => {
-              let url = r.data.urlImage;
-            console.log(url);
+            console.log(r.data);
+            let url = r.data.urlImage;
             if (url = './client/src/assets/images/Ostrich1.svg') {
                 this.setState({petPic: ostrich});
-                console.log("here");
             } else if (url = './client/src/assets/images/Bull1.svg') {
                 this.setState({petPic: bull});
-                console.log("here");
-
             } else if (url = './client/src/assets/images/Bear1.svg') {
                 this.setState({petPic: bear});
-                console.log("here");
-
             } else {
                 this.setState({petPic: wolfy});
-                console.log("here");
-
             };
-              // console.log(r.data);
               console.log(r.data.urlImage);
           }));
       };
