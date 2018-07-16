@@ -37,7 +37,7 @@ class PetPic extends Component {
      */
     componentDidMount() {
         API.getUserPic().then(((r) => {
-            console.log(r.data);
+            // console.log(r.data);
             let url = r.data.urlImage;
             console.log(r.data.Accessories[0].equipped);
             let accessory = r.data.Accessories[0].equipped;

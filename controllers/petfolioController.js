@@ -14,10 +14,10 @@ module.exports = {
   },
   getUserPic: function(req, res) {
     db.Pet.findOne({
-      where: {UserId: 4},
+      where: {UserId: 1},
       include: [{
         model: db.Accessory,
-        where: {equipped: 1},
+        // where: {equipped: 1},
         required: false,
       }],
     }).then(function(dbUserPic) {
