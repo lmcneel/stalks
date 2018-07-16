@@ -7,6 +7,7 @@ const bodyParser= require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
 // const seedDB = require('./seeds');
+// const docSeeds = require('./db/docSeeds');
 const db = require('./models/mysql');
 
 
@@ -35,6 +36,8 @@ mongoose
 .connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks')
 .then(() => console.log('MongoDB Connected'))
 .catch((err) => console.log(err));
+// seedDB();
+// docSeeds();
 
 // seedDB();
 

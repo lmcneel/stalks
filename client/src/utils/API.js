@@ -35,6 +35,9 @@ export default {
     getDocs: function() {
         return axios.get('/api/docs');
     },
+    updateDoc: function(data) {
+        return axios.put('/api/docs/' + data.id, data);
+    },
     getMyStocks: function(portfolio) {
         return axios.get(`/api/trading/mystocks/${portfolio}`);
     },
@@ -48,4 +51,5 @@ export default {
         console.log('hit API.js');
         return axios.get('/api/forum/');
     },
+
 };
