@@ -52,6 +52,10 @@ export default {
         console.log("friends API hit");
         return axios.get("api/friends/view");
     },
+    viewSingleFriend:function() {
+        console.log("view one");
+        return axios.get("api/friends/view/:id");
+    },
     addFriend: function() {
         console.log("friend added");
         return axios.post("api/friends/add");
