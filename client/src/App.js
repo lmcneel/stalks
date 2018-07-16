@@ -24,6 +24,7 @@ import HelpLanding from './components/HelpLanding/HelpLanding';
 import StockTicker from './components/StockTicker/StockTicker';
 import ViewStocks from './pages/ViewStocks/ViewStocks';
 import TradingCenter from './components/TradingCenter';
+import Footer from './components/Footer';
 
 /**
  * Class App
@@ -82,6 +83,7 @@ class App extends Component {
                       <Route exact path='/trading/:ticker' component={TradingCenter} />
                       </Switch>
                 </Content>
+                <Footer></Footer>
                 </MainContentWrapper>
               </Wrapper>
         </div>
