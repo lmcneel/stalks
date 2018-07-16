@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
-import { PetStatsVert } from '../PetStats';
+import React, {Component} from 'react';
+import {Container, Row, Col, Button} from 'reactstrap';
+import {PetStatsVert} from '../PetStats';
 // import ListStock from '../ListStock/ListStock';
 import BankValue from '../BankValue/BankValue';
 import PetfolioValue from '../PetfolioValue/PetfolioValue';
@@ -34,17 +34,13 @@ class Petfolio extends Component {
     this.toggle = this.toggle.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.resetTour = this.resetTour.bind(this);
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-    this.yes = this.yes.bind(this);
-    this.never = this.never.bind(this);
-    this.close = this.close.bind(this);
-    this.handleJoyrideCallback = this.handleJoyrideCallback.bind(this);
-
   }
+    /**
+   * toggle function
+   */
   toggle() {
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
     });
   };
   /**
@@ -75,18 +71,7 @@ class Petfolio extends Component {
     };
     // }));
   };
-  /**
-  * openModal function
-  */
-  openModal() {
-    this.setState({ modalIsOpen: true });
-  }
-  /**
-   * closeModal function
-   */
-  closeModal() {
-    this.setState({ modalIsOpen: false });
-  }
+
   /**
   * handleSelect function
   * @param {number} index
@@ -100,43 +85,12 @@ class Petfolio extends Component {
     }
   }
   /**
-  * handleSelect function
-  * @param {number} result
-  */
-  handleJoyrideCallback(result) {
-    const {joyride} = this.props;
-
-    if (result.action == 'close') {
-      this.setState({ run: false });
-    }
-  }
-  /**
    * resetTour function
    */
   resetTour() {
     console.dir(this);
     this.joyride.reset(true);
-    this.setState({ run: true });
-  }
-  /**
-   * yes function
-   */
-  yes() {
-    this.closeModal();
-    this.setState({ run: true });
-  }
-  /**
-   * never function
-   */
-  never() {
-    this.closeModal();
-    this.close();
-  }
-  /**
-   * close function
-   */
-  close() {
-    this.setState({ showModal: false });
+    this.setState({run: true});
   }
   /**
    * @return {*} Container
@@ -187,7 +141,7 @@ class Petfolio extends Component {
           showSkipButton={true}
           callback={this.handleJoyrideCallback}
         />
-        <button type="button" onClick={this.resetTour}>Reset Tour</button>
+        <Button type='button' onClick={this.resetTour}>Take a Tour</Button>
         <Container fluid>
           {/** global header with app name and right nav icons goes here above next row*/}
 
