@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Nav, NavItem} from 'reactstrap';
 import {Link, Switch, Route} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import API from '../../utils/API';
 import Account from './ProfileTabs/Account';
 import GameTips from './ProfileTabs/GameTips';
@@ -11,7 +12,7 @@ import Contact from './ProfileTabs/Contact';
  * @param { object } props Object with Props Passed.
  * @return { Profile }
  */
-function Profile({username, petname, status, accountLength, userFound}) {
+function Profile({username, petname, status, accountLength}) {
         return (
             <div className='row'>
                 <div className='col-sm-4 col-md-12'>
@@ -21,19 +22,18 @@ function Profile({username, petname, status, accountLength, userFound}) {
                         </div>
                     </div>
                 </div>
-                <ProfileInfo userFound={userFound} info={username} tabname={'USERNAME'} />
-                <ProfileInfo userFound={userFound} info={petname} tabname={'PETNAME'} />
-                <ProfileInfo userFound={userFound} info={status} tabname={'STATUS'} />
-                <ProfileInfo userFound={userFound} info={accountLength} tabname={'ACCOUNT LENGTH'} />
+                <ProfileInfo info={username} tabname={'USERNAME'} />
+                <ProfileInfo info={petname} tabname={'PETNAME'} />
+                <ProfileInfo info={status} tabname={'STATUS'} />
+                <ProfileInfo info={accountLength} tabname={'ACCOUNT LENGTH'} />
             </div>
         );
 }
 Profile.propTypes = {
     username: PropTypes.string.isRequired,
-    petname: PropTypes.string.isRequired,
+    petname: PropTypes.string,
     status: PropTypes.string.isRequired,
     accountLength: PropTypes.string.isRequired,
-    userFound: PropTypes.bool.isRequired,
 };
 
 /**
@@ -41,11 +41,7 @@ Profile.propTypes = {
  * @param { object } props
  * @return { ProfileInfo }
  */
-function ProfileInfo({userFound, info, tabname}) {
-    console.log(userFound);
-    if (!userFound) {
-        info = ' ';
-    };
+function ProfileInfo({info, tabname}) {
     return (
             <div className='col-sm-4 col-md-12 profile-info'>
                 <h5 className='label'>{tabname}</h5>
@@ -54,8 +50,7 @@ function ProfileInfo({userFound, info, tabname}) {
     );
 };
 ProfileInfo.propTypes = {
-    userFound: PropTypes.bool.isRequired,
-    info: PropTypes.string.isRequired,
+    info: PropTypes.string,
     tabname: PropTypes.string.isRequired,
 };
 /**
@@ -63,10 +58,7 @@ ProfileInfo.propTypes = {
  * @param { object } props
  * @return { ProfileNav }
  */
-function ProfileNav({link, userFound, linkName}) {
-    if (!userFound) {
-        link = '/settings/nouser';
-    };
+function ProfileNav({link, linkName}) {
     return (
             <NavItem className='userProfile-nav-item'>
                 <Link to={link} className='userProfile-nav nav-link'>{linkName}</Link>
@@ -75,9 +67,10 @@ function ProfileNav({link, userFound, linkName}) {
 }
 ProfileNav.propTypes = {
     link: PropTypes.string.isRequired,
-    userFound: PropTypes.bool.isRequired,
     linkName: PropTypes.string.isRequired,
 };
+
+
 /**
  * @class UserProfile
  */
@@ -88,6 +81,7 @@ class UserProfile extends Component {
      */
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             user: {
                 firstname: '',
@@ -99,13 +93,12 @@ class UserProfile extends Component {
                 mongo_id: 0,
                 last_login: '',
                 status: '',
-                pet_name: '',
-                pet_type: '',
+                petname: '',
+                pettype: '',
                 account_length: 0,
                 emailVerified: false,
             },
-            userIsLogginedIn: false,
-            searchingForUser: true,
+            userLoggedIn: false,
         };
     };
     /**
@@ -113,7 +106,54 @@ class UserProfile extends Component {
      * user from session storage and rerenders due to setState
      */
     componentDidMount() {
-        this.getUser();
+        this.checkURL();
+    };
+
+    /**
+     * Function to check the url
+     */
+    checkURL() {
+        const url = this.props.location.search;
+        const pathname = this.props.location.pathname;
+        const pathArr = pathname.split('/');
+        console.log(pathArr);
+        if (pathArr[3] === 'verify') {
+            if (url.indexOf('userId') === 1) {
+                const searchArr = url.split('&');
+                const splitId = searchArr[0].split('=');
+                const userID = splitId[1];
+                const splitVId = searchArr[1].split('=');
+                const validationID = splitVId[1];
+                const splitType = searchArr[2].split('=');
+                const verificationType = splitType[1];
+                const splitCode = searchArr[3].split('=');
+                const verificationCode = splitCode[1];
+                const confirmationLinkData = {
+                    userID: userID,
+                    validationID: validationID,
+                    verificationType: verificationType,
+                    verificationCode: verificationCode,
+                };
+                console.log(confirmationLinkData);
+                API.confirmEmailVerification(confirmationLinkData)
+                .then((res) => {
+                    console.log(res.data);
+                    if (res.data.emailVerified) {
+                        this.props.history.push('/settings/account');
+                        this.getUser();
+                    } else {
+                        console.log('There was an error verifying the account');
+                    };
+                })
+                .catch((err) => {
+                    if (err) {
+                        this.props.history.push('/');
+                    };
+                });
+            }
+        } else {
+            this.getUser();
+        };
     };
     /**
      * Function that gets called to retrieve user from session storage and sets component's state
@@ -123,15 +163,35 @@ class UserProfile extends Component {
             .then((res) => {
                 console.log('UserProfile');
                 console.log(res.data);
-                const user = res.data.user;
-                const {pet_type: petType, pet_name: petName} = res.data.pet;
-                user.pet_type = petType;
-                user.pet_name = petName;
-                this.setState({
-                    user: user,
-                    searchingForUser: false,
-                    userIsLogginedIn: true});
-                })
+                if (res.data === 'User not logged in') {
+                    this.props.history.push('/login');
+                } else {
+                    const {
+                        balance, Pet, createdAt, email, emailVerified,
+                        firstname, id, last_login, lastname, mongo_id,
+                        status, username} = res.data;
+                    console.log(Pet);
+                    console.log(`IDK what to do with this yet createdAt: ${createdAt}`);
+                    const user = {
+                        userId: id,
+                        firstname: firstname,
+                        lastname: lastname,
+                        username: username,
+                        email: email,
+                        balance: balance,
+                        mongoID: mongo_id,
+                        last_login: last_login,
+                        status: status,
+                        emailVerified: emailVerified,
+                        pet_name: Pet.petName,
+                        pet_type: Pet.petType,
+                        pet_id: Pet.id,
+                        account_length: 5,
+                    };
+                    this.setState({user: user,
+                    userLoggedIn: true});
+                };
+            })
             .catch((err) => {
                 console.log(err);
             });
@@ -140,12 +200,13 @@ class UserProfile extends Component {
      * @return {*} Container
      */
     render() {
+        const user = this.state.user;
+        console.log(user);
         return (
             <div className='container user-profile-main-container'>
                 <div className='row'>
                     <div className='col-sm-12 col-md-3 profile-containers user-info'>
                             <Profile
-                                userFound={this.state.userIsLogginedIn}
                                 username={this.state.user.username}
                                 petname={this.state.user.pet_name}
                                 status={this.state.user.status}
@@ -155,45 +216,40 @@ class UserProfile extends Component {
                         <div className='row'>
                                 <Nav>
                                     <ProfileNav
-                                        userFound={this.state.userIsLogginedIn}
                                         link={'/settings/account'}
                                         linkName={'Account'}/>
                                     <ProfileNav
-                                        userFound={this.state.userIsLogginedIn}
                                         link={'/settings/Pet'}
                                         linkName={'Pet'}/>
                                     <ProfileNav
-                                        userFound={this.state.userIsLogginedIn}
                                         link={'/settings/game'}
                                         linkName={'Game Tips'}/>
                                     <ProfileNav
-                                        userFound={this.state.userIsLogginedIn}
                                         link={'/settings/contact'}
                                         linkName={'Contact Us'}/>
                                 </Nav>
-                            {this.state.userIsLogginedIn ? (
                                 <Switch>
                                     <Route
                                         exact path="/settings/account"
                                         render={(props) => <Account {...props} user={this.state.user} />} />
                                     <Route
                                         exact path="/settings/game"
-                                        render={(props) => <GameTips {...props} user={this.state.user} />} />
+                                        render={(props) => <GameTips {...props} user={user} />} />
                                     <Route
                                         exact path="/settings/contact"
-                                        render={(props) => <Contact {...props} user={this.state.user} />} />
+                                        render={(props) => <Contact {...props} user={user} />} />
                                 </Switch>
-                            ) : (
-                                <div className='col-12'>
-                                    <h4> You must be logged in to access these options, please log in. </h4>
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>
             </div>
         );
     }
-}
+};
+UserProfile.propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+};
 
-export default UserProfile;
+export default withRouter(UserProfile);

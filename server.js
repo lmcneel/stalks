@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
 const logger = require('morgan');
-const seedDB = require('./seeds');
-
+// const seedDB = require('./seeds');
+// const docSeeds = require('./db/docSeeds');
 const db = require('./models/mysql');
 
 // Configure SequilizeSessions
@@ -22,8 +22,10 @@ app.use(session({
     table: 'Sessions',
     extendDefaultFields: extendDefaultFields,
   }),
-  resave: false,
+  resave: true,
+  saveUninitialized: false,
   proxy: true,
+  unset: 'keep',
 }));
 app.use(logger('dev'));
 // Bodyparser Middleware
@@ -31,29 +33,33 @@ app.use(bodyParser.json());
 
 // Define middleware here
 app.use(express.json());
-//app.use(acheivements);
 
+// app.use(acheivements);
+if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config();
+};
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
-}
+};
 
 // Define API routes here
+
 app.use(routes);
 
 // DB Config
 // const db = require('./config/keys').mongoURI;
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks');
 
-seedDB();
+mongoose
+.connect(process.env.MONGODB_URI || 'mongodb://localhost/stalks')
+.then(() => console.log('MongoDB Connected'))
+.catch((err) => console.log(err));
+// seedDB();
+// docSeeds();
 
+// seedDB();
 
-// Connect to the Mongo DB
-// mongoose
-// .connect(db)
-// .then(() => console.log('MongoDB Connected'))
-// .catch((err) => console.log(err));
 
 // Send every other request to the React app
 // Define any API routes before this runs
@@ -63,7 +69,7 @@ app.get('*', (req, res) => {
 });
 
 // change to true to drop tables
-db.sequelize.sync({force: true}).then(function() {
+db.sequelize.sync({force: false}).then(function() {
   app.listen(PORT, () => {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
@@ -78,6 +84,6 @@ function extendDefaultFields(defaults, session) {
   return {
     data: defaults.data,
     expires: defaults.expires,
-    userId: session.userId,
+    userId: session.user.id,
   };
 };

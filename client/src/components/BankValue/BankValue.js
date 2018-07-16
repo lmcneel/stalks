@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 /**
  * @class BankValue
  */
@@ -18,9 +19,9 @@ class BankValue extends Component {
    */
   render() {
     return (
-      <div>
+      <span>
         ${this.state.bankValue}
-      </div>
+      </span>
   );
  }
 };

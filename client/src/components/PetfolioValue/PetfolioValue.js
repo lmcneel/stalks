@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 /**
  * @class PetfolioValue
  */
@@ -18,9 +19,9 @@ class PetfolioValue extends Component {
    */
   render() {
     return (
-        <div>
+        <span>
           ${this.state.petfolioValue}
-        </div>
+        </span>
     );
   }
 };
