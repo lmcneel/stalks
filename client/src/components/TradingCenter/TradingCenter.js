@@ -46,8 +46,10 @@ class TradingCenter extends Component {
         this.dbStocks = this.dbStocks.bind(this);
         this.myStocksValue = this.myStocksValue.bind(this);
         this.portfolioValue = this.portfolioValue.bind(this);
+        this.updatePortfolioValue = this.updatePortfolioValue.bind(this);
         this.returnOnInvestment = this.returnOnInvestment.bind(this);
-        this.bankValue = this.bankValue.bind(this);
+        this.getBankValue = this.getBankValue.bind(this);
+        this.updateBankValue = this.updateBankValue.bind(this);
         this.myWatchlist = this.myWatchlist.bind(this);
         this.charting = this.charting.bind(this);
         this.buyShares = this.buyShares.bind(this);
@@ -61,15 +63,17 @@ class TradingCenter extends Component {
             primaryExchange: '',
             sector: '',
             response: '',
-            portfolio_id: '5b40fb129adc85a410f488bd',
+            portfolio_id: '5b4bf82506ee6573f50f082b',
+            portfolioValue: 0,
             transaction: 'buy',
             ROI: 0,
-            id: '5b4b9d856acd8b08c04ca749',
+            id: '5b4bf82506ee6573f50f082b',
             sqlId: 1,
             cost: 0,
             datePurchased: '',
             value: 0,
             totalShares: 0,
+            initialCash: 0,
             cashBalance: 0,
             watchedArray: ['AAPL', 'XPP'],
             modal: false,
@@ -86,7 +90,9 @@ class TradingCenter extends Component {
         this.myStocks(this.state.portfolio_id);
         this.dbStocks(this.state.portfolio_id);
         this.myStocksValue();
-        this.bankValue(this.state.id);
+        this.getBankValue(this.state.portfolio_id);
+        // this.updatePortfolioValue(this.state.portfolio_id, this.state.portfolioValue);
+        // this.updateBankValue(this.state.id);
         this.myWatchlist(this.state.watchedArray);
         this.cashCalculator(this.state.portfolio_id);
         this.checkWatchList();
@@ -217,7 +223,7 @@ removeFromWatchlist() {
  * @public cashCalculator function that gets users remainig cash value
  * @param {*} portfolio
  * @return {*} returns users cash
- */
+*/
     cashCalculator(portfolio) {
         return API.getMyStocks(portfolio)
             .then((res) => {
@@ -225,9 +231,7 @@ removeFromWatchlist() {
                 for (let i = 0; i < res.data.length; i++) {
                     cashTotal -= (res.data[i].sharePrice * 100 * res.data[i].shares)/100;
                 }
-                this.setState({
-                    cashBalance: (cashTotal).toFixed(2),
-                });
+                this.setState({cashBalance: (cashTotal).toFixed(2)});
             })
             .catch((err) => console.log(err));
     }
@@ -259,7 +263,7 @@ removeFromWatchlist() {
                         userStocks[res.data[i].ticker] += res.data[i].shares;
                     }
                 }
-                console.log(userStocks);
+                // console.log(userStocks);
                 let current = Promise.resolve();
                 Object.keys(userStocks).forEach((key) => {
                     current = current.then(() => {
@@ -338,8 +342,11 @@ removeFromWatchlist() {
                 if (key === lastPrice[j].symbol) {
                     PV += (stocks[key] * lastPrice[j].price * 100)/100;
                 };
-            };
+            }
+            console.log(PV);   
+            return this.setState({portfolioValue: PV});
         });
+        this.updatePortfolioValue(this.state.portfolio_id, this.state.portfolioValue);
         let userPortfolioValue = PV + Number(this.state.cashBalance);
         let a = userPortfolioValue - initCash;
         pvROI = ((a / initCash) * 100).toFixed(2);
@@ -348,7 +355,19 @@ removeFromWatchlist() {
             pvROI,
         };
     };
-
+/**
+ * @public updatePortfolioValue function will update cash amount in mongo database
+ * @param {*} portfolio
+ * @param {*} cash
+ * This function will update the Current user Cash
+ * The input needs to be the User Portfolio ID.
+*/
+updatePortfolioValue() {
+    console.log(this.state.portfolioValue);
+    
+    API.updateCurrentValue(this.state.portfolio_id, this.state.portfolioValue)
+    .catch((err) => console.log(err));
+};
 /**
  * @public The returnOnInvestment function is called by the dbStocks Function
  * it takes in 3 parameters that are listed below and the return is the ROI for each of the
@@ -388,6 +407,7 @@ removeFromWatchlist() {
         });
         return eachROI;
     };
+
 /**
  * @public bankValue function that gets users bank value from mongo database
  * @param {*} portfolio
@@ -395,15 +415,26 @@ removeFromWatchlist() {
  * This function will give the Current user Cash
  * The input needs to be the User Portfolio ID.
 */
-    bankValue(portfolio) {
+    getBankValue(portfolio) {
         let bank = 0;
         return API.getMyPortfolio(portfolio)
             .then((res) => {
-                let data = res.data;
-                bank = (data[0].cash).toFixed(2);
-                return bank;
-            })
+                console.log(res.data);
+                bank = res.data.cash;
+                return this.setState({initialCash: bank});
+               })
             .catch((err) => console.log(err));
+    };
+/**
+ * @public updateBankValue function will update cash amount in mongo database
+ * @param {*} portfolio
+ * @param {*} cash
+ * This function will update the Current user Cash
+ * The input needs to be the User Portfolio ID.
+*/
+    updateBankValue() {
+        API.updatePortfolio(this.state.portfolio_id, this.state.cashBalance)
+        .catch((err) => console.log(err));
     };
 
 /**
@@ -497,14 +528,19 @@ removeFromWatchlist() {
             })
             .catch((err) => console.log(err));
         }
-
-
  /**
  * @public buyShares function for processing buy transaction
  * @param {*} event
  */
     buyShares() {
         if ((this.state.cashBalance - (this.state.shares * this.state.price)) >= 0) {
+            
+                let cashBalanceTemp = this.state.initialCash - (this.state.shares * this.state.price);
+                this.setState({cashBalance: cashBalanceTemp});
+                this.updateBankValue();
+                this.updatePortfolioValue();
+
+                
             API.findQuotes(
                 {ticker: this.state.ticker}
             ).then((res) => {
@@ -545,6 +581,12 @@ removeFromWatchlist() {
  */
     sellShares() {
         if (this.state.shares <= this.state.totalShares) {
+
+            let cashBalanceTemp = this.state.initialCash - (this.state.shares * this.state.price);
+            this.setState({cashBalance: cashBalanceTemp});
+            this.updateBankValue();
+            this.updatePortfolioValue();
+
             API.findQuotes(
                 {ticker: this.state.ticker}
             ).then((res) => {
@@ -749,10 +791,15 @@ removeFromWatchlist() {
                             </div>
                             <div className='col-sm-6 col-md-6 totalCalc'>
                                 {this.state.transaction === 'buy' ?
-                                (<h4>${(((this.state.cashBalance * 100) -
-                                    (this.state.shares * this.state.price * 100)) / 100).toFixed(2)}</h4>
-                                ) : (<h4>${(((this.state.cashBalance * 100) -
-                                (-(this.state.shares) * this.state.price * 100)) / 100).toFixed(2)}</h4>)}
+                                (<h4>${(((this.state.cashBalance) -
+                                    (this.state.shares * this.state.price)) / 100).toFixed(2)}</h4>
+                                ) : (<h4>${(((this.state.cashBalance) -
+                                (-(this.state.shares) * this.state.price)) / 100).toFixed(2)}</h4>)}
+
+                                {/* (<h4>${(((this.state.cashBalance * 100) -
+                                   (this.state.shares * this.state.price * 100)) / 100).toFixed(2)}</h4>
+                                 ) : (<h4>${(((this.state.cashBalance * 100) -
+                                 (-(this.state.shares) * this.state.price * 100)) / 100).toFixed(2)}</h4>) */}
                             </div>
                         </div>
                         <div>

@@ -20,9 +20,15 @@ export default {
         // console.log(data);
         return axios.get(`/api/trading/slimquote/${data.ticker}`);
     },
-    // getInitialCash: function() {
-    //     return axios.get('api/ptfolio/initialcash');
-    // },
+    getInitialCash: function() {
+        return axios.get('api/portfolio/cash');
+    },
+    updatePortfolio: function(id, cash) {
+        return axios.patch(`/api/trading/myportfolio/${id}/${cash}`);
+    },
+    updateCurrentValue: function(id, currentvalue) {
+        return axios.patch(`/api/trading/portfolio/cv/${id}/${currentvalue}`);
+    },
     getMyPortfolio: function(portfolio) {
         return axios.get(`/api/trading/myportfolio/${portfolio}`);
     },

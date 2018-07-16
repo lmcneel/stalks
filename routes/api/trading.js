@@ -106,8 +106,11 @@ router.route('/sell')
 router.route('/mystocks/:portfolio_id')
 .get(tradingController.myStocks);
 
-router.route('/portfolio/initialcash')
-.get(tradingController.initialCash);
+router.route('/myportfolio/:id/:cash/')
+.patch(tradingController.updateportfolio);
+
+router.route('/portfolio/cv/:id/:currentvalue')
+.patch(tradingController.updateCurrentValue);
 
 router.route('/myportfolio/:id')
 .get(tradingController.myPortfolio);

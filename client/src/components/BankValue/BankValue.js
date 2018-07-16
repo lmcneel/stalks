@@ -36,7 +36,7 @@ class BankValue extends Component {
           .then((res) => {
             console.log(res.data);
               let data = res.data;
-              bank = (data[0].cash).toFixed(2);
+              bank = ((data[0].cash)/100).toFixed(2);
               return this.setState({bankValue: bank});
           })
           .catch((err) => console.log(err));

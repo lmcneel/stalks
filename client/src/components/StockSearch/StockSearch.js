@@ -79,7 +79,7 @@ class StockSearch extends Component {
               return this.setState({watched: true});
             } else {
               return this.setState({watched: false});
-            };
+            }
             };
         }));
     };
