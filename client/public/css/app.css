@@ -7015,7 +7015,8 @@ input[type="checkbox"].userProfile-switch:checked + div > div {
   width: 300px; }
 
 .colorPositive {
-  background-image: url("/images/pixelbg-green_160.jpg"); }
+  background-image: url("/images/pixelbg-green_160.jpg");
+  background-color: green; }
 
 .colorNeutral {
   background-image: url("/images/pixelbg-yellow_160.jpg");
@@ -7024,6 +7025,10 @@ input[type="checkbox"].userProfile-switch:checked + div > div {
 .colorNegative {
   background-image: url("/images/pixelbg-red_160.jpg");
   background-color: #EE4A37; }
+
+.colorBoxes {
+  text-align: center;
+  color: white; }
 
 /* ---------------------------------------------------
     HORIZONTAL WATCHLIST TICKER

@@ -12,10 +12,8 @@ export default {
         return axios.post('/api/trading/sell', sellData);
     },
     findQuotes: function(data) {
-        // console.log(data);
         return axios.get(`/api/trading/quote/${data.ticker}`);
     },
-
     userQuotes: function(data) {
         // console.log(data);
         return axios.get(`/api/trading/slimquote/${data.ticker}`);
@@ -38,6 +36,27 @@ export default {
     getTickerText: function() {
         return axios.get('/api/petfolio/ticker');
     },
+    getWatchPrices: function(data) {
+        if (!Array.isArray(data)) {
+            console.log(data);
+            throw new Error('Data needs to be of type array');
+        }
+        return axios
+                .get(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${data.join(',')}&types=price`);
+    },
+    login: function(loginData) {
+        return axios.post('/api/auth/login', loginData)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    },
+    // Saves an article to the database
+    signup: function(signupData) {
+        return axios.post('/api/auth/signup', signupData);
+    },
     getDocs: function() {
         return axios.get('/api/docs');
     },
@@ -52,6 +71,9 @@ export default {
     },
     removeExistingTicker: function(SQL_ID, Ticker) {
         return axios.delete(`/api/petfolio/removeTicker/${SQL_ID}/${Ticker}`);
+    },
+    getUserPic: function() {
+        return axios.get('/api/petfolio/userpic');
     },
     getComments: function() {
         console.log('hit API.js');
