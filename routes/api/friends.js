@@ -1,29 +1,27 @@
 // Server side
 const router = require('express').Router();
+const friendsController = require('../../controllers/friendsController');
 // const request = require('request');
 
 // Models
 const User = require('../../models/mysql/user');
-const Friendship = require('../../models/mysql/friends');
+const Friends = require('../../models/mysql/friends');
+
+// The url to get this route is /api/friends/view
+router.route('/view')
+    .get(friendsController.findAll);
+
 
 // The url to get this route is /api/friends/view/:id
-router.get('/view', (req, res) => {
-    Friendship.findAll({
-        where: {user: id},
-        include: [{
-            model: User,
-            as: 'info',
-        }],
-    });
-});
+router.route('/view/:id')
+    .get(friendsController.findById);
 
-router.post('/create/friend', (req, res) => {
+router.post('/add')
+    .post(friendsController.create);
 
-});
-
-router.delete('/delete/friend ', (req, res) => {
-
-});
+// The url to get this route is /api/friends/remove
+router.route('/remove')
+    .delete(friendsController.remove);
 
 
 module.exports = router;
