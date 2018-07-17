@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Container, Row, Col, Button} from 'reactstrap';
+import PropTypes from 'prop-types';
 import SignUp from '../../pages/SignUp';
 import Login from '../../pages/Login';
 import mainLogo from './../../assets/images/smp-logo.svg';
@@ -35,7 +36,7 @@ class Splash extends Component {
         this.setState({showSignIn: !this.state.showSignIn});
     }
     render() {
-        return (
+        return(
 <Container className=''>
     <Row className="text-center mt-5">
         <Col>

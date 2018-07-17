@@ -168,7 +168,7 @@ class App extends Component {
     return (
       <Router>
         {this.state.isLoggedIn ? (
-          <div className="App">
+          <div className={'App '}>
             <TopNav navToggleHandler={this.navToggleHandler}/>
             <Wrapper>
               <SideNav isActive={this.state.sideNav}/>
