@@ -1,0 +1,157 @@
+[
+    {
+      "id": 1,
+      "name": "Abdolbaghi Khorshid",
+      "title": "Full Stack Developer",
+      "image": "/assets/images/khorshid.jpg",
+      "portfolio":"https://teygh.github.io/Portfolio/"
+    },
+    {
+      "id": 2,
+      "name": "Alex Szoeke",
+      "title": "Full Stack Developer",
+      "image": "/assets/images/alex.jpg",
+      "portfolio":"https://alexszoeke.herokuapp.com/"
+    },
+    {
+      "id": 3,
+      "name": "Allisa Liberto",
+      "title": "Full Stack Developer",
+      "image": "/assets/images/allisa.jpg",
+      "portfolio":"https://all-isa.github.io/Allisa.github.io/"
+    },
+    {
+      "id": 4,
+      "name":"Andreina Keller",
+      "title": "Full Stack Developer",
+      "image": "/assets/images/andreina.jpg",
+      "portfolio":"https://coolcaliente.github.io/"
+    },
+    {
+      "id": 5,
+      "name":"Anthony Laroche",
+      "title": "Full Stack Developer",
+      "image": "/assets/images/anthony.jpg",
+      "portfolio":"https://antonylaroche.herokuapp.com/"
+    },
+    {
+      "id": 6,
+      "name":"Brock Belmonte",
+      "title": "Full Stack Developer",
+      "image": "/assets/images/brock.jpg",
+      "portfolio":"https://brockbel4.github.io/Bootstrap-Portfolio/"
+    },
+    {
+      "id": 7,
+      "name":"Carolyn Vasisko",
+      "title": "Full Stack Developer",
+      "image": "/assets/images/carolyn.jpg",
+      "portfolio":"https://vasisko.github.io/Portfolio"
+    },
+    {
+      "id": 8,
+      "name":"Christopher Demeke",
+      "title": "Full Stack Developer",
+      "image": "/assets/images/chris.jpg",
+      "portfolio":"https://christopher-demeke.herokuapp.com/"
+    },
+    {
+      "id": 9,
+      "name":"Cody Sherrod",
+      "title": "Full Stack Developer",
+      "image": "/assets/images/cody.jpg",
+      "portfolio":"https://csherrod.github.io/portfolio.html"
+    },
+    {
+      "id": 10,
+      "name":"David Fletcher",
+      "title": "Full Stack Developer",
+      "image": "/assets/images/david.jpg",
+      "portfolio":""
+    },
+    {
+      "id": 11,
+      "name":"Grant Posell",
+      "title": "Full Stack Developer",
+      "image": "/assets/images/grant.jpeg",
+      "portfolio":"https://grantposell.github.io/"
+    },
+    {
+      "id": 12,
+      "name":"Katherine Kennedy",
+      "title": "Full Stack Developer",
+      "image": "/assets/images/kathy.jpg",
+      "portfolio":"http://kathy.kennedy.herokuapp.com/"
+    },
+    {
+        "id": 13,
+        "name":"Kris Bierma",
+        "title": "Full Stack Developer",
+        "image": "/assets/images/kris.jpg",
+        "portfolio":"http://krisbierma.com/"
+    },
+    {
+        "id": 14,
+        "name":"Michael Tran",
+        "title": "Full Stack Developer",
+        "image": "/assets/images/michael.jpg",
+        "portfolio":"http://michaelttt.com/"
+    },
+    {
+        "id": 15,
+        "name":"Oluwatoyin Oshinkoya",
+        "title": "Full Stack Developer",
+        "image": "/assets/images/toyin.jpg",
+        "portfolio":"https://oluwatoyin17.github.io/Updated_Portfolio/"
+    },
+    {
+        "id": 16,
+        "name":"Ozair Khan",
+        "title": "Full Stack Developer",
+        "image": "/assets/images/ozair.jpg",
+        "portfolio":"https://Ozairk.github.io"
+    },
+    {
+        "id": 17,
+        "name":"Rebecca Gemeinhardt",
+        "title": "Full Stack Developer",
+        "image": "/assets/images/becca.jpg",
+        "portfolio":"https://rebeccagem.github.io/"
+    },
+    {
+        "id": 18,
+        "name":"Ross Messer",
+        "title": "Full Stack Developer",
+        "image": "/assets/images/ross.jpg",
+        "portfolio":"http://www.rossbmesser.com/"
+    },
+    {
+        "id": 19,
+        "name":"Scott Bedner",
+        "title": "Full Stack Developer",
+        "image": "/assets/images/scott.jpg",
+        "portfolio":"https://sbedner.github.io/FinalPortfolio/"
+    },
+    {
+        "id": 20,
+        "name":"Shelby Smith",
+        "title": "Full Stack Developer",
+        "image": "/assets/images/shelby.jpg",
+        "portfolio":"http://shelbymatthew.us/"
+    },
+    {
+        "id": 21,
+        "name":"Taylor Pelsue",
+        "title": "Full Stack Developer",
+        "image": "/assets/images/taylor.jpg",
+        "portfolio":"https://taylorpelsue.github.io/taylor_pelsue/"
+    },
+    {
+        "id": 22,
+        "name":"William Cotton",
+        "title": "Full Stack Developer",
+        "image": "/assets/images/will.jpg",
+        "portfolio":"http://william-cotton.com"
+    }
+  ]
+  

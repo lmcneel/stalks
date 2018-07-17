@@ -10,6 +10,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+ //Fonts 
+
+ @import url("https://fonts.googleapis.com/css?family=Roboto+Mono:500|Rubik:400,500,700|VT323");
+
  @import "bootstrap/scss/functions";
  @import "bootstrap/scss/variables";
  @import "variables";
@@ -46,6 +50,7 @@
  @import "bootstrap/scss/carousel";
  @import "bootstrap/scss/utilities";
  @import "bootstrap/scss/print";
+
  
  // Custom SCSS pages for the application
  // You may want to create generic ones like forms, typography, etc

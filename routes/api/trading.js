@@ -7,7 +7,7 @@ const request = require('request');
 // Importing Models
 const User = require('../../models/mongo/user');
 const Portfolio = require('../../models/mongo/portfolio');
-// const Trades = require('../../models/mongo/trade');
+const Trade = require('../../models/mongo/trade');
 
 
 router.route('/quote/:ticker')
@@ -19,7 +19,7 @@ router.route('/quote/:ticker')
         if (!error && response.statusCode === 200) {
             const found = JSON.parse(body);
             res.json(found);
-            console.log(found);
+            // console.log(found);
         } else {
             console.log(error);
             found = {};
@@ -32,8 +32,6 @@ router.route('/quote/:ticker')
 // @desc  Get all Portfolio
 // @access Public
 // Fetch all the items from the Portfolio Collection in the database
-// To test it put the following route in Postman http://localhost:3000/api/trading/users
-
 router.get('/users', (req, res) => {
     User.find()
     .populate('portfolios')
@@ -48,6 +46,24 @@ router.get('/users', (req, res) => {
             res.send(foundUser);
         }
     });
+});
+
+router.route('/slimquote/:ticker')
+.get(function(req, res) {
+    console.log('route received' + req.params.ticker);
+    request(
+      `https://api.iextrading.com/1.0/tops/last?symbols=${req.params.ticker}`,
+      function(error, response, body) {
+        if (!error && response.statusCode === 200) {
+            const found = JSON.parse(body);
+            res.json(found);
+            // console.log(found);
+        } else {
+            console.log(error);
+            found = {};
+        };
+      }
+    );
 });
 
 router.get('/trades', (req, res) => {
@@ -66,8 +82,8 @@ router.get('/trades', (req, res) => {
     });
  });
 router.get('/portfolio', (req, res) => {
-    Portfolio.find()
-    .populate('trades')
+    Portfolio.find({_id: '5b44cd4e020eda5258fcf2c1'})
+    // .populate('trades')
     // .populate({
     //     path: 'porfolios',
     //     populate:{ path : 'trades'}
@@ -89,5 +105,14 @@ router.route('/sell')
 
 router.route('/mystocks/:portfolio_id')
 .get(tradingController.myStocks);
+
+router.route('/myportfolio/:id/:cash/')
+.patch(tradingController.updateportfolio);
+
+router.route('/portfolio/cv/:id/:currentvalue')
+.patch(tradingController.updateCurrentValue);
+
+router.route('/myportfolio/:id')
+.get(tradingController.myPortfolio);
 
 module.exports = router;

@@ -29,12 +29,13 @@ function seedDB() {
             if (err) {
                 console.log(err);
             }
-            console.log('removed users');
+            console.log('removed Users');
             Portfolio.remove({}, function(err) {
                     if (err) {
                         console.log(err);
                     }
                     console.log('removed Portfolios!');
+
                     Trade.remove({}, function(err) {
                             if (err) {
                                 console.log(err);
@@ -62,16 +63,58 @@ function seedDB() {
                                                             // add Trades
                                                             Trade.create({
                                                                     date: Date.now(),
+                                                                    portfolio_id: '5b40fb129adc85a410f488bd',
                                                                     type: 'Buy',
-                                                                    ticker: 'AALP',
+                                                                    ticker: 'AAPL',
                                                                     sharePrice: 184.94,
                                                                     shares: 10,
                                                                 }, {
                                                                     date: Date.now(),
-                                                                    type: 'Sell',
+                                                                    portfolio_id: '5b40fb129adc85a410f488bd',
+                                                                    type: 'Buy',
                                                                     ticker: 'XPP',
                                                                     sharePrice: 190.45,
                                                                     shares: 20,
+                                                                },
+                                                                {
+                                                                    date: Date.now(),
+                                                                    portfolio_id: '5b40fb129adc85a410f488bd',
+                                                                    type: 'Buy',
+                                                                    ticker: 'XPP',
+                                                                    sharePrice: 190.45,
+                                                                    shares: 20,
+                                                                },
+                                                                {
+                                                                    date: Date.now(),
+                                                                    portfolio_id: '5b40fb129adc85a410f488bd',
+                                                                    type: 'Sell',
+                                                                    ticker: 'XPP',
+                                                                    sharePrice: 190.45,
+                                                                    shares: -20,
+                                                                },
+                                                                {
+                                                                    date: Date.now(),
+                                                                    portfolio_id: '5b40fb129adc85a410f488bd',
+                                                                    type: 'Buy',
+                                                                    ticker: 'AAPL',
+                                                                    sharePrice: 184.94,
+                                                                    shares: 5,
+                                                                },
+                                                                {
+                                                                    date: Date.now(),
+                                                                    portfolio_id: '5b40fb129adc85a410f488bd',
+                                                                    type: 'sell',
+                                                                    ticker: 'AAPL',
+                                                                    sharePrice: 184.94,
+                                                                    shares: -3,
+                                                                },
+                                                                {
+                                                                    date: Date.now(),
+                                                                    portfolio_id: '5b40fb129adc85a410f488bd',
+                                                                    type: 'sell',
+                                                                    ticker: 'AAPL',
+                                                                    sharePrice: 184.94,
+                                                                    shares: -2,
                                                                 },
                                                                     function(err, trade) {
                                                                         if (err) {

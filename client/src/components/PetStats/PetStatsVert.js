@@ -17,7 +17,7 @@ export const PetStatsVert = () => {
             <div>
               <PetName />
             </div>
-            <div>
+            <div className="petStatsBars">
               <PetStatusBars />
             </div>
 
