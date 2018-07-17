@@ -93,7 +93,6 @@ passport.use('local-signin', new LocalStrategy(
   },
   function(req, email, password, done) {
     console.log('User is attempting to sign in');
-    console.log(req.body);
     // Check email/username match password
     User.findOne({
         where: {email: email},
@@ -104,13 +103,16 @@ passport.use('local-signin', new LocalStrategy(
     })
     .then(function(user) {
       if (user) {
+        console.log('found a user');
         // Since user has been found check if password matches our hash
         if (user.validPassword(password)) {
-          // since true means user put in the right credentials so log the user in!
-
           return done(null, user, 'User has logged in');
+        } else {
+          console.log('wrong password');
+          return done('Incorrect Password');
         }
-      } else {
+       } else {
+        console.log('....');
         return done('That email is not in our system.');
       };
     })

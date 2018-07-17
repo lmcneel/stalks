@@ -1,46 +1,85 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import API from "../../utils/API";
-import {
-    Card, 
-    CardImg, 
-    CardText, 
-    CardBody,
-    CardTitle, 
-    CardSubtitle, 
-    Button
-} from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+import {withRouter} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faFrown} from '@fortawesome/fontawesome-free-solid';
+/**
+* Sign out modal
+*/
 class SignoutForm extends Component {
-    state={
-        username:'',
-        password:''
+    /**
+     *@param {*} props
+     */
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            modal: false,
+        };
+        this.toggle = this.toggle.bind(this);
+        this.logout = this.logout.bind(this);
     };
 
-
-    handleFormSubmit = (event) => {
-        event.preventDefault();
-        //if search was clicked
-        console.log("login clicked");
-        //TODO: add code to handle api route for login
-        API.logout(this.state.props);
-
+    /**
+     * Function to toggle modal upon mount
+     */
+    componentDidMount() {
+        this.setState({modal: true});
+    };
+    /**
+     * Function to toggle modal
+     */
+    toggle() {
+        console.log(this.state.modal);
+        if (this.state.modal) {
+            this.props.history.push('/');
+        };
+        this.setState({modal: !this.state.modal});
     };
 
+    /**
+     * Function to log user out
+     */
+    logout() {
+        API.logout().then((res) => {
+            console.log(res);
+            if (res.data === 'User has been logged out') {
+                this.props.history.push('/');
+                window.location.reload();
+            } else {
+                console.log(res);
+            };
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+    /**
+     * Render function for App Component
+     * @return {JSX}
+     */
     render() {
         return (
             <div>
-                <Card>
-                    <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-                    <CardBody>
-                        <CardTitle>Logout</CardTitle>
-                        <CardText>You have been successfully logged out.</CardText>
-                        <Button onClick={this.handleFormSubmit}>Ok</Button>
-                    </CardBody>
-                </Card>
+                <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                    <ModalHeader toggle={this.toggle}>
+                    Are you leaving your pets? <FontAwesomeIcon icon={faFrown} /></ModalHeader>
+                    <ModalBody>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.logout}>Sorry Bye</Button>{' '}
+                        <Button color="secondary" onClick={this.toggle}>Ok I'll stay...</Button>
+                    </ModalFooter>
+                </Modal>
             </div>
         );
     };
-}
+};
 
-export default SignoutForm;
+SignoutForm.propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+};
+export default withRouter(SignoutForm);

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Splash from './components/Splash';
 import TopNav from './components/TopNav';
 import Wrapper from './components/Wrapper';
@@ -6,14 +6,13 @@ import SideNav from './components/SideNav';
 import MainContentWrapper from './components/MainContentWrapper';
 import PortfolioStatus from './components/PortfolioStatus';
 import Content from './components/Content';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
 // import PetCenter from './components/pages/PetCenter';
 import Forum from './components/FriendsBoard/Forum';
 // import Friends from './components/pages/Friends';
 // import Home from './pages/Home';
 // import About from './pages/About';
-// import Settings from './components/pages/Settings';
 import SigninForm from './components/SigninForm';
 import SignoutForm from './components/SignoutForm';
 // import Logout from './components/pages/Logout';
@@ -31,7 +30,7 @@ import TradingCenter from './components/TradingCenter';
 import Friends from './pages/Social/Friends';
 import UserSettings from './pages/Settings';
 import Login from './pages/Login';
-
+import API from './utils/API';
 /**
 * Class App
 */
@@ -47,6 +46,8 @@ class App extends Component {
       modalIsOpen: true,
       run: false,
       showModal: true,
+      isLoggedIn: false,
+      userData: {},
     };
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -60,17 +61,36 @@ class App extends Component {
   }
 
   /**
+   * Function to check is user is in sessions
+   */
+  componentDidMount() {
+    // Here is api call
+    API.getUserProfile().then((res) => {
+      console.log(res.data);
+      if (res.data === 'User not logged in') {
+
+      } else {
+        const user = res.data;
+        this.setState({userData: user,
+        isLoggedIn: true});
+      };
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
+  /**
    * openModal function
    */
   openModal() {
-    this.setState({ modalIsOpen: true });
+    this.setState({modalIsOpen: true});
   }
 
   /**
    * closeModal function
    */
   closeModal() {
-    this.setState({ modalIsOpen: false });
+    this.setState({modalIsOpen: false});
   }
 
   /**
@@ -91,10 +111,10 @@ class App extends Component {
    * @param {number} result
    */
   handleJoyrideCallback(result) {
-    const {joyride} = this.props;
+    // const {joyride} = this.props;
 
     if (result.action == 'close') {
-      this.setState({ run: false });
+      this.setState({run: false});
     }
   }
 
@@ -104,7 +124,7 @@ class App extends Component {
   resetTour() {
     console.dir(this);
     this.joyride.reset(true);
-    this.setState({ run: true });
+    this.setState({run: true});
   }
 
   /**
@@ -112,7 +132,7 @@ class App extends Component {
    */
   yes() {
     this.closeModal();
-    this.setState({ run: true });
+    this.setState({run: true});
   }
 
   /**
@@ -145,7 +165,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
+        {this.state.isLoggedIn ? (
+          <div className="App">
             <TopNav navToggleHandler={this.navToggleHandler}/>
             <Wrapper>
               <SideNav isActive={this.state.sideNav}/>
@@ -178,10 +199,9 @@ class App extends Component {
                     <Route exact path='/friends' component={Friends} />
                     // <Route exact path='/forum' component={Forum} />}
                     <Route exact path='/' component={Home} />
-                    <Route exact path='/about' component={About} />
-                    {/* <Route exact path='/logout' component={Logout} /> */}
+                    <Route exact path='/about' component={About} />*/}
                     <Route exact path='/signin' component={SigninForm} />
-                    <Route exact path='/logout' component={SignoutForm} />
+                    <Route exact path='/signout' component={SignoutForm} />
                     <Route exact path='/signup' component={SignUp} />
                     <Route exact path='/login' component={Login} />
                     <Route path='/settings' component={UserSettings} />
@@ -197,6 +217,9 @@ class App extends Component {
               </MainContentWrapper>
             </Wrapper>
         </div>
+        ) : (
+              <Splash />
+        )}
       </Router>
     );
   };

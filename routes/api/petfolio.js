@@ -14,10 +14,10 @@ const petfolioController = require('../../controllers/petfolioController');
 router.route('/ticker')
 .get(petfolioController.getTickerText);
 
-router.route('/addTicker')
+router.route('/addTicker/:id/:ticker')
 .post(petfolioController.addTicker);
 
-router.route('/removeTicker')
+router.route('/removeTicker/:id/:ticker')
 .delete(petfolioController.removeTicker);
 
 module.exports = router;

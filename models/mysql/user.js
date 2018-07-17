@@ -84,6 +84,17 @@ module.exports = function(sequelize, Sequelize) {
             .then(function(updatedUser) {
                 console.log('User is now updated with mongo_id');
                 console.log(updatedUser);
+
+                console.log('Now making portfolio for user');
+                // Now we make a portfolio in mongo for user
+                DB.Portfolio.create({MongoUser_id: mongoUser.id})
+                .then(function(portfolio) {
+                    console.log('Portfolio has been made for user');
+                    console.log(portfolio);
+                })
+                .catch(function(err) {
+                    console.log(err);
+                });
             })
             .catch(function(err) {
                 console.log(`ERROR: ${err}`);
@@ -142,7 +153,7 @@ module.exports = function(sequelize, Sequelize) {
 
     // A custom method for our User model. It will compare user pawword wit stored password.
     User.prototype.validPassword = function(password) {
-        return bcrypt.compareSync(password, this.password);
-    };
+        return bCrypt.compareSync(password, this.password);
+      };
     return User;
 };

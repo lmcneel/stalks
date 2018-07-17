@@ -140,6 +140,7 @@ class UserProfile extends Component {
                     console.log(res.data);
                     if (res.data.emailVerified) {
                         this.props.history.push('/settings/account');
+                        this.forceUpdate();
                         this.getUser();
                     } else {
                         console.log('There was an error verifying the account');
