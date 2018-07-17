@@ -30,7 +30,6 @@ const SideNav = (props) => (
                     <Link to={'/forum'}><FontAwesomeIcon icon={faComments} className="sideNavicons"/>  Forum</Link>
             </li>
         </ul>
-
     </Nav>
 );
 

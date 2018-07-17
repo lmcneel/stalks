@@ -46,23 +46,28 @@ class Petfolio extends Component {
    * for the api call to get current prices for the ticker tape
    */
   componentDidMount() {
-    // set the Petfolio Value box background color according to PetfolioValue
+    // calc.portfolioValue().then(((r) => {
+    //   this.setState({petfolioValue: r});
+
     if (this.state.petfolioValue >= 1000) {
       this.setState({portfolioValueColor: 'colorPositive'});
-    } else if (this.state.petfolioValue >=500) {
+    } else if (this.state.petfolioValue >= 500) {
       this.setState({portfolioValueColor: 'colorNeutral'});
     } else {
       this.setState({petfolioValueColor: 'colorNegative'});
-    };
-
-    // set the bankValue box background color according to bankValue
+    }
+    // }));
+    // calc.bankValue().then(((r) => {
+    //   this.setState({bankValue: r});
     if (this.state.bankValue > 1000) {
       this.setState({bankValueColor: 'colorPositive'});
-    } else if (this.state.bankValue >1) {
+    } else if (this.state.bankValue > 1) {
       this.setState({bankValueColor: 'colorNeutral'});
     } else {
       this.setState({bankValueColor: 'colorNegative'});
-    };
+    }
+    // }));
+
   };
 
   /**
@@ -215,28 +220,27 @@ class Petfolio extends Component {
             <Col>
               <Row>
               <Col>
-                <div className= {`${this.state.portfolioValueColor} border rounded colorBoxes`}>
-                Petfolio Value
+                <div className= {`${this.state.portfolioValueColor} border rounded colorBoxes p-4`}>
+                <h5 className="petfolioPortfolioText">Petfolio Value</h5>
+
                 <PetfolioValue />
                 </div>
               </Col>
               <Col>
-                <div className={`${this.state.bankValueColor} border rounded colorBoxes`}>
-                Bank Value
+                <div className={`${this.state.bankValueColor} border rounded colorBoxes p-4`}>
+                <h5 className="petfolioBankText">Bank</h5>
                 <BankValue />
                   </div>
                 </Col>
               </Row>
 
               <Row className='pieChart'>
-                <Col>
+                <Col className="pt-4">
                   <PieChart />
                 </Col>
               </Row>
             </Col>
-
-          </Row>
-
+        </Row>
           {/* This row contains the owned stock details -- trading component*/}
          <Row>
            <Col>
