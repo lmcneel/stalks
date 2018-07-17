@@ -118,7 +118,8 @@ Values ('ABBV', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 1),
 ('ABR-C', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 9),
 ('ABT', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 10);
 
-Insert Into Pets (petType, petName, health, fondness, happiness, hunger, urlImage, createdAt, updatedAt, UserId) Values ('ostrich', 'Bridgette', 100, 100, 100, 100, './client/src/assets/images/Ostrich1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 1),
+Insert Into Pets (petType, petName, health, fondness, happiness, hunger, urlImage, createdAt, updatedAt, UserId) 
+Values ('ostrich', 'Bridgette', 100, 100, 100, 100, './client/src/assets/images/Ostrich1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 1),
 ('bull', 'Alf', 100, 100, 100, 100, './client/src/assets/images/Bull1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 2),
 ('bear', 'Bearmanpig', 100, 100, 100, 100, './client/src/assets/images/Bear1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 3),
 ('wolf', 'Richard', 100, 100, 100, 100, './client/src/assets/images/Wolf1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 4),
@@ -145,7 +146,7 @@ Insert Into Pets (petType, petName, health, fondness, happiness, hunger, urlImag
 ('ostrich', 'Isther', 100, 100, 100, 100, './client/src/assets/images/Ostrich1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 25);
 
 Insert Into accessories (name, quantity, equipped, createdAt, updatedAt, PetId) 
-Values ('red collar', 1, 0, '2018-07-12 09:00:00', '2018-07-12 09:00:00',1),
+Values ('red collar', 1, 1, '2018-07-12 09:00:00', '2018-07-12 09:00:00',1),
 ('blue collar', 1, 0, '2018-07-12 09:00:00', '2018-07-12 09:00:00',2),
 ('bow tie', 1, 0, '2018-07-12 09:00:00', '2018-07-12 09:00:00',3),
 ('ball', 1, 0, '2018-07-12 09:00:00', '2018-07-12 09:00:00',4),
