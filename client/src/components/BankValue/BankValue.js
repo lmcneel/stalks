@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import API from '../../utils/API';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPiggyBank} from '@fortawesome/fontawesome-free-solid';
 /**
  * @class BankValue
  */
@@ -15,7 +13,6 @@ class BankValue extends Component {
     this.bankValue = this.bankValue.bind(this);
     this.state = {
       bankValue: 3500,
-
       portfolio_id: '5b4cf8a4f387eda4bd04e253',
 
     };
@@ -53,10 +50,9 @@ class BankValue extends Component {
    */
   render() {
     return (
-      <div>
-        <FontAwesomeIcon icon={faPiggyBank} className="pad"/>
+      <span>
         ${this.state.bankValue}
-      </div>
+      </span>
   );
  }
 };
