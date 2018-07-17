@@ -27,7 +27,7 @@ class ItemShop extends Component {
         API.createAccessory({
            name: this.state.results[id].itemName,
            category: this.state.results[id].category,
-           imaageURL: this.state.results[id].imageURL,
+           imageURL: this.state.results[id].imageURL,
            quantity: 1,
            PetId: 12  
         })
