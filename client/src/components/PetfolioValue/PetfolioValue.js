@@ -1,10 +1,29 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-export const PetfolioValue = (props) => (
-    <div className='stockStats'>
-      <div className="">Petfolio Value</div>
-      <div>{props.petfolioValue}</div>
-    </div>
-);
+/**
+ * @class PetfolioValue
+ */
+class PetfolioValue extends Component {
+  /**
+ * Constructor function for setting state
+ * @param {*} props
+ */
+  constructor(props) {
+    super(props);
+    this.state = {
+      petfolioValue: 500,
+    };
+  }
+  /**
+   * @return {*} Container
+   */
+  render() {
+    return (
+        <span>
+          ${this.state.petfolioValue}
+        </span>
+    );
+  }
+};
 
 export default PetfolioValue;
