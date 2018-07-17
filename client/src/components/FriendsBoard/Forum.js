@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     Card, CardBody,
-    CardTitle, Input, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row, Label, FormGroup,Table, 
+    CardTitle, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Col, Row,
 } from 'reactstrap';
-import { ForumPostButton, ForumDeleteButton, ForumEditButton } from '../../components/FriendsBoard';
+import {ForumPostButton, ForumDeleteButton, ForumEditButton} from '../../components/FriendsBoard';
 import API from '../../utils/API';
 
 
 // Main Forum Component to allow messages to be viewed and posted by user. may allow for reply
-export class Forum extends Component {
+export class Forum extends React.Component {
     constructor(props) {
         super(props);
         // Handles dropdown menu functionality
@@ -16,7 +16,7 @@ export class Forum extends Component {
         this.state = {
             dropdownOpen: false,
             forum: {
-                data: [{subject: '', comments: '',}]
+                data: [{subject: '', comments: '', user: 'G.Posell'}],
 
             },
         };
@@ -36,7 +36,7 @@ export class Forum extends Component {
                     forum: res.data,
 
                 }),
-            // console.log(res.data)   
+            // console.log(res.data)
         )
             .catch((err) => console.log(err));
     };
@@ -59,7 +59,7 @@ export class Forum extends Component {
 
             <Container fluid id="Forum">
                 <Row>
-                    <Col sm="8" md={{ size: 11, offset: 0 }}>
+                    <Col sm="8" md={{size: 11, offset: 0}}>
                         <Card>
                             <CardTitle>
                                 FORUM
@@ -89,18 +89,17 @@ export class Forum extends Component {
                                     <CardBody>
 
 
-
     <div> {this.state.forum.data.map((data, i) =>{
     return (<Card key={`data${i}`}>
     <CardBody>
     <ForumEditButton/><ForumDeleteButton/>
             <th>{data.subject}</th>
             <tr>{data.comments}</tr>
-    </CardBody>        
+            <tr>{data.user}</tr>
+    </CardBody>
         </Card>);
 })}
     </div>
-
 
 
                                     </CardBody>

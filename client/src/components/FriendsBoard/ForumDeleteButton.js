@@ -21,7 +21,7 @@ componentDidMount() {
 
 render() {
 return (
-    
+
      <FontAwesomeIcon
     icon={faWindowClose} />
 

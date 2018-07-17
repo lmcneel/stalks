@@ -49,7 +49,7 @@ export default {
         return axios.get('/api/forum/');
     },
     viewFriends: function() {
-        console.log("friends API hit");
-        return axios.get("api/forum/user/1/friends/2");
+        console.log('friends API hit');
+        return axios.get('api/forum/user/1/friends/2');
     },
 };
