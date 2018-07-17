@@ -1,12 +1,18 @@
 import React, {Component} from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {withRouter} from 'react-router-dom';
 import API from '../../utils/API';
+import PropTypes from 'prop-types';
+
+
+
 /**
- * Trading Page
+ * Signup Page
  */
 class SignUp extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             firstname: '',
             firstNameErr: '',
@@ -19,7 +25,9 @@ class SignUp extends Component {
             password: '',
             passwordErr: '',
             pet: '',
-            petErr: ''
+            petErr: '',
+            signupErr: false,
+            signUpErrors: [],
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -48,6 +56,18 @@ class SignUp extends Component {
         console.log(data);
         API.signup(data).then((response) =>{
             console.log(response.data);
+            const errors = [];
+            if (response.data === 'Username is taken' || response.data === 'Email in user') {
+                errors.push(response.data);
+                this.setState({signupErr: true,
+                signUpErrors: errors});
+            };
+
+            if (errors.length === 0) {
+                this.setState({signupErr: false, signUpErrors: errors});
+                this.props.history.push('/');
+                window.location.reload();
+            };
         })
         .catch((err) => {
             if (err) {
@@ -62,10 +82,20 @@ class SignUp extends Component {
      * @return {SignUp}
      */
     render() {
+        const Errors = this.state.signUpErrors.map(err => {
+            return (
+                <p key={`sign-up-${err}`}> {err} </p>
+            );
+        });
         return (
                 <div id="container">
                 <h3>Please fill out the form below to sign up.</h3>
                 <Form className="signupForm" >
+                    {this.state.signupErr && (
+                        <div className='form-errors'>
+                            {Errors}
+                        </div>
+                    )}
                     <FormGroup>
                         <Label for="exampleEmail">First Name</Label>
                         <Input 
@@ -149,5 +179,11 @@ class SignUp extends Component {
         );
     }
 }
-export default SignUp;
+
+SignUp.propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+};
+export default withRouter(SignUp);
 

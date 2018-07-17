@@ -38,20 +38,6 @@ export default {
     getTickerText: function() {
         return axios.get('/api/petfolio/ticker');
     },
-    // Saves an article to the database
-    login: function(loginData) {
-        return axios.post('/api/auth/login', loginData)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    },
-    // Saves an article to the database
-    signup: function(signupData) {
-        return axios.post('/api/auth/signup', signupData);
-    },
     getDocs: function() {
         return axios.get('/api/docs');
     },
@@ -71,12 +57,22 @@ export default {
         console.log('hit API.js');
         return axios.get('/api/forum/');
     },
-
     /*
     **
-    **For User Settings / Profile
+    **For User Settings / Profile / Authenticating
     **
     */
+     // Checked and working
+     signup: function(signupData) {
+        return axios.post('/api/auth/signup', signupData);
+    },
+    signin: function(data) {
+        return axios.post('/api/auth/login', data);
+    },
+    // Checked and working
+    logout: function() {
+        return axios.post('/api/auth/logout');
+    },
     // Checked and working
     getUserProfile: function() {
         console.log('Settings API: getUserProfile type: get Route: /api/user/getInfo');
@@ -117,7 +113,7 @@ export default {
         console.log('Settings API: requestEmailVerification type: post Route: /api/user/post/email/verification');
         return axios.post('/api/user/sendEmailVerification', data);
     },
-
+    // Checked and working
     confirmEmailVerification: function(data) {
         console.log('Settings API: confirmEmailVerification type: get Route: /api/user/update/email/:id/:key');
         return axios.put('/api/user/update/email/verification', data);
