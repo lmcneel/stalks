@@ -29,4 +29,4 @@ const ProgressBars = (props) => {
   );
 };
 ProgressBars.propTypes = propTypes;
-export {ProgressBars};
+export default ProgressBars;

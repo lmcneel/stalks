@@ -54,7 +54,7 @@ class OwnedStock extends Component {
             collapse: false,
             watched: false,
             eyeWatched: 'faEye',
-        },
+        };
     }
 /**
  * @public componentDidMount function will render the chart

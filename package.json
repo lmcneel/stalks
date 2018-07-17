@@ -4,7 +4,7 @@
   "description": "StockMarket Game made by Houston January MW Coding Bootcamp",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "lint": "./node_modules/.bin/eslint --ignore-path ./.eslintignore --quiet ./**",
     "lint-watch": "./node_modules/.bin/esw -w --ignore-path ./.eslintignore --quiet ./**",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -61,11 +61,13 @@
     "victory": "^0.27.2"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
     "concurrently": "^3.6.0",
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-react": "^7.8.2",
     "eslint-watch": "^3.1.4",
+    "mocha": "^5.2.0",
     "nodemon": "^1.17.5"
   }
 }
