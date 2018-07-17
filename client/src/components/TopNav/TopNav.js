@@ -27,7 +27,7 @@ const TopNav = (props) => {
                 <Col xs="12" md="4" className="pr-0">
                     <ul id="topNavIcons" className="nav justify-content-sm-center justify-content-md-end">
                         <li className="nav-item">
-                            <Link to={'/help'}><FontAwesomeIcon className="iconsize" icon={faQuestionCircle} /></Link>
+                            <Link to={'/docs'}><FontAwesomeIcon className="iconsize" icon={faQuestionCircle} /></Link>
                         </li>
                         <li className="nav-item">
                             <Link to={'/settings'}><FontAwesomeIcon className="iconsize" icon={faCog} /></Link>
