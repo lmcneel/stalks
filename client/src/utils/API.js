@@ -15,7 +15,6 @@ export default {
         // console.log(data);
         return axios.get(`/api/trading/quote/${data.ticker}`);
     },
-<<<<<<< HEAD
     // getPortfolioValue: function() {
     //     return axios.get('api/petfolio/portfolio');
     // },
@@ -27,8 +26,7 @@ export default {
     },
     getPetInfo: function(petId) {
         return axios.get('/api/pets/' + petId);
-=======
-
+    },
     userQuotes: function(data) {
         // console.log(data);
         return axios.get(`/api/trading/slimquote/${data.ticker}`);
@@ -47,7 +45,6 @@ export default {
     },
     getPetInfo: function() {
         return axios.get('/api/petfolio/pets');
->>>>>>> ef872be2762115c45b8bd1e7140ac1950afbae24
     },
     getTickerText: function() {
         return axios.get('/api/petfolio/ticker');

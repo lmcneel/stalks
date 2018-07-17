@@ -17,6 +17,7 @@ class PetStatusBars extends Component {
                     petStatColor="success"
                     petStatValue={this.props.overallHealth}
                 />
+                <div>
                 <ProgressBars
                     petStatLabel="Hunger"
                     petStatColor="danger"
@@ -36,12 +37,9 @@ class PetStatusBars extends Component {
                     petStatColor="warning"
                     petStatValue={this.props.fondness}
                 />
-<<<<<<< HEAD
+                </div>
                 {this.props.petButton}
                 {this.props.feedButton}
-=======
-                </div>
->>>>>>> ef872be2762115c45b8bd1e7140ac1950afbae24
             </div>
         );
     }

@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
 import {Container, Row, Col} from 'reactstrap';
 import {PetStats} from '../PetStats';
-=======
-import {Container, Row, Col, Button} from 'reactstrap';
-import {PetStatsVert} from '../PetStats';
-// import ListStock from '../ListStock/ListStock';
->>>>>>> ef872be2762115c45b8bd1e7140ac1950afbae24
 import BankValue from '../BankValue/BankValue';
 import PetfolioValue from '../PetfolioValue/PetfolioValue';
 import PieChart from '../PieChart/PieChart';
@@ -146,28 +140,18 @@ class Petfolio extends Component {
           showSkipButton={true}
           callback={this.handleJoyrideCallback}
         />
-        <Button type='button' onClick={this.resetTour}>Take a Tour</Button>
+        <button type='button' onClick={this.resetTour}>Take a Tour</button>
         <Container fluid>
           {/** global header with app name and right nav icons goes here above next row*/}
 
           <Row>
 
-<<<<<<< HEAD
-            {/** Row 3: Vertical PetStats and PieChart*/}
-            <Row>
-              <Col>
-                <div className="statusbarwidth">
-                <PetStats />
-                </div>
-              </Col>
-=======
             {/** Vertical PetStats and PieChart*/}
             <Col>
               <div className="statusbarwidth">
-                <PetStatsVert />
+                <PetStats />
               </div>
             </Col>
->>>>>>> ef872be2762115c45b8bd1e7140ac1950afbae24
 
             <Col>
               <Row>
