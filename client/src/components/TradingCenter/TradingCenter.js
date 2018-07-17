@@ -68,7 +68,7 @@ const propTypes = {
         }).isRequired,
     }).isRequired,
     modalName: PropTypes.string,
-}
+};
 
 let watched = false; // This watchlist flag
 let eyeWatched = 'faEye'; // class variable for watchlist condition
@@ -225,7 +225,7 @@ removeFromWatchlist() {
      * @param {*} event
      */
     handleInputChange(event) {
-        const { name, value } = event.target;
+        const {name, value} = event.target;
         this.setState({
             [name]: value,
         });
@@ -567,7 +567,7 @@ updatePortfolioValue() {
                     },
 
                     xAxis: {
-                        title: { text: 'Past 30 Days' },
+                        title: {text: 'Past 30 Days'},
                         // categories: chartCategories,
                         categories: null,
                         text: null,
@@ -588,8 +588,8 @@ updatePortfolioValue() {
                         color: '#0C425C',
                         name: this.state.ticker,
                         data: chartData,
-                        marker: { enabled: true },
-                        tooltip: { valueDecimals: 2 },
+                        marker: {enabled: true},
+                        tooltip: {valueDecimals: 2},
                     }],
                 });
             })
@@ -608,7 +608,7 @@ updatePortfolioValue() {
                 this.updateBankValue();
                 this.updatePortfolioValue();
             API.findQuotes(
-                { ticker: this.state.ticker }
+                {ticker: this.state.ticker}
             ).then((res) => {
                 this.setState({price: res.data.quote.latestPrice});
                 if (this.state.ticker && this.state.price && this.state.shares) {
@@ -704,7 +704,7 @@ updatePortfolioValue() {
     resetTour() {
         console.dir(this);
         this.joyride.reset(true);
-        this.setState({ run: true });
+        this.setState({run: true});
     }
     /**
      * Render function

@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import API from "../../utils/API";
+import React, {Component} from 'react';
+import API from '../../utils/API';
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';

@@ -23,6 +23,4 @@ module.exports = function(sequelize, Sequelize) {
       };
 
     return Friends;
-
-
 };

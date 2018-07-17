@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Input, Collapse, Button } from 'reactstrap';
+import React, {Component} from 'react';
+import {Input, Collapse, Button} from 'reactstrap';
 // import {Typeahead} from 'react-bootstrap-typeahead';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Highcharts from 'highcharts';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faChevronCircleDown } from '@fortawesome/fontawesome-free-solid';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faEye, faChevronCircleDown} from '@fortawesome/fontawesome-free-solid';
 import API from '../../utils/API';
 import ListStock from '../ListStock';
 // import OwnedStock from '../OwnedStock';
@@ -107,7 +107,7 @@ class StockSearch extends Component {
      * @public toggle function for reactstap <Collapse> onClick trigger
      */
     toggle() {
-        this.setState({ collapse: !this.state.collapse });
+        this.setState({collapse: !this.state.collapse});
     };
     /**
      * @public checkWatchList function will check if the current 'ticker' is listed in user watchlist
@@ -212,8 +212,8 @@ class StockSearch extends Component {
      * @public componentDidMount function will render the chart
      */
     componentDidMount() {
-        this.charting({ ticker: this.state.ticker });
-        this.checkWatchList({ ticker: this.state.ticker });
+        this.charting({ticker: this.state.ticker});
+        this.checkWatchList({ticker: this.state.ticker});
     };
 
     /**
@@ -221,8 +221,8 @@ class StockSearch extends Component {
      * @param {*} event
      */
     handleInputChange(event) {
-        const { name, value } = event.target;
-        this.setState({ [name]: value });
+        const {name, value} = event.target;
+        this.setState({[name]: value});
     };
 
     // /**
@@ -239,8 +239,8 @@ class StockSearch extends Component {
      * @param {*} event
      */
     handleFormSubmit(event) {
-        this.charting({ ticker: this.state.ticker });
-        this.checkWatchList({ ticker: this.state.ticker });
+        this.charting({ticker: this.state.ticker});
+        this.checkWatchList({ticker: this.state.ticker});
     };
     /**
      * @public charting function assigns chart data from API
@@ -283,7 +283,7 @@ class StockSearch extends Component {
                     },
 
                     xAxis: {
-                        title: { text: 'Past 30 Days' },
+                        title: {text: 'Past 30 Days'},
                         // categories: chartCategories,
                         categories: null,
                         text: null,
@@ -304,8 +304,8 @@ class StockSearch extends Component {
                         color: '#0C425C',
                         name: this.state.ticker,
                         data: chartData,
-                        marker: { enabled: true },
-                        tooltip: { valueDecimals: 2 },
+                        marker: {enabled: true},
+                        tooltip: {valueDecimals: 2},
                     }],
                 });
             })
@@ -330,7 +330,7 @@ class StockSearch extends Component {
     resetTour() {
         console.dir(this);
         this.joyride.reset(true);
-        this.setState({ run: true });
+        this.setState({run: true});
     }
     /**
      * @return {*} Will render stock view component

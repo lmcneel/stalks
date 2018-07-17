@@ -35,7 +35,7 @@ class Splash extends Component {
         this.setState({showSignIn: !this.state.showSignIn});
     }
     render() {
-        return(
+        return (
 <Container className=''>
     <Row className="text-center mt-5">
         <Col>

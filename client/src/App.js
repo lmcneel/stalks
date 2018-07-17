@@ -115,7 +115,7 @@ class App extends Component {
   handleJoyrideCallback(result) {
     // const {joyride} = this.props;
 
-    if (result.action == 'close') {
+    if (result.action === 'close') {
       this.setState({run: false});
     }
   }

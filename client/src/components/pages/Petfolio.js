@@ -59,7 +59,7 @@ const joyridePetfolio = [
       },
   },
   },
-  
+
 ];
 
 /**
@@ -127,7 +127,6 @@ class Petfolio extends Component {
       this.setState({bankValueColor: 'colorNegative'});
     }
     // }));
-
   };
 
   /**
@@ -141,7 +140,7 @@ class Petfolio extends Component {
    * closeModal function
    */
   closeModal() {
-    this.setState({modalIsOpen: false });
+    this.setState({modalIsOpen: false});
   }
 
   /**
@@ -175,14 +174,14 @@ class Petfolio extends Component {
   resetTour() {
     console.dir(this);
     this.joyride.reset(true);
-    this.setState({ run: true });
+    this.setState({run: true});
   }
   /**
    * yes function
    */
   yes() {
     this.closeModal();
-    this.setState({ run: true });
+    this.setState({run: true});
   }
   /**
    * never function
