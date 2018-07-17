@@ -5,16 +5,29 @@ import {
 } from 'reactstrap';
 // import API from '../../utils/API';
 
+
+/**
+* Class LeaderBoard
+*/
 export class LeaderBoard extends Component {
+  /**
+  *@param {*} props
+  */
   constructor(props) {
     super(props);
   };
 
+  /**
+   * Mount component
+   */
   ComponentDidMount() {
     // Query for current top scores will go here based on protfolio value
 
   };
-
+/**
+ * Render function for App Component
+ * @return {JSX}
+ */
   render() {
     return (
 
