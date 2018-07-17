@@ -10,16 +10,10 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './components/pages/Petfolio';
 // import PetCenter from './components/pages/PetCenter';
 import Forum from './components/FriendsBoard/Forum';
-<<<<<<< HEAD
-// import Friends from './components/pages/Friends';
-// import Home from './pages/Home';
-// import About from './pages/About';
-=======
 import Friends from './pages/Social/Friends';
 import Home from './pages/Home';
 import About from './components/pages/About';
 // import Settings from './components/pages/Settings';
->>>>>>> 858d2d81d0a83d70a5493f24e306e7317107b13f
 import SigninForm from './components/SigninForm';
 import SignoutForm from './components/SignoutForm';
 // import Logout from './components/pages/Logout';
@@ -36,12 +30,9 @@ import ViewStocks from './pages/ViewStocks/ViewStocks';
 import TradingCenter from './components/TradingCenter';
 import UserSettings from './pages/Settings';
 import Login from './pages/Login';
-<<<<<<< HEAD
 import API from './utils/API';
-=======
 import Footer from './components/Footer';
 
->>>>>>> 858d2d81d0a83d70a5493f24e306e7317107b13f
 /**
 * Class App
 */
@@ -60,7 +51,6 @@ class App extends Component {
       isLoggedIn: false,
       userData: {},
     };
-<<<<<<< HEAD
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.yes = this.yes.bind(this);
@@ -160,8 +150,6 @@ class App extends Component {
    */
   close() {
     this.setState({showModal: false});
-=======
->>>>>>> 858d2d81d0a83d70a5493f24e306e7317107b13f
   }
 
   /**
@@ -197,11 +185,7 @@ class App extends Component {
                     // <Route exact path='/forum' component={Forum} />}
                     {/* <Route exact path='/logout' component={Logout} /> */}
                     <Route exact path='/' component={Home} />
-<<<<<<< HEAD
-                    <Route exact path='/about' component={About} />*/}
-=======
                     <Route exact path='/about' component={About} />
->>>>>>> 858d2d81d0a83d70a5493f24e306e7317107b13f
                     <Route exact path='/signin' component={SigninForm} />
                     <Route exact path='/signout' component={SignoutForm} />
                     <Route exact path='/signup' component={SignUp} />

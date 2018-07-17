@@ -53,10 +53,6 @@ export default {
                 console.log(error);
             });
     },
-    // Saves an article to the database
-    signup: function(signupData) {
-        return axios.post('/api/auth/signup', signupData);
-    },
     getDocs: function() {
         return axios.get('/api/docs');
     },

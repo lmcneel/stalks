@@ -43,9 +43,7 @@ class PetfolioValue extends Component {
             return this.setState({petfolioValue: PV});
         })
         .catch((err) => console.log(err));
-
     };
-
   /**
    * @return {*} Container
    */
