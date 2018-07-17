@@ -9,16 +9,66 @@ import Promise from 'bluebird';
 import _ from 'underscore';
 import PropTypes from 'prop-types';
 import Joyride from 'react-joyride';
-import '../../assets/react-joyride-compiled.css';
-
+const joyrideTradeCenter = [
+    {
+        title: 'Stock Chart',
+        text: 'This chart tracks the preformance of this stock over the last 30 days. You can easily see how a stock is doing with this helpful chart!',
+        selector: '.chartSection',
+    },
+    {
+        title: 'Shares Owned',
+        text: 'This number is the amount of shares you currently own of this stock.',
+        selector: '.sharesOwned',
+    },
+    {
+        title: 'ROI',
+        text: 'ROI, Return on Investment, is the ratio between the net profit and cost of investment resulting from an investment of a stock. This is a helpful metric to determine if your investment in a stock is performing well. The higher this number, the better that stock is doing. You can also use this simple metric to compare different stocks in your portfolio.',
+        selector: '.roiRow',
+    },
+    {
+        title: 'Price and Date Purchased',
+        text: 'This shows the price of the stock on date you purchased it. This is a good inicator of how your investment has done since you initially purchased it.',
+        selector: '.priceAndDateRow',
+    },
+    {
+        title: 'Making a Transaction',
+        text: 'This form allows you to buy and sell stocks.',
+        selector: '.buySell',
+    },
+    {
+        title: 'Buying and Selling Stocks',
+        text: 'Here you select whether you want to buy or sell your stock.',
+        selector: '.tradeInputs',
+    },
+    {
+        title: 'Number of Shares',
+        text: 'Here you input how many shares you would like to buy or sell.',
+        selector: '.numOfShares',
+    },
+    {
+        title: 'Subtotal and New Bank Value',
+        text: 'The subtotal shows informs you how much money you will make or spend with this transaction. The new bank value informs you what your bank value will be after the transaction is complete.',
+        selector: '.bottomTwoRows',
+    },
+    {
+        title: 'Finished!',
+        text: 'Once you select your stock and amount of shares, submit your order here.',
+        selector: '.submitBtn',
+        style: {
+            footer: {
+                display: 'none',
+            },
+        },
+    },
+];
 const propTypes = {
-        match: PropTypes.shape({
-            params: PropTypes.shape({
-                ticker: PropTypes.string,
-            }).isRequired,
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            ticker: PropTypes.string,
         }).isRequired,
-        modalName: PropTypes.string,
-    }
+    }).isRequired,
+    modalName: PropTypes.string,
+}
 
 let watched = false; // This watchlist flag
 let eyeWatched = 'faEye'; // class variable for watchlist condition
@@ -33,9 +83,9 @@ const checkWatchList = () => {
  * @class TradingCenter
  */
 class TradingCenter extends Component {
-/**
- * @param {*} props
- */
+    /**
+     * @param {*} props
+     */
     constructor(props) {
         super(props);
         // These are triggerd from opClick
@@ -90,9 +140,9 @@ class TradingCenter extends Component {
         this.resetTour = this.resetTour.bind(this);
     }
 
-/**
- * @public componentDidMount function will render elements
- */
+    /**
+     * @public componentDidMount function will render elements
+     */
     componentDidMount() {
         this.charting({ticker: this.state.ticker});
         this.myStocks(this.state.portfolio_id);
@@ -104,49 +154,49 @@ class TradingCenter extends Component {
         this.cashCalculator(this.state.portfolio_id);
         this.checkWatchList();
     };
-/**
- * @public toggle function for reactstap <Modal> onClick trigger
- */
+    /**
+     * @public toggle function for reactstap <Modal> onClick trigger
+     */
     toggle() {
         this.setState({
             modal: !this.state.modal,
         });
     };
-/**
- * @public checkWatchList function will check if the current 'ticker' is listed in user watchlist
- * @param {*} ticker
- */
+    /**
+     * @public checkWatchList function will check if the current 'ticker' is listed in user watchlist
+     * @param {*} ticker
+     */
     checkWatchList(ticker) {
         // If in watchlist set [watched] to true
         API.getTickerText(ticker).then(((r) => {
             if (r.data.length !== 0) {
-            let tempTicker = [];
-            for (let i=0; i<r.data.length; i++) {
-                tempTicker.push((r.data[i]).uniqueStockSymbol);
-            }
-            // console.log(tempTicker);
-            if (tempTicker.includes(this.state.ticker)) {
-                return this.setState({watched: true});
-              } else {
-                return this.setState({watched: false});
-              };
+                let tempTicker = [];
+                for (let i = 0; i < r.data.length; i++) {
+                    tempTicker.push((r.data[i]).uniqueStockSymbol);
+                }
+                // console.log(tempTicker);
+                if (tempTicker.includes(this.state.ticker)) {
+                    return this.setState({watched: true});
+                } else {
+                    return this.setState({watched: false});
+                };
             };
         }));
     };
 
-/**
- * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
- * @param {*} ticker
- */
+    /**
+     * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
+     * @param {*} ticker
+     */
     addToWatchlist(ticker) {
         // API.addNewTicker(ticker)
 
         // Need to add to MySQL Watchlist
     }
-/**
-* @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
-* @param {*} ticker
-*/
+    /**
+    * @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
+    * @param {*} ticker
+    */
     removeFromWatchlist() {
         // API.removeExistingTicer(ticker)
 
@@ -154,20 +204,20 @@ class TradingCenter extends Component {
 
     }
 
-/**
- * @public handleInputChange function for number of shares
- * @param {*} event
- */
+    /**
+     * @public handleInputChange function for number of shares
+     * @param {*} event
+     */
     handleInputChange(event) {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         this.setState({
             [name]: value,
         });
     };
 
-/**
- * @public transactionExec function for processing the transaction
- */
+    /**
+     * @public transactionExec function for processing the transaction
+     */
     transactionExec() {
         if (this.state.transaction === 'buy') {
             this.buyShares();
@@ -176,11 +226,11 @@ class TradingCenter extends Component {
         };
     };
 
-/**
- * @public myStocks function that gets users stocks from mongo database
- * @param {*} portfolio
- * @return {*} returns users stocks
- */
+    /**
+     * @public myStocks function that gets users stocks from mongo database
+     * @param {*} portfolio
+     * @return {*} returns users stocks
+     */
     myStocks(portfolio) {
         return API.getMyStocks(portfolio)
             .then((res) => {
@@ -228,11 +278,11 @@ class TradingCenter extends Component {
             });
     }
 
-/**
- * @public cashCalculator function that gets users remainig cash value
- * @param {*} portfolio
- * @return {*} returns users cash
- */
+    /**
+     * @public cashCalculator function that gets users remainig cash value
+     * @param {*} portfolio
+     * @return {*} returns users cash
+     */
     cashCalculator(portfolio) {
         return API.getMyStocks(portfolio)
             .then((res) => {
@@ -250,11 +300,11 @@ class TradingCenter extends Component {
             .catch((err) => console.log(err));
     }
 
-/**
- * @public dbStocks function that gets users stocks from mongo database
- * @param {*} portfolio
- * @return {*} returns users stocks
- */
+    /**
+     * @public dbStocks function that gets users stocks from mongo database
+     * @param {*} portfolio
+     * @return {*} returns users stocks
+     */
     dbStocks(portfolio) {
         let self = this;
         let allUserStocks;
@@ -308,10 +358,10 @@ class TradingCenter extends Component {
             });
     };
 
-/**
- * @public myStocksValue function that gets users stocks value from mongo database
- * @param {*} portfolio
- */
+    /**
+     * @public myStocksValue function that gets users stocks value from mongo database
+     * @param {*} portfolio
+     */
     myStocksValue() {
         let self = this;
 
@@ -343,14 +393,14 @@ class TradingCenter extends Component {
             });
     };
 
-/**
- * @public portfolioValue function that gets users portfolio value from mongo database
- * @param {*} stocks
- * @param {*} lastPrice
- * @return {*} returns users cash
- * This function will calculate the Portfolio Value & Portfolio Value ROI
- * The inputs to this function  are The list of Shares the user has and the latest Rpice of those shares
-*/
+    /**
+     * @public portfolioValue function that gets users portfolio value from mongo database
+     * @param {*} stocks
+     * @param {*} lastPrice
+     * @return {*} returns users cash
+     * This function will calculate the Portfolio Value & Portfolio Value ROI
+     * The inputs to this function  are The list of Shares the user has and the latest Rpice of those shares
+    */
     portfolioValue(stocks, lastPrice) {
         // console.log(stocks);
         // Since the Game starts the user with a set starting value it's used as a variable
@@ -383,13 +433,13 @@ class TradingCenter extends Component {
         };
     };
 
-/**
- * @public ROI function that gets users retrun on investment value from mongo database
- * @param {*} allUserStocks
- * @param {*} lastPrice
- * @param {*} userStocks
- * @return {*} returns users ROI
-*/
+    /**
+     * @public ROI function that gets users retrun on investment value from mongo database
+     * @param {*} allUserStocks
+     * @param {*} lastPrice
+     * @param {*} userStocks
+     * @return {*} returns users ROI
+    */
     returnOnInvestment(allUserStocks, lastPrice, userStocks) {
         // console.log(allUserStocks);
         // console.log(lastPrice);
@@ -401,7 +451,7 @@ class TradingCenter extends Component {
             };
         };
         // console.log(userStocks);
-        let boughtStocks = _.uniq(userStocks, function(p) {
+        let boughtStocks = _.uniq(userStocks, function (p) {
             return p.ticker;
         });
         // console.log(boughtStocks);
@@ -431,13 +481,13 @@ class TradingCenter extends Component {
         return eachROI;
     };
 
-/**
- * @public bankValue function that gets users bank value from mongo database
- * @param {*} portfolio
- * @return {*} returns users bank value
- * This function will give the Current user Cash
- * The input needs to be the User Portfolio ID.
-*/
+    /**
+     * @public bankValue function that gets users bank value from mongo database
+     * @param {*} portfolio
+     * @return {*} returns users bank value
+     * This function will give the Current user Cash
+     * The input needs to be the User Portfolio ID.
+    */
     bankValue(portfolio) {
         let bank = 0;
         return API.getMyPortfolio(portfolio)
@@ -452,12 +502,12 @@ class TradingCenter extends Component {
             .catch((err) => console.log(err));
     };
 
-/**
- * @public myWatchlist function gives the latest price for the Watch List
- * that in retrieved from MySQL and fed to this function
- * @param {*} watchedArray
- * @return {*} returns users latest price
-*/
+    /**
+     * @public myWatchlist function gives the latest price for the Watch List
+     * that in retrieved from MySQL and fed to this function
+     * @param {*} watchedArray
+     * @return {*} returns users latest price
+    */
     myWatchlist(watchedArray) {
         // console.log(watchedArray);
         // let self = this;
@@ -486,10 +536,10 @@ class TradingCenter extends Component {
         };
         return current;
     };
-/**
- * @public charting function assigns chart data from API
- * @param {*} ticker is the current ticker state
- */
+    /**
+     * @public charting function assigns chart data from API
+     * @param {*} ticker is the current ticker state
+     */
     charting(ticker) {
         API.findQuotes(ticker)
             .then((res) => {
@@ -524,7 +574,7 @@ class TradingCenter extends Component {
                     },
 
                     xAxis: {
-                        title: {text: 'Past 30 Days'},
+                        title: { text: 'Past 30 Days' },
                         // categories: chartCategories,
                         categories: null,
                         text: null,
@@ -545,26 +595,26 @@ class TradingCenter extends Component {
                         color: '#0C425C',
                         name: this.state.ticker,
                         data: chartData,
-                        marker: {enabled: true},
-                        tooltip: {valueDecimals: 2},
+                        marker: { enabled: true },
+                        tooltip: { valueDecimals: 2 },
                     }],
                 });
             })
             .catch((err) => console.log(err));
-        }
+    }
 
 
- /**
- * @public buyShares function for processing buy transaction
- * @param {*} event
- */
+    /**
+    * @public buyShares function for processing buy transaction
+    * @param {*} event
+    */
     buyShares() {
         if ((this.state.cashBalance - (this.state.shares * this.state.price)) >= 0) {
             API.findQuotes(
-                {ticker: this.state.ticker}
+                { ticker: this.state.ticker }
             ).then((res) => {
                 // console.log(res.data);
-                this.setState({price: res.data.quote.latestPrice});
+                this.setState({ price: res.data.quote.latestPrice });
                 if (this.state.ticker && this.state.price && this.state.shares) {
                     API.buyShares({
                         portfolio_id: this.state.portfolio_id,
@@ -596,10 +646,10 @@ class TradingCenter extends Component {
         }
     };
 
-/**
- * @public sellShares function for processing sell transaction
- * @param {*} event
- */
+    /**
+     * @public sellShares function for processing sell transaction
+     * @param {*} event
+     */
     sellShares() {
         if (this.state.shares <= this.state.totalShares) {
             API.findQuotes(
@@ -654,95 +704,17 @@ class TradingCenter extends Component {
     resetTour() {
         console.dir(this);
         this.joyride.reset(true);
-        this.setState({run: true});
+        this.setState({ run: true });
     }
+/**
+ * @return {*} Container
+ */
     render() {
         return (
             <div>
                 <Joyride
                     ref={(c) => (this.joyride = c)}
-                    steps={[
-                        {
-                            title: 'Bank Value',
-                            text: 'This is the amount of liquid assets, money, that you can use to invest in stocks or spend on your pet for fun items in the shop. You can increase your liquid assets by selling your stocks as well as login bonuses.',
-                            selector: '.bankValue',
-                        },
-                        {
-                            title: 'Petfolio Value',
-                            text: 'This is the sum of all stocks you own multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets.',
-                            selector: '.portfolioValue',
-                        },
-                        {
-                            title: 'Stock Overview',
-                            text: 'This is the overview of a stocks stats. There is plenty of useful information here!',
-                            selector: '.stockStats',
-                        },
-                        {
-                            title: 'Stock Name',
-                            text: 'This is the ticker symbol or stock symbol of this stock. It\'s an abbreviation used to uniquely identify publicly traded shares of a particular stock on a particular stock market. A stock symbol may consist of letters, numbers or a combination of both.',
-                            selector: '.stockName',
-                        },
-                        {
-                            title: 'Stock Price',
-                            text: 'The is the current price of a single stock from this company. This will update, so keep an eye on it for changes!',
-                            selector: '.stockPrice',
-                        },
-                        {
-                            title: 'Percent Change',
-                            text: 'This is is percentage that shows negative or positive preformance, compared to the price at the opening of the trading day. Green is positive, red is negative.',
-                            selector: '.stockChange',
-                        },
-                        {
-                            title: 'Add to Your Watchlist',
-                            text: 'Using the eye icon you can add stocks you own or just ones that you are interested in to your watchlist. You can view Watchlist in the Stock Chart.',
-                            selector: '.stockWatch',
-                        },
-                        {
-                            title: 'View Your Watchlist',
-                            text: 'The stocks added to your Watchlist scroll here so you can keep an eye on the price per share and the percentage change. You can use this tool to decide when to buy new stocks or sell the ones you have.',
-                            selector: '.stockticker',
-                        },
-                        {
-                            title: 'Stock Chart',
-                            text: 'This chart tracks the preformance of this stock over the last 30 days. You can easily see how a stock is doing with this helpful chart!',
-                            selector: '.chartSection',
-                        },
-                        {
-                            title: 'Shares Owned',
-                            text: 'This number is the amount of shares you currently own of this stock.',
-                            selector: '.sharesOwned',
-                        },
-                        {
-                            title: 'ROI',
-                            text: 'ROI, Return on Investment, is the ratio between the net profit and cost of investment resulting from an investment of a stock. This is a helpful metric to determine if your investment in a stock is performing well. The higher this number, the better that stock is doing. You can also use this simple metric to compare different stocks in your portfolio.',
-                            selector: '.roiRow',
-                        },
-                        {
-                            title: 'Price and Date Purchased',
-                            text: 'This shows the price of the stock on date you purchased it. This is a good inicator of how your investment has done since you initially purchased it.',
-                            selector: '.priceAndDateRow',
-                        },
-                        {
-                            title: 'Making a Transaction',
-                            text: 'This form allows you to buy and sell stocks.',
-                            selector: '.buySell',
-                        },
-                        {
-                            title: 'Buying and Selling Stocks',
-                            text: 'Here you select whether you want to buy or sell your stock.',
-                            selector: '.tradeInputs',
-                        },
-                        {
-                            title: 'Number of Shares',
-                            text: 'Here you input how many shares you would like to buy or sell.',
-                            selector: '.numOfShares',
-                        },
-                        {
-                            title: 'Subtotal and New Bank Value',
-                            text: 'The suntotal shows informs you how much money you will make or spend with this transaction. The new bank value informs you what your bank value will be after the transaction is complete.',
-                            selector: '.bottomTwoRows',
-                        },
-                    ]}
+                    steps={joyrideTradeCenter}
                     run={this.state.run} // or some other boolean for when you want to start it
                     type={'continuous'}
                     showOverlay={true}
@@ -792,7 +764,7 @@ class TradingCenter extends Component {
                                 </div>
                                 <div className='col-sm-2 stockWatch'>
                                     <FontAwesomeIcon
-                                        className={(this.state.watched ? `faEyeWatched`:`faEye`)}
+                                        className={(this.state.watched ? `faEyeWatched` : `faEye`)}
                                         onClick={this.state.watched ?
                                             (this.removeFromWatchlist())
                                             : (this.addToWatchlist())}
@@ -925,10 +897,10 @@ class TradingCenter extends Component {
                                 </div>
                                 <div className='col-sm-6 col-md-6 totalCalc'>
                                     {this.state.transaction === 'buy' ?
-                                    (<h4>${(this.state.cashBalance -
-                                        (this.state.shares * this.state.price)).toFixed(2)}</h4>
-                                    ) : (<h4>${((this.state.cashBalance) -
-                                    (-(this.state.shares) * this.state.price)).toFixed(2)}</h4>)}
+                                        (<h4>${(this.state.cashBalance -
+                                            (this.state.shares * this.state.price)).toFixed(2)}</h4>
+                                        ) : (<h4>${((this.state.cashBalance) -
+                                            (-(this.state.shares) * this.state.price)).toFixed(2)}</h4>)}
                                 </div>
                             </div>
                         </div>

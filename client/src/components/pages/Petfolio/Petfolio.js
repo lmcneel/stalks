@@ -7,7 +7,6 @@ import PieChart from '/PieChart';
 import wolfy from '/defaultPetPic.png';
 import Joyride from 'react-joyride';
 import ModalTwo from 'react-modal';
-import '../../../assets/react-joyride-compiled.css';
 
 // import other 3 pet pics here
 // import API from './../../utils/API';
