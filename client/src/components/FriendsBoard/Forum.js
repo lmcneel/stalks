@@ -6,11 +6,7 @@ import {
 import {ForumPostButton, ForumDeleteButton, ForumEditButton} from '../../components/FriendsBoard';
 import API from '../../utils/API';
 
-<<<<<<< HEAD
 
-// Main Forum Component to allow messages to be viewed and posted by user. may allow for reply
-export class Forum extends React.Component {
-=======
 /**
  * Class Forum
  * Main Forum Component to allow messages to be viewed and posted by user. may allow for reply
@@ -19,19 +15,13 @@ export class Forum extends Component {
     /**
     *@param {*} props
     */
->>>>>>> 47c9995ca76287993eb1400dc3dab6c6a93c2d1c
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = {
             dropdownOpen: false,
             forum: {
-<<<<<<< HEAD
-                data: [{subject: '', comments: '', user: 'G.Posell'}],
-
-=======
                 data: [{subject: '', comments: ''}],
->>>>>>> 47c9995ca76287993eb1400dc3dab6c6a93c2d1c
             },
         };
         this.loadComments = this.loadComments.bind(this);
@@ -124,10 +114,6 @@ export class Forum extends Component {
     <ForumEditButton/><ForumDeleteButton/>
             <th>{data.subject}</th>
             <tr>{data.comments}</tr>
-<<<<<<< HEAD
-            <tr>{data.user}</tr>
-=======
->>>>>>> 47c9995ca76287993eb1400dc3dab6c6a93c2d1c
     </CardBody>
         </Card>);
 })}

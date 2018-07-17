@@ -50,9 +50,6 @@ export default {
     },
     viewFriends: function() {
         console.log('friends API hit');
-<<<<<<< HEAD
-        return axios.get('api/forum/user/1/friends/2');
-=======
         return axios.get('api/friends/view');
     },
     viewSingleFriend: function() {
@@ -66,6 +63,5 @@ export default {
     removeFriend: function() {
         console.log('friend removed');
         return axios.delete('api/friends/remove');
->>>>>>> 47c9995ca76287993eb1400dc3dab6c6a93c2d1c
     },
 };
