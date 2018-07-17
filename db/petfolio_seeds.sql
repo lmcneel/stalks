@@ -27,6 +27,7 @@ Values ('Abdolbaghi', 'Khorshid', 'akhorshid', 'akhorshid@stockmarketpets.com', 
 ('Shelby', 'Smith', 'ssmith', 'ssmith@stockmarketpets.com', 'password1', 5000000, 25, '2018-05-16 11:00:00', '2018-05-16 11:00:00', '2018-05-16 11:00:00'),
 ('Taylor', 'Pelsue', 'tpelsue', 'tpelsue@stockmarketpets.com', 'password1', 5000000, 26, '2018-05-16 11:00:00', '2018-05-16 11:00:00', '2018-05-16 11:00:00');
 
+
 Insert Into UserLogins (createdAt, updatedAt, UserId)
 Values ('2018-07-12 09:00:00', '2018-07-12 09:00:00', 2),
 ('2018-07-12 09:00:00', '2018-07-12 09:00:00', 3),
@@ -54,6 +55,7 @@ Values ('2018-07-12 09:00:00', '2018-07-12 09:00:00', 2),
 ('2018-07-12 09:00:00', '2018-07-12 09:00:00', 25),
 ('2018-07-12 09:00:00', '2018-07-12 09:00:00', 26),
 
+
 Insert Into UserWatchlists (uniqueStockSymbol, createdAt, updatedAt, UserId)
 Values ('ABBV', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 2),
 ('ABC', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 2),
@@ -65,6 +67,7 @@ Values ('ABBV', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 2),
 ('ABR-B', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 8),
 ('ABR-C', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 9),
 ('ABT', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 10);
+
 
 Insert Into Pets (petType, petName, health, fondness, happiness, hunger, urlImage, createdAt, updatedAt, UserId) 
 Values ('ostrich', 'Bridgette', 100, 100, 100, 100, './client/src/assets/images/Ostrich1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 1),
@@ -93,6 +96,7 @@ Values ('ostrich', 'Bridgette', 100, 100, 100, 100, './client/src/assets/images/
 ('wolf', 'Roger', 100, 100, 100, 100, './client/src/assets/images/Wolf1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 24),
 ('ostrich', 'Isther', 100, 100, 100, 100, './client/src/assets/images/Ostrich1.svg', '2018-07-12 09:00:00', '2018-07-12 09:00:00', 25);
 
+
 Insert Into accessories (name, quantity, equipped, createdAt, updatedAt, PetId) 
 Values ('red collar', 1, 1, '2018-07-12 09:00:00', '2018-07-12 09:00:00',1),
 ('blue collar', 1, 0, '2018-07-12 09:00:00', '2018-07-12 09:00:00',2),
@@ -119,6 +123,7 @@ Values ('red collar', 1, 1, '2018-07-12 09:00:00', '2018-07-12 09:00:00',1),
 ('bow tie', 1, 0, '2018-07-12 09:00:00', '2018-07-12 09:00:00',23),
 ('ball', 1, 0, '2018-07-12 09:00:00', '2018-07-12 09:00:00',24),
 ('rope', 1, 0, '2018-07-12 09:00:00', '2018-07-12 09:00:00',25);
+
 
 Insert Into itemstores (category, itemName, cost, effect, createdAt, updatedAt) 
 Values ('accessory', 'red collar', 3000000, 'increases happines', '2018-07-12 09:00:00', '2018-07-12 09:00:00'),
