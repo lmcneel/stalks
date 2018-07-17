@@ -9,7 +9,8 @@ const propTypes = {
     image: PropTypes.string,
     keywords: PropTypes.array,
     language: PropTypes.string,
-    helpful: PropTypes.number,
+    helpfulYes: PropTypes.number,
+    helpfulNo: PropTypes.number,
 };
 /**
  * DocsList class
@@ -55,9 +56,12 @@ class DocsList extends React.Component {
                 {this.state.docs.map((docs) => (
                     <CollapseRow
                         key={docs._id}
+                        id={docs._id}
                         title={docs.title}
                         article={docs.article}
                         url={docs.url}
+                        helpfulYes={docs.helpfulYes}
+                        helpfulNo={docs.helpfulNo}
                     />
                 ))}
             </div>

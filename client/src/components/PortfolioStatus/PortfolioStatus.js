@@ -13,15 +13,14 @@ const PortfolioStatus = (props) => (
             </Col>
             <Col sm="12" md="8">
                 <ul className="d-flex justify-content-sm-center justify-content-md-end">
-                    <li>
-                    <FontAwesomeIcon icon={faBriefcase} className="pad"/>
-                    <PetfolioValue />
+                    <li className="portfolioValue">
+                        <FontAwesomeIcon icon={faBriefcase} className="pad"/>
+                        <PetfolioValue />
                     </li>
-                    <li className="bank">
-                    <FontAwesomeIcon icon={faPiggyBank} className="pad"/>
-                    <BankValue />
-                </li>
-
+                    <li className="bankValue bank">
+                        <FontAwesomeIcon icon={faPiggyBank} className="pad"/>
+                        <BankValue />
+                    </li>
                 </ul>
             </Col>
         </Row>

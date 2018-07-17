@@ -20,9 +20,16 @@ module.exports = function(sequelize, Sequelize) {
             notEmpty: true,
             defaultValue: false,
         },
-        emailVerified: {
-            type: Sequelize.BOOLEAN,
-            defaultValue: false,
+        emailToValidate: {
+            type: Sequelize.STRING,
+        },
+        createdAt: {
+            type: Sequelize.DATE,
+            defaultValue: sequelize.fn('NOW'),
+        },
+        updatedAt: {
+            type: Sequelize.DATE,
+            defaultValue: sequelize.fn('NOW'),
         },
     });
 

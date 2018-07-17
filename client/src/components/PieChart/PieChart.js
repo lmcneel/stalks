@@ -28,7 +28,7 @@ class PieChart extends Component {
   render() {
     return (
 
-      <div className="bg-light border rounded p-4">
+      <div className="bg-light border rounded p-4 pieChart">
       <h5 className="">Portfolio Visualization</h5>
       <VictoryPie
          colorScale={['#45CC8E', '#EE4A37', '#FBB424', '#0C425C']}

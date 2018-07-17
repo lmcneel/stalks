@@ -8,13 +8,14 @@ import {
 
 
 const Images =  React.createClass({
-  proptypes:{
+  proptypes: {
     name: PropTypes.string,
     title: PropTypes.string,
     img: PropTypes.string,
     portfolio: PropTypes.string,
   },
-render(){
+  
+render() {
   return (
     <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 pb-4 ">
       <div className="bg-light border rounded">
@@ -35,8 +36,8 @@ render(){
       </div>
     </div>
         );
-        }
+        },
     });
-);
+;
       export default Images;
 
