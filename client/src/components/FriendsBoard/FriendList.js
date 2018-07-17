@@ -9,9 +9,8 @@ export class FriendList extends React.Component {
     constructor(props) {
         console.log(props);
         super(props);
-        console.log(props);         
-        
-    };   
+        console.log(props);
+    };
 
 
     // // Query for user friends will go here!!! from mysql
@@ -25,10 +24,10 @@ export class FriendList extends React.Component {
         return (
 
             <Card>
-                <div onClick={this.props.toggleNav1}>           
+                <div onClick={this.props.toggleNav1}>
                 <FontAwesomeIcon
-    icon={faWindowClose}  />
-                </div>              
+    icon={faWindowClose} />
+                </div>
                 <CardBody>
                     <div>
 

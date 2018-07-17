@@ -20,10 +20,10 @@ render() {
 return (
 
 <Card>
-<div onClick={this.props.toggleNav2}>           
+<div onClick={this.props.toggleNav2}>
                 <FontAwesomeIcon
-    icon={faWindowClose}  />
-                </div>  
+    icon={faWindowClose} />
+                </div>
     <CardBody>
         <div>
             <Row>

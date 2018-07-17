@@ -22,10 +22,10 @@ export class FriendSearch extends Component {
         return (
 
             <Card>
-                <div onClick={this.props.toggleNav3}>           
+                <div onClick={this.props.toggleNav3}>
                 <FontAwesomeIcon
-    icon={faWindowClose}  />
-                </div>  
+    icon={faWindowClose} />
+                </div>
                 <CardBody>
                     <div>
                         <Row>
