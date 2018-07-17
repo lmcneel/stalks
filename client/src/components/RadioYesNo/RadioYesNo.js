@@ -75,12 +75,14 @@ class RadioYesNo extends React.Component {
               <h3>{this.state.title}</h3>
               {this.state.showRadio ?
                 <FormGroup check>
+                              <div className='yesBtn'>
                   <Label check>
                   <Input onClick={(event) => {
                     this.changeTitle(); this.updateDoc(true);
                     }} type="radio" name="radio1" />
                     Yes
               </Label>
+              </div>
                 </FormGroup> : null}
               {this.state.showRadio ?
                 <FormGroup check>

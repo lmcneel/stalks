@@ -10,9 +10,16 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './components/pages/Petfolio';
 // import PetCenter from './components/pages/PetCenter';
 import Forum from './components/FriendsBoard/Forum';
+<<<<<<< HEAD
 // import Friends from './components/pages/Friends';
 // import Home from './pages/Home';
 // import About from './pages/About';
+=======
+import Friends from './pages/Social/Friends';
+import Home from './pages/Home';
+import About from './components/pages/About';
+// import Settings from './components/pages/Settings';
+>>>>>>> 858d2d81d0a83d70a5493f24e306e7317107b13f
 import SigninForm from './components/SigninForm';
 import SignoutForm from './components/SignoutForm';
 // import Logout from './components/pages/Logout';
@@ -22,15 +29,19 @@ import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
 // import Inventory from './components/userTabs';
 // import Trading from './components/pages/Trading';
-import Modal from 'react-modal';
-import './react-joyride-compiled.css';
+// import Modal from 'react-modal';
+// import './react-joyride-compiled.css';
 import StockTicker from './components/StockTicker/StockTicker';
 import ViewStocks from './pages/ViewStocks/ViewStocks';
 import TradingCenter from './components/TradingCenter';
-import Friends from './pages/Social/Friends';
 import UserSettings from './pages/Settings';
 import Login from './pages/Login';
+<<<<<<< HEAD
 import API from './utils/API';
+=======
+import Footer from './components/Footer';
+
+>>>>>>> 858d2d81d0a83d70a5493f24e306e7317107b13f
 /**
 * Class App
 */
@@ -49,6 +60,7 @@ class App extends Component {
       isLoggedIn: false,
       userData: {},
     };
+<<<<<<< HEAD
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.yes = this.yes.bind(this);
@@ -148,6 +160,8 @@ class App extends Component {
    */
   close() {
     this.setState({showModal: false});
+=======
+>>>>>>> 858d2d81d0a83d70a5493f24e306e7317107b13f
   }
 
   /**
@@ -171,23 +185,6 @@ class App extends Component {
             <Wrapper>
               <SideNav isActive={this.state.sideNav}/>
               <MainContentWrapper>
-                <Modal
-                  className="modal"
-                  overlayClassName="modal-overlay"
-                  isOpen={this.state.modalIsOpen}
-                  onAfterOpen={this.afterOpenModal}
-                  onRequestClose={this.closeModal}
-                  contentLabel="prototype Modal"
-                  show={this.state.showModal}
-                  onHide={this.close}
-                  ariaHideApp={false}
-                  >
-                  <h2 className="modal-title">Welcome!</h2>
-                  <div className="modal-content">Would you like to start the walkthrough tutorial?</div>
-                  <button onClick={this.yes} className="modal-button">Yes!</button>
-                  <button onClick={this.closeModal}>Later</button>
-                  <button onClick={this.never}>never again...</button>
-                </Modal>
                 <PortfolioStatus />
                 <StockTicker />
                 <Content>
@@ -198,8 +195,13 @@ class App extends Component {
                     {/* <Route exact path='/petcenter' component={PetCenter} />
                     <Route exact path='/friends' component={Friends} />
                     // <Route exact path='/forum' component={Forum} />}
+                    {/* <Route exact path='/logout' component={Logout} /> */}
                     <Route exact path='/' component={Home} />
+<<<<<<< HEAD
                     <Route exact path='/about' component={About} />*/}
+=======
+                    <Route exact path='/about' component={About} />
+>>>>>>> 858d2d81d0a83d70a5493f24e306e7317107b13f
                     <Route exact path='/signin' component={SigninForm} />
                     <Route exact path='/signout' component={SignoutForm} />
                     <Route exact path='/signup' component={SignUp} />
@@ -214,6 +216,7 @@ class App extends Component {
                     <Route exact path='/trading/:ticker' component={TradingCenter} />
                   </Switch>
                 </Content>
+                <Footer></Footer>
               </MainContentWrapper>
             </Wrapper>
         </div>

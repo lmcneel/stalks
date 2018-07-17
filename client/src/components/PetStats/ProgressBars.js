@@ -22,10 +22,10 @@ const propTypes = {
 
 const ProgressBars = (props) => {
   return (
-    <div>
-      <Progress color={props.petStatColor} value={props.petStatValue} />
-      <div className="barstatlabel">{props.petStatLabel}</div>
-    </div>
+    <span>
+      <Progress color={props.petStatColor} value={props.petStatValue} className="barStyle"/>
+      <div className="barstatlabel pb-2">{props.petStatLabel}</div>
+    </span>
   );
 };
 ProgressBars.propTypes = propTypes;
