@@ -18,7 +18,7 @@ const propTypes = {
             }).isRequired,
         }).isRequired,
         modalName: PropTypes.string,
-    }
+    };
 
 let watched = false; // This watchlist flag
 let eyeWatched = 'faEye'; // class variable for watchlist condition

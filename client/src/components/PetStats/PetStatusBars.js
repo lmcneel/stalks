@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { ProgressBars } from '../PetStats/ProgressBars';
+import React, {Component} from 'react';
+import {ProgressBars} from '../PetStats/ProgressBars';
 
 /**
  * @class PetStatusBars
@@ -30,21 +30,21 @@ class PetStatusBars extends Component {
                     />
                 </div>
                 <div className='hunger'>
-                <ProgressBars 
+                <ProgressBars
                     petStatLabel="Hunger"
                     petStatColor="danger"
                     petStatValue={this.state.petStats[3]}
                 />
                 </div>
                 <div className='happiness'>
-                <ProgressBars 
+                <ProgressBars
                     petStatLabel="Happiness"
                     petStatColor="info"
                     petStatValue={this.state.petStats[1]}
                 />
                 </div>
                 <div className='fondness'>
-                <ProgressBars 
+                <ProgressBars
                     petStatLabel="Fondness"
                     petStatColor="warning"
                     petStatValue={this.state.petStats[2]}

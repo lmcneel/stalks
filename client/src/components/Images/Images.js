@@ -2,7 +2,7 @@ import React from 'react';
 // import './Images.css';
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  CardTitle, CardSubtitle, Button,
 } from 'reactstrap';
 // import LinkButton from '/components/LinkButton'
 

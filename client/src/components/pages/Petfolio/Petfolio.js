@@ -65,13 +65,13 @@ class Petfolio extends Component {
  * openModal function
  */
   openModal() {
-    this.setState({ modalIsOpen: true });
+    this.setState({modalIsOpen: true});
   }
   /**
    * closeModal function
    */
   closeModal() {
-    this.setState({modalIsOpen: false });
+    this.setState({modalIsOpen: false});
   }
   /**
   * handleSelect function
@@ -109,7 +109,7 @@ class Petfolio extends Component {
    */
   yes() {
     this.closeModal();
-    this.setState({ run: true });
+    this.setState({run: true});
   }
   /**
    * never function
@@ -184,7 +184,7 @@ class Petfolio extends Component {
             <Col size="md-3">
               <div className="main">
                 <h2>Petfolio Page</h2>
-                
+
                 <PetWrapper>
 
                   <PetPic>
@@ -219,7 +219,7 @@ class Petfolio extends Component {
                       petStatValue={this.state.petStats[2]}
                     />
                   </div>
-                  
+
                 </PetWrapper>
               </div>
             </Col>
@@ -238,7 +238,7 @@ class Petfolio extends Component {
               </Row>
               <Row>
                 <PieChart />
-                
+
               </Row>
             </Col>
           </Row>
