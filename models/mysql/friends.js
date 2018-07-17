@@ -9,11 +9,7 @@ module.exports = function(sequelize, Sequelize) {
             allownull: false,
         },
         score: {
-<<<<<<< Updated upstream
-            type: DataTypes.INTEGER,
-=======
             type: Sequelize.INTEGER,
->>>>>>> Stashed changes
             allownull: false,
         },
     });
