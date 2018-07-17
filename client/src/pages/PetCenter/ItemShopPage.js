@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import ItemShop from '../../components/PetCenter/ItemShop'
-
-
+import React, {Component} from 'react';
+import ItemShop from '../../components/PetCenter/ItemShop';
 
 const ItemShopPage = () => (
 <ItemShop/>

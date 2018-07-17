@@ -15,12 +15,12 @@ class PetStats extends React.Component {
     this.feed = this.feed.bind(this);
     this.state = {};
   }
-  
+
   componentDidMount() {
     API.getPetInfo(1).then((res) => {
       console.log(res);
       res.data.Accessories.forEach((accessory) => {
-        if(accessory.equipped) {
+        if (accessory.equipped) {
           this.setState({equippedAccessory: accessory});
         }
       });
@@ -34,7 +34,7 @@ class PetStats extends React.Component {
         Accessories: res.data.Accessories,
       });
       this.getOverallHealth();
-    })
+    });
   }
 
   getOverallHealth() {
@@ -53,7 +53,7 @@ class PetStats extends React.Component {
     const timeSincePet = Date.now() - new Date(this.state.lastPet);
     const fondnessDrained = (timeSincePet / 172800000) * 100;
     let fondness = this.state.lastFondness - fondnessDrained;
-    if(this.state.equippedAccessory && this.state.equippedAccessory.name === 'red collar') {
+    if (this.state.equippedAccessory && this.state.equippedAccessory.name === 'red collar') {
       fondness += 20;
     }
     fondness = Math.min(fondness, 100);
@@ -65,7 +65,7 @@ class PetStats extends React.Component {
   getHappiness() {
     // Dummy value
     let happiness = 75;
-    if(this.state.equippedAccessory && this.state.equippedAccessory.name === 'blue collar') {
+    if (this.state.equippedAccessory && this.state.equippedAccessory.name === 'blue collar') {
       happiness += 20;
     }
     happiness = Math.min(happiness, 100);
@@ -91,7 +91,7 @@ class PetStats extends React.Component {
     // Feeding your pet is how you will increase the hunger bar (meaning it will not need food for a while)
     // You can buy the food using in game currency in the shop, you can only own so much food at a time.
     let newState = {hunger: 100, lastFed: Date.now()};
-    if(this.state.equippedAccessory && this.state.equippedAccessory.name === 'bow tie') {
+    if (this.state.equippedAccessory && this.state.equippedAccessory.name === 'bow tie') {
       newState.lastFondness = this.state.lastFondness + 20;
     }
     this.setState(newState,
@@ -101,7 +101,7 @@ class PetStats extends React.Component {
   }
 
   petAnimal() {
-    this.setState({fondness: this.state.fondness + 20, 
+    this.setState({fondness: this.state.fondness + 20,
     lastPet: Date.now(),
     lastFondness: this.state.fondness + 20,
     }, () => {
@@ -113,13 +113,13 @@ class PetStats extends React.Component {
   render() {
     let petButton, feedButton;
     feedButton = <button className='feedButton' onClick={this.feed}>Feed</button>;
-    if(Date.now() - new Date(this.state.lastPet) < 10800000) {
+    if (Date.now() - new Date(this.state.lastPet) < 10800000) {
       petButton = <button className='petButton' onClick={this.petAnimal} disabled>Pet</button>;
-    }else {
+    } else {
       petButton = <button className='petButton' onClick={this.petAnimal}>Pet</button>;
     }
-    if(this.state.name)
-    return (
+    if (this.state.name) {
+return (
       <div>
         <Container>
           <Row>
@@ -150,6 +150,7 @@ class PetStats extends React.Component {
         </Container>
       </div>
     );
+}
   return false;
   }
 }

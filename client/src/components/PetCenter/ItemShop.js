@@ -22,6 +22,18 @@ class ItemShop extends Component {
       .then(res => this.setState({ results: res.data }))
     }
 
+    buyItem = (id) => {
+        
+        API.createAccessory({
+           name: this.state.results[id].itemName,
+           category: this.state.results[id].category,
+           imageURL: this.state.results[id].imageURL,
+           quantity: 1,
+           PetId: 12  
+        })
+        .then(res => console.log(res));   
+    }
+
     componentDidMount() {
         this.displayAccessories()
     };
@@ -40,11 +52,13 @@ class ItemShop extends Component {
           <Col></Col>
           <Container>
           <Row>
+              
                     {(this.state.results.length) ? (
                         <div style={{'display': 'contents'}}>
                             {this.state.results.map((result, index) => {
                                 return (
-                                  <Card name={result.itemName} image={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStE88QZWx1eLEsnCSjvXBQHjxiXJ1nY0PlNkf7H6twi9ru_NBU3g'} buttonName={'buy'} style={{'margin':'50px'}}/>
+                                  <Card name={result.itemName}  buyingItem={() => this.buyItem(index)} image={result.imageURL} buttonName={'buy'} style={{'margin':'50px'}}  />
+                                 
                                 );
                             })}
                         </div>

@@ -14,6 +14,9 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.STRING,
             notEmpty: true,
         },
+        imageURL: {
+            type: Sequelize.TEXT,
+        },
         cost: {
             type: Sequelize.INTEGER,
             notEmpty: true,

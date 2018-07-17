@@ -7,7 +7,6 @@ module.exports = function(sequelize, Sequelize) {
         },
         petName: {
             type: Sequelize.STRING,
-            allowNull: false,
         },
         lastPet: {
             type: Sequelize.DATE,
@@ -23,11 +22,10 @@ module.exports = function(sequelize, Sequelize) {
         },
 
     });
-
-    // Pet.associate = function(models) {
-    //     models.Pet.belongsTo(models.user);
-    // };
-    
+    Pet.beforeCreate(function(pet) {
+        // setting petname default to pettype for now.
+        pet.petName = pet.petType;
+     });
     Pet.associate = function(models) {
         Pet.hasMany(models.Accessory);
     };
