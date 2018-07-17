@@ -15,6 +15,8 @@ const portfolioSchema = new Schema({
   // `cash` is required and of type Number, will be updated after each buy/sell transaction
   cash: {
     type: Number,
+    default: 20000,
+
     required: true,
   }, // db.portfolio.update({user_id: "XXXXXX"}, {$set: {cash:3000000}})
 
