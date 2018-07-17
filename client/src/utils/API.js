@@ -21,7 +21,7 @@ export default {
         return axios.get(`/api/trading/slimquote/${data.ticker}`);
     },
     // getInitialCash: function() {
-    //     return axios.get('api/ptfolio/initialcash');
+    //     return axios.get('api/portfolio/initialcash');
     // },
     getMyPortfolio: function(portfolio) {
         return axios.get(`/api/trading/myportfolio/${portfolio}`);
@@ -32,7 +32,7 @@ export default {
     getTickerText: function() {
         return axios.get('/api/petfolio/ticker');
     },
-    // Saves an article to the database
+    // Saves a user login to the database
     login: function(loginData) {
         return axios.post('/api/auth/login', loginData)
             .then((response) => {
@@ -42,7 +42,7 @@ export default {
                 console.log(error);
             });
     },
-    // Saves an article to the database
+    // Saves a user to the database
     signup: function(signupData) {
         return axios.post('/api/auth/signup', signupData);
     },
