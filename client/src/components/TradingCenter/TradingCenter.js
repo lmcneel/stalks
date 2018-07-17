@@ -115,15 +115,17 @@ getUser() {
     return API.getUserProfile()
     .then((res) => {
         // Need logic of if user is logged in that will set state varables
-        console.log(res);
-        // let mongID = rec.sessions.user.<mongoID>;
-        // let mongoPrtID = rec.sessions.user.<mongoID>;
-        // let SQLID = rec.sessions.user.<sqlID>;
-        // return this.setState({
-        //     id: mongID,
-        //     portfolio_id: mongoPrtID,
-        //     sqlId: SQLID,
-        // });
+        console.log(res.data);
+        console.log(res.data.mongo_id);
+        console.log(res.data.id);
+        let mongID = res.data.mongo_id;
+        // let mongoPrtID = res.data.id;
+        let SQLID = res.data.id;
+        return this.setState({
+            id: mongID,
+            // portfolio_id: mongoPrtID,
+            sqlId: SQLID,
+        });
     })
     .catch((err) => console.log(err));
 };
