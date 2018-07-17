@@ -2,21 +2,32 @@ import React, {Component} from 'react';
 import {
     Input, Label, FormGroup, Button,
 } from 'reactstrap';
-import API from '../../utils/API';
+// import API from '../../utils/API';
 
 
-// Main Forum Component to allow messages to be viewed and posted by user. may allow for reply
+/**
+ * Class ForumPostButton
+ * Main Forum Component to allow messages to be viewed and posted by user. may allow for reply
+ *
+ */
 export class ForumPostButton extends Component {
+    /**
+    *@param {*} props
+    */
     constructor(props) {
         super(props);
     };
 
+/**
+ * Mount component
+ */
 componentDidMount() {
-
-
 };
 
-
+/**
+ * Render function for App Component
+ * @return {JSX}
+ */
 render() {
 return (
 

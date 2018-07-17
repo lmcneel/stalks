@@ -6301,23 +6301,29 @@ h1 {
 /* ---------------------------------------------------
     TOP NAV STYLES
 ----------------------------------------------------- */
+#topNavIcons {
+  padding-top: 5px; }
+
 .top-nav {
   background-color: #45CC8E; }
   .top-nav a {
     color: #fff; }
     .top-nav a .main-logo {
-      width: 350px;
-      padding-top: 15px; }
+      width: 375px;
+      padding-top: 5px; }
       @media (max-width: 991.98px) {
         .top-nav a .main-logo {
           width: 260px; } }
   .top-nav:hover {
     color: #0C425C; }
   .top-nav .iconsize {
-    font-size: 1.5em; }
+    font-size: 1.5rem;
+    padding: 0; }
   .top-nav .btn-info {
     background-color: #126289;
-    border-color: #126289; }
+    border-color: #126289;
+    padding: .2rem .5rem;
+    font-size: .8rem; }
 
 a,
 a:hover,
@@ -6427,11 +6433,11 @@ a[data-toggle="collapse"] {
         padding-left: 30px; } }
 
 .pad {
-  padding-left: 10px; }
+  margin-right: 10px; }
   @media (max-width: 575.98px) {
     .pad {
       display: block;
-      padding-left: 0; } }
+      margin-right: 0; } }
 
 .buttonCol {
   background-color: unset;
@@ -6449,36 +6455,40 @@ a[data-toggle="collapse"] {
 
 .colorNeutral {
   background-image: url("/images/pixelbg-yellow_160.jpg");
-  background-color: yellow; }
+  background-color: #FBB424; }
 
 .colorNegative {
   background-image: url("/images/pixelbg-red_160.jpg");
-  background-color: red; }
+  background-color: #EE4A37; }
 
+/* ---------------------------------------------------
+    HORIZONTAL WATCHLIST TICKER
+----------------------------------------------------- */
 /* This CSS animation creates the horizontal scrolling stock ticker */
 .stockticker {
-  height: 50px;
+  height: 35px;
   overflow: hidden;
   position: relative;
-  background: black;
-  color: white;
-  border: 1px solid grey; }
-
-.stockticker p {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  line-height: 50px;
-  text-align: center;
-  /* Starting position */
-  -moz-transform: translateX(100%);
-  -webkit-transform: translateX(100%);
-  transform: translateX(100%);
-  /* Apply animation to this element */
-  -moz-animation: stockticker 20s linear infinite;
-  -webkit-animation: stockticker 20s linear infinite;
-  animation: stockticker 20s linear infinite; }
+  background: #343a40;
+  color: #fddfa1;
+  text-transform: uppercase;
+  font-family: Roboto Mono, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  letter-spacing: 2px; }
+  .stockticker p {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    line-height: 35px;
+    text-align: center;
+    /* Starting position */
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%);
+    /* Apply animation to this element */
+    -moz-animation: stockticker 25s linear infinite;
+    -webkit-animation: stockticker 25s linear infinite;
+    animation: stockticker 25s linear infinite; }
 
 /* Move it (define the animation) */
 @-moz-keyframes stockticker {
