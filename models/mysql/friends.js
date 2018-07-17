@@ -1,15 +1,19 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function(sequelize, Sequelize) {
     let Friends = sequelize.define('Friends', {
         user_id: {
-            type: DataTypes.INTEGER,
+            type: Sequelize.INTEGER,
             allownull: false,
         },
         friend_id: {
-            type: DataTypes.INTEGER,
+            type: Sequelize.INTEGER,
             allownull: false,
         },
         score: {
+<<<<<<< Updated upstream
             type: DataTypes.INTEGER,
+=======
+            type: Sequelize.INTEGER,
+>>>>>>> Stashed changes
             allownull: false,
         },
     });
