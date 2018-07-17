@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import React, {Component} from 'react';
-=======
 import React, { Component } from 'react';
 import Splash from './components/Splash';
->>>>>>> c4673eb9f900bb07734dfea82a102e5ec2caed38
 import TopNav from './components/TopNav';
 import Wrapper from './components/Wrapper';
 import SideNav from './components/SideNav';
@@ -25,9 +21,6 @@ import SignUp from './pages/SignUp';
 // import Achievements from './components/pages/Achievements';
 import DocsList from './components/DocsList/DocsList';
 import HelpLanding from './components/HelpLanding/HelpLanding';
-<<<<<<< HEAD
-import Inventory from './components/userTabs';
-=======
 // import Inventory from './components/userTabs';
 // import Trading from './components/pages/Trading';
 import Modal from 'react-modal';
@@ -38,7 +31,6 @@ import TradingCenter from './components/TradingCenter';
 import Friends from './pages/Social/Friends';
 import UserSettings from './pages/Settings';
 import Login from './pages/Login';
->>>>>>> c4673eb9f900bb07734dfea82a102e5ec2caed38
 
 /**
 * Class App
@@ -153,10 +145,6 @@ class App extends Component {
   render() {
     return (
       <Router>
-<<<<<<< HEAD
-
-=======
->>>>>>> c4673eb9f900bb07734dfea82a102e5ec2caed38
         <div className="App">
             <TopNav navToggleHandler={this.navToggleHandler}/>
             <Wrapper>
