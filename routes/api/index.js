@@ -20,7 +20,7 @@ router.use('/forum', forumRoutes);
 // Petfolio routes
 router.use('/petfolio', petfolioRoutes);
 
-//Pet routes
+// Pet routes
 router.use('/pets', petRoutes);
 
 router.use('/user', userProfileRoutes);

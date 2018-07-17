@@ -27,7 +27,7 @@ class PieChart extends Component {
     */
   render() {
     return (
-      <div class="pieChart">
+      <div className="pieChart">
       <VictoryPie
          colorScale={['tomato', 'orange', 'gold', 'cyan', 'navy']}
          height={250}

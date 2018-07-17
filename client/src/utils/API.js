@@ -159,21 +159,21 @@ export default {
         return axios.delete('/api/user/account/delete', data);
     },
     getPurchasedAccessories: () => {
-        return axios.get('/api/pets/useraccessories/12')
+        return axios.get('/api/pets/useraccessories/12');
     },
     displayPurchasedFoodAndToys: () => {
-        return axios.get('/api/pets/userfoodandtoys/12')
+        return axios.get('/api/pets/userfoodandtoys/12');
     },
-    
+
     getStoreAccessories: () => {
-        return axios.get('/api/pets/storeaccessories')
+        return axios.get('/api/pets/storeaccessories');
     },
-    
+
     displayStoreFoodAndToys: () => {
-        return axios.get('/api/pets/storefoodandtoys')
+        return axios.get('/api/pets/storefoodandtoys');
     },
 
     createAccessory: (accdata) => {
-        return axios.post('/api/pets/createaccessory', accdata)
-    }
+        return axios.post('/api/pets/createaccessory', accdata);
+    },
 };
