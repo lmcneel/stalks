@@ -10,7 +10,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Petfolio from './pages/Petfolio';
 // import PetCenter from './components/pages/PetCenter';
 import Forum from './components/FriendsBoard/Forum';
-// import Friends from './components/pages/Friends';
+import Friends from './pages/Social/Friends';
 import Home from './pages/Home';
 import About from './components/pages/About';
 // import Settings from './components/pages/Settings';
@@ -67,16 +67,16 @@ navToggleHandler(e) {
                 <Route exact path="/petfolio" component={Petfolio} />
                       <Route exact path='/splash' component={Splash} />
                       <Route exact path='/forum' component={Forum} />
-                      {/* <Route exact path='/petcenter' component={PetCenter} />
+                      {/* <Route exact path='/petcenter' component={PetCenter} /> */}
                       <Route exact path='/friends' component={Friends} />
-                      // <Route exact path='/forum' component={Forum} />}
+                      <Route exact path='/forum' component={Forum} />
                       <Route exact path='/' component={Home} />
                       <Route exact path='/about' component={About} />
-                      {/* <Route exact path='/settings' component={Settings} /> */}
+                      {/* <Route exact path='/settings' component={Settings} />
                       {/* <Route exact path='/logout' component={Logout} /> */}
                       <Route exact path='/signup' component={SignUp} />
                       {/* <Route exact path='/achievements' component={Achievements} /> */}
-                      <Route exact path='/friends' component={Friends} />
+                      {/* <Route exact path='/friends' component={Friends} /> */}
                       <Route exact path='/viewstocks' component={ViewStocks} />
                       <Route exact path='/help' component={HelpLanding} />
                       <Route exact path='/docs' component={DocsList} />

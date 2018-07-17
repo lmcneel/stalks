@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Container from './Container';
-import Images from './Images';
-import data from '../data.json';
+import Container from '../../Container';
+import Images from '../../Images';
+import data from './data.json';
 import '../../../assets/scss/_about.scss';
 
 /**
