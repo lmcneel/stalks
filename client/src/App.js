@@ -7,7 +7,7 @@ import MainContentWrapper from './components/MainContentWrapper';
 import PortfolioStatus from './components/PortfolioStatus';
 import Content from './components/Content';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Petfolio from './pages/Petfolio';
+import Petfolio from './components/pages/Petfolio';
 // import PetCenter from './components/pages/PetCenter';
 import Forum from './components/FriendsBoard/Forum';
 // import Friends from './components/pages/Friends';

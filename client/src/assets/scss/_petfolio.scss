@@ -6,7 +6,7 @@
 }
 .colorPositive {
     background-image: url('/images/pixelbg-green_160.jpg');
-    // background-color: green;
+    background-color: green;
 }
 .colorNeutral {
     background-image: url('/images/pixelbg-yellow_160.jpg');
@@ -15,6 +15,10 @@
 .colorNegative {
     background-image: url('/images/pixelbg-red_160.jpg');
     background-color:$red;
+}
+.colorBoxes {
+    text-align: center;
+    color:white;
 }
 
 /* ---------------------------------------------------
