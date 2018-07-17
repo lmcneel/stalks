@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
+<<<<<<< HEAD
+import {
+    Input, Label, FormGroup, Button,
+} from 'reactstrap';
+=======
 // import {
 //     Input, Label, FormGroup, Button,
 // } from 'reactstrap';
+>>>>>>> 47c9995ca76287993eb1400dc3dab6c6a93c2d1c
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faWindowClose} from '@fortawesome/fontawesome-free-solid';
 // import API from '../../utils/API';
@@ -34,8 +40,14 @@ componentDidMount() {
 render() {
 return (
 
+<<<<<<< HEAD
+
+    <Button> <FontAwesomeIcon
+    icon={faMinus} /></Button>
+=======
      <FontAwesomeIcon
     icon={faWindowClose} />
+>>>>>>> 47c9995ca76287993eb1400dc3dab6c6a93c2d1c
 
 );
 }

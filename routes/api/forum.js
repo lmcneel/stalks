@@ -8,12 +8,22 @@ const router = require('express').Router();
 const User = require('../../models/mongo/user');
 const Forum = require('../../models/mongo/forum');
 
+// This api route serves to present the forum schema with populated data from the mongo db.
+router.get('/', (req, res) => {
+    Forum.find((err, forum) => {
+        if (err) {
+            return res.json({err});
+        }
+        return res.json({data: forum});
+    });
+});
+// This api route serves to create a comment through posting a comment to the forum through the user database.
 router.post('/create', (req, res) => {
     User.find()
         .populate('forum')
         .populate({
             path: 'forum',
-            populate: {path: 'posting'},
+            populate: {path: 'forumSchema'},
         })
         .exec(function(err, foundUser) {
             if (err) {
@@ -23,23 +33,9 @@ router.post('/create', (req, res) => {
             }
         });
 });
-
-router.get('/', (req, res) => {
-    Forum.find((err, forum) => {
-        if (err) {
-            return res.json({err});
-        }
-        return res.json({data: forum});
-    });
-});
-
-
-router.put('/update', (req, res) => {
-
-});
-
+// This api route serves to delete comments.
 router.delete('/delete', (req, res) => {
-
+    Forum.comments.deleteOne();
 });
 
 

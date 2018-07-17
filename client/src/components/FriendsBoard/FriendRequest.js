@@ -36,6 +36,12 @@ render() {
 return (
 
 <Card>
+<<<<<<< HEAD
+<div onClick={this.props.toggleNav2}>
+                <FontAwesomeIcon
+    icon={faWindowClose} />
+                </div>
+=======
 
 <div >
                 <font size='4'><FontAwesomeIcon
@@ -43,6 +49,7 @@ return (
                 </font>
                 </div>
 
+>>>>>>> 47c9995ca76287993eb1400dc3dab6c6a93c2d1c
     <CardBody>
         <div>
             <Row>

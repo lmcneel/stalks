@@ -45,8 +45,13 @@ export class Forum extends Component {
                 this.setState({
                     forum: res.data,
 
+<<<<<<< HEAD
+        }),
+        // console.log(res.data)
+=======
                 }),
             // console.log(res.data)
+>>>>>>> 47c9995ca76287993eb1400dc3dab6c6a93c2d1c
         )
             .catch((err) => console.log(err));
     };
@@ -107,6 +112,13 @@ export class Forum extends Component {
                                     <CardBody>
 
 
+<<<<<<< HEAD
+                                                        <div>                                                                                      {this.state.forum.data.map((data, i) =>{
+    return (<div key={`data${i}`}>
+            <h2>{data.subject}<ForumEditButton/><ForumDeleteButton/></h2>
+            <p>{data.comments}<ForumEditButton/><ForumDeleteButton/></p>
+        </div>);
+=======
     <div> {this.state.forum.data.map((data, i) =>{
     return (<Card key={`data${i}`}>
     <CardBody>
@@ -115,9 +127,15 @@ export class Forum extends Component {
             <tr>{data.comments}</tr>
     </CardBody>
         </Card>);
+>>>>>>> 47c9995ca76287993eb1400dc3dab6c6a93c2d1c
 })}
     </div>
 
+<<<<<<< HEAD
+                                                            </div>
+
+=======
+>>>>>>> 47c9995ca76287993eb1400dc3dab6c6a93c2d1c
 
                                     </CardBody>
                                 </Card>
