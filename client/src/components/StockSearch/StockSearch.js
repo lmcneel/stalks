@@ -32,7 +32,7 @@ const joyrideStockSearch = [
     },
     {
         title: 'Add to Your Watchlist',
-        text: 'Using the eye icon you can add stocks you own or just ones that you are interested in to your watchlist. You can view Watchlist in the Stock Chart.',
+        text: 'Using the eye icon you can add stocks you own or just ones that you are interested in to your Watchlist. You can view Watchlist in the Stock Chart.',
         selector: '.stockWatch',
     },
     {
@@ -41,8 +41,8 @@ const joyrideStockSearch = [
         selector: '.stockticker',
     },
     {
-        title: 'Dow and Watchlist Views',
-        text: 'Here you can toggle between the dow listings and your watchlist.',
+        title: 'DOW and Watchlist Views',
+        text: 'Here you can toggle between the DOW listings and your Watchlist.',
         selector: '.listBtn',
     },
     {

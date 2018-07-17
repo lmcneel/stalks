@@ -27,7 +27,7 @@ const joyrideTradeCenter = [
     },
     {
         title: 'Price and Date Purchased',
-        text: 'This shows the price of the stock on date you purchased it. This is a good inicator of how your investment has done since you initially purchased it.',
+        text: 'This shows the price of the stock on the date you purchased it. This is a good inicator of how your investment has done since you initially purchased it.',
         selector: '.priceAndDateRow',
     },
     {
@@ -47,7 +47,7 @@ const joyrideTradeCenter = [
     },
     {
         title: 'Subtotal and New Bank Value',
-        text: 'The subtotal shows informs you how much money you will make or spend with this transaction. The new bank value informs you what your bank value will be after the transaction is complete.',
+        text: 'The subtotal informs you how much money you will make or spend with this transaction. The new bank value informs you what your bank value will be after the transaction is complete.',
         selector: '.bottomTwoRows',
     },
     {

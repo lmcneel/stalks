@@ -13,7 +13,7 @@ import Joyride from 'react-joyride';
 const joyridePetfolio = [
   {
     title: 'Bank Value',
-    text: 'This is the amount of liquid assets, money, that you can use to invest in stocks or spend on your pet for fun items in the shop. You can increase your liquid assets by selling your stocks as well as login bonuses.',
+    text: 'This is the amount of money that you can use to invest in stocks or spend on your pet for fun items in the shop. You can increase your liquid assets by selling your stocks as well as login bonuses.',
     selector: '.bankValue',
   },
   {
@@ -23,22 +23,22 @@ const joyridePetfolio = [
   },
   {
     title: 'Your Pet Overview',
-    text: 'This is the overview of your pet. There is plenty of useful information here!',
+    text: 'This is where you can monitor your pet. There is plenty of useful information here!',
     selector: '.statusbarwidth',
   },
   {
     title: 'Fondness',
-    text: 'This bar represents your pets pondness. The more you check in on your pet, the more fond your pet will be of you. If you plan on going on a long vacation, you might want to checkout the toys and treats in the shop to maintain your pets fondness while you are away.',
+    text: 'This bar represents your pet\'s fondness. The more you check in on your pet, the more fond your pet will be of you. If you plan on going on a long vacation, you might want to checkout the toys and treats in the shop to maintain your pet\'s fondness while you are away.',
     selector: '.fondness',
   },
   {
     title: 'Happiness',
-    text: 'This bar represents your pets pondness. The happiness level of your pet is a direct reflection of your return on investment, ROI, which is the ratio between the net profit and cost of investment resulting from an investment of a stock. In simpler terms, the better your stocks do, the happy your pet will be. There are also toys and treats in the shop which will make your pet very happy.',
+    text: 'This bar represents your pet\'s happiness. The happiness level of your pet is a direct reflection of your return on investment, ROI, which is the ratio between the net profit and cost of investment resulting from an investment of a stock. In simpler terms, the better your stocks do, the happy your pet will be. There are also toys and treats in the shop which will make your pet very happy.',
     selector: '.happiness',
   },
   {
     title: 'Hunger',
-    text: 'This bar represents your pets hunger. Just like a real pet, your little fluff ball needs to eat too. A complete bar means they are full but that will slowly drop. The shop has all the meals you need for your pet, just make sure you stop by before they get too hungry and start munching on your money instead!',
+    text: 'This bar represents your pet\'s hunger. Just like a real pet, your little fluff ball needs to eat too. A complete bar means they are full, but that will slowly drop. The shop has all the meals you need for your pet, just make sure you stop by before they get too hungry and start munching on your money instead!',
     selector: '.hunger',
   },
   {
