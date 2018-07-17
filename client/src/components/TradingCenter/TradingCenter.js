@@ -30,6 +30,7 @@ class TradingCenter extends Component {
  */
     constructor(props) {
         super(props);
+        this.getUser = this.getUser.bind(this);
         // ---These are triggerd from onClick---
         // -------------------------------------
         this.toggle = this.toggle.bind(this);
@@ -75,7 +76,7 @@ class TradingCenter extends Component {
             datePurchased: '',
             value: 0,
             totalShares: 0,
-            initialCash: 20000,
+            initialCash: 0,
             dynoCash: 0,
             cashBalance: 0,
             watchedArray: '',
@@ -95,6 +96,7 @@ class TradingCenter extends Component {
  * @public componentDidMount function will render elements
  */
     componentDidMount() {
+        this.getUser();
         this.charting({ticker: this.state.ticker});
         this.myStocks(this.state.portfolio_id);
         this.dbStocks(this.state.portfolio_id);
@@ -104,6 +106,27 @@ class TradingCenter extends Component {
         // this.cashCalculator(this.state.portfolio_id);
         this.checkWatchList();
     };
+
+/**
+ * @public toggle function for reactstap <Modal> onClick trigger
+ * @return {*} rec.sessions.user
+ */
+getUser() {
+    return API.getUserProfile()
+    .then((res) => {
+        // Need logic of if user is logged in that will set state varables
+        console.log(res);
+        // let mongID = rec.sessions.user.<mongoID>;
+        // let mongoPrtID = rec.sessions.user.<mongoID>;
+        // let SQLID = rec.sessions.user.<sqlID>;
+        // return this.setState({
+        //     id: mongID,
+        //     portfolio_id: mongoPrtID,
+        //     sqlId: SQLID,
+        // });
+    })
+    .catch((err) => console.log(err));
+};
 /**
  * @public toggle function for reactstap <Modal> onClick trigger
  */
