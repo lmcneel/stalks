@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Container, Row, Col} from 'reactstrap';
 import {PetName, PetPic, PetStats, PetWrapper} from '../../components/PetStats';
-import BankValue from '../../components/BankValue';
+import BankValue from './../../components/BankValue';
 import PetfolioValue from '../../components/PetfolioValue';
 import PieChart from '../../components/PieChart';
 import wolfy from './defaultPetPic.png';
