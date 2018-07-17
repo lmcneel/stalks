@@ -818,10 +818,6 @@ updatePortfolioValue() {
                                     {/* Placeholder */}
                                 </div>
                             </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> ef872be2762115c45b8bd1e7140ac1950afbae24
                             <div className="priceAndDateRow">
                                 <div className='row'>
                                     <div className='col-sm-6 col-md-6 stockData'>
