@@ -48,13 +48,12 @@ export default {
         console.log('hit API.js');
         return axios.get('/api/forum/');
     },
-<<<<<<< HEAD
     postComments: function() {
         return axios.get('/api/forum/create/:id');
     },
     deleteComments: function() {
         return axios.delete('api/forum/comment/:id');
-=======
+    },
     viewFriends: function() {
         console.log('friends API hit');
         return axios.get('api/friends/view');
@@ -70,6 +69,5 @@ export default {
     removeFriend: function() {
         console.log('friend removed');
         return axios.delete('api/friends/remove');
->>>>>>> 47c9995ca76287993eb1400dc3dab6c6a93c2d1c
     },
 };
