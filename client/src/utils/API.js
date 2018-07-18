@@ -18,9 +18,15 @@ export default {
         // console.log(data);
         return axios.get(`/api/trading/slimquote/${data.ticker}`);
     },
-    // getInitialCash: function() {
-    //     return axios.get('api/ptfolio/initialcash');
-    // },
+    getInitialCash: function() {
+        return axios.get('api/portfolio/cash');
+    },
+    updatePortfolio: function(id, cash) {
+        return axios.patch(`/api/trading/myportfolio/${id}/${cash}`);
+    },
+    updateCurrentValue: function(id, currentvalue) {
+        return axios.patch(`/api/trading/portfolio/cv/${id}/${currentvalue}`);
+    },
     getMyPortfolio: function(portfolio) {
         return axios.get(`/api/trading/myportfolio/${portfolio}`);
     },
@@ -148,5 +154,21 @@ export default {
     deleteAccount: function(data) {
         console.log('Settings API: deleteAccount type: delete Route: /api/user/account/delete');
         return axios.delete('/api/user/account/delete', data);
+    },
+    viewFriends: function() {
+        console.log('friends API hit');
+        return axios.get('api/friends/view');
+    },
+    viewSingleFriend: function() {
+        console.log('view one');
+        return axios.get('api/friends/view/:id');
+    },
+    addFriend: function() {
+        console.log('friend added');
+        return axios.post('api/friends/add');
+    },
+    removeFriend: function() {
+        console.log('friend removed');
+        return axios.delete('api/friends/remove');
     },
 };

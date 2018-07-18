@@ -9,16 +9,66 @@ import Promise from 'bluebird';
 import _ from 'underscore';
 import PropTypes from 'prop-types';
 import Joyride from 'react-joyride';
-import '../../assets/react-joyride-compiled.css';
-
+const joyrideTradeCenter = [
+    {
+        title: 'Stock Chart',
+        text: 'This chart tracks the preformance of this stock over the last 30 days. You can easily see how a stock is doing with this helpful chart!',
+        selector: '.chartSection',
+    },
+    {
+        title: 'Shares Owned',
+        text: 'This number is the amount of shares you currently own of this stock.',
+        selector: '.sharesOwned',
+    },
+    {
+        title: 'ROI',
+        text: 'ROI, Return on Investment, is the ratio between the net profit and cost of investment resulting from an investment of a stock. This is a helpful metric to determine if your investment in a stock is performing well. The higher this number, the better that stock is doing. You can also use this simple metric to compare different stocks in your portfolio.',
+        selector: '.roiRow',
+    },
+    {
+        title: 'Price and Date Purchased',
+        text: 'This shows the price of the stock on the date you purchased it. This is a good inicator of how your investment has done since you initially purchased it.',
+        selector: '.priceAndDateRow',
+    },
+    {
+        title: 'Making a Transaction',
+        text: 'This form allows you to buy and sell stocks.',
+        selector: '.buySell',
+    },
+    {
+        title: 'Buying and Selling Stocks',
+        text: 'Here you select whether you want to buy or sell your stock.',
+        selector: '.tradeInputs',
+    },
+    {
+        title: 'Number of Shares',
+        text: 'Here you input how many shares you would like to buy or sell.',
+        selector: '.numOfShares',
+    },
+    {
+        title: 'Subtotal and New Bank Value',
+        text: 'The subtotal informs you how much money you will make or spend with this transaction. The new bank value informs you what your bank value will be after the transaction is complete.',
+        selector: '.bottomTwoRows',
+    },
+    {
+        title: 'Finished!',
+        text: 'Once you select your stock and amount of shares, submit your order here.',
+        selector: '.submitBtn',
+        style: {
+            footer: {
+                display: 'none',
+            },
+        },
+    },
+];
 const propTypes = {
-        match: PropTypes.shape({
-            params: PropTypes.shape({
-                ticker: PropTypes.string,
-            }).isRequired,
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            ticker: PropTypes.string,
         }).isRequired,
-        modalName: PropTypes.string,
-    }
+    }).isRequired,
+    modalName: PropTypes.string,
+}
 
 let watched = false; // This watchlist flag
 let eyeWatched = 'faEye'; // class variable for watchlist condition
@@ -33,9 +83,9 @@ const checkWatchList = () => {
  * @class TradingCenter
  */
 class TradingCenter extends Component {
-/**
- * @param {*} props
- */
+    /**
+     * @param {*} props
+     */
     constructor(props) {
         super(props);
         // ---These are triggerd from onClick---
@@ -48,16 +98,18 @@ class TradingCenter extends Component {
         // ---The function below are used in transactions and render---
         // ------------------------------------------------------------
         this.checkWatchList = this.checkWatchList.bind(this);
-        // this.addToWatchlist = this.addToWatchlist.bind(this);
-        // this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
+        this.addToWatchlist = this.addToWatchlist.bind(this);
+        this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
         this.transactionExec = this.transactionExec.bind(this);
         this.myStocks = this.myStocks.bind(this);
-        this.cashCalculator = this.cashCalculator.bind(this);
+        // this.cashCalculator = this.cashCalculator.bind(this);
         this.dbStocks = this.dbStocks.bind(this);
         this.myStocksValue = this.myStocksValue.bind(this);
         this.portfolioValue = this.portfolioValue.bind(this);
+        this.updatePortfolioValue = this.updatePortfolioValue.bind(this);
         this.returnOnInvestment = this.returnOnInvestment.bind(this);
-        this.bankValue = this.bankValue.bind(this);
+        this.getBankValue = this.getBankValue.bind(this);
+        this.updateBankValue = this.updateBankValue.bind(this);
         this.myWatchlist = this.myWatchlist.bind(this);
         this.charting = this.charting.bind(this);
         this.buyShares = this.buyShares.bind(this);
@@ -71,17 +123,18 @@ class TradingCenter extends Component {
             primaryExchange: '',
             sector: '',
             response: '',
-            portfolio_id: '5b40fb129adc85a410f488bd',
+            portfolio_id: '5b4cf8a4f387eda4bd04e253',
+            portfolioValue: 0,
             transaction: 'buy',
             ROI: 0,
-            id: '5b4b9d856acd8b08c04ca749',
-            UserId: 12,
-            // sqlId: 18,
-            // ticker:'TTT',
+            id: '5b4cf8a4f387eda4bd04e253',
+            sqlId: 1,
+
             cost: 0,
             datePurchased: '',
             value: 0,
             totalShares: 0,
+            initialCash: 20000,
             cashBalance: 0,
             watchedArray: ['AAPL', 'XPP'],
             modal: false,
@@ -96,24 +149,22 @@ class TradingCenter extends Component {
         this.resetTour = this.resetTour.bind(this);
     }
 
-/**
- * @public componentDidMount function will render elements
- */
+    /**
+     * @public componentDidMount function will render elements
+     */
     componentDidMount() {
         this.charting({ticker: this.state.ticker});
         this.myStocks(this.state.portfolio_id);
         this.dbStocks(this.state.portfolio_id);
         this.myStocksValue();
-        this.bankValue(this.state.id);
+        this.getBankValue(this.state.portfolio_id);
         this.myWatchlist(this.state.watchedArray);
-        this.cashCalculator(this.state.portfolio_id);
+        // this.cashCalculator(this.state.portfolio_id);
         this.checkWatchList();
-        // this.addToWatchlist(this.state.sqlId, this.state.ticker);
-        // this.removeFromWatchlist(this.state.sqlId, this.state.ticker);
     };
-/**
- * @public toggle function for reactstap <Modal> onClick trigger
- */
+    /**
+     * @public toggle function for reactstap <Modal> onClick trigger
+     */
     toggle() {
         this.setState({
             modal: !this.state.modal,
@@ -145,8 +196,8 @@ class TradingCenter extends Component {
  * @param {*} SQL_ID
  * @param {*} Ticker
  */
-    addToWatchlist( SQL_ID, Ticker) {
-        API.addNewTicker(SQL_ID, Ticker)
+    addToWatchlist() {
+        API.addNewTicker(this.state.sqlId, this.state.ticker)
         .then((res) => {
             console.log('Ticker Added to Watchlist');
             this.checkWatchList();
@@ -160,8 +211,8 @@ class TradingCenter extends Component {
 * @param {*} Ticker
 
 */
-removeFromWatchlist( SQL_ID, Ticker) {
-    API.removeExistingTicker(SQL_ID, Ticker)
+removeFromWatchlist() {
+    API.removeExistingTicker(this.state.sqlId, this.state.ticker)
     .then((res) => {
         console.log('done');
         this.checkWatchList();
@@ -169,19 +220,20 @@ removeFromWatchlist( SQL_ID, Ticker) {
     .catch((err) => console.log(err));
 };
 
-/**
- * @public handleInputChange function for number of shares
- * @param {*} event
- */
+    /**
+     * @public handleInputChange function for number of shares
+     * @param {*} event
+     */
     handleInputChange(event) {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         this.setState({
             [name]: value,
         });
     };
-/**
- * @public transactionExec function for processing the transaction
- */
+
+    /**
+     * @public transactionExec function for processing the transaction
+     */
     transactionExec() {
         if (this.state.transaction === 'buy') {
             this.buyShares();
@@ -189,11 +241,12 @@ removeFromWatchlist( SQL_ID, Ticker) {
             this.sellShares();
         };
     };
-/**
- * @public myStocks function that gets users stocks from mongo database
- * @param {*} portfolio
- * @return {*} returns users stocks
- */
+
+    /**
+     * @public myStocks function that gets users stocks from mongo database
+     * @param {*} portfolio
+     * @return {*} returns users stocks
+     */
     myStocks(portfolio) {
         return API.getMyStocks(portfolio)
             .then((res) => {
@@ -237,20 +290,18 @@ removeFromWatchlist( SQL_ID, Ticker) {
  * @public cashCalculator function that gets users remainig cash value
  * @param {*} portfolio
  * @return {*} returns users cash
- */
-    cashCalculator(portfolio) {
-        return API.getMyStocks(portfolio)
-            .then((res) => {
-                let cashTotal = 200000;
-                for (let i = 0; i < res.data.length; i++) {
-                    cashTotal -= (res.data[i].sharePrice * 100 * res.data[i].shares)/100;
-                }
-                this.setState({
-                    cashBalance: (cashTotal).toFixed(2),
-                });
-            })
-            .catch((err) => console.log(err));
-    }
+*/
+    // cashCalculator(portfolio) {
+    //     return API.getMyStocks(portfolio)
+    //         .then((res) => {
+    //             let cashTotal = 200000;
+    //             for (let i = 0; i < res.data.length; i++) {
+    //                 cashTotal -= (res.data[i].sharePrice * 100 * res.data[i].shares)/100;
+    //             }
+    //             this.setState({cashBalance: (cashTotal).toFixed(2)});
+    //         })
+    //         .catch((err) => console.log(err));
+    // }
 
 /**
  * @public dbStocks function, It makes a call to Mongo Database (Trades Collection),
@@ -279,7 +330,7 @@ removeFromWatchlist( SQL_ID, Ticker) {
                         userStocks[res.data[i].ticker] += res.data[i].shares;
                     }
                 }
-                console.log(userStocks);
+                // console.log(userStocks);
                 let current = Promise.resolve();
                 Object.keys(userStocks).forEach((key) => {
                     current = current.then(() => {
@@ -358,8 +409,11 @@ removeFromWatchlist( SQL_ID, Ticker) {
                 if (key === lastPrice[j].symbol) {
                     PV += (stocks[key] * lastPrice[j].price * 100)/100;
                 };
-            };
+            }
+            console.log(PV);
+            return this.setState({portfolioValue: PV});
         });
+        this.updatePortfolioValue(this.state.portfolio_id, this.state.portfolioValue);
         let userPortfolioValue = PV + Number(this.state.cashBalance);
         let a = userPortfolioValue - initCash;
         pvROI = ((a / initCash) * 100).toFixed(2);
@@ -368,7 +422,18 @@ removeFromWatchlist( SQL_ID, Ticker) {
             pvROI,
         };
     };
-
+/**
+ * @public updatePortfolioValue function will update cash amount in mongo database
+ * @param {*} portfolio
+ * @param {*} cash
+ * This function will update the Current user Cash
+ * The input needs to be the User Portfolio ID.
+*/
+updatePortfolioValue() {
+    console.log(this.state.portfolioValue);
+    API.updateCurrentValue(this.state.portfolio_id, this.state.portfolioValue)
+    .catch((err) => console.log(err));
+};
 /**
  * @public The returnOnInvestment function is called by the dbStocks Function
  * it takes in 3 parameters that are listed below and the return is the ROI for each of the
@@ -408,6 +473,7 @@ removeFromWatchlist( SQL_ID, Ticker) {
         });
         return eachROI;
     };
+
 /**
  * @public bankValue function that gets users bank value from mongo database
  * @param {*} portfolio
@@ -415,15 +481,27 @@ removeFromWatchlist( SQL_ID, Ticker) {
  * This function will give the Current user Cash
  * The input needs to be the User Portfolio ID.
 */
-    bankValue(portfolio) {
+    getBankValue(portfolio) {
         let bank = 0;
         return API.getMyPortfolio(portfolio)
             .then((res) => {
                 let data = res.data;
-                bank = (data[0].cash).toFixed(2);
-                return bank;
-            })
+                bank = data[0].cash;
+                console.log(bank);
+                return this.setState({initialCash: bank});
+               })
             .catch((err) => console.log(err));
+    };
+/**
+ * @public updateBankValue function will update cash amount in mongo database
+ * @param {*} portfolio
+ * @param {*} cash
+ * This function will update the Current user Cash
+ * The input needs to be the User Portfolio ID.
+*/
+    updateBankValue() {
+        API.updatePortfolio(this.state.portfolio_id, this.state.cashBalance)
+        .catch((err) => console.log(err));
     };
 
 /**
@@ -453,10 +531,10 @@ removeFromWatchlist( SQL_ID, Ticker) {
         };
         return current;
     };
-/**
- * @public charting function assigns chart data from API
- * @param {*} ticker is the current ticker state
- */
+    /**
+     * @public charting function assigns chart data from API
+     * @param {*} ticker is the current ticker state
+     */
     charting(ticker) {
         API.findQuotes(ticker)
             .then((res) => {
@@ -489,7 +567,7 @@ removeFromWatchlist( SQL_ID, Ticker) {
                     },
 
                     xAxis: {
-                        title: {text: 'Past 30 Days'},
+                        title: { text: 'Past 30 Days' },
                         // categories: chartCategories,
                         categories: null,
                         text: null,
@@ -510,23 +588,27 @@ removeFromWatchlist( SQL_ID, Ticker) {
                         color: '#0C425C',
                         name: this.state.ticker,
                         data: chartData,
-                        marker: {enabled: true},
-                        tooltip: {valueDecimals: 2},
+                        marker: { enabled: true },
+                        tooltip: { valueDecimals: 2 },
                     }],
                 });
             })
             .catch((err) => console.log(err));
-        }
+    }
 
 
- /**
- * @public buyShares function for processing buy transaction
- * @param {*} event
- */
+    /**
+    * @public buyShares function for processing buy transaction
+    * @param {*} event
+    */
     buyShares() {
-        if ((this.state.cashBalance - (this.state.shares * this.state.price)) >= 0) {
+        if ((this.state.initialCash - (this.state.shares * this.state.price)) >= 0) {
+                let cashBalanceTemp = this.state.initialCash - (this.state.shares * this.state.price);
+                this.setState({cashBalance: cashBalanceTemp});
+                this.updateBankValue();
+                this.updatePortfolioValue();
             API.findQuotes(
-                {ticker: this.state.ticker}
+                { ticker: this.state.ticker }
             ).then((res) => {
                 this.setState({price: res.data.quote.latestPrice});
                 if (this.state.ticker && this.state.price && this.state.shares) {
@@ -559,12 +641,18 @@ removeFromWatchlist( SQL_ID, Ticker) {
         }
     };
 
-/**
- * @public sellShares function for processing sell transaction
- * @param {*} event
- */
+    /**
+     * @public sellShares function for processing sell transaction
+     * @param {*} event
+     */
     sellShares() {
         if (this.state.shares <= this.state.totalShares) {
+            let cashBalanceTemp = this.state.initialCash - (this.state.shares * this.state.price);
+            console.log(cashBalanceTemp);
+            this.setState({cashBalance: cashBalanceTemp});
+            this.updateBankValue();
+            this.updatePortfolioValue();
+
             API.findQuotes(
                 {ticker: this.state.ticker}
             ).then((res) => {
@@ -616,95 +704,18 @@ removeFromWatchlist( SQL_ID, Ticker) {
     resetTour() {
         console.dir(this);
         this.joyride.reset(true);
-        this.setState({run: true});
+        this.setState({ run: true });
     }
+    /**
+     * Render function
+     * @return {JSX}
+     */
     render() {
         return (
             <div>
                 <Joyride
                     ref={(c) => (this.joyride = c)}
-                    steps={[
-                        {
-                            title: 'Bank Value',
-                            text: 'This is the amount of liquid assets, money, that you can use to invest in stocks or spend on your pet for fun items in the shop. You can increase your liquid assets by selling your stocks as well as login bonuses.',
-                            selector: '.bankValue',
-                        },
-                        {
-                            title: 'Petfolio Value',
-                            text: 'This is the sum of all stocks you own multiplied by the current market value. This is the standard equation professionals use to determine the value of their assets.',
-                            selector: '.portfolioValue',
-                        },
-                        {
-                            title: 'Stock Overview',
-                            text: 'This is the overview of a stocks stats. There is plenty of useful information here!',
-                            selector: '.stockStats',
-                        },
-                        {
-                            title: 'Stock Name',
-                            text: 'This is the ticker symbol or stock symbol of this stock. It\'s an abbreviation used to uniquely identify publicly traded shares of a particular stock on a particular stock market. A stock symbol may consist of letters, numbers or a combination of both.',
-                            selector: '.stockName',
-                        },
-                        {
-                            title: 'Stock Price',
-                            text: 'The is the current price of a single stock from this company. This will update, so keep an eye on it for changes!',
-                            selector: '.stockPrice',
-                        },
-                        {
-                            title: 'Percent Change',
-                            text: 'This is is percentage that shows negative or positive preformance, compared to the price at the opening of the trading day. Green is positive, red is negative.',
-                            selector: '.stockChange',
-                        },
-                        {
-                            title: 'Add to Your Watchlist',
-                            text: 'Using the eye icon you can add stocks you own or just ones that you are interested in to your watchlist. You can view Watchlist in the Stock Chart.',
-                            selector: '.stockWatch',
-                        },
-                        {
-                            title: 'View Your Watchlist',
-                            text: 'The stocks added to your Watchlist scroll here so you can keep an eye on the price per share and the percentage change. You can use this tool to decide when to buy new stocks or sell the ones you have.',
-                            selector: '.stockticker',
-                        },
-                        {
-                            title: 'Stock Chart',
-                            text: 'This chart tracks the preformance of this stock over the last 30 days. You can easily see how a stock is doing with this helpful chart!',
-                            selector: '.chartSection',
-                        },
-                        {
-                            title: 'Shares Owned',
-                            text: 'This number is the amount of shares you currently own of this stock.',
-                            selector: '.sharesOwned',
-                        },
-                        {
-                            title: 'ROI',
-                            text: 'ROI, Return on Investment, is the ratio between the net profit and cost of investment resulting from an investment of a stock. This is a helpful metric to determine if your investment in a stock is performing well. The higher this number, the better that stock is doing. You can also use this simple metric to compare different stocks in your portfolio.',
-                            selector: '.roiRow',
-                        },
-                        {
-                            title: 'Price and Date Purchased',
-                            text: 'This shows the price of the stock on date you purchased it. This is a good inicator of how your investment has done since you initially purchased it.',
-                            selector: '.priceAndDateRow',
-                        },
-                        {
-                            title: 'Making a Transaction',
-                            text: 'This form allows you to buy and sell stocks.',
-                            selector: '.buySell',
-                        },
-                        {
-                            title: 'Buying and Selling Stocks',
-                            text: 'Here you select whether you want to buy or sell your stock.',
-                            selector: '.tradeInputs',
-                        },
-                        {
-                            title: 'Number of Shares',
-                            text: 'Here you input how many shares you would like to buy or sell.',
-                            selector: '.numOfShares',
-                        },
-                        {
-                            title: 'Subtotal and New Bank Value',
-                            text: 'The suntotal shows informs you how much money you will make or spend with this transaction. The new bank value informs you what your bank value will be after the transaction is complete.',
-                            selector: '.bottomTwoRows',
-                        },
-                    ]}
+                    steps={joyrideTradeCenter}
                     run={this.state.run} // or some other boolean for when you want to start it
                     type={'continuous'}
                     showOverlay={true}
@@ -754,10 +765,10 @@ removeFromWatchlist( SQL_ID, Ticker) {
                                 </div>
                                 <div className='col-sm-2 stockWatch'>
                                     <FontAwesomeIcon
-                                        className={(this.state.watched ? `faEyeWatched`:`faEye`)}
+                                        className={(this.state.watched ? `faEyeWatched` : `faEye`)}
                                         onClick={this.state.watched ?
-                                            (this.removeFromWatchlist())
-                                            : (this.addToWatchlist())}
+                                            (this.removeFromWatchlist)
+                                            : (this.addToWatchlist)}
                                         size='1x'
                                         icon={faEye} />
                                 </div>
@@ -789,7 +800,6 @@ removeFromWatchlist( SQL_ID, Ticker) {
                                     {/* Placeholder */}
                                 </div>
                             </div>
-
                             <div className="priceAndDateRow">
                                 <div className='row'>
                                     <div className='col-sm-6 col-md-6 stockData'>
@@ -868,7 +878,6 @@ removeFromWatchlist( SQL_ID, Ticker) {
                                     value={this.state.shares}
                                     onChange={this.handleInputChange}
                                     id='numberOfShares'
-
                                 />
                             </div>
                         </div>
@@ -878,7 +887,7 @@ removeFromWatchlist( SQL_ID, Ticker) {
                                     <h4>SUBTOTAL:</h4>
                                 </div>
                                 <div className='col-sm-6 col-md-6 totalCalc'>
-                                    <h4>${this.state.shares * this.state.price}</h4>
+                                    <h4>${(this.state.shares * this.state.price).toFixed(2)}</h4>
                                 </div>
                             </div>
                             <div className='row totalCalc'>
@@ -887,10 +896,10 @@ removeFromWatchlist( SQL_ID, Ticker) {
                                 </div>
                                 <div className='col-sm-6 col-md-6 totalCalc'>
                                     {this.state.transaction === 'buy' ?
-                                    (<h4>${(this.state.cashBalance -
-                                        (this.state.shares * this.state.price)).toFixed(2)}</h4>
-                                    ) : (<h4>${((this.state.cashBalance) -
-                                    (-(this.state.shares) * this.state.price)).toFixed(2)}</h4>)}
+                                    (<h4>${(((this.state.initialCash * 100) -
+                                        (this.state.shares * this.state.price * 100)) / 100).toFixed(2)}</h4>
+                                    ) : (<h4>${(((this.state.initialCash * 100) -
+                                    (-(this.state.shares) * this.state.price * 100)) / 100).toFixed(2)}</h4>)}
                                 </div>
                             </div>
                         </div>
@@ -910,7 +919,7 @@ removeFromWatchlist( SQL_ID, Ticker) {
                                 <ModalHeader
                                     toggle={this.toggle}
                                     className='buySell'>
-                                    <h2>TRANSACTION STATUS</h2>
+                                    TRANSACTION STATUS
                                 </ModalHeader>
                                 <ModalBody
                                     className='buySell transactionModal'>

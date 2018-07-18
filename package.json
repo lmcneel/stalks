@@ -35,7 +35,6 @@
   },
   "homepage": "https://github.com/lmcneel/stalks#readme",
   "dependencies": {
-    "availity-reactstrap-validation": "^2.0.2",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -44,6 +43,7 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "if-env": "^1.0.4",
     "i": "^0.3.6",
     "mongoose": "^5.2.1",
     "mongoose-seed": "^0.5.0",
@@ -61,6 +61,7 @@
   },
   "devDependencies": {
     "concurrently": "^3.6.0",
+    "dotenv": "^6.0.0",
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-react": "^7.8.2",
