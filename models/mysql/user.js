@@ -33,6 +33,9 @@ module.exports = function(sequelize, Sequelize) {
         mongo_id: {
             type: Sequelize.STRING,
         },
+        mongo_portfolio_id: {
+            type: Sequelize.STRING,
+        },
         last_login: {
             type: Sequelize.DATE,
             allowNull: true,
@@ -91,6 +94,20 @@ module.exports = function(sequelize, Sequelize) {
                 .then(function(portfolio) {
                     console.log('Portfolio has been made for user');
                     console.log(portfolio);
+                    User.update({
+                        mongo_portfolio_id: portfolio.id,
+                    }, {
+                        where: {
+                            id: user.id,
+                        },
+                    })
+                    .then(function(userWPortfolioandMongo) {
+                        console.log(userWPortfolioandMongo);
+                        console.log('User has been updated with portfolio ID');
+                    })
+                    .catch(function(err) {
+                        console.log(err);
+                    });
                 })
                 .catch(function(err) {
                     console.log(err);
