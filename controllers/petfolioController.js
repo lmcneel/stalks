@@ -12,6 +12,17 @@ module.exports = {
       // console.log(dbUserWl[0].dataValues);
     });
   },
+  getUserPic: function(req, res) {
+    db.Pet.findOne({
+      where: {UserId: 1},
+      include: [{
+        model: db.Accessory,
+        where: {equipped: 1}, //
+      }],
+    }).then(function(dbUserPic) {
+      res.json(dbUserPic);
+    });
+  },
 
   addTicker: function(req, res) {
     db.UserWatchlist.create({

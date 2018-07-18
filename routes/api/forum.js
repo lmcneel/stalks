@@ -30,7 +30,6 @@ router.get('/', (req, res) => {
             return res.json({err});
         }
         return res.json({data: forum});
-        
     });
 });
 

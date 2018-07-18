@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import {Container, Row, Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
+<<<<<<< HEAD
 import PropTypes from 'prop-types';
 import SignUp from '../../pages/SignUp';
 import Login from '../../pages/Login';
+=======
+import mainLogo from './../../assets/images/smp-logo.svg';
+>>>>>>> 858d2d81d0a83d70a5493f24e306e7317107b13f
 
 /**
  * Function the Returns Profile Bar on left with all user info
@@ -37,8 +41,9 @@ class Splash extends Component {
     <Row className="text-center mt-5">
         <Col>
         <img src="http://placekitten.com/700/300" className="mx-auto d-block"/>
-        <h1 className="pt-5">Stock Market Pets</h1>
-        <p>Adopt a Stock Market Pet and learn the basics of the stock market.</p>
+        <img src={mainLogo} alt="Text Logo for Stock Market
+         Pets in a pixel looking fontface, logo is white on green bg" className="mx-auto d-block col-8 mt-5 mb-3"/>
+        <p className="text-light description">Adopt a Stock Market Pet and learn the basics of the stock market.</p>
         </Col>
     </Row>
     <Row>
@@ -59,8 +64,9 @@ class Splash extends Component {
 
     {/* <Row>
         <Col>
-        <p>Get a Stock Market Pet Today</p>
-        <Button>Sign up</Button>
+        <div className="bg-light col-5 px-3 py-3 mx-auto border rounded text-center">
+        <p className="mb-0">Get a Stock Market Pet Today <Button className="ml-3">Sign up</Button></p>
+        </div>
         </Col>
     </Row> */}
     </Container>
