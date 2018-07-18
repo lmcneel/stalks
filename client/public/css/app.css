@@ -7241,6 +7241,7 @@ input[type="checkbox"].userProfile-switch:checked + div > div {
 
 .colorPositive {
   background-image: url("/images/pixelbg-green_160.jpg");
+  background-color: #45CC8E;
   font-size: 1.8rem; }
 
 .colorNeutral {
@@ -7341,39 +7342,36 @@ nav {
   position: relative;
   left: 2px; }
 
+/* ---------------------------------------------------
+    STOCKS COMPONENT
+----------------------------------------------------- */
 .stockStats {
-  background-color: #fff;
   border-radius: 25px;
-  border: none;
   color: #404850;
-  float: left;
-  margin: 0px 0px 20px 0px;
-  padding: 20px 20px 20px 20px; }
-
-.stockStats h1 {
-  font-size: 22px;
-  text-align: left;
-  padding: 5px;
-  margin-bottom: 0px; }
-
-.stockStats h2 {
-  font-size: 18px;
-  text-align: left;
-  padding: 5px;
-  margin-bottom: 0px; }
-
-.stockStats h3 {
-  font-size: 16px;
-  text-align: left;
-  line-height: 1px;
-  padding: 5px;
-  margin-top: 5px;
-  margin-bottom: 0px; }
-
-.stockStats h4 {
-  font-size: 14px;
-  text-align: left;
-  padding: 5px; }
+  margin: 0px 0px 20px;
+  padding: 20px;
+  text-transform: uppercase; }
+  .stockStats h1 {
+    font-size: 1.35rem;
+    text-align: left;
+    padding: 5px;
+    margin-bottom: 0; }
+  .stockStats h2 {
+    font-size: 1.2rem;
+    text-align: left;
+    padding: 5px;
+    margin-bottom: 0px; }
+  .stockStats h3 {
+    font-size: 1rem;
+    text-align: left;
+    line-height: 1px;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 0px; }
+  .stockStats h4 {
+    font-size: 0.875rem;
+    text-align: left;
+    padding: 5px; }
 
 .changeValue {
   text-align: right; }
@@ -7405,49 +7403,46 @@ nav {
   margin-bottom: 20px;
   text-align: center; }
 
+/* ---------------------------------------------------
+    TRANSACTION FORM COMPONENT
+----------------------------------------------------- */
 .transactionForm {
   margin: 0px; }
 
 .buySell {
-  background-color: #fff;
   border-radius: 25px;
   border: none;
   color: #404850;
-  float: left;
   margin: 0px 20px 0px 0px;
-  padding: 20px 20px 20px 20px; }
-
-.buySell h1 {
-  font-size: 22px;
-  text-align: left;
-  padding: 5px;
-  margin-bottom: 0px; }
-
-.buySell h2 {
-  font-size: 18px;
-  text-align: left;
-  padding: 5px;
-  margin-bottom: 0px; }
-
-.buySell h3 {
-  font-size: 16px;
-  text-align: left;
-  line-height: 1px;
-  padding: 5px;
-  margin-top: 5px;
-  margin-bottom: 0px; }
-
-.buySell h4 {
-  font-size: 24px;
-  text-align: left;
-  padding: 5px; }
+  padding: 20px; }
+  .buySell h1 {
+    font-size: 1.35rem;
+    text-align: left;
+    padding: 5px;
+    margin-bottom: 0px; }
+  .buySell h2 {
+    font-size: 1.2rem;
+    text-align: left;
+    padding: 5px;
+    margin-bottom: 0px; }
+  .buySell h3 {
+    font-size: 1rem;
+    text-align: left;
+    line-height: 1px;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 0px; }
+  .buySell h4 {
+    font-size: 1.5rem;
+    text-align: left;
+    padding: 5px; }
 
 .buyBtn {
   background-color: #45CC8E;
   border: none;
-  color: #FFFFFF;
+  color: #f8f9fa;
   float: right;
-  font-size: 14px; }
+  font-size: 0.875rem; }
 
 .transactionModal {
   height: 100px; }
@@ -7459,16 +7454,20 @@ nav {
 .submitBtn {
   background-color: #45CC8E;
   border: none;
-  color: #FFFFFF;
+  color: #f8f9fa;
   float: right;
-  font-size: 14px; }
+  font-size: 14px;
+  text-transform: uppercase; }
 
 .form-row {
   margin-bottom: 15px; }
 
+/* ---------------------------------------------------
+    SEARCH STOCKS COMPONENT
+----------------------------------------------------- */
 .searchStockStats {
-  margin: 20px 20px 20px 20px;
-  padding: 20px 20px 20px 20px;
+  margin: 20px;
+  padding: 20px;
   width: 90%; }
 
 .searchBar {
@@ -7494,14 +7493,3 @@ nav {
 
 .listBtn {
   margin-right: 10px; }
-
-@media (max-width: 768px) {
-  .submitBtn {
-    background-color: #45CC8E;
-    border: none;
-    color: #FFFFFF;
-    float: none;
-    font-size: 14px;
-    width: 100%; } }
-
-/*# sourceMappingURL=app.css.map */

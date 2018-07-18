@@ -55,9 +55,9 @@ const joyridePetfolio = [
     selector: '.tradeCenterLink',
     style: {
       footer: {
-          display: 'none',
+        display: 'none',
       },
-  },
+    },
   },
 
 ];
@@ -247,17 +247,17 @@ class Petfolio extends Component {
 
             <Col>
               <Row>
-              <Col>
-                <div className= {`${this.state.portfolioValueColor} border rounded colorBoxes p-4`}>
-                <h5 className="petfolioPortfolioText">Petfolio Value</h5>
+                <Col>
+                  <div className={`${this.state.portfolioValueColor} border rounded colorBoxes p-4`}>
+                    <h5 className="petfolioPortfolioText">Petfolio Value</h5>
 
-                <PetfolioValue />
-                </div>
-              </Col>
-              <Col>
-                <div className={`${this.state.bankValueColor} border rounded colorBoxes p-4`}>
-                <h5 className="petfolioBankText">Bank</h5>
-                <BankValue />
+                    <PetfolioValue />
+                  </div>
+                </Col>
+                <Col>
+                  <div className={`${this.state.bankValueColor} border rounded colorBoxes p-4`}>
+                    <h5 className="petfolioBankText">Bank</h5>
+                    <BankValue />
                   </div>
                 </Col>
               </Row>
@@ -268,13 +268,15 @@ class Petfolio extends Component {
                 </Col>
               </Row>
             </Col>
-        </Row>
+          </Row>
           {/* This row contains the owned stock details -- trading component*/}
-         <Row>
-           <Col>
-           <h3>Owned Stocks</h3>
-            <OwnedStock />
-           </Col>
+          <Row>
+            <Col className="py-4">
+              <div className="bg-light border rounded p-4">
+                <h5>Owned Stocks</h5>
+                <OwnedStock />
+              </div>
+            </Col>
           </Row>
           {/* <Row>
             <Col>{this.state.Watchlist.map((List) => <OwnedStock ticker={List} n/>)}
