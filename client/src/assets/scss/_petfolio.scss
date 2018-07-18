@@ -4,7 +4,7 @@
 
 .colorPositive {
     background-image: url('/images/pixelbg-green_160.jpg');
-    // background-color: green;
+    background-color: $green;
     font-size: 1.8rem;
 }
 .colorNeutral {
@@ -24,6 +24,10 @@
 
 .petfolioBankText {
     color: lighten($green, 35);
+}
+.colorBoxes {
+    text-align: center;
+    color:white;
 }
 
 .barstatlabel {
