@@ -29,7 +29,7 @@
     },
     {
       "id": 5,
-      "name":"Anthony Laroche",
+      "name":"Antony Laroche",
       "title": "Full Stack Developer",
       "image": "/assets/images/anthony.jpg",
       "portfolio":"https://antonylaroche.herokuapp.com/"
@@ -73,7 +73,7 @@
       "id": 11,
       "name":"Grant Posell",
       "title": "Full Stack Developer",
-      "image": "/assets/images/grant.jpeg",
+      "image": "/assets/images/grant.jpg",
       "portfolio":"https://grantposell.github.io/"
     },
     {

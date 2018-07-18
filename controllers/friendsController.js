@@ -1,9 +1,10 @@
 const db = require('../models/mysql');
 
+
 module.exports = {
     findAll: function(req, res) {
         db.Friends
-            .findAll(req.query)
+            .findAll(req.query('SELECT * FROM friends LEFT JOIN u users ON friends.friends_id = users.id WHERE friends.user_id = url.user_id'))
             .then((dbModel) => res.json(dbModel))
             .catch((err) => res.status(422).json(err));
     },
@@ -14,10 +15,18 @@ module.exports = {
             .catch((err) => res.status(422).json(err));
     },
 
+    create: function(req, res) {
+        db.Friends
+            .create(req.body)
+            .then((newFriend) => res.json(newFriend))
+            .catch((err) => res.status(422).json(err));
+    },
 
-    // Friendship.belongsTo(User, { as: 'info', foreignKey: 'friend' });
-    // User.belongsToMany(User, { as: 'friendship', through: Friendship, foreignKey: 'user', otherKey: 'friend' });
-    // User.hasMany(Friendship, { as: 'friends', foreignKey: 'user' });
-
+    remove: function(req, res) {
+        db.Friends
+            .destory({where: {id: req.params.id}})
+            .then((dbModel) => res.json(dbModel))
+            .catch((err) => res.status(422).json(err));
+    },
 };
 

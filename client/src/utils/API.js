@@ -165,4 +165,20 @@ export default {
         console.log('Settings API: deleteAccount type: delete Route: /api/user/account/delete');
         return axios.delete('/api/user/account/delete', data);
     },
+    viewFriends: function() {
+        console.log('friends API hit');
+        return axios.get('api/friends/view');
+    },
+    viewSingleFriend: function() {
+        console.log('view one');
+        return axios.get('api/friends/view/:id');
+    },
+    addFriend: function() {
+        console.log('friend added');
+        return axios.post('api/friends/add');
+    },
+    removeFriend: function() {
+        console.log('friend removed');
+        return axios.delete('api/friends/remove');
+    },
 };
