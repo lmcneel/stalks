@@ -726,7 +726,7 @@ updatePortfolioValue() {
                     callback={this.handleJoyrideCallback}
                 />
                 <Button type='button' onClick={this.resetTour}>Take a Tour</Button>
-                <div className='stockStats container'>
+                <div className='stockStats container bg-light border rounded p-4 mt-3'>
                     <h1>Stock Stats</h1>
                     <div className='row stockTickerBar'>
                         <div className='col-sm-6 col-md-6'>
@@ -822,7 +822,7 @@ updatePortfolioValue() {
                     </div>
                 </div>
 
-                <div className='transactionForm container'>
+                <div className='transactionForm container bg-light border rounded p-4'>
                     <form className='buySell'>
                         <div className='row'>
                             <legend>

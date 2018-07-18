@@ -272,7 +272,7 @@ class Petfolio extends Component {
           </Row>
           {/* This row contains the owned stock details -- trading component*/}
           <Row>
-            <Col className="pt-4">
+            <Col className="py-4">
               <div className="bg-light border rounded p-4">
                 <h5>Owned Stocks</h5>
                 <OwnedStock />
