@@ -3,6 +3,7 @@ import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {withRouter} from 'react-router-dom';
 import API from '../../utils/API';
 import PropTypes from 'prop-types';
+import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
 
 
@@ -28,6 +29,7 @@ class SignUp extends Component {
             petErr: '',
             signupErr: false,
             signUpErrors: [],
+            signUpComplete: false,
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -64,7 +66,10 @@ class SignUp extends Component {
             };
 
             if (errors.length === 0) {
-                this.setState({signupErr: false, signUpErrors: errors});
+                this.setState({signupErr: false, signUpErrors: errors},
+                () => {
+
+                });
                 this.props.history.push('/');
                 window.location.reload();
             };
@@ -78,6 +83,9 @@ class SignUp extends Component {
 
     };
 
+    toggleVerify() {
+        this.setState({toggleVerifyModal: !this.state.toggleVerifyModal});
+    };
     /** Returns the Trading Center Component
      * @return {SignUp}
      */
@@ -90,6 +98,17 @@ class SignUp extends Component {
         return (
                 <div id="container">
                 <h3>Please fill out the form below to sign up.</h3>
+                {this.state.signUpComplete && (
+                     <Modal isOpen={this.state.toggleVerifyModal} toggle={this.toggleVerify}>
+                        <ModalHeader toggle={this.toggleVerify}>
+                        Please remember to verify your email with us!</ModalHeader>
+                        <ModalBody>
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="secondary" onClick={this.toggleVerify}>Close</Button>
+                        </ModalFooter>
+                    </Modal>
+                )}
                 <Form className="signupForm" >
                     {this.state.signupErr && (
                         <div className='form-errors'>

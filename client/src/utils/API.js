@@ -64,7 +64,7 @@ export default {
     **
     */
      // Checked and working
-     signup: function(signupData) {
+    signup: function(signupData) {
         return axios.post('/api/auth/signup', signupData);
     },
     signin: function(data) {
