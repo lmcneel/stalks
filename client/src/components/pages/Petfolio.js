@@ -106,9 +106,6 @@ class Petfolio extends Component {
    * for the api call to get current prices for the ticker tape
    */
   componentDidMount() {
-    // calc.portfolioValue().then(((r) => {
-    //   this.setState({petfolioValue: r});
-
     if (this.state.petfolioValue >= 1000) {
       this.setState({portfolioValueColor: 'colorPositive'});
     } else if (this.state.petfolioValue >= 500) {
@@ -116,9 +113,7 @@ class Petfolio extends Component {
     } else {
       this.setState({petfolioValueColor: 'colorNegative'});
     }
-    // }));
-    // calc.bankValue().then(((r) => {
-    //   this.setState({bankValue: r});
+
     if (this.state.bankValue > 1000) {
       this.setState({bankValueColor: 'colorPositive'});
     } else if (this.state.bankValue > 1) {
@@ -126,8 +121,6 @@ class Petfolio extends Component {
     } else {
       this.setState({bankValueColor: 'colorNegative'});
     }
-    // }));
-
   };
 
   /**
