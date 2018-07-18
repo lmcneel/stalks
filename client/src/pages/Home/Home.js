@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Row, Col, Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Container, Row, Col} from 'reactstrap';
 import mainLogo from './../../assets/images/smp-logo.svg';
 import splashGif from './../../assets/images/SplashGIF.gif';
 
