@@ -496,7 +496,7 @@ charting(ticker) {
                                     <h1>{this.state.ticker}</h1>
                                 </div>
                                 <div className='col-sm-3'>
-                                    <h2>PRICE</h2>
+                                    <h2>Price</h2>
                                 </div>
                                 <div className='col-sm-3'>
                                     <h2>${this.state.price}</h2>
@@ -506,7 +506,7 @@ charting(ticker) {
                         <div className='col-sm-6 col-md-6'>
                             <div className='row'>
                                 <div className='col-sm-3 changeValue'>
-                                    <h2>CHANGE</h2>
+                                    <h2>Change</h2>
                                 </div>
                                 <div className='col-sm-3'>
                                     {this.state.change >= 0 ? (
@@ -535,7 +535,7 @@ charting(ticker) {
                                         <Link
                                             to={'/trading/' + this.state.ticker}
                                         >
-                                            BUY / SELL
+                                            Buy / Sell
                                         </Link>
                                     </Button>
                                 </div>
@@ -553,7 +553,7 @@ charting(ticker) {
                                 <div className='col-sm-6 col-md-4 dataSection'>
                                     <div className='row'>
                                         <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>SHARES OWNED</h4>
+                                            <h4>Shares Owned</h4>
                                         </div>
                                         <div className='col-sm-6 col-md-6 stockData'>
                                             <h4>{this.state.totalShares}</h4>
@@ -569,7 +569,7 @@ charting(ticker) {
                                     </div>
                                     <div className='row'>
                                         <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>PRICE PURCHASED</h4>
+                                            <h4>Price Purchased</h4>
                                         </div>
                                         <div className='col-sm-6 col-md-6 stockData'>
                                             <h4>${this.state.cost.toFixed(2)}</h4>
@@ -577,7 +577,7 @@ charting(ticker) {
                                     </div>
                                     <div className='row'>
                                         <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>DATE PURCHASED</h4>
+                                            <h4>Date Purchased</h4>
                                         </div>
                                         <div className='col-sm-6 col-md-6 stockData'>
                                             <h4>{this.state.datePurchased}</h4>
