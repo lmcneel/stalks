@@ -30,6 +30,7 @@ import ViewStocks from './pages/ViewStocks/ViewStocks';
 import TradingCenter from './components/TradingCenter';
 import UserSettings from './pages/Settings';
 import Login from './pages/Login';
+import API from './utils/API';
 import Footer from './components/Footer';
 
 /**
@@ -50,6 +51,105 @@ class App extends Component {
       isLoggedIn: false,
       userData: {},
     };
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.yes = this.yes.bind(this);
+    this.never = this.never.bind(this);
+    this.close = this.close.bind(this);
+    this.handleJoyrideCallback = this.handleJoyrideCallback.bind(this);
+    this.navToggleHandler = this.navToggleHandler.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
+    this.resetTour = this.resetTour.bind(this);
+  }
+
+  /**
+   * Function to check is user is in sessions
+   */
+  componentDidMount() {
+    // Here is api call
+    API.getUserProfile().then((res) => {
+      console.log(res.data);
+      if (res.data === 'User not logged in') {
+
+      } else {
+        const user = res.data;
+        this.setState({userData: user,
+        isLoggedIn: true});
+      };
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
+  /**
+   * openModal function
+   */
+  openModal() {
+    this.setState({modalIsOpen: true});
+  }
+
+  /**
+   * closeModal function
+   */
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
+
+  /**
+   * handleSelect function
+   * @param {number} index
+   * @param {number} last
+   */
+  handleSelect(index, last) {
+    if (this.joyride.getProgress().index === 2) {
+      setTimeout(() => {
+        this.joyride.next();
+      }, 1);
+    }
+  }
+
+  /**
+   * handleSelect function
+   * @param {number} result
+   */
+  handleJoyrideCallback(result) {
+    // const {joyride} = this.props;
+
+    if (result.action == 'close') {
+      this.setState({run: false});
+    }
+  }
+
+  /**
+   * resetTour function
+   */
+  resetTour() {
+    console.dir(this);
+    this.joyride.reset(true);
+    this.setState({run: true});
+  }
+
+  /**
+   * yes function
+   */
+  yes() {
+    this.closeModal();
+    this.setState({run: true});
+  }
+
+  /**
+   * never function
+   */
+  never() {
+    this.closeModal();
+    this.close();
+  }
+
+  /**
+   * close function
+   */
+  close() {
+    this.setState({showModal: false});
   }
 
   /**
@@ -68,7 +168,7 @@ class App extends Component {
     return (
       <Router>
         {this.state.isLoggedIn ? (
-          <div className="App">
+          <div className={'App '}>
             <TopNav navToggleHandler={this.navToggleHandler}/>
             <Wrapper>
               <SideNav isActive={this.state.sideNav}/>

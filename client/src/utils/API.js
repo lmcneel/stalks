@@ -44,19 +44,6 @@ export default {
         return axios
                 .get(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${data.join(',')}&types=price`);
     },
-    login: function(loginData) {
-        return axios.post('/api/auth/login', loginData)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    },
-    // Saves an article to the database
-    signup: function(signupData) {
-        return axios.post('/api/auth/signup', signupData);
-    },
     getDocs: function() {
         return axios.get('/api/docs');
     },
