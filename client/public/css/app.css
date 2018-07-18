@@ -6691,6 +6691,15 @@ a[data-toggle="collapse"] {
       display: block;
       margin-right: 0; } }
 
+/* ---------------------------------------------------
+    FOOTER
+----------------------------------------------------- */
+.bgfooter {
+  background-color: #404850;
+  color: #f8f9fa;
+  font-family: Roboto Mono, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem; }
+
 .buttonCol {
   background-color: unset;
   border: none;
