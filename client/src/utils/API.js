@@ -12,17 +12,21 @@ export default {
         return axios.post('/api/trading/sell', sellData);
     },
     findQuotes: function(data) {
-        // console.log(data);
         return axios.get(`/api/trading/quote/${data.ticker}`);
     },
-
     userQuotes: function(data) {
         // console.log(data);
         return axios.get(`/api/trading/slimquote/${data.ticker}`);
     },
-    // getInitialCash: function() {
-    //     return axios.get('api/ptfolio/initialcash');
-    // },
+    getInitialCash: function() {
+        return axios.get('api/portfolio/cash');
+    },
+    updatePortfolio: function(id, cash) {
+        return axios.patch(`/api/trading/myportfolio/${id}/${cash}`);
+    },
+    updateCurrentValue: function(id, currentvalue) {
+        return axios.patch(`/api/trading/portfolio/cv/${id}/${currentvalue}`);
+    },
     getMyPortfolio: function(portfolio) {
         return axios.get(`/api/trading/myportfolio/${portfolio}`);
     },
@@ -32,7 +36,14 @@ export default {
     getTickerText: function() {
         return axios.get('/api/petfolio/ticker');
     },
-    // Saves an article to the database
+    getWatchPrices: function(data) {
+        if (!Array.isArray(data)) {
+            console.log(data);
+            throw new Error('Data needs to be of type array');
+        }
+        return axios
+                .get(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${data.join(',')}&types=price`);
+    },
     login: function(loginData) {
         return axios.post('/api/auth/login', loginData)
             .then((response) => {
@@ -55,11 +66,14 @@ export default {
     getMyStocks: function(portfolio) {
         return axios.get(`/api/trading/mystocks/${portfolio}`);
     },
-    addNewTicker: function() {
-        return axios.post('/api/petfolio/addTicker');
+    addNewTicker: function(SQL_ID, Ticker) {
+        return axios.post(`/api/petfolio/addTicker/${SQL_ID}/${Ticker}`);
     },
-    removeExistingTicker: function() {
-        return axios.delete('/api/petfolio/removeTicker');
+    removeExistingTicker: function(SQL_ID, Ticker) {
+        return axios.delete(`/api/petfolio/removeTicker/${SQL_ID}/${Ticker}`);
+    },
+    getUserPic: function() {
+        return axios.get('/api/petfolio/userpic');
     },
     getComments: function() {
         console.log('hit API.js');
@@ -140,5 +154,21 @@ export default {
     deleteAccount: function(data) {
         console.log('Settings API: deleteAccount type: delete Route: /api/user/account/delete');
         return axios.delete('/api/user/account/delete', data);
+    },
+    viewFriends: function() {
+        console.log('friends API hit');
+        return axios.get('api/friends/view');
+    },
+    viewSingleFriend: function() {
+        console.log('view one');
+        return axios.get('api/friends/view/:id');
+    },
+    addFriend: function() {
+        console.log('friend added');
+        return axios.post('api/friends/add');
+    },
+    removeFriend: function() {
+        console.log('friend removed');
+        return axios.delete('api/friends/remove');
     },
 };

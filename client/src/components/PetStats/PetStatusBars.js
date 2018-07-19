@@ -12,7 +12,7 @@ class PetStatusBars extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            petStats: [85, 90, 50, 70],
+            petStats: [70, 100, 40, 10],
         };
     }
     /**
@@ -39,7 +39,7 @@ class PetStatusBars extends Component {
                 <div className='happiness'>
                 <ProgressBars 
                     petStatLabel="Happiness"
-                    petStatColor="info"
+                    petStatColor="success"
                     petStatValue={this.state.petStats[1]}
                 />
                 </div>

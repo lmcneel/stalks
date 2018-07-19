@@ -22,16 +22,19 @@ class OwnedStock extends Component {
  * @param {*} props
  */
     constructor(props) {
-        this.toggle = this.toggle.bind(this);
-        // this.myStocks = this.myStocks.bind(this);
-        // this.cashCalculator = this.cashCalculator.bind(this);
-        // this.dbStocks = this.dbStocks.bind(this);
-        // this.myStocksValue = this.myStocksValue.bind(this);
-        // this.portfolioValue = this.portfolioValue.bind(this);
-        // this.ROI = this.ROI.bind(this);
-        // this.bankValue = this.bankValue.bind(this);
-        // this.charting = this.charting.bind(this);
         super(props);
+        this.toggle = this.toggle.bind(this);
+        this.checkWatchList = this.checkWatchList.bind(this);
+        this.addToWatchlist = this.addToWatchlist.bind(this);
+        this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
+        this.myStocks = this.myStocks.bind(this);
+        this.cashCalculator = this.cashCalculator.bind(this);
+        this.dbStocks = this.dbStocks.bind(this);
+        this.myStocksValue = this.myStocksValue.bind(this);
+        this.portfolioValue = this.portfolioValue.bind(this);
+        this.returnOnInvestment = this.returnOnInvestment.bind(this);
+        this.bankValue = this.bankValue.bind(this);
+        this.charting = this.charting.bind(this);
         this.toggle = this.toggle.bind(this);
         this.state = {
             ticker: this.props.ticker,
@@ -39,10 +42,10 @@ class OwnedStock extends Component {
             shares: 0,
             change: 0,
             response: '',
-            portfolio_id: '5b469e9d1819e80bd4ddeb78',
+            portfolio_id: '5b4cdce882dae09a12f3fb79',
             transaction: 'buy',
             ROI: 0,
-            id: '5b469e9d1819e80bd4ddeb78',
+            id: '5b4cdce882dae09a12f3fb79',
             cost: 0,
             datePurchased: '',
             value: 0,
@@ -54,7 +57,8 @@ class OwnedStock extends Component {
             collapse: false,
             watched: false,
             eyeWatched: 'faEye',
-        },
+            sqlId: 1,
+        };
     }
 /**
  * @public componentDidMount function will render the chart
@@ -63,9 +67,9 @@ class OwnedStock extends Component {
         this.charting({ticker: this.state.ticker});
         this.myStocks(this.state.portfolio_id);
         this.dbStocks(this.state.portfolio_id);
-        // this.myStocksValue();
-        // this.bankValue(this.state.id);
-        // this.cashCalculator(this.state.portfolio_id);
+        this.myStocksValue();
+        this.bankValue(this.state.id);
+        this.cashCalculator(this.state.portfolio_id);
         this.checkWatchList();
     };
 /**
@@ -78,40 +82,51 @@ class OwnedStock extends Component {
  * @public checkWatchList function will check if the current 'ticker' is listed in user watchlist
  * @param {*} ticker
  */
-    checkWatchList(ticker) {
-        // If in watchlist set [watched] to true
-        API.getTickerText(ticker).then(((r) => {
-            if (r.data.length !== 0) {
-            let tempTicker = [];
-            for (let i=0; i<r.data.length; i++) {
-                tempTicker.push((r.data[i]).uniqueStockSymbol);
-            }
-            // console.log(tempTicker);
-            if (tempTicker.includes(this.state.ticker)) {
-            return this.setState({watched: !this.state.watched});
-            };
-            };
-        }));
-    }
-/**
- * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
- * @param {*} ticker
- */
-    addToWatchlist(ticker) {
-        // API.addNewTicker(ticker)
+checkWatchList() {
+    // If in watchlist set [watched] to true
+    API.getTickerText().then(((r) => {
+        if (r.data.length !== 0) {
+        let tempTicker = [];
+        for (let i=0; i<r.data.length; i++) {
+            tempTicker.push((r.data[i]).uniqueStockSymbol);
+        }
+        if (tempTicker.includes(this.state.ticker)) {
+            return this.setState({watched: true});
+          } else {
+            return this.setState({watched: false});
+          }
+        };
+    }));
+};
 
-        // Need to add to MySQL Watchlist
-    }
-/**
- * @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
- * @param {*} ticker
- */
-    removeFromWatchlist() {
-        // API.removeExistingTicer(ticker)
+    /**
+    * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
+    * @param {*} SQL_ID
+    * @param {*} Ticker
+    */
+       addToWatchlist() {
+           API.addNewTicker(this.state.sqlId, this.state.ticker)
+           .then((res) => {
+               console.log('Ticker Added to Watchlist');
+               this.checkWatchList();
+           })
+           .catch((err) => console.log(err));
+       };
 
-        // Need to remove from MySQL Watchlist
+   /**
+   * @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
+   * @param {*} SQL_ID
+   * @param {*} Ticker
 
-    }
+   */
+       removeFromWatchlist() {
+       API.removeExistingTicker(this.state.sqlId, this.state.ticker)
+       .then((res) => {
+           console.log('done');
+           this.checkWatchList();
+       })
+       .catch((err) => console.log(err));
+       };
 /**
  * @public myStocks function that gets users stocks from mongo database
  * @param {*} portfolio
@@ -222,7 +237,7 @@ dbStocks(portfolio) {
                             // console.log(res.data);
                             lastPrice.push(res.data[0]);
                             // console.log(lastPrice);
-                            const myROI = self.ROI(userStocks, lastPrice, allUserStocks);
+                            const myROI = self.returnOnInvestment(userStocks, lastPrice, allUserStocks);
                             if (key === this.state.ticker) {
                                 for (let i = 0; i < myROI.length; i++) {
                                     if (key === myROI[i].ticker) {
@@ -326,7 +341,7 @@ portfolioValue(stocks, lastPrice) {
 * @param {*} userStocks
 * @return {*} returns users ROI
 */
-ROI(allUserStocks, lastPrice, userStocks) {
+returnOnInvestment(allUserStocks, lastPrice, userStocks) {
     // console.log(allUserStocks);
     // console.log(lastPrice);
     let eachROI = [];
@@ -509,7 +524,7 @@ charting(ticker) {
                                     <FontAwesomeIcon
                                         className={(this.state.eyeWatched ? `faEyeWatched`:`faEye`)}
                                         onClick={this.state.watched ?
-                                        (this.removeFromWatchlist()) : (this.addToWatchlist())}
+                                        (this.removeFromWatchlist) : (this.addToWatchlist)}
                                         size='1x'
                                         icon={faEye} />
                                 </div>

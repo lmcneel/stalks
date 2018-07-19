@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
 // import {} from "reactstrap";
 
+/**
+ * Class Test
+ */
 export class Test extends Component {
+  /**
+  *@param {*} props
+  */
     constructor(props) {
       super(props);
 
