@@ -1,5 +1,4 @@
 const bCrypt = require('bcryptjs');
-const DB = require('../mongo');
 module.exports = function(sequelize, Sequelize) {
 // User Schema
     const User = sequelize.define('User', {

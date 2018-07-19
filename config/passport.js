@@ -53,48 +53,57 @@ passport.use('local-signup', new LocalStrategy(
                     SQLuser_id: user.id,
                   })
                   .then(function(mongoUser) {
+                    console.log(mongoUser);
                     // Now we create a portfolio for mongoUser
-                    
-                    DB.Portfolio.create({MongoUser_id: mongoUser.id})
-                    .then(function(portfolio) {
-                      // We now have mongo_id and mongo_portfolio_id to set into user so we update
-                      User.update({
-                        mongo_id: mongoUser.id,
-                        mongo_portfolio_id: portfolio.id,
-                      },
-                      {
-                        where: {
-                          id: user.id,
-                        },
-                      })
-                      .then(function(updatedUser) {
-                        // We now have everything we need for user now find user again...
-                        // After pet is created find user again (i know its tedious)
-                          User.findOne({
+                    console.log('Creating portfolio');
+                    DB.Portfolio.create({})
+                    .then(function(usersPortfolio) {
+                      console.log(usersPortfolio);
+                      DB.User.findOneAndUpdate(
+                        {_id: mongoUser._id}, {$push: {portfolio: usersPortfolio._id}}, {new: true})
+                        .then(function(newMongoUser) {
+                          console.log(newMongoUser);
+                          console.log(mongoUser._id);
+                          console.log(mongoUser.id);
+                          // We now have mongo_id and mongo_portfolio_id to set into user so we update
+                          User.update({
+                            mongo_id: mongoUser.id,
+                            mongo_portfolio_id: usersPortfolio.id,
+                          },
+                          {
                             where: {
                               id: user.id,
                             },
-                              include: {
-                                model: Pet,
-                                as: 'Pet',
-                                where: {
-                                  UserId: user.id,
-                                },
-                              },
                           })
-                          .then(function(userWithPet) {
-                            console.log(userWithPet);
-                            return done(null, userWithPet, 'User has been added to database');
+                          .then(function(updatedUser) {
+                            // We now have everything we need for user now find user again...
+                            // After pet is created find user again (i know its tedious)
+                              User.findOne({
+                                where: {
+                                  id: user.id,
+                                },
+                                  include: {
+                                    model: Pet,
+                                    as: 'Pet',
+                                    where: {
+                                      UserId: user.id,
+                                    },
+                                  },
+                              })
+                              .then(function(userWithPet) {
+                                console.log(userWithPet);
+                                return done(null, userWithPet, 'User has been added to database');
+                              })
+                              .catch(function(err) {
+                                console.log(`ERROR: ${err}`);
+                                return done(err);
+                              });
                           })
                           .catch(function(err) {
                             console.log(`ERROR: ${err}`);
                             return done(err);
                           });
-                      })
-                      .catch(function(err) {
-                        console.log(`ERROR: ${err}`);
-                        return done(err);
-                      });
+                        });
                     })
                     .catch(function(err) {
                       console.log(`ERROR: ${err}`);
