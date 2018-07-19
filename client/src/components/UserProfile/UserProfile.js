@@ -7,6 +7,8 @@ import API from '../../utils/API';
 import Account from './ProfileTabs/Account';
 import GameTips from './ProfileTabs/GameTips';
 import Contact from './ProfileTabs/Contact';
+import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
+
 /**
  * Function the Returns Profile Bar on left with all user info
  * @param { object } props Object with Props Passed.
@@ -99,7 +101,9 @@ class UserProfile extends Component {
                 emailVerified: false,
             },
             userLoggedIn: false,
+            toggleVerifiedModal: false,
         };
+        this.toggleVerify = this.toggleVerify.bind(this);
     };
     /**
      * Function that runs once Component is mounted to retrieve
@@ -116,7 +120,6 @@ class UserProfile extends Component {
         const url = this.props.location.search;
         const pathname = this.props.location.pathname;
         const pathArr = pathname.split('/');
-        console.log(pathArr);
         if (pathArr[3] === 'verify') {
             if (url.indexOf('userId') === 1) {
                 const searchArr = url.split('&');
@@ -139,7 +142,8 @@ class UserProfile extends Component {
                 .then((res) => {
                     console.log(res.data);
                     if (res.data.emailVerified) {
-                        this.props.history.push('/settings/account');
+                        this.props.history.push('/settings');
+                        this.toggleVerify();
                         this.getUser();
                     } else {
                         console.log('There was an error verifying the account');
@@ -189,12 +193,26 @@ class UserProfile extends Component {
                         account_length: 5,
                     };
                     this.setState({user: user,
-                    userLoggedIn: true});
+                    userLoggedIn: true}, () => {
+                        const pathname = this.props.location.pathname;
+                        const pathArr = pathname.split('/');
+                        console.log(pathArr[2]);
+                        if (typeof pathArr[2] == 'undefined') {
+                            this.props.history.push('/settings/account');
+                        };
+                    });
                 };
             })
             .catch((err) => {
                 console.log(err);
             });
+    };
+
+    /**
+     * Function to toggle verified modal
+     */
+    toggleVerify() {
+        this.setState({toggleVerifiedModal: !this.state.toggleVerifiedModal});
     };
     /**
      * @return {*} Container
@@ -204,6 +222,15 @@ class UserProfile extends Component {
         console.log(user);
         return (
             <div className='container user-profile-main-container'>
+                <Modal isOpen={this.state.toggleVerifiedModal} toggle={this.toggleVerify}>
+                    <ModalHeader toggle={this.toggleVerify}>
+                    Thank you for verifying your email!</ModalHeader>
+                    <ModalBody>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="secondary" onClick={this.toggleVerify}>Close</Button>
+                    </ModalFooter>
+                </Modal>
                 <div className='row'>
                     <div className='col-sm-12 col-md-3 profile-containers user-info'>
                             <Profile
@@ -231,7 +258,7 @@ class UserProfile extends Component {
                                 <Switch>
                                     <Route
                                         exact path="/settings/account"
-                                        render={(props) => <Account {...props} user={this.state.user} />} />
+                                        render={(props) => <Account {...props} user={user} />} />
                                     <Route
                                         exact path="/settings/game"
                                         render={(props) => <GameTips {...props} user={user} />} />
