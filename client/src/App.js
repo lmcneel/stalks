@@ -51,6 +51,7 @@ class App extends Component {
       isLoggedIn: false,
       userData: {},
     };
+
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.yes = this.yes.bind(this);
@@ -60,6 +61,7 @@ class App extends Component {
     this.navToggleHandler = this.navToggleHandler.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.resetTour = this.resetTour.bind(this);
+
   }
 
   /**
