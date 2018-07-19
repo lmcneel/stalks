@@ -30,6 +30,7 @@ import ViewStocks from './pages/ViewStocks/ViewStocks';
 import TradingCenter from './components/TradingCenter';
 import UserSettings from './pages/Settings';
 import Login from './pages/Login';
+import API from './utils/API';
 import Footer from './components/Footer';
 
 /**
@@ -47,6 +48,8 @@ class App extends Component {
       modalIsOpen: true,
       run: false,
       showModal: true,
+      isLoggedIn: false,
+      userData: {},
     };
     this.navToggleHandler = this.navToggleHandler.bind(this);
   }
@@ -85,6 +88,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+       {this.state.isLoggedIn ? (
         <div className="App">
             <TopNav navToggleHandler={this.navToggleHandler}/>
             <Wrapper>
@@ -121,6 +125,9 @@ class App extends Component {
               </MainContentWrapper>
             </Wrapper>
         </div>
+        ) : (
+          <Splash />
+        )}
       </Router>
     );
   };
