@@ -130,9 +130,8 @@ class ChangePassword extends Component {
      */
     sendCode() {
        this.toggleCodeProccessing();
-       const host = window.location.host;
+
         const data = {
-            host: host,
             current_email: this.state.userEmail,
             verificationType: 'new password',
         };
@@ -280,6 +279,7 @@ class ChangePassword extends Component {
                 {this.state.showForm ? (
                     <div className='col-md-12'>
                         <Form>
+                            <Button onClick={this.goBack}> Back </Button>
                             <FormGroup>
                                 <Label>Current Password</Label>
                                 <Input

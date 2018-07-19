@@ -6692,16 +6692,6 @@ a[data-toggle="collapse"] {
       margin-right: 0; } }
 
 /* ---------------------------------------------------
-    FOOTER
------------------------------------------------------ */
-.bgfooter {
-  background-color: #404850;
-  color: #f8f9fa;
-  font-family: Roboto Mono, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.875rem; }
-<<<<<<< HEAD
-
-/*
     SPLASH PAGE
 ----------------------------------------------------- */
 .light {
@@ -6731,8 +6721,15 @@ a[data-toggle="collapse"] {
   @media (min-width: 768px) {
     .splashGif {
       width: 700px; } }
-=======
->>>>>>> c13c431b3f847d4abdeead1e00ec1182a5551808
+
+/*
+    FOOTER
+----------------------------------------------------- */
+.bgfooter {
+  background-color: #404850;
+  color: #f8f9fa;
+  font-family: Roboto Mono, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem; }
 
 .buttonCol {
   background-color: unset;

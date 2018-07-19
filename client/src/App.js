@@ -51,7 +51,10 @@ class App extends Component {
       isLoggedIn: false,
       userData: {},
     };
+
     this.navToggleHandler = this.navToggleHandler.bind(this);
+
+
   }
 
   /**
@@ -74,9 +77,10 @@ class App extends Component {
     });
   };
 
-  /** Function that handles the click for the nav button
+  /**
+   * Function that handles the click for the nav button
    *@param {*} e
-   */
+  */
   navToggleHandler(e) {
     this.setState({sideNav: !this.state.sideNav});
   }
@@ -88,8 +92,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-       {this.state.isLoggedIn ? (
-        <div className="App">
+        {this.state.isLoggedIn ? (
+          <div className="App">
             <TopNav navToggleHandler={this.navToggleHandler}/>
             <Wrapper>
               <SideNav isActive={this.state.sideNav}/>
@@ -108,7 +112,7 @@ class App extends Component {
                     <Route exact path='/' component={Home} />
                     <Route exact path='/about' component={About} />
                     <Route exact path='/signin' component={SigninForm} />
-                    <Route exact path='/logout' component={SignoutForm} />
+                    <Route exact path='/signout' component={SignoutForm} />
                     <Route exact path='/signup' component={SignUp} />
                     <Route exact path='/login' component={Login} />
                     <Route path='/settings' component={UserSettings} />
@@ -126,7 +130,7 @@ class App extends Component {
             </Wrapper>
         </div>
         ) : (
-          <Splash />
+              <Splash />
         )}
       </Router>
     );

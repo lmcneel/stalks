@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import API from '../../utils/API';
+import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
 
 /**
  * Trading Page
@@ -13,6 +15,8 @@ class Login extends Component {
             emailErr: '',
             password: '',
             passwordErr: '',
+            signinErr: false,
+            signinErrors: [],
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -25,22 +29,35 @@ class Login extends Component {
     };
 
 
+    componentDidMount() {
+
+    };
+
     handleFormSubmit = (event) => {
         event.preventDefault();
         //if search was clicked
         //TODO: add code to handle api route for signup
         
         const data = {
-            firstname: this.state.firstname,
-            lastname: this.state.lastname,
-            username: this.state.username,
             email: this.state.email,
             password: this.state.password,
-            pet: this.state.pet
         };
         console.log(data);
-        API.signup(data).then((response) =>{
+        API.signin(data).then((response) =>{
             console.log(response.data);
+            const errors = [];
+            if (response.data === 'That email is not in our system.' || response.data === 'Incorrect Password') {
+                errors.push(response.data);
+                this.setState({signinErr: true,
+                signinErrors: errors});
+            };
+
+            if (errors.length === 0) {
+                this.setState({signinErr: false, signinErrors: errors});
+                this.props.history.push('/');
+                window.location.reload();
+            };
+
         })
         .catch((err) => {
             if (err) {
@@ -54,10 +71,19 @@ class Login extends Component {
      * @return {Login}
      */
     render() {
+        const Errors = this.state.signinErrors.map(err => {
+            return (
+                <p key={`sign-in-${err}`}> {err} </p>
+            );
+        });
         return (
             <div>
-                <div id="container">
                 <Form className="signupForm" >
+                    {this.state.signinErr && (
+                        <div className='form-errors'>
+                            {Errors}
+                        </div>
+                    )}
                     <FormGroup>
                         <Label for="exampleEmail">Email</Label>
                         <Input
@@ -78,12 +104,18 @@ class Login extends Component {
                         onChange={this.handleInputChange}
                         placeholder="*********" />
                     </FormGroup>
-                    <Button onClick={this.handleFormSubmit}>Submit</Button>
+                    <Button className="mb-4 col-12 bg-primary border-0" onClick={this.handleFormSubmit}>Submit</Button>
                 </Form>
+                <hr />
+                <h4 className="py-3 text-center">Get a stock market pet today!</h4>
                 </div>
-            </div>
         );
     }
 }
-export default Login;
 
+Login.propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+};
+export default withRouter(Login);
