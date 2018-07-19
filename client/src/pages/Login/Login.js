@@ -78,7 +78,6 @@ class Login extends Component {
         });
         return (
             <div>
-                <div id="container">
                 <Form className="signupForm" >
                     {this.state.signinErr && (
                         <div className='form-errors'>
@@ -105,10 +104,11 @@ class Login extends Component {
                         onChange={this.handleInputChange}
                         placeholder="*********" />
                     </FormGroup>
-                    <Button onClick={this.handleFormSubmit}>Submit</Button>
+                    <Button className="mb-4 col-12 bg-primary border-0" onClick={this.handleFormSubmit}>Submit</Button>
                 </Form>
+                <hr />
+                <h4 className="py-3 text-center">Get a stock market pet today!</h4>
                 </div>
-            </div>
         );
     }
 }
