@@ -12,7 +12,7 @@ const Trade = require('../../models/mongo/trade');
 
 router.route('/quote/:ticker')
 .get(function(req, res) {
-    console.log('route received' + req.params.ticker);
+    // console.log('route received' + req.params.ticker);
     request(
       `https://api.iextrading.com/1.0/stock/${req.params.ticker}/batch?types=quote,news,chart&range=1m&last=1`,
       function(error, response, body) {
@@ -50,7 +50,7 @@ router.get('/users', (req, res) => {
 
 router.route('/slimquote/:ticker')
 .get(function(req, res) {
-    console.log('route received' + req.params.ticker);
+    // console.log('route received' + req.params.ticker);
     request(
       `https://api.iextrading.com/1.0/tops/last?symbols=${req.params.ticker}`,
       function(error, response, body) {
@@ -82,7 +82,7 @@ router.get('/trades', (req, res) => {
     });
  });
 router.get('/portfolio', (req, res) => {
-    Portfolio.find({_id: '5b44cd4e020eda5258fcf2c1'})
+    Portfolio.find()
     // .populate('trades')
     // .populate({
     //     path: 'porfolios',
@@ -106,13 +106,13 @@ router.route('/sell')
 router.route('/mystocks/:portfolio_id')
 .get(tradingController.myStocks);
 
-router.route('/myportfolio/:id/:cash/')
+router.route('/updatemyportfolio/:id/:cash/')
 .patch(tradingController.updateportfolio);
 
 router.route('/portfolio/cv/:id/:currentvalue')
 .patch(tradingController.updateCurrentValue);
 
-router.route('/myportfolio/:id')
+router.route('/getmyportfolio/:id')
 .get(tradingController.myPortfolio);
 
 module.exports = router;

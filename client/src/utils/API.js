@@ -22,13 +22,13 @@ export default {
         return axios.get('api/portfolio/cash');
     },
     updatePortfolio: function(id, cash) {
-        return axios.patch(`/api/trading/myportfolio/${id}/${cash}`);
+        return axios.patch(`/api/trading/updatemyportfolio/${id}/${cash}`);
     },
     updateCurrentValue: function(id, currentvalue) {
         return axios.patch(`/api/trading/portfolio/cv/${id}/${currentvalue}`);
     },
     getMyPortfolio: function(portfolio) {
-        return axios.get(`/api/trading/myportfolio/${portfolio}`);
+        return axios.get(`/api/trading/getmyportfolio/${portfolio}`);
     },
     getPetInfo: function() {
         return axios.get('/api/petfolio/pets');

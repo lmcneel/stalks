@@ -93,8 +93,8 @@ class StockSearch extends Component {
             DOW: ['AAPL', 'AXP', 'BA', 'CAT', 'CSCO', 'CVX', 'DIS', 'DWDP', 'GE',
                 'GS', 'HD', 'IBM', 'INTC', 'JNJ', 'JPM', 'KO', 'MCD', 'MMM', 'MRK',
                 'MSFT', 'NKE', 'PFE', 'PG', 'TRV', 'UNH', 'UTX', 'V', 'VZ', 'WMT', 'XOM'],
-            Watchlist: ['AAPL', 'SLB'],
-            sqlId: 1,
+            Watchlist: [],
+            sqlId: 0,
             // List: [],
             // Lists: [],
             // selectHintOnEnter: true,
@@ -132,6 +132,22 @@ class StockSearch extends Component {
             };
         }));
     };
+/**
+ * @public toggle function for reactstap <Modal> onClick trigger
+ * @return {*} rec.sessions.user
+ */
+getUser() {
+    return API.getUserProfile()
+    .then((res) => {
+        // Need logic of if user is logged in that will set state varables
+        console.log(res.data);
+        let SQLID = res.data.id;
+        return this.setState({
+            sqlId: SQLID,
+        });
+    })
+    .catch((err) => console.log(err));
+};
 /**
  * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
  * @param {*} SQL_ID
@@ -212,6 +228,7 @@ class StockSearch extends Component {
      * @public componentDidMount function will render the chart
      */
     componentDidMount() {
+        this.getUser();
         this.charting({ ticker: this.state.ticker });
         this.checkWatchList({ ticker: this.state.ticker });
     };

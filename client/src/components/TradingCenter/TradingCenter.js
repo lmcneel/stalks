@@ -66,16 +66,8 @@ const propTypes = {
         params: PropTypes.shape({
             ticker: PropTypes.string,
         }).isRequired,
-    }).isRequired,
+    }),
     modalName: PropTypes.string,
-}
-
-let watched = false; // This watchlist flag
-let eyeWatched = 'faEye'; // class variable for watchlist condition
-
-const checkWatchList = () => {
-    // If in watchlist set [watched] to true
-    return watched = false;
 };
 
 /**
@@ -88,6 +80,7 @@ class TradingCenter extends Component {
      */
     constructor(props) {
         super(props);
+        this.getUser = this.getUser.bind(this);
         // ---These are triggerd from onClick---
         // -------------------------------------
         this.toggle = this.toggle.bind(this);
@@ -123,26 +116,27 @@ class TradingCenter extends Component {
             primaryExchange: '',
             sector: '',
             response: '',
-            portfolio_id: '5b4cf8a4f387eda4bd04e253',
+            portfolio_id: '',
             portfolioValue: 0,
             transaction: 'buy',
             ROI: 0,
-            id: '5b4cf8a4f387eda4bd04e253',
-            sqlId: 1,
-
+            id: '',
+            sqlId: 0,
             cost: 0,
             datePurchased: '',
             value: 0,
             totalShares: 0,
-            initialCash: 20000,
+            initialCash: 0,
+            dynoCash: 0,
             cashBalance: 0,
-            watchedArray: ['AAPL', 'XPP'],
+            watchedArray: '',
             modal: false,
             watched: false,
             eyeWatched: 'faEye',
             modalIsOpen: true,
             run: false,
             showModal: true,
+
         };
         this.toggle = this.toggle.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
@@ -153,18 +147,43 @@ class TradingCenter extends Component {
      * @public componentDidMount function will render elements
      */
     componentDidMount() {
+        this.getUser();
         this.charting({ticker: this.state.ticker});
+        // this.getBankValue(this.state.portfolio_id);
         this.myStocks(this.state.portfolio_id);
         this.dbStocks(this.state.portfolio_id);
         this.myStocksValue();
-        this.getBankValue(this.state.portfolio_id);
-        this.myWatchlist(this.state.watchedArray);
+        // this.myWatchlist(this.state.watchedArray);
         // this.cashCalculator(this.state.portfolio_id);
         this.checkWatchList();
     };
-    /**
-     * @public toggle function for reactstap <Modal> onClick trigger
-     */
+
+/**
+ * @public toggle function for reactstap <Modal> onClick trigger
+ * @return {*} rec.sessions.user
+ */
+getUser() {
+    return API.getUserProfile()
+    .then((res) => {
+        // Need logic of if user is logged in that will set state varables
+        let mongID = res.data.mongo_id;
+        let mongoPrtID = res.data.mongo_portfolio_id;
+        let SQLID = res.data.id;
+        // console.log(mongID);
+        // console.log(mongoPrtID);
+        // console.log(SQLID);
+        return this.setState({
+            id: mongID,
+            portfolio_id: mongoPrtID,
+            sqlId: SQLID,
+        }),
+        this.getBankValue(this.state.portfolio_id);
+    })
+    .catch((err) => console.log(err));
+};
+/**
+ * @public toggle function for reactstap <Modal> onClick trigger
+ */
     toggle() {
         this.setState({
             modal: !this.state.modal,
@@ -209,7 +228,6 @@ class TradingCenter extends Component {
 * @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
 * @param {*} SQL_ID
 * @param {*} Ticker
-
 */
 removeFromWatchlist() {
     API.removeExistingTicker(this.state.sqlId, this.state.ticker)
@@ -225,7 +243,7 @@ removeFromWatchlist() {
      * @param {*} event
      */
     handleInputChange(event) {
-        const { name, value } = event.target;
+        const {name, value} = event.target;
         this.setState({
             [name]: value,
         });
@@ -248,6 +266,7 @@ removeFromWatchlist() {
      * @return {*} returns users stocks
      */
     myStocks(portfolio) {
+        console.log(this.state.portfolio_id);
         return API.getMyStocks(portfolio)
             .then((res) => {
                 let userStocks = {};
@@ -288,20 +307,11 @@ removeFromWatchlist() {
     }
 /**
  * @public cashCalculator function that gets users remainig cash value
- * @param {*} portfolio
- * @return {*} returns users cash
 */
-    // cashCalculator(portfolio) {
-    //     return API.getMyStocks(portfolio)
-    //         .then((res) => {
-    //             let cashTotal = 200000;
-    //             for (let i = 0; i < res.data.length; i++) {
-    //                 cashTotal -= (res.data[i].sharePrice * 100 * res.data[i].shares)/100;
-    //             }
-    //             this.setState({cashBalance: (cashTotal).toFixed(2)});
-    //         })
-    //         .catch((err) => console.log(err));
-    // }
+    cashCalculator() {
+        let cash = this.state.initialCash;
+       this.setState({dynoCash: cash});
+    }
 
 /**
  * @public dbStocks function, It makes a call to Mongo Database (Trades Collection),
@@ -485,9 +495,10 @@ updatePortfolioValue() {
         let bank = 0;
         return API.getMyPortfolio(portfolio)
             .then((res) => {
+                // console.log(res);
                 let data = res.data;
                 bank = data[0].cash;
-                console.log(bank);
+                // console.log(bank);
                 return this.setState({initialCash: bank});
                })
             .catch((err) => console.log(err));
@@ -549,20 +560,12 @@ updatePortfolioValue() {
                     return dayArray;
                 });
 
-                // const chartCategories = res.data.chart.map((day) => {
-                //     let dateArray = [];
-                //     dateArray.push(day.date);
-                //     return dateArray;
-                // });
                 Highcharts.chart('stockChart', {
                     chart: {
                         spacingBottom: 20,
-                        // plotBackgroundColor: '#DDDFE1',
-                        // backgroundColor: '#DDDFE1',
                         height: null,
                     },
                     title: {
-                        // text: `${this.state.ticker} Stock Price`
                         text: null,
                     },
 
@@ -605,8 +608,6 @@ updatePortfolioValue() {
         if ((this.state.initialCash - (this.state.shares * this.state.price)) >= 0) {
                 let cashBalanceTemp = this.state.initialCash - (this.state.shares * this.state.price);
                 this.setState({cashBalance: cashBalanceTemp});
-                this.updateBankValue();
-                this.updatePortfolioValue();
             API.findQuotes(
                 { ticker: this.state.ticker }
             ).then((res) => {
@@ -627,7 +628,9 @@ updatePortfolioValue() {
                             this.myStocks(this.state.portfolio_id);
                             this.dbStocks(this.state.portfolio_id);
                             this.myStocksValue();
-                            this.cashCalculator(this.state.portfolio_id);
+                            // this.cashCalculator(this.state.portfolio_id);
+                            this.updateBankValue();
+                            this.updatePortfolioValue();
                             this.toggle();
                         })
                         .catch((err) => console.log(err));
@@ -647,11 +650,8 @@ updatePortfolioValue() {
      */
     sellShares() {
         if (this.state.shares <= this.state.totalShares) {
-            let cashBalanceTemp = this.state.initialCash - (this.state.shares * this.state.price);
-            console.log(cashBalanceTemp);
+            let cashBalanceTemp = this.state.initialCash + (this.state.shares * this.state.price);
             this.setState({cashBalance: cashBalanceTemp});
-            this.updateBankValue();
-            this.updatePortfolioValue();
 
             API.findQuotes(
                 {ticker: this.state.ticker}
@@ -673,7 +673,9 @@ updatePortfolioValue() {
                             this.myStocks(this.state.portfolio_id);
                             this.dbStocks(this.state.portfolio_id);
                             this.myStocksValue();
-                            this.cashCalculator(this.state.portfolio_id);
+                            this.updateBankValue();
+                            this.updatePortfolioValue();
+                            // this.cashCalculator(this.state.portfolio_id);
                             this.toggle();
                         })
                         .catch((err) => console.log(err));
@@ -704,7 +706,7 @@ updatePortfolioValue() {
     resetTour() {
         console.dir(this);
         this.joyride.reset(true);
-        this.setState({ run: true });
+        this.setState({run: true});
     }
     /**
      * Render function
@@ -750,7 +752,7 @@ updatePortfolioValue() {
                                     <div className='col-sm-4 changeValue'>
                                         <h2>CHANGE</h2>
                                     </div>
-                                    {/* <div className='col-sm-4'>
+                                    <div className='col-sm-4'>
                                         {this.state.change >= 0 ? (
                                             <div id='changeValuePositive'>
                                                 <h2>+{this.state.change.toFixed(2)}%</h2>
@@ -761,7 +763,7 @@ updatePortfolioValue() {
                                                 </div>
                                             )
                                         }
-                                    </div> */}
+                                    </div>
                                 </div>
                                 <div className='col-sm-2 stockWatch'>
                                     <FontAwesomeIcon
@@ -788,7 +790,6 @@ updatePortfolioValue() {
                                 </div>
                                 <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>{this.state.totalShares}</h4>
-                                    {/* Placeholder */}
                                 </div>
                             </div>
                             <div className='row roiRow'>
@@ -797,7 +798,6 @@ updatePortfolioValue() {
                                 </div>
                                 <div className='col-sm-6 col-md-6 stockData'>
                                     <h4>{this.state.ROI}%</h4>
-                                    {/* Placeholder */}
                                 </div>
                             </div>
                             <div className="priceAndDateRow">
@@ -890,7 +890,7 @@ updatePortfolioValue() {
                                     <h4>${(this.state.shares * this.state.price).toFixed(2)}</h4>
                                 </div>
                             </div>
-                            <div className='row totalCalc'>
+                            {/* <div className='row totalCalc'>
                                 <div className='col-sm-6 col-md-6 totalCalcLabel'>
                                     <h4>New Bank Value:</h4>
                                 </div>
@@ -901,7 +901,7 @@ updatePortfolioValue() {
                                     ) : (<h4>${(((this.state.initialCash * 100) -
                                     (-(this.state.shares) * this.state.price * 100)) / 100).toFixed(2)}</h4>)}
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                         <div>
                             <div>

@@ -11,10 +11,11 @@ class BankValue extends Component {
  */
   constructor(props) {
     super(props);
+    this.getUser = this.getUser.bind(this);
     this.bankValue = this.bankValue.bind(this);
     this.state = {
-      bankValue: 3500,
-      portfolio_id: '5b4cf8a4f387eda4bd04e253',
+      bankValue: 0,
+      portfolio_id: '',
 
     };
   }
@@ -22,9 +23,23 @@ class BankValue extends Component {
      * @public componentDidMount function will render elements
      */
     componentDidMount() {
-      this.bankValue(this.state.portfolio_id);
+      this.getUser();
+      // this.bankValue(this.state.portfolio_id);
     };
-
+    /**
+     * @public toggle function for reactstap <Modal> onClick trigger
+     * @return {*} rec.sessions.user
+     */
+    getUser() {
+      return API.getUserProfile()
+      .then((res) => {
+          // Need logic of if user is logged in that will set state varables
+          let mongoPrtID = res.data.mongo_portfolio_id;
+          return this.setState({portfolio_id: mongoPrtID}),
+          this.bankValue(this.state.portfolio_id);
+      })
+      .catch((err) => console.log(err));
+    };
     /**
      * @public bankValue function that gets users bank value from mongo database
      * @param {*} portfolio
