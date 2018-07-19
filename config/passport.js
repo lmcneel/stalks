@@ -3,6 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const db = require('../models/mysql');
 const User = db.User;
 const Pet = db.Pet;
+const DB = require('../models/mongo');
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
 passport.use('local-signup', new LocalStrategy(
   // Our user will sign in using an email, rather than a "username"
@@ -36,31 +37,64 @@ passport.use('local-signup', new LocalStrategy(
               password: password,
               balance: 10000,
             })
-              .then(function(user) {
-                console.log(`User has been created: ${user}`);
-                console.log(`Now we create the pet with userId ${user.id}`);
-                // Once user is created will now add the pet to the database
-                db.Pet.create({
-                  petType: pet,
-                  UserId: user.id,
-                })
-                  .then(function(pet) {
-                    console.log(`Pet has been created ${pet}.`);
-                    // After pet is created find user again (i know its tedious)
-                    User.findOne({
-                      where: {
-                        id: user.id,
+            .then(function(user) {
+              console.log(`User has been created: ${user}`);
+              console.log(`Now we create the pet with userId ${user.id}`);
+              // Once user is created will now add the pet to the database
+              db.Pet.create({
+                petType: pet,
+                UserId: user.id,
+              })
+                .then(function(pet) {
+                  console.log(`Pet has been created ${pet}.`);
+                  // After the users pet has been created lets create the user Mongo information
+                  // Starting with mongo user
+                  DB.User.create({
+                    SQLuser_id: user.id,
+                  })
+                  .then(function(mongoUser) {
+                    // Now we create a portfolio for mongoUser
+                    
+                    DB.Portfolio.create({MongoUser_id: mongoUser.id})
+                    .then(function(portfolio) {
+                      // We now have mongo_id and mongo_portfolio_id to set into user so we update
+                      User.update({
+                        mongo_id: mongoUser.id,
+                        mongo_portfolio_id: portfolio.id,
                       },
-                        include: {
-                          model: Pet,
-                          as: 'Pet',
-                          where: {
-                            UserId: user.id,
-                          },
+                      {
+                        where: {
+                          id: user.id,
                         },
-                    })
-                    .then(function(userWithPet) {
-                      return done(null, userWithPet, 'User has been added to database');
+                      })
+                      .then(function(updatedUser) {
+                        // We now have everything we need for user now find user again...
+                        // After pet is created find user again (i know its tedious)
+                          User.findOne({
+                            where: {
+                              id: user.id,
+                            },
+                              include: {
+                                model: Pet,
+                                as: 'Pet',
+                                where: {
+                                  UserId: user.id,
+                                },
+                              },
+                          })
+                          .then(function(userWithPet) {
+                            console.log(userWithPet);
+                            return done(null, userWithPet, 'User has been added to database');
+                          })
+                          .catch(function(err) {
+                            console.log(`ERROR: ${err}`);
+                            return done(err);
+                          });
+                      })
+                      .catch(function(err) {
+                        console.log(`ERROR: ${err}`);
+                        return done(err);
+                      });
                     })
                     .catch(function(err) {
                       console.log(`ERROR: ${err}`);
@@ -76,10 +110,15 @@ passport.use('local-signup', new LocalStrategy(
                 console.log(`ERROR: ${err}`);
                 return done(err);
               });
-          }
-        });
+          })
+          .catch(function(err) {
+            console.log(`ERROR: ${err}`);
+            return done(err);
+          });
       }
     });
+  }
+});
 }));
 
 /**

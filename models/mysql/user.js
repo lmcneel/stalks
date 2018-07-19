@@ -67,60 +67,6 @@ module.exports = function(sequelize, Sequelize) {
        user.password = hashedPassword;
        console.log(`Users password in database is now ${user.password}`);
     });
-
-    User.afterCreate(function(user) {
-        console.log('User has just been created');
-        console.log('fasmdal');
-        DB.User.create({
-            SQLuser_id: user.id,
-        })
-        .then(function(mongoUser) {
-            console.log(`Created user in Mongo ${mongoUser}. Mongo id is ${mongoUser.id}`);
-            console.log(`Setting MYSQL user mongo_id to ${mongoUser.id}`);
-            User.update({
-                mongo_id: mongoUser.id,
-            }, {
-                where: {
-                    id: user.id,
-                },
-            })
-            .then(function(updatedUser) {
-                console.log('User is now updated with mongo_id');
-                console.log(updatedUser);
-
-                console.log('Now making portfolio for user');
-                // Now we make a portfolio in mongo for user
-                DB.Portfolio.create({MongoUser_id: mongoUser.id})
-                .then(function(portfolio) {
-                    console.log('Portfolio has been made for user');
-                    console.log(portfolio);
-                    User.update({
-                        mongo_portfolio_id: portfolio.id,
-                    }, {
-                        where: {
-                            id: user.id,
-                        },
-                    })
-                    .then(function(userWPortfolioandMongo) {
-                        console.log(userWPortfolioandMongo);
-                        console.log('User has been updated with portfolio ID');
-                    })
-                    .catch(function(err) {
-                        console.log(err);
-                    });
-                })
-                .catch(function(err) {
-                    console.log(err);
-                });
-            })
-            .catch(function(err) {
-                console.log(`ERROR: ${err}`);
-            });
-        })
-        .catch(function(err) {
-            console.log(`ERROR: ${err}`);
-        });
-    });
     // names of other models have not been established so the associations are subject to change
     // User.associate = function(models) {
     //     // at this point we are assuming users only have one pet
