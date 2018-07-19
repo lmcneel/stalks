@@ -48,6 +48,7 @@ class App extends Component {
       run: false,
       showModal: true,
     };
+    this.navToggleHandler = this.navToggleHandler.bind(this);
   }
 
   /**
