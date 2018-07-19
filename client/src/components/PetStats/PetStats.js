@@ -4,6 +4,7 @@ import PetStatusBars from '../PetStats/PetStatusBars';
 import PetPic from '../PetStats/PetPic';
 import PetName from '../PetStats/PetName';
 import API from '../../utils/API';
+import Wolf from '../../assets/images/Wolf1.svg';
 
 /**
  * @class
@@ -126,7 +127,7 @@ class PetStats extends React.Component {
 
             <Col>
             <div>
-              <PetPic pic={this.state.pic}/>
+              <PetPic pic={Wolf}/>
             </div>
             </Col>
 

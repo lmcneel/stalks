@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button } from 'reactstrap';
 import "./Card.css";
+// import Antony from '../anthony.jpg'
 
 const UserCard = (props) => {
   return (

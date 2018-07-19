@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
-
 import Nav from './Nav'
 import {Button, Container, Row, Col } from 'reactstrap';
 import Card from './Card'
 import API from '../../utils/API'
+import BlueCollar from '../../assets/images/BlueCollar.svg';
+import RedCollar from '../../assets/images/RedCollar.svg';
+import Bowtie from '../../assets/images/Bowtie.svg';
+import Kibble from '../../assets/images/Kibble.svg';
+import Rope from '../../assets/images/Rope.png';
+import Ball from '../../assets/images/Ball.svg';
+import BowTie from '../../assets/images/Bowtie.svg'
+
 
 
 // Saved Component used when saved tab is clicked. shows the saved components
@@ -23,6 +30,25 @@ class MainApp extends Component {
         API.displayPurchasedFoodAndToys()
         .then(res => this.setState({results: res.data}))
     }
+
+    imageName = (item) => { 
+        switch (item){
+        case('ball'): return Ball
+        break;
+        case('rope'): return Rope
+        break;
+        case('kibble'): return Kibble
+        break;
+        case('treat'): return Kibble
+        break;
+        case('red collar'): return RedCollar
+        break;
+        case('blue collar'): return BlueCollar
+        break;
+        case('bow tie'): return BowTie
+        break;
+        default: return BlueCollar
+    }}
 
     componentDidMount() {
         this.displayAccessories()
@@ -47,7 +73,7 @@ class MainApp extends Component {
                         <div style={{'display': 'contents'}}>
                             {this.state.results.map((result, index) => {
                                 return (
-                                  <Card name={result.name} image={result.imageURL} buttonName={'Use'} style={{'margin':'50px'}}/>
+                                  <Card name={result.name} image={this.imageName(result.name)} buttonName={'Use'} style={{'margin':'50px'}}/>
                                 );
                             })}
                         </div>
