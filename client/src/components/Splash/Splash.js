@@ -39,26 +39,27 @@ class Splash extends Component {
     render() {
         return (
             <Container fluid className='bg-success'>
-                <Row className="text-center">
+                <Row className="text-center mb-3">
                     <Col>
-                    <img src={splashGif} className="mx-auto d-block"/>
-                    <img src={mainLogo} alt="Text Logo for Stock Market
-         Pets in a pixel looking fontface, logo is white on green bg" className="mx-auto d-block col-8 mt-5 mb-3"/>
-                    <h1 className="pt-5">Stock Market Pets</h1>
-                    <p>Adopt a Stock Market Pet and learn the basics of the stock market.</p>
+                    <img src={splashGif} className="mx-auto d-block splashGif"/>
+                    <img src={mainLogo} alt="Text Logo for Stock
+                    Market Pets in a pixel looking fontface, logo is white on green bg"
+                    className="mx-auto d-block mt-5 mb-3 logo"/>
+                    <p className="text-center light">
+                    Adopt a Stock Market Pet and learn the basics of the stock market.</p>
                     </Col>
                 </Row>
                 <Row>
-                    <Col className="bg-light">
+                    <Col className="bg-white col-10 col-md-8 col-lg-5 py-3 p-4 mb-5 mx-auto border rounded">
                         {this.state.showSignIn ? (
                             <div>
                             <Login />
-                            <Button onClick={this.toggleSignup}> Sign Up </Button>
+                            <Button className="col-12 bg-primary border-0" onClick={this.toggleSignup}> Sign Up </Button>
                             </div>
                         ) : (
                             <div>
                             <SignUp />
-                            <Button onClick={this.toggleSignup}> Sign In </Button>
+                            <Button className=" bg-primary border-0" onClick={this.toggleSignup}> Sign In </Button>
                             </div>
                         )}
                     </Col>

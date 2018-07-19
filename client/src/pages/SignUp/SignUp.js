@@ -97,7 +97,7 @@ class SignUp extends Component {
         });
         return (
                 <div id="container">
-                <h3>Please fill out the form below to sign up.</h3>
+                <h4 className="pb-2">Please fill out the form below to sign up.</h4>
                 {this.state.signUpComplete && (
                      <Modal isOpen={this.state.toggleVerifyModal} toggle={this.toggleVerify}>
                         <ModalHeader toggle={this.toggleVerify}>
@@ -192,8 +192,9 @@ class SignUp extends Component {
                         </Label>
                         </FormGroup>
                     </FormGroup>
-                    <Button onClick={this.handleFormSubmit}>Submit</Button>
+                    <Button className="mb-4 col-12 bg-primary border-0" onClick={this.handleFormSubmit}>Submit</Button>
                 </Form>
+                <p>Already have a pet?</p>
                 </div>
         );
     }

@@ -239,3 +239,53 @@ a[data-toggle="collapse"] {
         margin-right: 0;
     } 
 }
+
+/* ---------------------------------------------------
+    SPLASH PAGE
+----------------------------------------------------- */
+
+.light {
+    color: $white;;
+    font-size: $font-size-lg;
+
+}
+
+.logo {
+
+
+    @include media-breakpoint-up(xs){
+        width: 370px;
+    } 
+
+    @include media-breakpoint-up(sm){
+        width: 500px;
+    } 
+
+    @include media-breakpoint-up(md){
+        width: 600px;
+    } 
+
+    @include media-breakpoint-up(md){
+        width: 700px;
+    } 
+
+}
+
+.splashGif {
+    
+    @include media-breakpoint-up(xs){
+        width: 370px;
+    } 
+
+    @include media-breakpoint-up(sm){
+        width: 500px;
+    } 
+
+    @include media-breakpoint-up(md){
+        width: 600px;
+    } 
+
+    @include media-breakpoint-up(md){
+        width: 700px;
+    } 
+}

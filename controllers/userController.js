@@ -11,7 +11,7 @@ module.exports = {
             res.json(req.session.user);
         } else {
            res.json('User not logged in');
-        }
+        };
     },
     // In Progress
     checkPassword: function(req, res ) {
