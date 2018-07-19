@@ -3,6 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const db = require('../models/mysql');
 const User = db.User;
 const Pet = db.Pet;
+const DB = require('../models/mongo');
 // Telling passport we want to use a Local Strategy. In other words, we want login with a username/email and password
 passport.use('local-signup', new LocalStrategy(
   // Our user will sign in using an email, rather than a "username"
@@ -36,31 +37,73 @@ passport.use('local-signup', new LocalStrategy(
               password: password,
               balance: 10000,
             })
-              .then(function(user) {
-                console.log(`User has been created: ${user}`);
-                console.log(`Now we create the pet with userId ${user.id}`);
-                // Once user is created will now add the pet to the database
-                db.Pet.create({
-                  petType: pet,
-                  UserId: user.id,
-                })
-                  .then(function(pet) {
-                    console.log(`Pet has been created ${pet}.`);
-                    // After pet is created find user again (i know its tedious)
-                    User.findOne({
-                      where: {
-                        id: user.id,
-                      },
-                        include: {
-                          model: Pet,
-                          as: 'Pet',
-                          where: {
-                            UserId: user.id,
+            .then(function(user) {
+              console.log(`User has been created: ${user}`);
+              console.log(`Now we create the pet with userId ${user.id}`);
+              // Once user is created will now add the pet to the database
+              db.Pet.create({
+                petType: pet,
+                UserId: user.id,
+              })
+                .then(function(pet) {
+                  console.log(`Pet has been created ${pet}.`);
+                  // After the users pet has been created lets create the user Mongo information
+                  // Starting with mongo user
+                  DB.User.create({
+                    SQLuser_id: user.id,
+                  })
+                  .then(function(mongoUser) {
+                    console.log(mongoUser);
+                    // Now we create a portfolio for mongoUser
+                    console.log('Creating portfolio');
+                    DB.Portfolio.create({})
+                    .then(function(usersPortfolio) {
+                      console.log(usersPortfolio);
+                      DB.User.findOneAndUpdate(
+                        {_id: mongoUser._id}, {$push: {portfolio: usersPortfolio._id}}, {new: true})
+                        .then(function(newMongoUser) {
+                          console.log(newMongoUser);
+                          console.log(mongoUser._id);
+                          console.log(mongoUser.id);
+                          // We now have mongo_id and mongo_portfolio_id to set into user so we update
+                          User.update({
+                            mongo_id: mongoUser.id,
+                            mongo_portfolio_id: usersPortfolio.id,
                           },
-                        },
-                    })
-                    .then(function(userWithPet) {
-                      return done(null, userWithPet, 'User has been added to database');
+                          {
+                            where: {
+                              id: user.id,
+                            },
+                          })
+                          .then(function(updatedUser) {
+                            // We now have everything we need for user now find user again...
+                            // After pet is created find user again (i know its tedious)
+                              User.findOne({
+                                where: {
+                                  id: user.id,
+                                },
+                                  include: {
+                                    model: Pet,
+                                    as: 'Pet',
+                                    where: {
+                                      UserId: user.id,
+                                    },
+                                  },
+                              })
+                              .then(function(userWithPet) {
+                                console.log(userWithPet);
+                                return done(null, userWithPet, 'User has been added to database');
+                              })
+                              .catch(function(err) {
+                                console.log(`ERROR: ${err}`);
+                                return done(err);
+                              });
+                          })
+                          .catch(function(err) {
+                            console.log(`ERROR: ${err}`);
+                            return done(err);
+                          });
+                        });
                     })
                     .catch(function(err) {
                       console.log(`ERROR: ${err}`);
@@ -76,10 +119,15 @@ passport.use('local-signup', new LocalStrategy(
                 console.log(`ERROR: ${err}`);
                 return done(err);
               });
-          }
-        });
+          })
+          .catch(function(err) {
+            console.log(`ERROR: ${err}`);
+            return done(err);
+          });
       }
     });
+  }
+});
 }));
 
 /**
@@ -93,7 +141,6 @@ passport.use('local-signin', new LocalStrategy(
   },
   function(req, email, password, done) {
     console.log('User is attempting to sign in');
-    console.log(req.body);
     // Check email/username match password
     User.findOne({
         where: {email: email},
@@ -104,13 +151,16 @@ passport.use('local-signin', new LocalStrategy(
     })
     .then(function(user) {
       if (user) {
+        console.log('found a user');
         // Since user has been found check if password matches our hash
         if (user.validPassword(password)) {
-          // since true means user put in the right credentials so log the user in!
-
           return done(null, user, 'User has logged in');
+        } else {
+          console.log('wrong password');
+          return done('Incorrect Password');
         }
-      } else {
+       } else {
+        console.log('....');
         return done('That email is not in our system.');
       };
     })

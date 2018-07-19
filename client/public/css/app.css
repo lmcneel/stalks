@@ -6700,6 +6700,37 @@ a[data-toggle="collapse"] {
   font-family: Roboto Mono, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   font-size: 0.875rem; }
 
+/*
+    SPLASH PAGE
+----------------------------------------------------- */
+.light {
+  color: #fff;
+  font-size: 1.35rem; }
+
+.logo {
+  width: 370px; }
+  @media (min-width: 576px) {
+    .logo {
+      width: 500px; } }
+  @media (min-width: 768px) {
+    .logo {
+      width: 600px; } }
+  @media (min-width: 768px) {
+    .logo {
+      width: 700px; } }
+
+.splashGif {
+  width: 370px; }
+  @media (min-width: 576px) {
+    .splashGif {
+      width: 500px; } }
+  @media (min-width: 768px) {
+    .splashGif {
+      width: 600px; } }
+  @media (min-width: 768px) {
+    .splashGif {
+      width: 700px; } }
+
 .buttonCol {
   background-color: unset;
   border: none;

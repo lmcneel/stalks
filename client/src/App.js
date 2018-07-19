@@ -30,6 +30,7 @@ import ViewStocks from './pages/ViewStocks/ViewStocks';
 import TradingCenter from './components/TradingCenter';
 import UserSettings from './pages/Settings';
 import Login from './pages/Login';
+import API from './utils/API';
 import Footer from './components/Footer';
 
 /**
@@ -47,14 +48,35 @@ class App extends Component {
       modalIsOpen: true,
       run: false,
       showModal: true,
+      isLoggedIn: false,
+      userData: {},
     };
     this.navToggleHandler = this.navToggleHandler.bind(this);
   }
 
   /**
-   * Function that handles the click for the nav button
+   * Function to check is user is in sessions
+   */
+  componentDidMount() {
+    // Here is api call
+    API.getUserProfile().then((res) => {
+      console.log(res.data);
+      if (res.data === 'User not logged in') {
+
+      } else {
+        const user = res.data;
+        this.setState({userData: user,
+        isLoggedIn: true});
+      };
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
+
+  /** Function that handles the click for the nav button
    *@param {*} e
-  */
+   */
   navToggleHandler(e) {
     this.setState({sideNav: !this.state.sideNav});
   }
@@ -66,7 +88,8 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
+        {this.state.isLoggedIn ? (
+          <div className="App">
             <TopNav navToggleHandler={this.navToggleHandler}/>
             <Wrapper>
               <SideNav isActive={this.state.sideNav}/>
@@ -85,7 +108,7 @@ class App extends Component {
                     <Route exact path='/' component={Home} />
                     <Route exact path='/about' component={About} />
                     <Route exact path='/signin' component={SigninForm} />
-                    <Route exact path='/logout' component={SignoutForm} />
+                    <Route exact path='/signout' component={SignoutForm} />
                     <Route exact path='/signup' component={SignUp} />
                     <Route exact path='/login' component={Login} />
                     <Route path='/settings' component={UserSettings} />
@@ -102,6 +125,9 @@ class App extends Component {
               </MainContentWrapper>
             </Wrapper>
         </div>
+        ) : (
+              <Splash />
+        )}
       </Router>
     );
   };
