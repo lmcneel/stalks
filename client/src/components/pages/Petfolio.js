@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {Container, Row, Col, Button} from 'reactstrap';
-import {PetStatsVert} from './../PetStats';
+import React, { Component } from 'react';
+import { Container, Row, Col, Button } from 'reactstrap';
+import { PetStatsVert } from './../PetStats';
 import OwnedStock from './../OwnedStock/OwnedStock';
 import BankValue from './../BankValue/BankValue';
 import PetfolioValue from './../PetfolioValue/PetfolioValue';
@@ -55,11 +55,11 @@ const joyridePetfolio = [
     selector: '.tradeCenterLink',
     style: {
       footer: {
-          display: 'none',
+        display: 'none',
       },
+    },
   },
-  },
-  
+
 ];
 
 /**
@@ -110,21 +110,21 @@ class Petfolio extends Component {
     //   this.setState({petfolioValue: r});
 
     if (this.state.petfolioValue >= 1000) {
-      this.setState({portfolioValueColor: 'colorPositive'});
+      this.setState({ portfolioValueColor: 'colorPositive' });
     } else if (this.state.petfolioValue >= 500) {
-      this.setState({portfolioValueColor: 'colorNeutral'});
+      this.setState({ portfolioValueColor: 'colorNeutral' });
     } else {
-      this.setState({petfolioValueColor: 'colorNegative'});
+      this.setState({ petfolioValueColor: 'colorNegative' });
     }
     // }));
     // calc.bankValue().then(((r) => {
     //   this.setState({bankValue: r});
     if (this.state.bankValue > 1000) {
-      this.setState({bankValueColor: 'colorPositive'});
+      this.setState({ bankValueColor: 'colorPositive' });
     } else if (this.state.bankValue > 1) {
-      this.setState({bankValueColor: 'colorNeutral'});
+      this.setState({ bankValueColor: 'colorNeutral' });
     } else {
-      this.setState({bankValueColor: 'colorNegative'});
+      this.setState({ bankValueColor: 'colorNegative' });
     }
     // }));
 
@@ -134,14 +134,14 @@ class Petfolio extends Component {
    * openModal function
    */
   openModal() {
-    this.setState({modalIsOpen: true});
+    this.setState({ modalIsOpen: true });
   }
 
   /**
    * closeModal function
    */
   closeModal() {
-    this.setState({modalIsOpen: false });
+    this.setState({ modalIsOpen: false });
   }
 
   /**
@@ -162,10 +162,10 @@ class Petfolio extends Component {
   * @param {number} result
   */
   handleJoyrideCallback(result) {
-    const {joyride} = this.props;
+    const { joyride } = this.props;
 
     if (result.action === 'close') {
-      this.setState({run: false});
+      this.setState({ run: false });
     }
   }
 
@@ -195,7 +195,7 @@ class Petfolio extends Component {
    * close function
    */
   close() {
-    this.setState({showModal: false});
+    this.setState({ showModal: false });
   }
 
   /**
@@ -248,17 +248,17 @@ class Petfolio extends Component {
 
             <Col>
               <Row>
-              <Col>
-                <div className= {`${this.state.portfolioValueColor} border rounded colorBoxes p-4`}>
-                <h5 className="petfolioPortfolioText">Petfolio Value</h5>
+                <Col>
+                  <div className={`${this.state.portfolioValueColor} border rounded colorBoxes p-4`}>
+                    <h5 className="petfolioPortfolioText">Petfolio Value</h5>
 
-                <PetfolioValue />
-                </div>
-              </Col>
-              <Col>
-                <div className={`${this.state.bankValueColor} border rounded colorBoxes p-4`}>
-                <h5 className="petfolioBankText">Bank</h5>
-                <BankValue />
+                    <PetfolioValue />
+                  </div>
+                </Col>
+                <Col>
+                  <div className={`${this.state.bankValueColor} border rounded colorBoxes p-4`}>
+                    <h5 className="petfolioBankText">Bank</h5>
+                    <BankValue />
                   </div>
                 </Col>
               </Row>
@@ -269,13 +269,15 @@ class Petfolio extends Component {
                 </Col>
               </Row>
             </Col>
-        </Row>
+          </Row>
           {/* This row contains the owned stock details -- trading component*/}
-         <Row>
-           <Col>
-           <h3>Owned Stocks</h3>
-            <OwnedStock />
-           </Col>
+          <Row>
+            <Col className="py-4">
+              <div className="bg-light border rounded p-4">
+                <h5>Owned Stocks</h5>
+                <OwnedStock />
+              </div>
+            </Col>
           </Row>
           {/* <Row>
             <Col>{this.state.Watchlist.map((List) => <OwnedStock ticker={List} n/>)}

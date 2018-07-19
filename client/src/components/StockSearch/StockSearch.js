@@ -352,10 +352,10 @@ class StockSearch extends Component {
                 />
                 <Button type='button' onClick={this.resetTour}>Take a Tour</Button>
 
-                <div className='stockStats searchStockStats container'>
+                <div className='stockStats searchStockStats container bg-light border rounded p-4'>
                     <div className='row searchBar'>
                         <div className='col-sm-4'>
-                            <h1>SEARCH STOCKS</h1>
+                            <h1>Search Stocks</h1>
                         </div>
                         <div className='col-sm-4'>
                             <form>
@@ -388,7 +388,7 @@ class StockSearch extends Component {
                                             className='searchBtn'
                                             onClick={this.handleFormSubmit}
                                         >
-                                            SEARCH
+                                            Search
                                         </Button>
 
 
@@ -416,7 +416,7 @@ class StockSearch extends Component {
                                     </div>
                                     <div className='stockPrice'>
                                         <div className='col-sm-3'>
-                                            <h2>PRICE</h2>
+                                            <h2>Price</h2>
                                         </div>
                                         <div className='col-sm-3'>
                                             <h2>${this.state.price}</h2>
@@ -428,7 +428,7 @@ class StockSearch extends Component {
                                 <div className='row'>
                                     <div className='stockChange'>
                                         <div className='col-sm-3 changeValue'>
-                                            <h2>CHANGE</h2>
+                                            <h2>Change</h2>
                                         </div>
                                         <div className='col-sm-3'>
                                             {this.state.change >= 0 ? (
@@ -488,11 +488,11 @@ class StockSearch extends Component {
                         </Collapse>
                     </div>
                 </div>
-                <div className='stockStats searchStockStats container'>
+                <div className='stockStats searchStockStats container bg-light border rounded p-4'>
                     <div className='container'>
                         <div className='row listBar'>
                             <div className='col-sm-4'>
-                                <h1>VIEW STOCKS</h1>
+                                <h1>View Stocks</h1>
                             </div>
                         </div>
                         <div className='row listBarNav'>
