@@ -36,14 +36,6 @@ export default {
     getTickerText: function() {
         return axios.get('/api/petfolio/ticker');
     },
-    getWatchPrices: function(data) {
-        if (!Array.isArray(data)) {
-            console.log(data);
-            throw new Error('Data needs to be of type array');
-        }
-        return axios
-                .get(`https://api.iextrading.com/1.0/stock/market/batch?symbols=${data.join(',')}&types=price`);
-    },
     getDocs: function() {
         return axios.get('/api/docs');
     },
@@ -72,7 +64,7 @@ export default {
     **
     */
      // Checked and working
-     signup: function(signupData) {
+    signup: function(signupData) {
         return axios.post('/api/auth/signup', signupData);
     },
     signin: function(data) {

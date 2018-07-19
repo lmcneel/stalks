@@ -116,12 +116,12 @@ class TradingCenter extends Component {
             primaryExchange: '',
             sector: '',
             response: '',
-            portfolio_id: '5b4cf8a4f387eda4bd04e253', // Needs update from rec.session.user from API.getUserProfile
+            portfolio_id: '',
             portfolioValue: 0,
             transaction: 'buy',
             ROI: 0,
-            id: '5b4cf8a4f387eda4bd04e253', // Needs update from rec.session.user from API.getUserProfile
-            sqlId: 1, // Needs update from rec.session.user from API.getUserProfile
+            id: '',
+            sqlId: 0,
             cost: 0,
             datePurchased: '',
             value: 0,
@@ -167,13 +167,13 @@ getUser() {
         // Need logic of if user is logged in that will set state varables
         console.log(res.data);
         console.log(res.data.mongo_id);
-        console.log(res.data.id);
+        console.log(res.data.mongo_portfolio_id);
         let mongID = res.data.mongo_id;
-        // let mongoPrtID = res.data.id;
+        let mongoPrtID = res.data.mongo_portfolio_id;
         let SQLID = res.data.id;
         return this.setState({
             id: mongID,
-            // portfolio_id: mongoPrtID,
+            portfolio_id: mongoPrtID,
             sqlId: SQLID,
         });
     })

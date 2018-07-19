@@ -130,7 +130,7 @@ class App extends Component {
   }
 
   /**
-   * yes function
+   * yes function what a great function
    */
   yes() {
     this.closeModal();
