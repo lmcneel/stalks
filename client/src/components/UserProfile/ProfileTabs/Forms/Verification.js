@@ -25,14 +25,13 @@ class Verification extends Component {
         };
 
         this.sendEmailVerification = this.sendEmailVerification.bind(this);
-        this.goBack = this.goBack.bind(this);
     };
 
     /**
      * Function so user can go back.
      */
     goBack() {
-        this.props.goBack(' ');
+        this.props.goBack();
     };
 
     /**
@@ -69,7 +68,7 @@ class Verification extends Component {
                     {this.state.isVerified ? 'verified'
                     : 'not verified. Please request a verification link to verify your email'}
                     </h3>
-                    {(!this.state.isVerified && !this.state.sentEmail) && (
+                    {!this.state.isVerified && (
                         <Button onClick={this.sendEmailVerification}> Send Verification Link </Button>
                     )}
                     {this.state.sentEmail && (

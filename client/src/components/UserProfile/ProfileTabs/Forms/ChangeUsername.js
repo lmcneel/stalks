@@ -280,7 +280,6 @@ class ChangeUsername extends Component {
                 {this.state.showForm ? (
                     <div className='col-md-12'>
                         <Form>
-                            <Button onClick={this.goBack}> Back </Button>
                             <FormGroup>
                                 <Label>Current Password</Label>
                                 <Input
