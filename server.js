@@ -69,10 +69,12 @@ app.get('*', (req, res) => {
 });
 
 // change to true to drop tables
-db.sequelize.sync({force: true}).then(function() {
+db.sequelize.sync({force: false}).then(function() {
   app.listen(PORT, () => {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
+}).catch(function(err) {
+  console.log(err);
 });
 
 /**
