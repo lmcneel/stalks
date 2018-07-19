@@ -150,7 +150,7 @@ class TradingCenter extends Component {
         this.getUser();
         this.charting({ticker: this.state.ticker});
         // this.getBankValue(this.state.portfolio_id);
-        this.myStocks(this.state.portfolio_id);
+        // this.myStocks(this.state.portfolio_id);
         this.dbStocks(this.state.portfolio_id);
         this.myStocksValue();
         // this.myWatchlist(this.state.watchedArray);
@@ -177,7 +177,8 @@ getUser() {
             portfolio_id: mongoPrtID,
             sqlId: SQLID,
         }),
-        this.getBankValue(this.state.portfolio_id);
+        this.getBankValue(this.state.portfolio_id),
+        this.myStocks(this.state.portfolio_id);
     })
     .catch((err) => console.log(err));
 };
