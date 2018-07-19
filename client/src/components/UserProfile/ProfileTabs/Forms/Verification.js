@@ -67,7 +67,7 @@ class Verification extends Component {
                     <Button onClick={this.goBack}> Back </Button>
                     <h3>Your email {this.state.email} is
                     {this.state.isVerified ? 'verified'
-                    : 'not verified. Please request a verification link to verify your email'}
+                    : ' not verified. Please request a verification link to verify your email'}
                     </h3>
                     {(!this.state.isVerified && !this.state.sentEmail) && (
                         <Button onClick={this.sendEmailVerification}> Send Verification Link </Button>

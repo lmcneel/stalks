@@ -50,6 +50,7 @@ class ChangePassword extends Component {
                 class: '',
             },
             codeSent: false,
+            codeErr: [],
         };
         this.toggleProccessing = this.toggleProccessing.bind(this);
         this.toggleForm = this.toggleForm.bind(this);
@@ -129,19 +130,17 @@ class ChangePassword extends Component {
      * and sends a call to API to email user the Code
      */
     sendCode() {
-       this.toggleCodeProccessing();
-
+        this.toggleCodeProccessing();
         const data = {
             current_email: this.state.userEmail,
             verificationType: 'new password',
         };
+        console.log(data);
         API.requestUpdateVerification(data)
-        .then((response) => {
-            console.log(response);
+        .then((res) => {
+            console.log(res);
             this.toggleCodeProccessing();
-            this.setState({
-
-                codeSent: true});
+            this.setState({codeSent: true});
         })
         .catch((err) => {
             console.log(err);
@@ -162,10 +161,12 @@ class ChangePassword extends Component {
         API.confirmUpdateVerification(data)
             .then((response) =>{
                 console.log(response);
-               this.toggleCodeProccessing();
-                this.setState({
-                    codeSent: true});
-
+                if (response.data === 'Correct Code') {
+                    this.setState({showForm: true, processing: false, codeProcessing: false});
+                } else {
+                    const codeErr = [response.data];
+                    this.setState({codeErr: codeErr, codeProcessing: false});
+                };
                 // Check response and do what it do what you gotta do
             })
             .catch((err) => {
@@ -202,8 +203,9 @@ class ChangePassword extends Component {
                 this.changePassword();
             } else {
                 this.setState({inputs: formInputs,
-                errors: errors});
-                this.toggleProccessing();
+                errors: errors}, () => {
+                    this.toggleProccessing();
+                });
             };
         };
 };
@@ -224,7 +226,11 @@ class ChangePassword extends Component {
                 console.log(response.data);
                 // If password matches check rest of inputs
                 if (response.data.message === 'Match') {
-                    this.checkValidInput();
+                    const pass = this.state.current_password;
+                    pass.correct = true;
+                    this.setState({current_password: pass}, () => {
+                        this.checkValidInput();
+                    });
                 } else {
                     // If it doesnt update current_password error and toggle proccescor off
 
@@ -234,9 +240,10 @@ class ChangePassword extends Component {
                     errors.push(response.data.message);
 
                     this.setState({inputs: inputs,
-                    errors: errors});
-                    this.toggleProccessing();
-                }
+                    errors: errors}, () => {
+                        this.toggleProccessing();
+                    });
+                };
             })
             .catch((err) => {
                 console.log(err);
@@ -257,13 +264,23 @@ class ChangePassword extends Component {
         API.updatePassword(data)
             .then((response) =>{
                 console.log(response);
-                this.toggleProccessing();
-                this.setState({passwordChanged: true});
+                if (response.data.message === 'Password Changed') {
+                    this.setState({passwordChanged: true}, () => {
+                        this.toggleProccessing();
+                    });
+                } else {
+                    const errors = [response.data.message];
+                    this.setState({errors: errors}, () => {
+                        this.toggleProccessing();
+                    });
+                };
             })
             .catch((err) => {
                 console.log(err);
                 const error = ['There has been an issue with your request. Please try again later'];
-                this.setState({errors: error});
+                this.setState({errors: error}, () => {
+                    this.toggleProccessing();
+                });
             });
     };
     /**
@@ -273,13 +290,26 @@ class ChangePassword extends Component {
         const currentPassword = this.state.inputs.current_password;
         const newPassword = this.state.inputs.new_password;
         const confirmPassword = this.state.inputs.confirm_new_password;
-
+        const inputErrors = this.state.errors.map((err) => {
+            return (
+                <p className='input-errors' key={`change-password-${err}`}> {err} </p>
+            );
+        });
+        const codeErrors = this.state.codeErr.map((err) => {
+            return (
+                <p className='input-errors' key={`confirmation-code-${err}`}> {err} </p>
+            );
+        });
         return (
             <div className='account-form-container-row'>
+                <h3> Change password </h3>
                 {this.state.showForm ? (
                     <div className='col-md-12'>
+                        <Button onClick={this.goBack}> Back </Button>
                         <Form>
-                            <Button onClick={this.goBack}> Back </Button>
+                            <FormGroup>
+                                {inputErrors}
+                            </FormGroup>
                             <FormGroup>
                                 <Label>Current Password</Label>
                                 <Input
@@ -320,20 +350,26 @@ class ChangePassword extends Component {
                         {this.state.codeSent ? (
                             <div>
                                 <h4> A Code has been sent to your email at {this.state.userEmail}</h4>
-                                <FormGroup>
-                                    <Label>Please input the code sent to you</Label>
-                                    <Input
-                                        type={`text`}
-                                        name={`code`}
-                                        onChange={this.handleCode}
-                                        value={this.state.code.value}
-                                        className={this.state.code.class}
-                                        disabled={this.state.codeProcessing} />
-                                    <Button onClick={this.checkCode} disabled={this.state.codeProcessing}>
-                                        {this.state.codeProcessing ? 'Processing' : 'Submit Code'}
-                                    </Button>
-                                    <Button onClick={this.sendCode} />
-                                </FormGroup>
+                                <Form>
+                                    <FormGroup>
+                                        {codeErrors}
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label>Please input the code sent to you</Label>
+                                        <Input
+                                            type={`text`}
+                                            name={`code`}
+                                            onChange={this.handleCode}
+                                            value={this.state.code.value}
+                                            className={this.state.code.class}
+                                            disabled={this.state.codeProcessing} />
+                                        <Button onClick={this.checkCode} disabled={this.state.codeProcessing}>
+                                            {this.state.codeProcessing ? 'Processing' : 'Submit Code'}
+                                        </Button>
+                                        {' '}
+                                        <Button onClick={this.sendCode}> Resend Code </Button>
+                                    </FormGroup>
+                                </Form>
                             </div>
                         ) : (
                             <div>
@@ -341,7 +377,7 @@ class ChangePassword extends Component {
                                     to be sent to your email at <span>{this.state.userEmail}</span>
                                 </h4>
                                 <h3>Would you like to proceed? </h3>
-                                <Button onClick={this.sendCode} >Send Code</Button>
+                                <Button onClick={this.sendCode} >Send Code</Button> {' '}
                                 <Button onClick={this.goBack}>No</Button>
                             </div>
                         )}

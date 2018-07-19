@@ -103,6 +103,10 @@ passport.use('local-signup', new LocalStrategy(
                             console.log(`ERROR: ${err}`);
                             return done(err);
                           });
+                        })
+                        .catch(function(err) {
+                          console.log(`ERROR: ${err}`);
+                          return done(err);
                         });
                     })
                     .catch(function(err) {

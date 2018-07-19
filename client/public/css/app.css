@@ -7077,7 +7077,7 @@ a[data-toggle="collapse"] {
     .profile-containers.user-options div ul {
       width: 100%; }
       .profile-containers.user-options div ul .userProfile-nav-item {
-        width: 25%;
+        width: 33.33%;
         text-align: center;
         font-size: 25px;
         box-shadow: 1px 5px 2px #dedede5d; }

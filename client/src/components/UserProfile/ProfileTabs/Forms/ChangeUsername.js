@@ -48,6 +48,7 @@ class ChangeUsername extends Component {
                 class: '',
             },
             codeSent: false,
+            codeErr: [],
         };
         this.toggleProccessing = this.toggleProccessing.bind(this);
         this.toggleForm = this.toggleForm.bind(this);
@@ -136,9 +137,7 @@ class ChangeUsername extends Component {
         .then((response) => {
             console.log(response);
             this.toggleCodeProccessing();
-            this.setState({
-
-                codeSent: true});
+            this.setState({codeSent: true});
             })
         .catch((err) => {
             console.log(err);
@@ -154,15 +153,18 @@ class ChangeUsername extends Component {
 
         const data = {
             current_email: this.state.userEmail,
-            verificationType: 'new password',
+            verificationType: 'new username',
             inputedCode: this.state.code.value,
         };
         API.confirmUpdateVerification(data)
             .then((response) =>{
                 console.log(response);
-               this.toggleCodeProccessing();
-                this.setState({
-                    codeSent: true});
+                if (response.data === 'Correct Code') {
+                    this.setState({showForm: true, processing: false, codeProcessing: false});
+                } else {
+                    const codeErr = [response.data];
+                    this.setState({codeErr: codeErr, codeProcessing: false});
+                };
 
                 // Check response and do what it do what you gotta do
             })
@@ -224,7 +226,11 @@ class ChangeUsername extends Component {
                 console.log(response.data);
                 // If password matches check rest of inputs
                 if (response.data.message === 'Match') {
-                    this.checkValidInput();
+                    const pass = this.state.current_password;
+                    pass.correct = true;
+                    this.setState({current_password: pass}, () => {
+                        this.checkValidInput();
+                    });
                 } else {
                     // If it doesnt update current_password error and toggle proccescor off
 
@@ -234,8 +240,9 @@ class ChangeUsername extends Component {
                     errors.push(response.data.message);
 
                     this.setState({inputs: inputs,
-                    errors: errors});
-                    this.toggleProccessing();
+                        errors: errors}, () => {
+                            this.toggleProccessing();
+                        });
                 };
             })
             .catch((err) => {
@@ -258,8 +265,16 @@ class ChangeUsername extends Component {
         API.updateUsername(data)
             .then((response) =>{
                 console.log(response);
-                this.toggleProccessing();
-                this.setState({usernameChanged: true});
+                if (response.data.message === 'Changed Username') {
+                    this.setState({usernameChanged: true}, () => {
+                        this.toggleProccessing();
+                    });
+                } else {
+                    const errors = [response.data.message];
+                    this.setState({errors: errors}, () => {
+                        this.toggleProccessing();
+                    });
+                };
             })
             .catch((err) => {
                 console.log(err);
@@ -274,13 +289,26 @@ class ChangeUsername extends Component {
         const currentPassword = this.state.inputs.current_password;
         const newUsername = this.state.inputs.new_username;
         const confirmUsername = this.state.inputs.confirm_new_username;
-
+        const inputErrors = this.state.errors.map((err) => {
+            return (
+                <p className='input-errors' key={`change-password-${err}`}> {err} </p>
+            );
+        });
+        const codeErrors = this.state.codeErr.map((err) => {
+            return (
+                <p className='input-errors' key={`confirmation-code-${err}`}> {err} </p>
+            );
+        });
         return (
             <div className='account-form-container-row'>
+                <h3> Change username </h3>
                 {this.state.showForm ? (
                     <div className='col-md-12'>
+                        <Button onClick={this.goBack}> Back </Button>
                         <Form>
-                            <Button onClick={this.goBack}> Back </Button>
+                            <FormGroup>
+                                {inputErrors}
+                            </FormGroup>
                             <FormGroup>
                                 <Label>Current Password</Label>
                                 <Input
@@ -321,27 +349,33 @@ class ChangeUsername extends Component {
                         {this.state.codeSent ? (
                             <div>
                                 <h4> A Code has been sent to your email at {this.state.userEmail}</h4>
-                                <FormGroup>
-                                    <Label>Please input the code sent to you</Label>
-                                    <Input
-                                        type={`text`}
-                                        name={`code`}
-                                        onChange={this.handleCode}
-                                        value={this.state.code.value}
-                                        className={this.state.code.class}
-                                        disabled={this.state.codeProcessing} />
-                                    <Button onClick={this.checkCode} disabled={this.state.codeProcessing}>
-                                        {this.state.codeProcessing ? 'Processing' : 'Submit Code'}
-                                    </Button>
-                                    <Button onClick={this.sendCode} />
-                                </FormGroup>
+                                <Form>
+                                    <FormGroup>
+                                        {codeErrors}
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label>Please input the code sent to you</Label>
+                                        <Input
+                                            type={`text`}
+                                            name={`code`}
+                                            onChange={this.handleCode}
+                                            value={this.state.code.value}
+                                            className={this.state.code.class}
+                                            disabled={this.state.codeProcessing} />
+                                        <Button onClick={this.checkCode} disabled={this.state.codeProcessing}>
+                                            {this.state.codeProcessing ? 'Processing' : 'Submit Code'}
+                                        </Button>
+                                        {' '}
+                                        <Button onClick={this.sendCode}> Resend Code </Button>
+                                    </FormGroup>
+                                </Form>
                             </div>
                         ) : (
                             <div>
                                 <h4>In order to change your username you must request a verification code
                                     to be sent to your email at <span>{this.state.userEmail}</span></h4>
                                 <h3>Would you like to proceed? </h3>
-                                <Button onClick={this.sendCode} >Send Code</Button>
+                                <Button onClick={this.sendCode} >Send Code</Button> {' '}
                                 <Button onClick={this.goBack}>No</Button>
                             </div>
                         )}
