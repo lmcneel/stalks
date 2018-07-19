@@ -27,41 +27,85 @@ const transporter = nodemailer.createTransport(transport);
    * This is a function
    * @return {string} 6 character code
    */
-// function generateCode() {
-//     const text = '';
-//     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+function generateCode() {
+    const text = '';
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-//     for (let i = 0; i < 6; i++) {
-//         text += possible.charAt(Math.floor(Math.random() * possible.length));
-//     };
+    for (let i = 0; i < 6; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    };
 
-//     return text;
-// }
+    return text;
+};
 module.exports = {
     // In progress
     sendEmailForUpdate: function(req, res) {
-        // console.log(req.body);
-        // const {userEmail, updateType} = req.body;
-        // const codeToInput = generateCode();
-        // db.User.findOne({
-        //     where: {
-        //         email: userEmail,
-        //     },
-        //     include: {
-        //        model: db.UserValidation,
-        //        as: 'Validations',
-        //        where: {
-        //            resolved: false,
-        //        },
-        //     },
-        // }).then(function(dbUser) {
-        //     // Now that I have the users information in the database
-        //     res.json('Send Email Update');
-        // });
+        console.log(req.body);
+        const {current_email, verificationType} = req.body;
+        const codeToInput = generateCode();
+        const host = req.body.host;
+        User.findOne({
+            where: {
+                email: current_email,
+            },
+            include: {
+               model: UserValidation,
+               as: 'Validations',
+               where: {
+                   resolved: false,
+               },
+            },
+        }).then(function(dbUser) {
+            // Now that I have the users information in the database
+            UserValidation.create({
+                validationCode: codeToInput,
+                validationType: verificationType,
+                UserId: dbUser.id,
+                emailToValidate: current_email,
+            })
+            .then(function(dbvalidation) {
+                console.log(dbvalidation);
+                const verificationEmail = {
+                    from: creds.USER,
+                    to: current_email,
+                    subject: 'Verification Code sent from Stalks!',
+                    text: 'Verification Code',
+                    html: `<p>Hello, please click input this code ${codeToInput}</p>`,
+                };
+                console.log(verificationEmail);
+                transporter.sendMail(verificationEmail, (err, data) => {
+                    if (err) {
+                        res.json({
+                            msg: 'Failed to send email',
+                        });
+                    } else {
+                        res.json({
+                            msg: `Verification has been sent to ${EmailtoVerify}.`,
+                        });
+                    };
+                });
+            });
+        });
     },
     testCodeForUpdate: function(req, res) {
-        console.log(req.body);
-        res.json('Send Email Update');
+        const {current_email, verificationType, inputedCode} = req.body;
+        UserValidation.findOne({
+            where: {
+                emailToValidate: current_email,
+                verificationType: verificationType,
+                resolved: false,
+            },
+        })
+        .then(function(dbValidation) {
+            console.log(dbValidation);
+            console.log('checking if code matches');
+
+            if (inputedCode === dbValidation.validationCode) {
+                res.json('Correct Code');
+            } else {
+                res.json('Incorrect Code');
+            }
+        });
     },
     // Complete but may update to condense (I dont think i need all of it anymore)
     sendEmailForLink: function(req, res) {
