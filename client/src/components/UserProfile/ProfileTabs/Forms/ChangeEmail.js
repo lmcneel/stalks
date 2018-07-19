@@ -119,7 +119,6 @@ class ChangeEmail extends Component {
             {this.state.showForm ? (
                 <div className="col-md-12">
                         <Form>
-                            <Button onClick={this.goBack}> Back </Button>
                             <FormGroup>
                                 {this.state.errorsFound &&
                                     <div className='errors-holder'>

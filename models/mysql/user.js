@@ -1,4 +1,5 @@
 const bCrypt = require('bcryptjs');
+const DB = require('../mongo');
 module.exports = function(sequelize, Sequelize) {
 // User Schema
     const User = sequelize.define('User', {
@@ -32,9 +33,6 @@ module.exports = function(sequelize, Sequelize) {
         mongo_id: {
             type: Sequelize.STRING,
         },
-        mongo_portfolio_id: {
-            type: Sequelize.STRING,
-        },
         last_login: {
             type: Sequelize.DATE,
             allowNull: true,
@@ -65,6 +63,35 @@ module.exports = function(sequelize, Sequelize) {
        console.log(`Hashed password is ${hashedPassword}`);
        user.password = hashedPassword;
        console.log(`Users password in database is now ${user.password}`);
+    });
+
+    User.afterCreate(function(user) {
+        console.log('User has just been created');
+        console.log('fasmdal');
+        DB.User.create({
+            SQLuser_id: user.id,
+        })
+        .then(function(mongoUser) {
+            console.log(`Created user in Mongo ${mongoUser}. Mongo id is ${mongoUser.id}`);
+            console.log(`Setting MYSQL user mongo_id to ${mongoUser.id}`);
+            User.update({
+                mongo_id: mongoUser.id,
+            }, {
+                where: {
+                    id: user.id,
+                },
+            })
+            .then(function(updatedUser) {
+                console.log('User is now updated with mongo_id');
+                console.log(updatedUser);
+            })
+            .catch(function(err) {
+                console.log(`ERROR: ${err}`);
+            });
+        })
+        .catch(function(err) {
+            console.log(`ERROR: ${err}`);
+        });
     });
     // names of other models have not been established so the associations are subject to change
     // User.associate = function(models) {
@@ -115,7 +142,7 @@ module.exports = function(sequelize, Sequelize) {
 
     // A custom method for our User model. It will compare user pawword wit stored password.
     User.prototype.validPassword = function(password) {
-        return bCrypt.compareSync(password, this.password);
-      };
+        return bcrypt.compareSync(password, this.password);
+    };
     return User;
 };

@@ -6,28 +6,31 @@ const Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new UserSchema object
 const portfolioSchema = new Schema({
+
+
+  // user_id: {
+  //   type: mongoose.SchemaTypes.ObjectId,
+  //   ref: 'User'
+  // },
   // `cash` is required and of type Number, will be updated after each buy/sell transaction
   cash: {
     type: Number,
     required: true,
-    default: 300000,
   }, // db.portfolio.update({user_id: "XXXXXX"}, {$set: {cash:3000000}})
 
   // `currentValue` is type Number, this is the most recent calculation of portfolio value
   currentValue: {
     type: Number,
   }, // db.portfolio.update({user_id: "XXXXXX"}, {$set: {currentValue:150000000}})
+
   // `trades` is an array each time a new transaction is completed it will be pushed to this array
-  trades: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Trade',
-    },
-  ],
+  trades: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Trade',
+  }],
 
 // db.portfolio.update({user_id: "XXXXXX"}, {$push: trades:
 // [ {transaction_id: XXXXXX, date: timestamp, type: buy, ticker: AAPL, sharePrice: 1865300, shares: 20]
-
 
 });
 

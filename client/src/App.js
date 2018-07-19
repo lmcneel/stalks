@@ -30,7 +30,6 @@ import ViewStocks from './pages/ViewStocks/ViewStocks';
 import TradingCenter from './components/TradingCenter';
 import UserSettings from './pages/Settings';
 import Login from './pages/Login';
-import API from './utils/API';
 import Footer from './components/Footer';
 
 /**
@@ -48,8 +47,6 @@ class App extends Component {
       modalIsOpen: true,
       run: false,
       showModal: true,
-      isLoggedIn: false,
-      userData: {},
     };
     this.navToggleHandler = this.navToggleHandler.bind(this);
   }
@@ -88,8 +85,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        {this.state.isLoggedIn ? (
-          <div className="App">
+        <div className="App">
             <TopNav navToggleHandler={this.navToggleHandler}/>
             <Wrapper>
               <SideNav isActive={this.state.sideNav}/>
@@ -108,7 +104,7 @@ class App extends Component {
                     <Route exact path='/' component={Home} />
                     <Route exact path='/about' component={About} />
                     <Route exact path='/signin' component={SigninForm} />
-                    <Route exact path='/signout' component={SignoutForm} />
+                    <Route exact path='/logout' component={SignoutForm} />
                     <Route exact path='/signup' component={SignUp} />
                     <Route exact path='/login' component={Login} />
                     <Route path='/settings' component={UserSettings} />
@@ -125,9 +121,6 @@ class App extends Component {
               </MainContentWrapper>
             </Wrapper>
         </div>
-        ) : (
-              <Splash />
-        )}
       </Router>
     );
   };
