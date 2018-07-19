@@ -23,9 +23,8 @@ class ListStock extends Component {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.checkWatchList = this.checkWatchList.bind(this);
-        // this.addToWatchlist = this.addToWatchlist.bind(this);
-        // this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
-        this.componentDidMount = this.componentDidMount.bind(this);
+        this.addToWatchlist = this.addToWatchlist.bind(this);
+        this.removeFromWatchlist = this.removeFromWatchlist.bind(this);
         this.charting = this.charting.bind(this);
         this.state = {
             ticker: this.props.ticker,
@@ -37,9 +36,17 @@ class ListStock extends Component {
             collapse: false,
             watched: false,
             eyeWatched: 'faEye',
+            sqlId: 1,
         };
     }
 
+/**
+ * @public componentDidMount function will render the chart
+ */
+componentDidMount() {
+    this.charting({ticker: this.state.ticker});
+    this.checkWatchList();
+};
 /**
  * @public toggle function for reactstap <Collapse> onClick trigger
  */
@@ -58,41 +65,47 @@ class ListStock extends Component {
             for (let i=0; i<r.data.length; i++) {
                 tempTicker.push((r.data[i]).uniqueStockSymbol);
             }
+            this.setState({Watchlist: tempTicker});
+            // console.log(r.data);
             // console.log(tempTicker);
             if (tempTicker.includes(this.state.ticker)) {
-              return this.setState({watched: true});
-            } else {
-              return this.setState({watched: false});
+            return this.setState({watched: true});
+            } else if (tempTicker.includes(this.state.ticker === false)) {
+            return this.setState({watched: false});
             };
             };
         }));
-    }
+    };
+
 /**
  * @public addToWatchlist function will add current 'ticker' to user watchlist from onClick
- * @param {*} ticker
+ * @param {*} SQL_ID
+ * @param {*} Ticker
  */
-    addToWatchlist(ticker) {
-        // API.addNewTicker(ticker)
-
-        // Need to add to MySQL Watchlist
-    }
-/**
- * @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
- * @param {*} ticker
- */
-    removeFromWatchlist() {
-        // API.removeExistingTicer(ticker)
-
-        // Need to remove from MySQL Watchlist
-
-        }
-/**
- * @public componentDidMount function will render the chart
- */
-    componentDidMount() {
-        this.charting({ticker: this.state.ticker});
-        this.checkWatchList({ticker: this.state.ticker});
+    addToWatchlist() {
+        API.addNewTicker(this.state.sqlId, this.state.ticker)
+        .then((res) => {
+            console.log('Ticker Added to Watchlist');
+            this.checkWatchList();
+        })
+        .catch((err) => console.log(err));
     };
+
+/**
+* @public removeWatchlist function will remove current 'ticker' from user watchlist from onClick
+* @param {*} SQL_ID
+* @param {*} Ticker
+
+*/
+    removeFromWatchlist() {
+    API.removeExistingTicker(this.state.sqlId, this.state.ticker)
+    .then((res) => {
+        console.log('done');
+        this.checkWatchList();
+    })
+    .catch((err) => console.log(err));
+    };
+
 /**
  * @public charting function assigns chart data from API
  * @param {*} ticker is the current ticker state
@@ -237,40 +250,6 @@ class ListStock extends Component {
 
                                     </div>
                                 </div>
-                                {/* <div className='col-sm-12 col-md-4 dataSection'>
-                                    <div className='row'>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>SHARES OWNED</h4>
-                                        </div>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>{this.state.totalShares}</h4>
-                                        </div>
-                                    </div>
-                                    <div className='row'>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>ROI</h4>
-                                        </div>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>${this.state.ROI}</h4>
-                                        </div>
-                                    </div>
-                                    <div className='row'>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>PRICE PURCHASED</h4>
-                                        </div>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>${this.state.cost}</h4>
-                                        </div>
-                                    </div>
-                                    <div className='row'>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>DATE PURCHASED</h4>
-                                        </div>
-                                        <div className='col-sm-6 col-md-6 stockData'>
-                                            <h4>{this.state.datePurchased}</h4>
-                                        </div>
-                                    </div>
-                                </div> */}
                             </div>
                         </Collapse>
                     </div>

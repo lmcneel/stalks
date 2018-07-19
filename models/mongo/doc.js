@@ -20,9 +20,12 @@ const docSchema = new Schema({
   language: {
       type: String,
   },
-  helpful: {
+  helpfulNo: {
       type: Number,
   },
+  helpfulYes: {
+    type: Number,
+},
 });
 
 const Doc = mongoose.model('Doc', docSchema);

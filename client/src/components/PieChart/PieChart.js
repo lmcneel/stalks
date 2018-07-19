@@ -28,11 +28,15 @@ class PieChart extends Component {
   render() {
     return (
 
-      <div>
+      <div className="bg-light border rounded p-4">
+      <h5 className="">Portfolio Visualization</h5>
       <VictoryPie
-         colorScale={['tomato', 'orange', 'gold', 'cyan', 'navy']}
+         colorScale={['#45CC8E', '#EE4A37', '#FBB424', '#0C425C']}
          height={250}
          data={this.state.pieData}
+         style={{
+          labels: {
+            fontSize: 14, textTransform: 'uppercase', fontFamily: 'Rubik', letterSpacing: 1}}}
       />
       </div>
     );

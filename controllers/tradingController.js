@@ -50,6 +50,22 @@ module.exports = {
             .then((dbTradeModel) => res.json(dbTradeModel))
             .catch((err) => res.status(422).json(err));
     },
+    updateportfolio: function(req, res) {
+        db.Portfolio
+        .update({_id: req.params.id},
+        {$set: {cash: req.params.cash}})
+                // currentValue: req.params.currentValue}})
+        .then((dbPortfolioModel) => res.json(dbPortfolioModel))
+        .catch((err) => res.status(422).json(err));
+    },
+    updateCurrentValue: function(req, res) {
+        db.Portfolio
+        .update({_id: req.params.id},
+        {$set: {currentValue: req.params.currentvalue}})
+                // currentValue: req.params.currentValue}})
+        .then((dbPortfolioModel) => res.json(dbPortfolioModel))
+        .catch((err) => res.status(422).json(err));
+    },
 };
 
 
