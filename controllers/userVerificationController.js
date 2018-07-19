@@ -28,7 +28,7 @@ const transporter = nodemailer.createTransport(transport);
    * @return {string} 6 character code
    */
 function generateCode() {
-    const text = '';
+    let text = '';
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
     for (let i = 0; i < 6; i++) {
@@ -41,58 +41,114 @@ module.exports = {
     // In progress
     sendEmailForUpdate: function(req, res) {
         console.log(req.body);
+        console.log('Sending email for update');
+
         const {current_email, verificationType} = req.body;
+        console.log(current_email);
+        console.log(verificationType);
         const codeToInput = generateCode();
-        const host = req.body.host;
+        console.log(codeToInput);
         User.findOne({
             where: {
                 email: current_email,
             },
             include: {
                model: UserValidation,
-               as: 'Validations',
-               where: {
-                   resolved: false,
-               },
+               as: 'UserValidations',
             },
         }).then(function(dbUser) {
-            // Now that I have the users information in the database
-            UserValidation.create({
-                validationCode: codeToInput,
-                validationType: verificationType,
-                UserId: dbUser.id,
-                emailToValidate: current_email,
-            })
-            .then(function(dbvalidation) {
-                console.log(dbvalidation);
-                const verificationEmail = {
-                    from: creds.USER,
-                    to: current_email,
-                    subject: 'Verification Code sent from Stalks!',
-                    text: 'Verification Code',
-                    html: `<p>Hello, please click input this code ${codeToInput}</p>`,
+            console.log(dbUser);
+            console.log(dbUser.UserValidations);
+            let indexofValidationID = 'none'
+            for (let i = 0; i < dbUser.UserValidations.length; i++) {
+                if (dbUser.UserValidations[i].resolved === false) {
+                    indexofValidationID = dbUser.UserValidations[i].id;
                 };
-                console.log(verificationEmail);
-                transporter.sendMail(verificationEmail, (err, data) => {
-                    if (err) {
-                        res.json({
-                            msg: 'Failed to send email',
-                        });
-                    } else {
-                        res.json({
-                            msg: `Verification has been sent to ${EmailtoVerify}.`,
-                        });
+            };
+
+            if (typeof indexofValidationID == 'number') {
+                console.log('updated instead');
+                UserValidation.update({
+                    validationCode: codeToInput,
+                    validationType: verificationType,
+                    UserId: dbUser.id,
+                    emailToValidate: current_email,
+                },
+                {
+                    where: {
+                        id: indexofValidationID,
+                    },
+                })
+                .then(function(dbvalidation) {
+                    const verificationEmail = {
+                        from: creds.USER,
+                        to: current_email,
+                        subject: 'Verification Code sent from Stalks!',
+                        text: 'Verification Code',
+                        html: `<p>Hello, please click input this code ${codeToInput}</p>`,
                     };
+                    console.log(verificationEmail);
+                    transporter.sendMail(verificationEmail, (err, data) => {
+                        console.log('Mail has been sent.');
+                        if (err) {
+                            res.json({
+                                msg: 'Failed to send email',
+                            });
+                        } else {
+                            res.json({
+                                msg: `Verification code has been sent to ${current_email}.`,
+                            });
+                        };
+                    });
+                })
+                .catch(function(err) {
+                    console.log(err);
+                    res.json({
+                        msg: 'Failed to update validation',
+                    });
                 });
-            });
-        });
+            } else {
+            // Now that I have the users information in the database
+                UserValidation.create({
+                    validationCode: codeToInput,
+                    validationType: verificationType,
+                    UserId: dbUser.id,
+                    emailToValidate: current_email,
+                })
+                .then(function(dbvalidation) {
+                    console.log(dbvalidation);
+                    const verificationEmail = {
+                        from: creds.USER,
+                        to: current_email,
+                        subject: 'Verification Code sent from Stalks!',
+                        text: 'Verification Code',
+                        html: `<p>Hello, please click input this code ${codeToInput}</p>`,
+                    };
+                    console.log(verificationEmail);
+                    transporter.sendMail(verificationEmail, (err, data) => {
+                        console.log('Mail has been sent.');
+                        if (err) {
+                            res.json({
+                                msg: 'Failed to send email',
+                            });
+                        } else {
+                            res.json({
+                                msg: `Verification code has been sent to ${current_email}.`,
+                            });
+                        };
+                    });
+                });
+            }
+    });
     },
     testCodeForUpdate: function(req, res) {
+        console.log('testing code');
         const {current_email, verificationType, inputedCode} = req.body;
+        console.log(req.body);
         UserValidation.findOne({
             where: {
                 emailToValidate: current_email,
-                verificationType: verificationType,
+                validationType: verificationType,
                 resolved: false,
             },
         })
@@ -223,12 +279,87 @@ module.exports = {
     },
     // In Progress
     sendMessageFromUser: function(req, res) {
+        console.log('Sending message form user');
         console.log(req.body);
-        res.json('Send Email Update');
+        const messagesToSelf = {
+            from: creds.USER,
+            to: creds.User,
+            subject: 'Message from User',
+            text: `${req.body.user_email}`,
+            html: `<p> ${req.body.topic} </p> <p> ${req.body.message} </p>`,
+        };
+
+        console.log(messagesToSelf);
+        transporter.sendMail(messagesToSelf, (err, data) => {
+            if (err) {
+                res.json({
+                    msg: 'Failed to send email',
+                });
+            } else {
+                const messagesToUser = {
+                    from: creds.USER,
+                    to: req.body.user_email,
+                    subject: 'We recieved your email!',
+                    text: `Message Confirmation`,
+                    html: `<p> Thank you for your message </p> <p> This is an automated message confirming that we've recieved your message and will 
+                        responded within the next 24 hours. Thank you. </p>`,
+                };
+                transporter.sendMail(messagesToUser, (err, data) => {
+                    if (err) {
+                        res.json({
+                            msg: 'Failed to send Email',
+                        });
+                    } else {
+                        res.json({
+                            msg: 'Message has been recieved!',
+                        });
+                    };
+                });
+            };
+        });
     },
     // In progress
     deleteAccount: function(req, res) {
+        console.log('Deleting Account');
         console.log(req.body);
-        res.json('Send Email Update');
+        User.findOne({
+            where: {
+                username: req.body.current_username,
+            },
+        })
+        .then(function(dbUser) {
+            if (dbUser) {
+                if (dbUser.validPassword(req.body.current_password)) {
+                    User.destroy({
+                        where: {
+                            id: dbUser.id,
+                        },
+                    })
+                    .then(function(dbUser) {
+                        res.json({
+                            message: 'Deleted Account',
+                        });
+                    })
+                    .catch(function(err) {
+                        res.json({
+                            message: 'There has been an error processing your request please try agian later.',
+                        });
+                    });
+                } else {
+                    res.json({
+                        message: 'Password is incorrect',
+                    });
+                };
+            } else {
+                res.json({
+                    message: 'Username is incorrect',
+                });
+            };
+        })
+        .then(function(err) {
+            res.json({
+                message: 'There has been an error processing your request please try agian later.',
+            });
+        });
     },
 };

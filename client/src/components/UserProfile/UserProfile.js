@@ -245,9 +245,9 @@ class UserProfile extends Component {
                                     <ProfileNav
                                         link={'/settings/account'}
                                         linkName={'Account'}/>
-                                    <ProfileNav
+                                    {/* <ProfileNav
                                         link={'/settings/Pet'}
-                                        linkName={'Pet'}/>
+                                        linkName={'Pet'}/> */}
                                     <ProfileNav
                                         link={'/settings/game'}
                                         linkName={'Game Tips'}/>

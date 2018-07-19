@@ -107,7 +107,7 @@ export default {
     // In progress
     confirmUpdateVerification: function(data) {
         console.log('Settings API: confirmUpdateVerification type: put Route: /api/user/confirm/update/verification');
-        return axios.put('/api/user/confirm/update/verification', data);
+        return axios.post('/api/user/confirm/update/verification', data);
     },
     // Checked and working
     requestEmailVerification: function(data) {

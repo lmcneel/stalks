@@ -39,6 +39,7 @@ class DeleteAcc extends Component {
                 class: '',
             },
             codeSent: false,
+            codeErr: [],
         };
         this.toggleProccessing = this.toggleProccessing.bind(this);
         this.toggleForm = this.toggleForm.bind(this);
@@ -122,17 +123,18 @@ class DeleteAcc extends Component {
 
         const data = {
             current_email: this.state.userEmail,
-            verificationType: 'new username',
+            verificationType: 'delete account',
         };
         API.requestUpdateVerification(data)
         .then((response) => {
             console.log(response);
             this.toggleCodeProccessing();
-            this.setState({
-                codeSent: true});
+            this.setState({codeSent: true});
         })
         .catch((err) => {
             console.log(err);
+            const error = ['There has been an issue with your request. Please try again later'];
+            this.setState({codeErr: error, codeProcessing: false});
         });
     };
     /**
@@ -144,20 +146,25 @@ class DeleteAcc extends Component {
 
         const data = {
             current_email: this.state.userEmail,
-            verificationType: 'new password',
+            verificationType: 'delete account',
             inputedCode: this.state.code.value,
         };
         API.confirmUpdateVerification(data)
             .then((response) =>{
                 console.log(response);
-               this.toggleCodeProccessing();
-                this.setState({
-                    codeSent: true});
+                if (response.data === 'Correct Code') {
+                    this.setState({showForm: true, processing: false, codeProcessing: false});
+                } else {
+                    const codeErr = [response.data];
+                    this.setState({codeErr: codeErr, codeProcessing: false});
+                };
 
                 // Check response and do what it do what you gotta do
             })
             .catch((err) => {
                 console.log(err);
+                const error = ['There has been an issue with your request. Please try again later'];
+                this.setState({codeErr: error, codeProcessing: false});
             });
     };
 
@@ -179,11 +186,16 @@ class DeleteAcc extends Component {
                 if (response.data.message === 'Deleted Account') {
                     this.setState({accountDeleted: true});
                 } else {
-                    console.log('lol');
+                    const errors = [response.data.message];
+                    this.setState({errors: errors}, () => {
+                        this.toggleProccessing();
+                    });
                 };
             })
             .catch((err)=> {
                 console.log(err);
+                const error = ['There has been an issue with your request. Please try again later'];
+                this.setState({errors: error, processing: false});
             });
     };
 
@@ -193,13 +205,26 @@ class DeleteAcc extends Component {
     render() {
         const password = this.state.inputs.current_password;
         const username = this.state.inputs.current_username;
-
+        const inputErrors = this.state.errors.map((err) => {
+            return (
+                <p className='input-errors' key={`change-password-${err}`}> {err} </p>
+            );
+        });
+        const codeErrors = this.state.codeErr.map((err) => {
+            return (
+                <p className='input-errors' key={`confirmation-code-${err}`}> {err} </p>
+            );
+        });
         return (
             <div className='account-form-container-row'>
+                <h3> Delete Account </h3>
                 {this.state.showForm ? (
                     <div className='col-md-12'>
+                        <Button onClick={this.goBack}> Back </Button>
                         <Form>
-                            <Button onClick={this.goBack}> Back </Button>
+                            <FormGroup>
+                                {inputErrors}
+                            </FormGroup>
                             <FormGroup>
                                 <Label>Current Username</Label>
                                 <Input
@@ -230,27 +255,33 @@ class DeleteAcc extends Component {
                         {this.state.codeSent ? (
                             <div>
                                 <h4> A Code has been sent to your email at {this.state.userEmail}</h4>
-                                <FormGroup>
-                                    <Label>Please input the code sent to you</Label>
-                                    <Input
-                                        type={`text`}
-                                        name={`code`}
-                                        onChange={this.handleCode}
-                                        value={this.state.code.value}
-                                        className={this.state.code.class}
-                                        disabled={this.state.codeProcessing} />
-                                    <Button onClick={this.checkCode} disabled={this.state.codeProcessing}>
-                                        {this.state.codeProcessing ? 'Processing' : 'Submit Code'}
-                                    </Button>
-                                    <Button onClick={this.sendCode} />
-                                </FormGroup>
+                                <Form>
+                                    <FormGroup>
+                                        {codeErrors}
+                                    </FormGroup>
+                                    <FormGroup>
+                                        <Label>Please input the code sent to you</Label>
+                                        <Input
+                                            type={`text`}
+                                            name={`code`}
+                                            onChange={this.handleCode}
+                                            value={this.state.code.value}
+                                            className={this.state.code.class}
+                                            disabled={this.state.codeProcessing} />
+                                        <Button onClick={this.checkCode} disabled={this.state.codeProcessing}>
+                                            {this.state.codeProcessing ? 'Processing' : 'Submit Code'}
+                                        </Button>
+                                        {' '}
+                                        <Button onClick={this.sendCode}> Resend Code </Button>
+                                    </FormGroup>
+                                </Form>
                             </div>
                         ) : (
                             <div>
                                 <h4>In order to Delete your account you must request a verification code
                                     to be sent to your email at <span>{this.state.userEmail}</span></h4>
                                 <h3>Would you like to proceed? </h3>
-                                <Button onClick={this.sendCode} >Send Code</Button>
+                                <Button onClick={this.sendCode} >Send Code</Button> {' '}
                                 <Button onClick={this.goBack}>No</Button>
                             </div>
                         )}

@@ -6692,7 +6692,6 @@ a[data-toggle="collapse"] {
       margin-right: 0; } }
 
 /* ---------------------------------------------------
-
     SPLASH PAGE
 ----------------------------------------------------- */
 .light {
@@ -6722,8 +6721,7 @@ a[data-toggle="collapse"] {
   @media (min-width: 768px) {
     .splashGif {
       width: 700px; } }
-    FOOTER
------------------------------------------------------ */
+
 .bgfooter {
   background-color: #404850;
   color: #f8f9fa;
@@ -7076,7 +7074,7 @@ a[data-toggle="collapse"] {
     .profile-containers.user-options div ul {
       width: 100%; }
       .profile-containers.user-options div ul .userProfile-nav-item {
-        width: 25%;
+        width: 33.33%;
         text-align: center;
         font-size: 25px;
         box-shadow: 1px 5px 2px #dedede5d; }
@@ -7533,12 +7531,4 @@ nav {
 .listBtn {
   margin-right: 10px; }
 
-@media (max-width: 768px) {
-  .submitBtn {
-    background-color: #45CC8E;
-    border: none;
-    color: #FFFFFF;
-    float: none;
-    font-size: 14px;
-    width: 100%; } }
-
+/*# sourceMappingURL=app.css.map */

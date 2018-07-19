@@ -107,7 +107,7 @@ module.exports = function(sequelize, Sequelize) {
         // User.hasMany(models.users_accomplishments, {
         //     onDelete: 'cascade'
         // }),
-        User.hasOne(models.UserValidation, {
+        User.hasMany(models.UserValidation, {
             onDelete: 'cascade',
         });
     };
