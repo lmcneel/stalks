@@ -21,8 +21,9 @@ class Account extends Component {
     constructor(props) {
         super(props);
         console.log(props);
+        console.log(props.user);
         this.state = {
-            user: {},
+            user: props.user,
             showList: true,
             bodyShown: ' ',
         };
@@ -30,18 +31,11 @@ class Account extends Component {
         this.toggleBody = this.toggleBody.bind(this);
     };
 
-    /**
-     * Function to set state
-     */
     componentDidMount() {
         console.log(this.props.user);
         const user = this.props.user;
-        if (user.email.length === 0) {
-            this.props.history.push('/settings');
-        };
         this.setState({user: user});
     };
-
     /**
      * Function that toggles body
      * @param {string} body Uses string to deteremine which body to show
@@ -97,7 +91,7 @@ class Account extends Component {
                             <DeleteAcc email={user.email} goBack={() => this.toggleBody(' ')}/>
                         }
                         {this.state.bodyShown === 'Verification' &&
-                            <Verification email={user.email} verified={user.emailVerified} goBack={() => this.toggleBody(' ')}/>
+                            <Verification email={user.email} goBack={() => this.toggleBody(' ')}/>
                         }
                     </div>
                 )}
