@@ -52,15 +52,7 @@ class App extends Component {
       userData: {},
     };
 
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-    this.yes = this.yes.bind(this);
-    this.never = this.never.bind(this);
-    this.close = this.close.bind(this);
-    this.handleJoyrideCallback = this.handleJoyrideCallback.bind(this);
     this.navToggleHandler = this.navToggleHandler.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
-    this.resetTour = this.resetTour.bind(this);
 
   }
 
@@ -83,76 +75,6 @@ class App extends Component {
       console.log(err);
     });
   };
-  /**
-   * openModal function
-   */
-  openModal() {
-    this.setState({modalIsOpen: true});
-  }
-
-  /**
-   * closeModal function
-   */
-  closeModal() {
-    this.setState({modalIsOpen: false});
-  }
-
-  /**
-   * handleSelect function
-   * @param {number} index
-   * @param {number} last
-   */
-  handleSelect(index, last) {
-    if (this.joyride.getProgress().index === 2) {
-      setTimeout(() => {
-        this.joyride.next();
-      }, 1);
-    }
-  }
-
-  /**
-   * handleSelect function
-   * @param {number} result
-   */
-  handleJoyrideCallback(result) {
-    // const {joyride} = this.props;
-
-    if (result.action == 'close') {
-      this.setState({run: false});
-    }
-  }
-
-  /**
-   * resetTour function
-   */
-  resetTour() {
-    console.dir(this);
-    this.joyride.reset(true);
-    this.setState({run: true});
-  }
-
-  /**
-   * yes function what a great function
-   */
-  yes() {
-    this.closeModal();
-    this.setState({run: true});
-  }
-
-  /**
-   * never function
-   */
-  never() {
-    this.closeModal();
-    this.close();
-  }
-
-  /**
-   * close function
-   */
-  close() {
-    this.setState({showModal: false});
-  }
 
   /**
    * Function that handles the click for the nav button
